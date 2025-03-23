@@ -48,6 +48,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
   height: 80vh;
   font-family: 'Hanken Grotesk', sans-serif;
   position: relative;
+  margin-top: -88px;
 }
 
 .banner-img {
