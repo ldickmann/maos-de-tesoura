@@ -43,12 +43,13 @@ const bannerImage = ref('/images/barber-banner.jpg')
 </script>
 
 <style scoped lang="scss">
+@use '../assets/base.scss' as *;
+@use '../assets/typography.scss' as *;
+
 .banner {
   width: 100%;
   height: 80vh;
-  font-family: 'Hanken Grotesk', sans-serif;
-  position: relative;
-  margin-top: -88px;
+  font-family: $font-family-tertiary;
 }
 
 .banner-img {
@@ -76,7 +77,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
 
 .toolbar-title {
   text-align: center;
-  color: white;
+  color: $color-text-light;
   text-transform: uppercase;
 }
 
@@ -89,7 +90,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
 .highlight-text {
   text-align: center;
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #ff7b42;
+  -webkit-text-stroke-color: $accent;
   color: transparent;
   font-size: 3.75rem;
   font-weight: 400;
@@ -104,7 +105,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
 }
 
 .card {
-  background: rgba(0, 0, 0, 0.6);
+  background: $color-bg;
   padding: 1.5rem;
   border-radius: 10px;
   max-width: 500px;
@@ -122,7 +123,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
 
 .btn-outline {
   background: transparent;
-  color: white;
+  color: $color-text-light;
   border: 2px solid white;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
@@ -136,17 +137,17 @@ const bannerImage = ref('/images/barber-banner.jpg')
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: #ff7b42;
+  background: $color-bg-accent;
   padding: 1rem 0;
-  transform: skewY(-3deg);
+  transform: skewY(-2deg);
   margin-top: -3rem;
 }
 
 .text-title-banner-inclined {
-  font-family: 'Bungee Hairline', sans-serif;
+  font-family: $font-family-tertiary;
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #000;
+  -webkit-text-stroke-color: $dark;
   font-size: 4rem;
-  color: white;
+  color: $color-text-light;
 }
 </style>

@@ -35,7 +35,7 @@
 }
 
 .toolbar {
-  width: 1300px;
+  width: 1400px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -62,7 +62,7 @@
 .nav-link {
   text-decoration: none;
   color: white;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 0.5rem 1rem;
   transition: color 0.3s;
 }
@@ -73,10 +73,15 @@
 
 .nav-link-logo {
   text-decoration: none;
+  text-transform: uppercase;
   color: white;
   font-size: 1.5rem;
   padding: 0rem 1rem;
   transition: color 0.3s;
+}
+
+.nav-link-logo:hover {
+  color: #ff7b42;
 }
 
 .action-button {
