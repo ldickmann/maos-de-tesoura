@@ -49,8 +49,10 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
+@use '../assets/base.scss' as *;
+
 .container-card {
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -58,9 +60,9 @@ const props = defineProps({
 }
 
 .my-card {
-  background: white;
+  background: $color-bg-light;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   padding: 16px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -68,21 +70,22 @@ const props = defineProps({
 .card-section {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .text-h5 {
   font-size: 1.25rem;
-  margin: 8px 0;
+  margin: 0.5rem 0;
 }
 
 .text-caption {
   font-size: 0.875rem;
-  color: grey;
+  color: $color-text-gray;
 }
 
 .card-image {
   width: 50%;
-  border-radius: 8px;
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 </style>
