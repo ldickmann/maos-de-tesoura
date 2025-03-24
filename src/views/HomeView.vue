@@ -1,13 +1,15 @@
 <template>
   <main>
-    <!-- Banner Section -->
+    <!-- BannerComponent Section -->
     <section class="section-banner">
       <BannerComponent />
     </section>
+    <!-- CardComponent Section -->
     <CardComponent />
     <section class="section-black">
       <div class="container-services">
         <h2 class="text-h2 text-white text-center">Nossos Serviços</h2>
+        <!-- MiniCard Component -->
         <MiniCard />
       </div>
     </section>

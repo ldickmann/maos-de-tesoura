@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   classContainerCard: {
     type: String,
     default: 'container-card',
