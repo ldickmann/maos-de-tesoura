@@ -24,14 +24,16 @@
 <script setup></script>
 
 <style scoped lang="scss">
+@use '../assets/base.scss' as *;
+
 .header-floating {
-  padding: 1rem 0;
-  background: transparent;
-  z-index: 1000;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
+  padding: 1rem 0;
+  background: transparent;
+  z-index: 1000;
 }
 
 .toolbar {
@@ -48,7 +50,8 @@
   font-weight: bold;
   font-size: 1.5rem;
   line-height: 1;
-  font-family: 'Hanken Grotesk';
+  letter-spacing: 0.1rem;
+  font-family: $font-family-secondary;
 }
 
 .menu {
@@ -56,25 +59,26 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  font-family: 'Hanken Grotesk';
+  font-family: $font-family-secondary;
+  font-weight: bold;
 }
 
 .nav-link {
   text-decoration: none;
-  color: white;
+  color: $color-text-light;
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
   transition: color 0.3s;
 }
 
 .nav-link:hover {
-  color: #ff7b42;
+  color: $color-text-accent;
 }
 
 .nav-link-logo {
   text-decoration: none;
   text-transform: uppercase;
-  color: white;
+  color: $color-text-light;
   font-size: 1.5rem;
   padding: 0rem 1rem;
   transition: color 0.3s;
@@ -86,21 +90,21 @@
 
 .action-button {
   display: flex;
-  font-family: 'Hanken Grotesk';
+  font-family: $font-family-secondary;
 }
 
 .btn-accent {
-  background: #ff7b42;
+  background: $color-bg-accent;
   color: white;
   padding: 0.75rem 1.5rem;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   text-decoration: none;
   font-weight: bold;
   transition: background 0.3s;
 }
 
 .btn-accent:hover {
-  background: #d65a2b;
+  background: $color-hover-accent;
 }
 
 .logo-line1 {

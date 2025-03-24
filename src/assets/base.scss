@@ -3,6 +3,11 @@
 // ========================
 
 // ========================
+// Importing Global Styles
+// ========================
+@use 'typography' as *;
+
+// ========================
 // Colors Variables
 // ========================
 $primary: #1976d2;
@@ -29,6 +34,11 @@ $color-text-accent: #ff7b42;
 $color-bg: rgba(0, 0, 0, 0.6);
 $color-bg-light: rgba(255, 255, 255, 0.808);
 $color-bg-accent: rgba(255, 123, 66);
+
+// Hover Color Variables
+$color-hover: rgba(0, 0, 0, 0.2);
+$color-hover-light: rgba(255, 255, 255, 0.2);
+$color-hover-accent: #7d422c;
 
 // ========================
 // Typography Variables

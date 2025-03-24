@@ -44,7 +44,6 @@ const bannerImage = ref('/images/barber-banner.jpg')
 
 <style scoped lang="scss">
 @use '../assets/base.scss' as *;
-@use '../assets/typography.scss' as *;
 
 .banner {
   width: 100%;
@@ -112,7 +111,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
 }
 
 .text-subtitle1 {
-  color: white;
+  color: $color-text-light;
   font-size: 1rem;
 }
 
