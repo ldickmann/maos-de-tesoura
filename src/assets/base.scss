@@ -17,6 +17,7 @@ $accent: #ff7b42;
 $dark: #212121;
 $dark-page: #121212;
 
+$white: #ffffff;
 $light: #e0e0e0;
 
 $positive: #21ba45;
@@ -32,12 +33,14 @@ $color-text-accent: #ff7b42;
 
 // Background Color Variables
 $color-bg: rgba(0, 0, 0, 0.6);
-$color-bg-light: rgba(255, 255, 255, 0.808);
+$color-bg-light: rgba(255, 255, 255, 0.9);
+$color-bg-gray: rgba(88, 88, 88, 0.2);
 $color-bg-accent: rgba(255, 123, 66);
 
 // Hover Color Variables
 $color-hover: rgba(0, 0, 0, 0.2);
 $color-hover-light: rgba(255, 255, 255, 0.2);
+$color-hover-primary: #0056b3;
 $color-hover-accent: #7d422c;
 
 // ========================

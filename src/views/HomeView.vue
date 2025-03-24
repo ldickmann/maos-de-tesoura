@@ -8,7 +8,7 @@
     <CardComponent />
     <section class="section-black">
       <div class="container-services">
-        <h2 class="text-h2 text-white text-center">Nossos Serviços</h2>
+        <h2 class="title-services">Nossos Serviços</h2>
         <!-- MiniCard Component -->
         <MiniCard />
       </div>
@@ -24,7 +24,6 @@ import MiniCard from '@/components/MiniCard.vue'
 
 <style scoped lang="scss">
 @use '../assets/base.scss' as *;
-@use '../assets/typography.scss' as *;
 
 .section-banner {
   height: 100vh;
@@ -39,7 +38,15 @@ import MiniCard from '@/components/MiniCard.vue'
     max-width: 1300px;
     margin: 0 auto;
     padding: 1rem 0;
-    font-family: 'Hanken Grotesk';
+    font-family: $font-family-tertiary;
+
+    .title-services {
+      color: $color-text-light;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
   }
 }
 </style>
