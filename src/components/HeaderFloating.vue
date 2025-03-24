@@ -2,8 +2,12 @@
   <header class="header-floating">
     <nav class="toolbar">
       <div class="logo">
-        <span class="logo-line1 text-uppercase">Corte</span>
-        <span class="logo-line2 text-uppercase">Supremo</span>
+        <router-link to="/" class="nav-link-logo">
+          <span class="logo-line1">Corte</span>
+        </router-link>
+        <router-link to="/" class="nav-link-logo">
+          <span class="logo-line2 text-uppercase">Supremo</span>
+        </router-link>
       </div>
       <div class="menu">
         <router-link to="/" class="nav-link">Home</router-link>
@@ -24,7 +28,10 @@
   padding: 1rem 0;
   background: transparent;
   z-index: 1000;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 .toolbar {
@@ -62,6 +69,14 @@
 
 .nav-link:hover {
   color: #ff7b42;
+}
+
+.nav-link-logo {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0rem 1rem;
+  transition: color 0.3s;
 }
 
 .action-button {
