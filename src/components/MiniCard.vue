@@ -1,31 +1,76 @@
 <template>
-  <section class="mini-card">
+  <section :class="miniCardSection">
     <div class="card-section">
-      <div class="text-h6">Our Changing Planet</div>
-      <div class="text-subtitle2">by John Doe</div>
+      <div v-if="title" :class="titleClass">{{ title }}</div>
+      <div v-if="subtitle" :class="subtitleClass">{{ subtitle }}</div>
     </div>
 
     <hr class="separator" />
 
     <div class="card-actions">
-      <button class="action-btn">Action 1</button>
-      <button class="action-btn">Action 2</button>
+      <template v-if="iconLibrary === 'material'">
+        <span class="material-symbols-outlined" :class="iconStyled">{{ icon }}</span>
+      </template>
+      <template v-else-if="iconLibrary === 'mdi'">
+        <i :class="['mdi', 'mdi-' + icon, iconStyled]"></i>
+      </template>
+      <template v-else>
+        <span :class="iconStyled">{{ icon }}</span>
+      </template>
     </div>
   </section>
 </template>
+
+<script setup>
+const props = defineProps({
+  miniCardSection: {
+    type: String,
+    default: 'mini-card',
+  },
+  titleClass: {
+    type: String,
+    default: 'text-h6',
+  },
+  title: {
+    type: String,
+    default: 'Lorem Ipsum',
+  },
+  subtitleClass: {
+    type: String,
+    default: 'text-subtitle2',
+  },
+  subtitle: {
+    type: String,
+    default: 'Dolor sit amet, consectetur adipiscing elit.',
+  },
+  icon: {
+    type: String,
+    default: 'content_cut',
+  },
+  iconStyled: {
+    type: String,
+    default: 'icon-styled',
+  },
+  iconLibrary: {
+    type: String,
+    default: 'material',
+  },
+})
+</script>
 
 <style scoped lang="scss">
 @use '../assets/base.scss' as *;
 
 .mini-card {
   width: 100%;
-  max-width: 250px;
-  background: $color-bg-light;
-  border: 1px solid #ddd;
+  max-width: 270px;
+  background-color: $color-bg-dark;
+  border: 1px solid $color-bg-gray;
   border-radius: 0.5rem;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba($color-bg-dark, 0.5);
   padding: 1rem;
   text-align: center;
+  margin-top: 4rem;
 
   .card-section {
     margin-bottom: 0.5rem;
@@ -33,6 +78,7 @@
     .text-h6 {
       font-size: 1.25rem;
       font-weight: bold;
+      color: $color-text-light;
     }
 
     .text-subtitle2 {
@@ -53,17 +99,11 @@
     flex-direction: column;
     gap: 0.5rem;
 
-    .action-btn {
-      background: none;
-      border: none;
-      color: $primary;
-      cursor: pointer;
-      font-size: 1rem;
+    .icon-styled {
+      color: $color-text-accent;
+      font-size: 5rem;
       padding: 0.5rem;
-    }
-
-    .action-btn:hover {
-      color: $color-hover-primary;
+      line-height: 1.5;
     }
   }
 }
