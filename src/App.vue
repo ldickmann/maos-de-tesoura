@@ -6,7 +6,7 @@
 
 <script setup>
 import { RouterView } from 'vue-router'
-import HeaderFloating from '@/components/HeaderFloating.vue'
+import HeaderFloating from '@/components/layouts/HeaderFloating.vue'
 </script>
 
 <style scoped></style>

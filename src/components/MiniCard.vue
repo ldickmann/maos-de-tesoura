@@ -59,8 +59,6 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
-@use '../assets/base.scss' as *;
-
 .mini-card {
   width: 100%;
   max-width: 270px;
@@ -70,7 +68,6 @@ const props = defineProps({
   box-shadow: 0 0 10px rgba($bg-dark, 0.5);
   padding: 1rem;
   text-align: center;
-  margin-top: 4rem;
 
   .card-section {
     margin-bottom: 0.5rem;

@@ -49,15 +49,13 @@ import MiniCard from '@/components/MiniCard.vue'
 </script>
 
 <style scoped lang="scss">
-@use '../assets/base.scss' as *;
-
 .section-banner {
   height: 100vh;
 }
 
 .section-mini-cards {
   margin-top: 3rem;
-  height: 50vh;
+  height: 55vh;
   background-color: $bg-dark;
 
   .container-services {
@@ -82,7 +80,7 @@ import MiniCard from '@/components/MiniCard.vue'
     .container-mini-cards {
       display: flex;
       justify-content: space-evenly;
-      margin-top: 2rem;
+      margin-top: 4rem;
     }
   }
 }

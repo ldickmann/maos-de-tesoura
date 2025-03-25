@@ -47,8 +47,6 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
-@use '../assets/base.scss' as *;
-
 .section-card {
   max-width: 1400px;
   margin: 0 auto;
@@ -58,7 +56,7 @@ const props = defineProps({
 }
 
 .my-card {
-  background: $tertiary;
+  background: $bg-dark;
   border: 1px solid #ddd;
   border-radius: 0.5rem;
   padding: 2rem;
@@ -78,7 +76,7 @@ const props = defineProps({
 }
 
 .card-badge {
-  background-color: $complementary-olive;
+  background-color: $secondary;
   color: $text-secondary;
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
@@ -89,6 +87,7 @@ const props = defineProps({
 }
 
 .text-h5 {
+  color: $text-secondary;
   font-size: 1.25rem;
   margin: 0.5rem 0;
 }

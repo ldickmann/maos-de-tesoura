@@ -12,13 +12,12 @@
       </div>
 
       <div class="card-container">
-        <div class="card transparent-card">
-          <div class="card-section">
-            <p class="text-subtitle1">
-              Renove seu estilo, cuide da sua barba e sinta-se no controle. Aqui, cada corte é uma
-              experiência única!
-            </p>
-          </div>
+        <div class="card-content">
+          <p class="text-subtitle1">
+            Renove seu estilo, cuide da sua barba e sinta-se no controle. Aqui, cada corte é uma
+            experiência única!
+          </p>
+
           <div class="card-actions">
             <button class="btn-outline">Ver Mais</button>
           </div>
@@ -41,8 +40,6 @@ const bannerImage = ref('/images/barber-banner.jpg')
 </script>
 
 <style scoped lang="scss">
-@use '../assets/base.scss' as *;
-
 .banner {
   width: 100%;
   height: 80vh;
@@ -94,13 +91,14 @@ const bannerImage = ref('/images/barber-banner.jpg')
 }
 
 .card-container {
-  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-top: 2rem;
 }
 
-.card {
+.card-content {
   background: rgba($tertiary, 0.8);
   color: $accent-light;
   padding: 2rem;
@@ -128,7 +126,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
   cursor: pointer;
   font-size: 1rem;
   text-transform: uppercase;
-  border-radius: 5px;
+  border-radius: 4px;
   transition:
     background 0.3s,
     color 0.3s;

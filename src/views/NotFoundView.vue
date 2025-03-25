@@ -10,8 +10,6 @@
 </template>
 
 <style lang="scss">
-@use '../assets/base.scss' as *;
-
 .not-found {
   min-height: 100vh;
   display: flex;
@@ -27,19 +25,19 @@
 
     h1 {
       font-size: 6rem;
-      color: $primary;
+      color: $secondary;
       margin: 0;
       line-height: 1;
     }
 
     h2 {
       font-size: 2rem;
-      color: $dark;
+      color: $text-secondary;
       margin: 1rem 0;
     }
 
     p {
-      color: #6c757d;
+      color: $text-gray;
       margin-bottom: 2rem;
     }
   }
@@ -47,14 +45,14 @@
   &__button {
     display: inline-block;
     padding: 0.8rem 1.6rem;
-    background-color: $primary;
-    color: $dark;
+    background-color: $secondary;
+    color: $text-secondary;
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: $accent;
+      background-color: $hover-accent;
     }
   }
 }

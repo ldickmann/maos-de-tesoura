@@ -1,11 +1,6 @@
 // ========================
-// Base SCSS
+// Variables
 // ========================
-
-// ========================
-// Importing Global Styles
-// ========================
-@use 'typography' as *;
 
 // ========================
 // Core Color Palette
@@ -46,6 +41,7 @@ $text-secondary: #ffffff;
 $text-gray: #7a7a7a;
 $text-accent: #ff7b42;
 $text-quaternary: #594031;
+$text-gold: #bf925b;
 
 // Background Colors
 $bg-primary: rgba(0, 0, 0, 0.6);
@@ -59,42 +55,10 @@ $hover-default: rgba(0, 0, 0, 0.2);
 $hover-light: rgba(255, 255, 255, 0.2);
 $hover-primary: #0056b3;
 $hover-accent: #7d422c;
+$hover-tertiary: #261e17;
 
 // Alert Colors
 $alert-positive: #21ba45;
 $alert-negative: #c10015;
 $alert-info: #31ccec;
 $alert-warning: #f2c037;
-
-// ========================
-// Typography Variables
-// ========================
-$font-family-primary: 'Archivo Black', sans-serif;
-$font-family-secondary: 'Bungee Hairline', sans-serif;
-$font-family-tertiary: 'Hanken Grotesk', sans-serif;
-
-// ========================
-// Global Resets & Utilities
-// ========================
-
-html {
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  min-height: 100vh;
-  font-family: $font-family-primary;
-  font-size: 15px;
-  line-height: 1.6;
-  transition:
-    color 0.5s,
-    background-color 0.5s;
-}
