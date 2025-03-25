@@ -8,7 +8,7 @@
 @use 'typography' as *;
 
 // ========================
-// Colors Variables
+// Core Color Palette
 // ========================
 $primary: #1976d2;
 $secondary: #ff7b42;
@@ -18,36 +18,53 @@ $quinary: #a6785d;
 $accent: #f2f2f2;
 $accent-light: #f5f5f5;
 
+// ========================
+// Complementary Colors
+// ========================
+$complementary-gold: #b8860b;
+$complementary-gold-muted: #a88732;
+$complementary-olive: #556b2f;
+$complementary-olive-muted: #6b8e23;
+$complementary-cream: #f0e68c;
+$complementary-cream-light: #faf0e6;
+$complementary-charcoal: #36454f;
+$complementary-charcoal-light: #4a4a4a;
+$complementary-dusty-blue: #607b8b;
+$complementary-grey-blue: #778899;
+
+// ========================
+// Semantic Colors
+// ========================
 $dark: #212121;
 $dark-page: #121212;
-
 $white: #ffffff;
 $light: #e0e0e0;
 
-$positive: #21ba45;
-$negative: #c10015;
-$info: #31ccec;
-$warning: #f2c037;
+// Text Colors
+$text-primary: #000000;
+$text-secondary: #ffffff;
+$text-gray: #7a7a7a;
+$text-accent: #ff7b42;
+$text-quaternary: #594031;
 
-// Color Text Variables
-$color-text: #000000;
-$color-text-light: #ffffff;
-$color-text-gray: #7a7a7a;
-$color-text-accent: #ff7b42;
-$color-text-quaternary: #594031;
+// Background Colors
+$bg-primary: rgba(0, 0, 0, 0.6);
+$bg-dark: rgb(0, 0, 0);
+$bg-light: rgba(255, 255, 255, 0.9);
+$bg-gray: rgba(88, 88, 88, 0.2);
+$bg-accent: rgba(255, 123, 66);
 
-// Background Color Variables
-$color-bg: rgba(0, 0, 0, 0.6);
-$color-bg-dark: rgb(0, 0, 0);
-$color-bg-light: rgba(255, 255, 255, 0.9);
-$color-bg-gray: rgba(88, 88, 88, 0.2);
-$color-bg-accent: rgba(255, 123, 66);
+// Hover Colors
+$hover-default: rgba(0, 0, 0, 0.2);
+$hover-light: rgba(255, 255, 255, 0.2);
+$hover-primary: #0056b3;
+$hover-accent: #7d422c;
 
-// Hover Color Variables
-$color-hover: rgba(0, 0, 0, 0.2);
-$color-hover-light: rgba(255, 255, 255, 0.2);
-$color-hover-primary: #0056b3;
-$color-hover-accent: #7d422c;
+// Alert Colors
+$alert-positive: #21ba45;
+$alert-negative: #c10015;
+$alert-info: #31ccec;
+$alert-warning: #f2c037;
 
 // ========================
 // Typography Variables
@@ -60,18 +77,20 @@ $font-family-tertiary: 'Hanken Grotesk', sans-serif;
 // Global Resets & Utilities
 // ========================
 
+html {
+  box-sizing: border-box;
+}
+
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: inherit;
   margin: 0;
   padding: 0;
 }
 
 body {
   min-height: 100vh;
-  background: var(--vt-c-white);
-  color: var(--color-text);
   font-family: $font-family-primary;
   font-size: 15px;
   line-height: 1.6;

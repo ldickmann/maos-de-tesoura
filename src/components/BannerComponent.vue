@@ -14,7 +14,7 @@
       <div class="card-container">
         <div class="card transparent-card">
           <div class="card-section">
-            <p class="text-white text-subtitle1">
+            <p class="text-subtitle1">
               Renove seu estilo, cuide da sua barba e sinta-se no controle. Aqui, cada corte é uma
               experiência única!
             </p>
@@ -27,10 +27,8 @@
     </div>
 
     <div class="banner-inclined">
-      <div class="toolbar">
-        <div class="toolbar-title">
-          <p class="text-title-banner-inclined">Força, estilo e respeito</p>
-        </div>
+      <div class="toolbar-title">
+        <p class="text-banner-inclined">Força, estilo e respeito</p>
       </div>
     </div>
   </div>
@@ -49,6 +47,8 @@ const bannerImage = ref('/images/barber-banner.jpg')
   width: 100%;
   height: 80vh;
   font-family: $font-family-tertiary;
+  position: relative;
+  overflow: visible;
 }
 
 .banner-img {
@@ -58,77 +58,84 @@ const bannerImage = ref('/images/barber-banner.jpg')
 }
 
 .banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(80vh - 1rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 2rem;
   border-radius: 10px;
   text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: transparent;
-}
-
-.toolbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: rgba($tertiary, 0.4);
 }
 
 .toolbar-title {
-  text-align: center;
-  color: $color-text-light;
+  color: $accent-light;
   text-transform: uppercase;
 }
 
 .text-overline-toolbar {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   line-height: 1rem;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .highlight-text {
-  text-align: center;
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: $accent;
+  -webkit-text-stroke-color: $secondary;
   color: transparent;
-  font-size: 3.75rem;
+  font-size: 4rem;
   font-weight: 400;
-  line-height: 3.75rem;
+  line-height: 4rem;
   text-transform: uppercase;
 }
 
 .card-container {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 2rem;
 }
 
 .card {
-  background: $color-bg;
-  padding: 1.5rem;
+  background: rgba($tertiary, 0.8);
+  color: $accent-light;
+  padding: 2rem;
   border-radius: 10px;
   max-width: 500px;
 }
 
 .text-subtitle1 {
-  color: $color-text-light;
+  color: $accent-light;
   font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 300;
 }
 
 .card-actions {
-  margin-top: 1rem;
+  margin-top: 2rem;
   text-align: center;
 }
 
 .btn-outline {
   background: transparent;
-  color: $color-text-light;
-  border: 2px solid white;
-  padding: 0.75rem 1.5rem;
+  color: $accent-light;
+  border: 2px solid $accent-light;
+  padding: 0.8rem 2rem;
   cursor: pointer;
   font-size: 1rem;
   text-transform: uppercase;
   border-radius: 5px;
+  transition:
+    background 0.3s,
+    color 0.3s;
+
+  &:hover {
+    background-color: rgba($accent-light, 0.1);
+  }
 }
 
 .banner-inclined {
@@ -136,17 +143,21 @@ const bannerImage = ref('/images/barber-banner.jpg')
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: $color-bg-accent;
-  padding: 1rem 0;
+  background: $secondary;
+  padding: 1.5rem 0;
   transform: skewY(-2deg);
-  margin-top: -3rem;
+  margin-top: -4rem;
+  position: relative;
+  z-index: 10;
 }
 
-.text-title-banner-inclined {
+.text-banner-inclined {
   font-family: $font-family-tertiary;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: $dark;
-  font-size: 4rem;
-  color: $color-text-light;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: $tertiary;
+  font-size: 3rem;
+  color: $accent-light;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 </style>

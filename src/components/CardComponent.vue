@@ -60,7 +60,7 @@ const props = defineProps({
 }
 
 .my-card {
-  background: $color-bg-light;
+  background: $bg-light;
   border: 1px solid #ddd;
   border-radius: 0.5rem;
   padding: 16px;
@@ -80,7 +80,7 @@ const props = defineProps({
 
 .text-caption {
   font-size: 0.875rem;
-  color: $color-text-gray;
+  color: $text-gray;
 }
 
 .card-image {

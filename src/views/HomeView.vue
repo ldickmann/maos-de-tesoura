@@ -66,7 +66,7 @@ import MiniCard from '@/components/MiniCard.vue'
     font-family: $font-family-tertiary;
 
     .title-services {
-      color: $color-text-light;
+      color: $text-secondary;
       font-size: 2rem;
       font-weight: bold;
       text-align: center;
@@ -75,7 +75,7 @@ import MiniCard from '@/components/MiniCard.vue'
 
     .separator-services {
       height: 2px;
-      background-color: $color-bg-gray;
+      background-color: $bg-gray;
       margin-top: 1rem;
     }
 

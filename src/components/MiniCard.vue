@@ -64,10 +64,10 @@ const props = defineProps({
 .mini-card {
   width: 100%;
   max-width: 270px;
-  background-color: $color-bg-dark;
-  border: 1px solid $color-bg-gray;
+  background-color: $bg-dark;
+  border: 1px solid $bg-gray;
   border-radius: 0.5rem;
-  box-shadow: 0 0 10px rgba($color-bg-dark, 0.5);
+  box-shadow: 0 0 10px rgba($bg-dark, 0.5);
   padding: 1rem;
   text-align: center;
   margin-top: 4rem;
@@ -78,19 +78,19 @@ const props = defineProps({
     .text-h6 {
       font-size: 1.25rem;
       font-weight: bold;
-      color: $color-text-light;
+      color: $text-secondary;
     }
 
     .text-subtitle2 {
       font-size: 0.875rem;
-      color: $color-text-gray;
+      color: $text-gray;
     }
   }
 
   .separator {
     border: 0;
     height: 2px;
-    background: $color-bg-gray;
+    background: $bg-gray;
     margin: 0.5rem 0;
   }
 
@@ -100,7 +100,7 @@ const props = defineProps({
     gap: 0.5rem;
 
     .icon-styled {
-      color: $color-text-accent;
+      color: $text-accent;
       font-size: 5rem;
       padding: 0.5rem;
       line-height: 1.5;
