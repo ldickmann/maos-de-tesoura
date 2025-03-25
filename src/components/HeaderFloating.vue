@@ -1,5 +1,5 @@
 <template>
-  <header class="header-floating">
+  <header :class="['header-floating', { scrolled: isScrolled }]">
     <nav class="toolbar">
       <div class="logo">
         <router-link to="/" class="nav-link-logo">
@@ -21,7 +21,22 @@
   </header>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const isScrolled = ref(false)
+const handleScroll = () => {
+  isScrolled.value = window.pageYOffset > 0
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+</script>
 
 <style scoped lang="scss">
 @use '../assets/base.scss' as *;
@@ -34,6 +49,11 @@
   padding: 1rem 0;
   background: transparent;
   z-index: 1000;
+  transition: background 0.3s;
+}
+
+.header-floating.scrolled {
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .toolbar {

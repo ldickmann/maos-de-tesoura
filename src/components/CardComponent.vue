@@ -1,32 +1,30 @@
 <template>
-  <div class="justify-center align-center" :class="classContainerCard">
+  <section :class="classSectionCard">
     <div class="my-card">
       <section class="card-section">
-        <div>
-          <div :class="classOverline">{{ overline }}</div>
-          <h3 class="text-h5">{{ title }}</h3>
-          <p class="text-caption text-grey">{{ lorem }}</p>
+        <div class="card-content">
+          <div class="card-badge">{{ badge }}</div>
+          <div class="title-text">
+            <h3 class="text-h5">{{ title }}</h3>
+            <p class="text-caption">{{ lorem }}</p>
+          </div>
         </div>
 
         <img class="card-image" :src="src" :alt="alt" />
       </section>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
 const props = defineProps({
-  classContainerCard: {
+  classSectionCard: {
     type: String,
-    default: 'container-card',
+    default: 'section-card',
   },
-  classOverline: {
+  badge: {
     type: String,
-    default: 'text-overline text-accent',
-  },
-  overline: {
-    type: String,
-    default: 'Overline',
+    default: 'Badge',
   },
   title: {
     type: String,
@@ -51,7 +49,7 @@ const props = defineProps({
 <style scoped lang="scss">
 @use '../assets/base.scss' as *;
 
-.container-card {
+.section-card {
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
@@ -60,10 +58,10 @@ const props = defineProps({
 }
 
 .my-card {
-  background: $bg-light;
+  background: $tertiary;
   border: 1px solid #ddd;
   border-radius: 0.5rem;
-  padding: 16px;
+  padding: 2rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -71,6 +69,23 @@ const props = defineProps({
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.card-badge {
+  background-color: $complementary-olive;
+  color: $text-secondary;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
 }
 
 .text-h5 {
@@ -87,5 +102,10 @@ const props = defineProps({
   width: 50%;
   border-radius: 0.5rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 </style>

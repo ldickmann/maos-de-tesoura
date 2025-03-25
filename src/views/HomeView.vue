@@ -6,7 +6,7 @@
     </section>
     <!-- CardComponent Section -->
     <CardComponent />
-    <section class="section-black">
+    <section class="section-mini-cards">
       <div class="container-services">
         <h2 class="title-services">Nossos Serviços</h2>
         <hr class="separator-services" />
@@ -55,10 +55,10 @@ import MiniCard from '@/components/MiniCard.vue'
   height: 100vh;
 }
 
-.section-black {
+.section-mini-cards {
   margin-top: 3rem;
   height: 50vh;
-  background-color: $dark-page;
+  background-color: $bg-dark;
 
   .container-services {
     max-width: 1400px;
@@ -66,7 +66,7 @@ import MiniCard from '@/components/MiniCard.vue'
     font-family: $font-family-tertiary;
 
     .title-services {
-      color: $text-secondary;
+      color: $accent-light;
       font-size: 2rem;
       font-weight: bold;
       text-align: center;
@@ -75,7 +75,7 @@ import MiniCard from '@/components/MiniCard.vue'
 
     .separator-services {
       height: 2px;
-      background-color: $bg-gray;
+      background-color: $accent-light;
       margin-top: 1rem;
     }
 

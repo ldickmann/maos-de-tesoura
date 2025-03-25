@@ -64,7 +64,7 @@ const props = defineProps({
 .mini-card {
   width: 100%;
   max-width: 270px;
-  background-color: $bg-dark;
+  background-color: $complementary-charcoal;
   border: 1px solid $bg-gray;
   border-radius: 0.5rem;
   box-shadow: 0 0 10px rgba($bg-dark, 0.5);
@@ -89,9 +89,9 @@ const props = defineProps({
 
   .separator {
     border: 0;
-    height: 2px;
-    background: $bg-gray;
-    margin: 0.5rem 0;
+    height: 1px;
+    background: $complementary-gold;
+    margin: 1rem 0;
   }
 
   .card-actions {
@@ -100,7 +100,7 @@ const props = defineProps({
     gap: 0.5rem;
 
     .icon-styled {
-      color: $text-accent;
+      color: $complementary-gold;
       font-size: 5rem;
       padding: 0.5rem;
       line-height: 1.5;
