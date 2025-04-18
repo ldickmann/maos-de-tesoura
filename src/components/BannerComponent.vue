@@ -5,27 +5,27 @@
     <div class="banner-overlay">
       <div class="toolbar">
         <div class="toolbar-title">
-          <p>A Barbearia onde vira</p>
+          <p class="text-overline">A Barbearia onde você vira</p>
           <span class="highlight-text">Referência</span>
           <div class="line-text-row">
             <LineComponent class="line" :isVertical="false" lineWidth="50px" lineHeight="1px" />
-            <p class="text-overline-toolbar">Desde 1999</p>
+            <p class="text-overline-toolbar">Desde 2009</p>
             <LineComponent class="line" :isVertical="false" lineWidth="50px" lineHeight="1px" />
           </div>
         </div>
       </div>
 
-      <div class="card-container">
+      <!-- <div class="card-container">
         <div class="card-content">
           <p class="text-subtitle1">
             Renove seu estilo, cuide da sua barba e sinta-se no controle. Aqui, cada corte é uma
             experiência única!
           </p>
-
-          <div class="card-actions">
-            <button class="btn-outline">Ver Mais</button>
-          </div>
         </div>
+      </div> -->
+
+      <div class="card-actions">
+        <button class="btn-outline">Agende um Horário</button>
       </div>
     </div>
 
@@ -81,11 +81,16 @@ const bannerImage = ref('/images/barber-banner.jpg')
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 1rem;
+}
+
+.text-overline {
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 
 .text-overline-toolbar {
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1rem;
   font-weight: 300;
 }
@@ -94,7 +99,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: $secondary;
   color: transparent;
-  font-size: 4rem;
+  font-size: 5rem;
   font-weight: 400;
   line-height: 4rem;
   text-transform: uppercase;
@@ -104,7 +109,8 @@ const bannerImage = ref('/images/barber-banner.jpg')
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; // ajuste conforme necessário
+  gap: 10px;
+  margin-top: 3rem;
 }
 
 .card-container {
@@ -131,7 +137,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
 }
 
 .card-actions {
-  margin-top: 2rem;
+  margin-top: 4rem;
   text-align: center;
 }
 
@@ -139,7 +145,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
   background: transparent;
   color: $accent-light;
   border: 2px solid $accent-light;
-  padding: 0.8rem 2rem;
+  padding: 1.3rem 2rem;
   cursor: pointer;
   font-size: 1rem;
   text-transform: uppercase;

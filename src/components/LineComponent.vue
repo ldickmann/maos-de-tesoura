@@ -39,7 +39,7 @@ const lineHeight = ref(props.lineHeight)
 
 <style scoped lang="scss">
 .line {
-  background-color: #ffffff;
+  background-color: $bg-light;
   transition: all 0.3s ease-in-out;
 }
 
@@ -51,13 +51,5 @@ const lineHeight = ref(props.lineHeight)
 .line-horizontal {
   width: 100%;
   height: 1px;
-}
-
-.line-vertical:hover {
-  background-color: #ff0000; /* Cor de fundo ao passar o mouse */
-}
-
-.line-horizontal:hover {
-  background-color: #ff0000; /* Cor de fundo ao passar o mouse */
 }
 </style>
