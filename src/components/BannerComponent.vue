@@ -5,9 +5,13 @@
     <div class="banner-overlay">
       <div class="toolbar">
         <div class="toolbar-title">
-          <p class="text-overline-toolbar">Desde 1999</p>
-          <p>A Barbearia dos</p>
-          <span class="highlight-text">Homens</span>
+          <p>A Barbearia onde vira</p>
+          <span class="highlight-text">Referência</span>
+          <div class="line-text-row">
+            <LineComponent class="line" :isVertical="false" lineWidth="50px" lineHeight="1px" />
+            <p class="text-overline-toolbar">Desde 1999</p>
+            <LineComponent class="line" :isVertical="false" lineWidth="50px" lineHeight="1px" />
+          </div>
         </div>
       </div>
 
@@ -25,16 +29,17 @@
       </div>
     </div>
 
-    <div class="banner-inclined">
+    <!-- <div class="banner-inclined">
       <div class="toolbar-title">
         <p class="text-banner-inclined">Força, estilo e respeito</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import LineComponent from './LineComponent.vue'
 
 const bannerImage = ref('/images/barber-banner.jpg')
 </script>
@@ -42,7 +47,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
 <style scoped lang="scss">
 .banner {
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   font-family: $font-family-tertiary;
   position: relative;
   overflow: visible;
@@ -59,7 +64,7 @@ const bannerImage = ref('/images/barber-banner.jpg')
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(80vh - 1rem);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,6 +77,11 @@ const bannerImage = ref('/images/barber-banner.jpg')
 .toolbar-title {
   color: $accent-light;
   text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .text-overline-toolbar {
@@ -88,6 +98,13 @@ const bannerImage = ref('/images/barber-banner.jpg')
   font-weight: 400;
   line-height: 4rem;
   text-transform: uppercase;
+}
+
+.line-text-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; // ajuste conforme necessário
 }
 
 .card-container {
