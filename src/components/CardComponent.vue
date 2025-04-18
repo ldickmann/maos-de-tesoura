@@ -6,6 +6,12 @@
           <div class="card-badge">{{ badge }}</div>
           <div class="title-text">
             <h3 class="text-h5">{{ title }}</h3>
+            <LineComponent
+              :isVertical="false"
+              lineWidth="70px"
+              lineHeight="1px"
+              class="line-card"
+            />
             <p class="text-caption">{{ lorem }}</p>
           </div>
         </div>
@@ -17,6 +23,8 @@
 </template>
 
 <script setup>
+import LineComponent from './LineComponent.vue'
+
 const props = defineProps({
   classSectionCard: {
     type: String,
@@ -28,7 +36,7 @@ const props = defineProps({
   },
   title: {
     type: String,
-    default: 'Title',
+    default: 'Title Lorem Ipsum',
   },
   lorem: {
     type: String,
@@ -48,7 +56,7 @@ const props = defineProps({
 
 <style scoped lang="scss">
 .section-card {
-  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -56,9 +64,7 @@ const props = defineProps({
 }
 
 .my-card {
-  background: $bg-dark;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
+  background: $bg-gray-light;
   padding: 2rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -73,10 +79,12 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   align-self: flex-start;
+  padding: 5rem 2rem 5rem 10rem;
+  gap: 2rem;
 }
 
 .card-badge {
-  background-color: $secondary;
+  background-color: $bg-gold;
   color: $text-secondary;
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
@@ -88,13 +96,19 @@ const props = defineProps({
 
 .text-h5 {
   color: $text-secondary;
-  font-size: 1.25rem;
+  font-size: 3rem;
   margin: 0.5rem 0;
+  text-transform: uppercase;
+}
+
+.line-card {
+  margin: 2rem 0;
 }
 
 .text-caption {
   font-size: 0.875rem;
-  color: $text-gray;
+  color: $text-gold;
+  line-height: 1.5rem;
 }
 
 .card-image {
