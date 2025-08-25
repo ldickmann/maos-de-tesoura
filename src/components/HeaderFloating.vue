@@ -11,7 +11,9 @@
         <router-link to="/contato" class="nav-link">Contato</router-link>
       </div>
       <div class="action-button">
-        <router-link to="/agendamento" class="btn-accent">Agendar Horário</router-link>
+        <button class="btn-accent" disabled title="Funcionalidade em breve">
+          Agendar Horário
+        </button>
       </div>
     </nav>
   </header>
@@ -77,10 +79,17 @@
   text-decoration: none;
   font-weight: bold;
   transition: background 0.3s;
+  border: none;
+  cursor: pointer;
 }
 
-.btn-accent:hover {
+.btn-accent:hover:not(:disabled) {
   background: #d65a2b;
+}
+
+.btn-accent:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
 }
 
 .logo-line1 {
