@@ -13,7 +13,6 @@ const router = createRouter({
       name: 'about',
       component: () => import('../views/AboutView.vue'),
     },
-<<<<<<< HEAD
     {
       path: '/servicos',
       name: 'servicos',
@@ -23,14 +22,13 @@ const router = createRouter({
       path: '/contato',
       name: 'contato',
       component: () => import('../views/ContatoView.vue'),
-=======
 
-    // Rota 404 - Page Not Found - lazy loading
+      // Rota 404 - Page Not Found - lazy loading
+    },
     {
       path: '/:catchAll(.*)*',
       name: 'NotFound',
       component: () => import('../views/NotFoundView.vue'),
->>>>>>> feature/home-page-development
     },
   ],
 })

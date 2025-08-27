@@ -4,17 +4,6 @@
     <section class="section-banner">
       <BannerComponent />
     </section>
-<<<<<<< HEAD
-
-    <!-- Services Highlight Section -->
-    <ServicesHighlight />
-
-    <!-- Photo Gallery Section -->
-    <PhotoGallery />
-
-    <!-- Testimonials Section -->
-    <CustomerTestimonials />
-=======
     <!-- CardComponent Section -->
     <CardComponent />
     <section class="section-mini-cards">
@@ -50,20 +39,13 @@
         </div>
       </div>
     </section>
->>>>>>> feature/home-page-development
   </main>
 </template>
 
 <script setup>
 import BannerComponent from '@/components/BannerComponent.vue'
-<<<<<<< HEAD
-import ServicesHighlight from '@/components/ServicesHighlight.vue'
-import PhotoGallery from '@/components/PhotoGallery.vue'
-import CustomerTestimonials from '@/components/CustomerTestimonials.vue'
-=======
 import CardComponent from '@/components/CardComponent.vue'
 import MiniCard from '@/components/MiniCard.vue'
->>>>>>> feature/home-page-development
 </script>
 
 <style scoped lang="scss">
