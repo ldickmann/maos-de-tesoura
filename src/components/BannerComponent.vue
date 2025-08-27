@@ -5,39 +5,41 @@
     <div class="banner-overlay">
       <div class="toolbar">
         <div class="toolbar-title">
-          <p class="text-overline-toolbar">Desde 1999</p>
-          <p>A Barbearia dos</p>
-          <span class="highlight-text">Homens</span>
-        </div>
-      </div>
-
-      <div class="card-container">
-        <div class="card transparent-card">
-          <div class="card-section">
-            <p class="text-white text-subtitle1">
-              Renove seu estilo, cuide da sua barba e sinta-se no controle. Aqui, cada corte é uma
-              experiência única!
-            </p>
-          </div>
-          <div class="card-actions">
-            <button class="btn-outline">Ver Mais</button>
+          <p class="text-overline">A Barbearia onde você vira</p>
+          <span class="highlight-text">Referência</span>
+          <div class="line-text-row">
+            <LineComponent class="line" :isVertical="false" lineWidth="50px" lineHeight="1px" />
+            <p class="text-overline-toolbar">Desde 2009</p>
+            <LineComponent class="line" :isVertical="false" lineWidth="50px" lineHeight="1px" />
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="banner-inclined">
-      <div class="toolbar">
-        <div class="toolbar-title">
-          <p class="text-title-banner-inclined">Força, estilo e respeito</p>
+      <!-- <div class="card-container">
+        <div class="card-content">
+          <p class="text-subtitle1">
+            Renove seu estilo, cuide da sua barba e sinta-se no controle. Aqui, cada corte é uma
+            experiência única!
+          </p>
         </div>
+      </div> -->
+
+      <div class="card-actions">
+        <button class="btn-outline">Agende um Horário</button>
       </div>
     </div>
+
+    <!-- <div class="banner-inclined">
+      <div class="toolbar-title">
+        <p class="text-banner-inclined">Força, estilo e respeito</p>
+      </div>
+    </div> -->
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import LineComponent from './LineComponent.vue'
 
 const bannerImage = ref('/images/barber-banner.jpg')
 </script>
@@ -45,10 +47,10 @@ const bannerImage = ref('/images/barber-banner.jpg')
 <style scoped lang="scss">
 .banner {
   width: 100%;
-  height: 80vh;
-  font-family: 'Hanken Grotesk', sans-serif;
+  height: 100vh;
+  font-family: $font-family-tertiary;
   position: relative;
-  margin-top: -88px;
+  overflow: visible;
 }
 
 .banner-img {
@@ -58,77 +60,103 @@ const bannerImage = ref('/images/barber-banner.jpg')
 }
 
 .banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 2rem;
   border-radius: 10px;
   text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: transparent;
-}
-
-.toolbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: rgba($tertiary, 0.4);
 }
 
 .toolbar-title {
-  text-align: center;
-  color: white;
+  color: $accent-light;
   text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.text-overline {
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 
 .text-overline-toolbar {
-  font-size: 0.8rem;
+  font-size: 1rem;
   line-height: 1rem;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .highlight-text {
-  text-align: center;
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #ff7b42;
+  -webkit-text-stroke-color: $secondary;
   color: transparent;
-  font-size: 3.75rem;
+  font-size: 5rem;
   font-weight: 400;
-  line-height: 3.75rem;
+  line-height: 4rem;
   text-transform: uppercase;
+}
+
+.line-text-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 3rem;
 }
 
 .card-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
 }
 
-.card {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 1.5rem;
+.card-content {
+  background: rgba($tertiary, 0.8);
+  color: $accent-light;
+  padding: 2rem;
   border-radius: 10px;
   max-width: 500px;
 }
 
 .text-subtitle1 {
-  color: white;
+  color: $accent-light;
   font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 300;
 }
 
 .card-actions {
-  margin-top: 1rem;
+  margin-top: 4rem;
   text-align: center;
 }
 
 .btn-outline {
   background: transparent;
-  color: white;
-  border: 2px solid white;
-  padding: 0.75rem 1.5rem;
+  color: $accent-light;
+  border: 2px solid $accent-light;
+  padding: 1.3rem 2rem;
   cursor: pointer;
   font-size: 1rem;
   text-transform: uppercase;
-  border-radius: 5px;
+  border-radius: 4px;
+  transition:
+    background 0.3s,
+    color 0.3s;
+
+  &:hover {
+    background-color: rgba($accent-light, 0.1);
+  }
 }
 
 .banner-inclined {
@@ -136,17 +164,21 @@ const bannerImage = ref('/images/barber-banner.jpg')
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: #ff7b42;
-  padding: 1rem 0;
-  transform: skewY(-3deg);
-  margin-top: -3rem;
+  background: $secondary;
+  padding: 1.5rem 0;
+  transform: skewY(-2deg);
+  margin-top: -4rem;
+  position: relative;
+  z-index: 10;
 }
 
-.text-title-banner-inclined {
-  font-family: 'Bungee Hairline', sans-serif;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #000;
-  font-size: 4rem;
-  color: white;
+.text-banner-inclined {
+  font-family: $font-family-tertiary;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: $tertiary;
+  font-size: 3rem;
+  color: $accent-light;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 </style>

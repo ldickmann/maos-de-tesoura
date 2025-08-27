@@ -1,0 +1,66 @@
+// ========================
+// Variables
+// ========================
+
+// ========================
+// Core Color Palette
+// ========================
+$primary: #1976d2;
+$secondary: #ff7b42;
+$tertiary: #261e17;
+$quaternary: #594031;
+$quinary: #a6785d;
+$accent: #f2f2f2;
+$accent-light: #f5f5f5;
+
+// ========================
+// Complementary Colors
+// ========================
+$complementary-gold: #bf925b;
+$complementary-gold-muted: #a88732;
+$complementary-olive: #556b2f;
+$complementary-olive-muted: #6b8e23;
+$complementary-cream: #f0e68c;
+$complementary-cream-light: #faf0e6;
+$complementary-charcoal: #36454f;
+$complementary-charcoal-light: #4a4a4a;
+$complementary-dusty-blue: #607b8b;
+$complementary-grey-blue: #778899;
+
+// ========================
+// Semantic Colors
+// ========================
+$dark: #212121;
+$dark-page: #121212;
+$white: #ffffff;
+$light: #e0e0e0;
+
+// Text Colors
+$text-primary: #000000;
+$text-secondary: #ffffff;
+$text-gray: #7a7a7a;
+$text-accent: #ff7b42;
+$text-quaternary: #594031;
+$text-gold: #bf925b;
+
+// Background Colors
+$bg-primary: rgba(0, 0, 0, 0.6);
+$bg-dark: rgb(0, 0, 0);
+$bg-light: rgba(255, 255, 255, 0.9);
+$bg-gray: rgba(88, 88, 88, 0.2);
+$bg-gray-light: rgb(34, 34, 34);
+$bg-accent: rgba(255, 123, 66, 0.8);
+$bg-gold: rgba(191, 146, 91, 1);
+
+// Hover Colors
+$hover-default: rgba(0, 0, 0, 0.2);
+$hover-light: rgba(255, 255, 255, 0.2);
+$hover-primary: #0056b3;
+$hover-accent: #7d422c;
+$hover-tertiary: #261e17;
+
+// Alert Colors
+$alert-positive: #21ba45;
+$alert-negative: #c10015;
+$alert-info: #31ccec;
+$alert-warning: #f2c037;
