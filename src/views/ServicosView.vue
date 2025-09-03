@@ -5,12 +5,7 @@
       <p>Oferecemos uma gama completa de serviços para o homem moderno.</p>
     </div>
     <div class="services-container">
-      <div
-        v-for="service in services"
-        :key="service.id"
-        class="service-card"
-        @click="toggleDetails(service)"
-      >
+      <div v-for="service in services" :key="service.id" class="service-card">
         <div class="card-header">
           <h3 class="card-title">{{ service.title }}</h3>
           <span class="card-price">{{ service.price }}</span>
@@ -19,9 +14,14 @@
         <div v-if="service.expanded" class="card-details">
           <p>{{ service.long_desc }}</p>
         </div>
-        <button class="details-button">
-          {{ service.expanded ? 'Ver Menos' : 'Ver Mais' }}
-        </button>
+        <div class="card-actions">
+          <button class="details-button" @click="toggleDetails(service)">
+            {{ service.expanded ? 'Ver Menos' : 'Ver Mais' }}
+          </button>
+          <button class="book-button" @click="bookService(service)">
+            Agendar
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -29,6 +29,11 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useBookingStore } from '@/stores/booking'
+
+const router = useRouter()
+const bookingStore = useBookingStore()
 
 const services = ref([
   {
@@ -81,6 +86,11 @@ const services = ref([
 const toggleDetails = (service) => {
   service.expanded = !service.expanded
 }
+
+const bookService = (service) => {
+  bookingStore.setService(service)
+  router.push('/booking')
+}
 </script>
 
 <style scoped lang="scss">
@@ -115,7 +125,6 @@ const toggleDetails = (service) => {
   border-radius: 10px;
   padding: 2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
   transition: box-shadow 0.3s;
 }
 .service-card:hover {
@@ -147,15 +156,38 @@ const toggleDetails = (service) => {
   border-top: 1px solid #e0e0e0;
   color: #333;
 }
-.details-button {
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+.details-button,
+.book-button {
   background: none;
-  border: none;
+  border: 1px solid #ff7b42;
   color: #ff7b42;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 1rem;
-  padding: 0;
-  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
   font-family: 'Hanken Grotesk', sans-serif;
+  border-radius: 5px;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+.book-button {
+  background: #ff7b42;
+  color: white;
+}
+
+.details-button:hover {
+  background-color: #ffefe8;
+}
+
+.book-button:hover {
+  background-color: #e66a31;
+  border-color: #e66a31;
 }
 </style>
