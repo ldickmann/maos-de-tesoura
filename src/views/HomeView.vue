@@ -197,7 +197,7 @@ import { useRouter } from 'vue-router'
 import { useBookingStore } from '@/stores/booking'
 import { useNotificationStore } from '@/stores/notification'
 import BannerComponent from '@/components/BannerComponent.vue'
-import FooterComponent from '@/components/FooterComponent.vue'
+import FooterComponent from '@/components/layouts/FooterComponent.vue'
 
 const router = useRouter()
 const bookingStore = useBookingStore()
