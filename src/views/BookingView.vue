@@ -378,6 +378,8 @@ window.addEventListener(
 <style scoped lang="scss">
 @use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
 .booking-page {
   padding: 88px 2rem 2rem;
   background-color: var.$bg-light;
