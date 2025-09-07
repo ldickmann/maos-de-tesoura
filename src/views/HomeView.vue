@@ -506,12 +506,12 @@ onMounted(() => {
 }
 
 .team-card {
-  background: $accent-light;
+  background: var.$accent-light;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
-  border: 1px solid $border-color;
+  border: 1px solid var.$border-color;
 
   &:hover {
     transform: translateY(-4px);
@@ -533,13 +533,13 @@ onMounted(() => {
 
     h3 {
       font-size: 1.3rem;
-      color: $text-primary;
+      color: var.$text-primary;
       margin-bottom: 0.5rem;
       font-weight: 600;
     }
 
     .member-role {
-      color: $secondary;
+      color: var.$secondary;
       font-weight: 500;
       margin-bottom: 1rem;
     }
@@ -552,8 +552,8 @@ onMounted(() => {
   gap: 0.5rem;
 
   .specialty-tag {
-    background: $bg-light;
-    color: $tertiary;
+    background: var.$bg-light;
+    color: var.$tertiary;
     padding: 0.25rem 0.75rem;
     border-radius: 12px;
     font-size: 0.85rem;
