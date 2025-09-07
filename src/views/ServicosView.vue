@@ -271,13 +271,15 @@ const bookService = async (service) => {
 .services-container {
   max-width: 1440px;
   margin: 0 auto 4rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
   padding: 0 2rem;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
     padding: 0 1rem;
     max-width: 100%;
@@ -286,25 +288,65 @@ const bookService = async (service) => {
   @media (max-width: 480px) {
     padding: 0 0.5rem;
   }
+
+  @media (min-width: 769px) and (max-width: 1200px) {
+    justify-content: space-evenly;
+  }
 }
 
 .service-card {
   background: white;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
   border: 1px solid rgba(255, 123, 66, 0.1);
+  flex: 1;
+  min-width: 350px;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  // Barra superior animada
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
 
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-    border-color: rgba(255, 123, 66, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-color: rgba(255, 123, 66, 0.3);
+
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 500px;
+    min-width: 300px;
+  }
+
+  @media (max-width: 480px) {
+    min-width: 280px;
   }
 }
 
 .card-content {
-  padding: 2rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .card-header {
@@ -329,6 +371,16 @@ const bookService = async (service) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1.2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #ff7b42;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
 
   .duration {
     display: flex;
@@ -336,7 +388,7 @@ const bookService = async (service) => {
     gap: 0.5rem;
     color: #6c757d;
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
 
     i {
       color: #ff7b42;
@@ -347,10 +399,7 @@ const bookService = async (service) => {
     font-size: 1.5rem;
     font-weight: 700;
     color: #ff7b42;
-    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-family: 'Archivo Black', sans-serif;
   }
 }
 
@@ -418,10 +467,16 @@ const bookService = async (service) => {
 .card-actions {
   display: flex;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-top: auto; // Empurra os botões para o final do card
+  padding-top: 1rem;
 
   @media (max-width: 480px) {
     flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    flex-wrap: wrap;
   }
 }
 
@@ -497,55 +552,100 @@ const bookService = async (service) => {
   gap: 2rem;
   margin-bottom: 4rem;
 
-  @media (max-width: 968px) {
+  @media (max-width: 768px) {
     flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    justify-content: space-evenly;
   }
 }
 
 .info-card {
   text-align: center;
-  padding: 2rem;
+  padding: 2.5rem 2rem;
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
   flex: 1;
   min-width: 280px;
   max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(255, 123, 66, 0.1);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
+    border-radius: 20px 20px 0 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-color: rgba(255, 123, 66, 0.3);
+
+    &::before {
+      transform: scaleX(1);
+    }
+
+    .info-icon {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(255, 123, 66, 0.3);
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  h3 {
+    color: #212121;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    font-family: 'Archivo Black', sans-serif;
+  }
+
+  p {
+    color: #6c757d;
+    line-height: 1.7;
+    margin: 0;
+    flex-grow: 1;
+    font-size: 1rem;
   }
 }
 
 .info-icon {
   width: 80px;
   height: 80px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 2rem;
   background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 123, 66, 0.2);
+  flex-shrink: 0;
 
   i {
     font-size: 2rem;
     color: white;
   }
-}
-
-.info-card h3 {
-  color: #212121;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  font-size: 1.2rem;
-}
-
-.info-card p {
-  color: #6c757d;
-  line-height: 1.6;
-  margin: 0;
 }
 
 .cta-section {
