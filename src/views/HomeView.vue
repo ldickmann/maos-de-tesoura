@@ -192,10 +192,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
 import { useBookingStore } from '@/stores/booking'
 import { useNotificationStore } from '@/stores/notification'
+import { useServicesStore } from '@/stores/services'
+import { useContentStore } from '@/stores/content'
 import BannerComponent from '@/components/BannerComponent.vue'
 import FooterComponent from '@/components/layouts/FooterComponent.vue'
 
@@ -203,83 +206,15 @@ const router = useRouter()
 const bookingStore = useBookingStore()
 const notificationStore = useNotificationStore()
 
-// Serviços em destaque
-const featuredServices = ref([
-  {
-    id: 1,
-    name: 'Corte Completo',
-    description: 'Corte moderno com lavagem e finalização',
-    duration: 30,
-    price: 25.0,
-    icon: 'fas fa-cut',
-  },
-  {
-    id: 2,
-    name: 'Barba + Bigode',
-    description: 'Design e modelagem profissional',
-    duration: 25,
-    price: 20.0,
-    icon: 'fas fa-user-tie',
-  },
-  {
-    id: 3,
-    name: 'Combo Completo',
-    description: 'Corte + Barba com desconto especial',
-    duration: 45,
-    price: 35.0,
-    icon: 'fas fa-star',
-  },
-])
+// Stores de conteúdo
+const servicesStore = useServicesStore()
+const { services } = storeToRefs(servicesStore)
 
-// Equipe (dados resumidos)
-const teamMembers = ref([
-  {
-    id: 1,
-    name: 'João Silva',
-    role: 'Barbeiro Master',
-    photo: '/images/image-1-card.jpg',
-    specialties: ['Cortes Clássicos', 'Barbas Tradicionais'],
-  },
-  {
-    id: 2,
-    name: 'Pedro Santos',
-    role: 'Barbeiro Sênior',
-    photo: '/images/image-1-card.jpg',
-    specialties: ['Cortes Modernos', 'Design de Barba'],
-  },
-  {
-    id: 3,
-    name: 'Carlos Oliveira',
-    role: 'Barbeiro Especialista',
-    photo: '/images/image-1-card.jpg',
-    specialties: ['Cortes Jovens', 'Estilos Contemporâneos'],
-  },
-])
+const contentStore = useContentStore()
+const { teamMembers, testimonials } = storeToRefs(contentStore)
 
-// Depoimentos
-const testimonials = ref([
-  {
-    id: 1,
-    name: 'Ricardo Santos',
-    service: 'Corte + Barba',
-    avatar: '/images/image-1-card.jpg',
-    text: 'Excelente atendimento! O João entende exatamente o que eu quero. Sempre saio satisfeito.',
-  },
-  {
-    id: 2,
-    name: 'Marcos Silva',
-    service: 'Corte Moderno',
-    avatar: '/images/image-1-card.jpg',
-    text: 'Ambiente top e profissionais qualificados. Recomendo para todos os amigos!',
-  },
-  {
-    id: 3,
-    name: 'André Costa',
-    service: 'Barba Tradicional',
-    avatar: '/images/image-1-card.jpg',
-    text: 'A melhor barbearia da região. Atendimento personalizado e resultado impecável.',
-  },
-])
+// Apenas 3 serviços em destaque na home
+const featuredServices = computed(() => services.value.slice(0, 3))
 
 // Selecionar serviço e redirecionar
 const selectService = (service) => {
@@ -287,6 +222,13 @@ const selectService = (service) => {
   notificationStore.showSuccess(`Serviço "${service.name}" selecionado!`)
   router.push('/booking')
 }
+
+// Carregar dados ao montar o componente
+onMounted(() => {
+  if (services.value.length === 0) {
+    servicesStore.fetchServices()
+  }
+})
 </script>
 
 <style scoped lang="scss">

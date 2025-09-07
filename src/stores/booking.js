@@ -1,7 +1,11 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import { useNotificationStore } from './notification'
+import { validateBooking } from '@/utils/validation'
 
 export const useBookingStore = defineStore('booking', () => {
+  const notificationStore = useNotificationStore()
+
   // Estados do agendamento
   const selectedService = ref(null)
   const selectedProfessional = ref(null)
@@ -18,110 +22,41 @@ export const useBookingStore = defineStore('booking', () => {
   const isLoading = ref(false)
   const errors = ref({})
 
-  // Computadas
-  const isComplete = computed(() => {
-    return (
-      selectedService.value &&
-      selectedProfessional.value &&
-      selectedDate.value &&
-      selectedTime.value &&
-      clientName.value &&
-      clientPhone.value &&
-      clientEmail.value
-    )
-  })
+  // Dados que viriam de uma API (profissionais e horários)
+  const professionals = ref([
+    { id: 1, name: 'João Silva', specialties: [1, 2, 3, 4] },
+    { id: 2, name: 'Pedro Santos', specialties: [1, 3] },
+    { id: 3, name: 'Carlos Oliveira', specialties: [1, 2, 3, 4] },
+  ])
 
+  const availableTimes = ref([
+    '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+    '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
+  ])
+
+  // Computadas
   const bookingData = computed(() => ({
     service: selectedService.value,
     professional: selectedProfessional.value,
     date: selectedDate.value,
     time: selectedTime.value,
-    clientName: clientName.value,
-    clientPhone: clientPhone.value,
-    clientEmail: clientEmail.value,
-    clientNotes: clientNotes.value,
+    client: {
+      name: clientName.value,
+      phone: clientPhone.value,
+      email: clientEmail.value,
+      notes: clientNotes.value,
+    },
   }))
 
-  // Serviços disponíveis
-  const services = ref([
-    {
-      id: 1,
-      name: 'Corte Masculino',
-      duration: 30,
-      price: 25.0,
-      description: 'Corte tradicional masculino',
-    },
-    {
-      id: 2,
-      name: 'Barba',
-      duration: 20,
-      price: 15.0,
-      description: 'Aparar e modelar barba',
-    },
-    {
-      id: 3,
-      name: 'Corte + Barba',
-      duration: 45,
-      price: 35.0,
-      description: 'Combo completo',
-    },
-    {
-      id: 4,
-      name: 'Sobrancelha',
-      duration: 15,
-      price: 10.0,
-      description: 'Design de sobrancelha',
-    },
-  ])
-
-  // Profissionais disponíveis
-  const professionals = ref([
-    {
-      id: 1,
-      name: 'João Silva',
-      specialties: [1, 2, 3, 4],
-      avatar: '/images/professional-1.jpg',
-    },
-    {
-      id: 2,
-      name: 'Pedro Santos',
-      specialties: [1, 3],
-      avatar: '/images/professional-2.jpg',
-    },
-    {
-      id: 3,
-      name: 'Carlos Oliveira',
-      specialties: [1, 2, 3, 4],
-      avatar: '/images/professional-3.jpg',
-    },
-  ])
-
-  // Horários disponíveis
-  const availableTimes = ref([
-    '09:00',
-    '09:30',
-    '10:00',
-    '10:30',
-    '11:00',
-    '11:30',
-    '14:00',
-    '14:30',
-    '15:00',
-    '15:30',
-    '16:00',
-    '16:30',
-    '17:00',
-    '17:30',
-  ])
+  const availableProfessionals = computed(() => {
+    if (!selectedService.value) return professionals.value
+    return professionals.value.filter((p) => p.specialties.includes(selectedService.value.id))
+  })
 
   // Actions
   function setService(service) {
     selectedService.value = service
-    // Reset professional if not compatible
-    if (
-      selectedProfessional.value &&
-      !selectedProfessional.value.specialties.includes(service.id)
-    ) {
+    if (selectedProfessional.value && !selectedProfessional.value.specialties.includes(service.id)) {
       selectedProfessional.value = null
     }
   }
@@ -132,31 +67,11 @@ export const useBookingStore = defineStore('booking', () => {
 
   function setDate(date) {
     selectedDate.value = date
-    // Reset time when date changes
-    selectedTime.value = null
+    selectedTime.value = null // Reseta a hora quando a data muda
   }
 
   function setTime(time) {
     selectedTime.value = time
-  }
-
-  function setClientData(data) {
-    clientName.value = data.name || ''
-    clientPhone.value = data.phone || ''
-    clientEmail.value = data.email || ''
-    clientNotes.value = data.notes || ''
-  }
-
-  function setErrors(newErrors) {
-    errors.value = newErrors
-  }
-
-  function clearErrors() {
-    errors.value = {}
-  }
-
-  function setLoading(loading) {
-    isLoading.value = loading
   }
 
   function resetBooking() {
@@ -169,24 +84,34 @@ export const useBookingStore = defineStore('booking', () => {
     clientEmail.value = ''
     clientNotes.value = ''
     errors.value = {}
-    isLoading.value = false
   }
 
-  // Getters
-  function getAvailableProfessionals() {
-    if (!selectedService.value) return professionals.value
+  async function submitBooking() {
+    errors.value = {}
+    const result = validateBooking(bookingData.value)
+    if (!result.isValid) {
+      errors.value = result.errors
+      notificationStore.showError('Por favor, corrija os erros no formulário.')
+      return false
+    }
 
-    return professionals.value.filter((prof) => prof.specialties.includes(selectedService.value.id))
-  }
-
-  function getAvailableTimesForDate(date) {
-    // Aqui futuramente integrar com API para verificar horários ocupados
-    // Por enquanto retorna todos os horários
-    return availableTimes.value
+    isLoading.value = true
+    try {
+      // Simula chamada à API
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+      notificationStore.showSuccess('Agendamento confirmado com sucesso!')
+      resetBooking()
+      return true
+    } catch (e) {
+      notificationStore.showError('Falha ao realizar o agendamento. Tente novamente.')
+      console.error(e)
+      return false
+    } finally {
+      isLoading.value = false
+    }
   }
 
   return {
-    // Estados
     selectedService,
     selectedProfessional,
     selectedDate,
@@ -197,27 +122,15 @@ export const useBookingStore = defineStore('booking', () => {
     clientNotes,
     isLoading,
     errors,
-
-    // Dados
-    services,
-    professionals,
-    availableTimes,
-
-    // Computadas
-    isComplete,
+    professionals, // Expondo para a view
+    availableTimes, // Expondo para a view
     bookingData,
-
-    // Actions
+    availableProfessionals,
     setService,
     setProfessional,
     setDate,
     setTime,
-    setClientData,
-    setErrors,
-    clearErrors,
-    setLoading,
     resetBooking,
-    getAvailableProfessionals,
-    getAvailableTimesForDate,
+    submitBooking,
   }
 })

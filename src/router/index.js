@@ -9,12 +9,25 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue'),
     },
     {
+      path: '/servicos',
+      name: 'servicos',
+      component: () => import('../views/ServicosView.vue'),
+    },
+    {
+      path: '/booking',
+      name: 'booking',
+      component: () => import('../views/BookingView.vue'),
+    },
+    {
+      path: '/contato',
+      name: 'contato',
+      component: () => import('../views/ContatoView.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue'),
     },
-
-    // Rota 404 - Page Not Found - lazy loading
     {
       path: '/:catchAll(.*)*',
       name: 'NotFound',

@@ -104,10 +104,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
 import { useBookingStore } from '@/stores/booking'
 import { useNotificationStore } from '@/stores/notification'
+import { useServicesStore } from '@/stores/services'
+import LoadingSpinner from '@/components/LoadingSpinner.vue'
 
 const router = useRouter()
 const bookingStore = useBookingStore()
