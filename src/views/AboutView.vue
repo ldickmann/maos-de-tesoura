@@ -242,8 +242,8 @@ const teamMembers = ref([
 <style scoped lang="scss">
 @use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+
 .about-page {
-  padding-top: 88px;
   font-family: 'Hanken Grotesk', sans-serif;
 }
 
@@ -290,17 +290,9 @@ const teamMembers = ref([
 }
 
 .hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: flex;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.6) 0%,
-    rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.6) 100%
-  );
   z-index: 2;
 }
 
@@ -406,18 +398,20 @@ const teamMembers = ref([
 }
 
 .story-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 4rem;
-  align-items: start;
+  align-items: flex-start;
 
   @media (max-width: 968px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 3rem;
   }
 }
 
 .story-text {
+  flex: 2;
+
   h2 {
     font-family: 'Archivo Black', sans-serif;
     font-size: 2.5rem;
@@ -485,16 +479,17 @@ const teamMembers = ref([
 }
 
 .story-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
 
   @media (max-width: 968px) {
-    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
   }
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
   }
 }
 
@@ -505,6 +500,16 @@ const teamMembers = ref([
   border-radius: 16px;
   text-align: center;
   box-shadow: 0 8px 25px rgba(255, 123, 66, 0.2);
+  flex: 1 1 calc(50% - 0.75rem);
+  min-width: 120px;
+
+  @media (max-width: 968px) {
+    flex: 1 1 calc(25% - 1.125rem);
+  }
+
+  @media (max-width: 768px) {
+    flex: 1 1 calc(50% - 0.75rem);
+  }
 
   .stat-number {
     font-size: 2.5rem;
@@ -549,12 +554,14 @@ const teamMembers = ref([
 }
 
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
+  justify-content: center;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -564,6 +571,14 @@ const teamMembers = ref([
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
+  flex: 1 1 350px;
+  max-width: 400px;
+
+  @media (max-width: 768px) {
+    flex: none;
+    width: 100%;
+    max-width: 500px;
+  }
 
   &:hover {
     transform: translateY(-8px);
@@ -665,15 +680,18 @@ const teamMembers = ref([
 }
 
 .mission-pillars {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   margin-top: 3rem;
+  justify-content: center;
 }
 
 .pillar {
   text-align: center;
   padding: 2rem;
+  flex: 1 1 250px;
+  max-width: 350px;
 
   .pillar-icon {
     width: 80px;
