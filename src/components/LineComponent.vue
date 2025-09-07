@@ -38,8 +38,11 @@ const lineHeight = ref(props.lineHeight)
 </script>
 
 <style scoped lang="scss">
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
+
 .line {
-  background-color: $bg-light;
+  background-color: var.$bg-light;
   transition: all 0.3s ease-in-out;
 }
 

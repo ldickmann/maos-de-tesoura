@@ -6,6 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/maos-de-tesoura/',
   plugins: [vue(), vueDevTools()],
   // Pré Processadores de CSS (SCSS)
   css: {

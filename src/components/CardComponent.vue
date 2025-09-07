@@ -55,6 +55,9 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
+
 .section-card {
   width: 100%;
   margin: 0 auto;
@@ -64,7 +67,7 @@ const props = defineProps({
 }
 
 .my-card {
-  background: $bg-gray-light;
+  background: var.$bg-gray-light;
   padding: 2rem;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -84,8 +87,8 @@ const props = defineProps({
 }
 
 .card-badge {
-  background-color: $bg-gold;
-  color: $text-secondary;
+  background-color: var.$bg-gold;
+  color: var.$text-secondary;
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
   font-size: 0.75rem;
@@ -95,7 +98,7 @@ const props = defineProps({
 }
 
 .text-h5 {
-  color: $text-secondary;
+  color: var.$text-secondary;
   font-size: 3rem;
   margin: 0.5rem 0;
   text-transform: uppercase;
@@ -107,7 +110,7 @@ const props = defineProps({
 
 .text-caption {
   font-size: 0.875rem;
-  color: $text-gold;
+  color: var.$text-gold;
   line-height: 1.5rem;
 }
 

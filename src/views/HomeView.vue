@@ -1,41 +1,187 @@
 <template>
   <main>
-    <!-- BannerComponent Section -->
+    <!-- Banner Section -->
     <section class="section-banner">
       <BannerComponent />
     </section>
-    <!-- CardComponent Section -->
-    <CardComponent />
-    <section class="section-mini-cards">
-      <div class="container-services">
-        <h2 class="title-services">Nossos Serviços</h2>
-        <hr class="separator-services" />
-        <!-- MiniCard Component -->
-        <div class="container-mini-cards">
-          <MiniCard
-            title="Lorem Ipsum"
-            subtitle="Dolor sit amet, consectetur adipiscing elit."
-            iconLibrary="mdi"
-            icon="content-cut"
-          />
-          <MiniCard
-            title="Lorem Ipsum"
-            subtitle="Dolor sit amet, consectetur adipiscing elit."
-            iconLibrary="mdi"
-            icon="chair-rolling"
-          />
-          <MiniCard
-            title="Lorem Ipsum"
-            subtitle="Dolor sit amet, consectetur adipiscing elit."
-            iconLibrary="mdi"
-            icon="box-cutter"
-          />
-          <MiniCard
-            title="Lorem Ipsum"
-            subtitle="Dolor sit amet, consectetur adipiscing elit."
-            iconLibrary="material"
-            icon="accessibility_new"
-          />
+
+    <!-- Services Preview Section -->
+    <section class="services-preview">
+      <div class="container">
+        <div class="section-header">
+          <h2>Nossos Serviços</h2>
+          <p>Descubra os melhores tratamentos para o homem moderno</p>
+        </div>
+
+        <div class="services-grid">
+          <div
+            v-for="service in featuredServices"
+            :key="service.id"
+            class="service"
+            @click="selectService(service)"
+          >
+            <div class="service-icon">
+              <i :class="service.icon"></i>
+            </div>
+            <h3>{{ service.name }}</h3>
+            <p class="service-description">{{ service.description }}</p>
+            <div class="service-details">
+              <span class="duration">{{ service.duration }} min</span>
+              <span class="price">R$ {{ service.price.toFixed(2) }}</span>
+            </div>
+            <button @click="handleBookingAlert" class="service-btn">
+              <i class="fas fa-calendar"></i>
+              Agendar
+            </button>
+          </div>
+        </div>
+
+        <div class="section-cta">
+          <router-link to="/servicos" class="btn-outline-primary">
+            Ver Todos os Serviços
+          </router-link>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Preview Section -->
+    <section class="about-preview">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-content">
+            <span class="section-tag">Desde 2009</span>
+            <h2>Tradição e Qualidade</h2>
+            <p class="lead">
+              Há mais de 16 anos dedicados à arte da barbearia clássica, combinando técnicas
+              tradicionais com um toque moderno.
+            </p>
+            <ul class="features-list">
+              <li>
+                <i class="fas fa-check-circle"></i>
+                Profissionais experientes e qualificados
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i>
+                Produtos premium e equipamentos modernos
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i>
+                Ambiente acolhedor e sofisticado
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i>
+                Atendimento personalizado
+              </li>
+            </ul>
+            <div class="about-actions">
+              <router-link to="/about" class="btn-primary"> Nossa História </router-link>
+              <router-link to="/contato" class="btn-secondary"> Fale Conosco </router-link>
+            </div>
+          </div>
+          <div class="about-image">
+            <img src="/images/barber-banner.jpg" alt="Interior da barbearia" />
+            <div class="stats-overlay">
+              <div class="stat-item">
+                <span class="stat-number">3000+</span>
+                <span class="stat-label">Clientes</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">16+</span>
+                <span class="stat-label">Anos</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">96%</span>
+                <span class="stat-label">Satisfação</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Preview Section -->
+    <section class="team-preview">
+      <div class="container">
+        <div class="section-header">
+          <h2>Nossa Equipe</h2>
+          <p>Conheça os profissionais que fazem a diferença</p>
+        </div>
+
+        <div class="team-grid">
+          <div v-for="member in teamMembers" :key="member.id" class="team-card">
+            <div class="member-photo">
+              <img :src="member.photo" :alt="member.name" />
+            </div>
+            <div class="member-info">
+              <h3>{{ member.name }}</h3>
+              <p class="member-role">{{ member.role }}</p>
+              <div class="member-specialties">
+                <span
+                  v-for="specialty in member.specialties.slice(0, 2)"
+                  :key="specialty"
+                  class="specialty-tag"
+                >
+                  {{ specialty }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-cta">
+          <router-link to="/about" class="btn-outline-primary">
+            Conhecer Toda a Equipe
+          </router-link>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2>O que Nossos Clientes Dizem</h2>
+          <p>Depoimentos reais de quem confia no nosso trabalho</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div v-for="testimonial in testimonials" :key="testimonial.id" class="testimonial-card">
+            <div class="testimonial-content">
+              <div class="rating">
+                <i v-for="n in 5" :key="n" class="fas fa-star"></i>
+              </div>
+              <p>"{{ testimonial.text }}"</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-avatar">
+                <img :src="testimonial.avatar" :alt="testimonial.name" />
+              </div>
+              <div class="author-info">
+                <h4>{{ testimonial.name }}</h4>
+                <span>{{ testimonial.service }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Pronto para Renovar seu Visual?</h2>
+          <p>Agende agora mesmo e experimente nossos serviços premium</p>
+          <div class="cta-actions">
+            <button @click="handleBookingAlert" class="btn-primary btn-large">
+              <i class="fas fa-calendar-check"></i>
+              Agendar Horário
+            </button>
+            <a href="https://wa.me/5511987654321" class="btn-whatsapp" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+              WhatsApp
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -43,45 +189,594 @@
 </template>
 
 <script setup>
+import { computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useBookingStore } from '@/stores/booking'
+import { useNotificationStore } from '@/stores/notification'
+import { useServicesStore } from '@/stores/services'
+import { useContentStore } from '@/stores/content'
 import BannerComponent from '@/components/BannerComponent.vue'
-import CardComponent from '@/components/CardComponent.vue'
-import MiniCard from '@/components/MiniCard.vue'
+
+const router = useRouter()
+const bookingStore = useBookingStore()
+const notificationStore = useNotificationStore()
+
+// Stores de conteúdo
+const servicesStore = useServicesStore()
+const { services } = storeToRefs(servicesStore)
+
+const contentStore = useContentStore()
+const { teamMembers, testimonials } = storeToRefs(contentStore)
+
+// Apenas 3 serviços em destaque na home
+const featuredServices = computed(() => services.value.slice(0, 3))
+
+// Selecionar serviço e redirecionar
+const selectService = (service) => {
+  bookingStore.setService(service)
+  notificationStore.showSuccess(`Serviço "${service.name}" selecionado!`)
+  router.push('/booking')
+}
+
+// Função para emitir alert de função não implementada
+const handleBookingAlert = () => {
+  notificationStore.showInfo('Função Não implementada')
+}
+
+// Carregar dados ao montar o componente
+onMounted(() => {
+  if (services.value.length === 0) {
+    servicesStore.fetchServices()
+  }
+})
 </script>
 
 <style scoped lang="scss">
-.section-banner {
-  height: 100vh;
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 }
 
-.section-mini-cards {
-  margin-top: 3rem;
-  height: 55vh;
-  background-color: $bg-dark;
+// Section Headers
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
 
-  .container-services {
-    max-width: 1400px;
-    margin: 0 auto;
-    font-family: $font-family-tertiary;
+  h2 {
+    font-family: var.$font-family-secondary;
+    font-size: 2.5rem;
+    color: var.$text-primary;
+    margin-bottom: 1rem;
 
-    .title-services {
-      color: $accent-light;
+    @media (max-width: 768px) {
       font-size: 2rem;
+    }
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: var.$text-gray;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+// Services Preview Section
+.services-preview {
+  padding: 5rem 0;
+  background: var.$bg-light;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.service-card {
+  background: var.$accent-light;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  border: 1px solid var.$border-color;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .service-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+
+    i {
+      font-size: 2rem;
+      color: var.$accent-light;
+    }
+  }
+  h3 {
+    font-size: 1.4rem;
+    color: var.$text-primary;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .service-description {
+    color: var.$text-gray;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .service-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var.$bg-light;
+    border-radius: 8px;
+
+    .duration {
+      color: var.$tertiary;
+      font-weight: 500;
+    }
+
+    .price {
+      color: var.$secondary;
       font-weight: bold;
-      text-align: center;
-      padding-top: 1rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  .service-btn {
+    width: 100%;
+    padding: 0.875rem;
+    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
+    color: var.$accent-light;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        var.$btn-primary-hover 0%,
+        color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
+      );
+    }
+  }
+}
+
+// About Preview Section
+.about-preview {
+  padding: 5rem 0;
+  background: var.$accent-light;
+}
+
+.about-grid {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 968px) {
+    flex-direction: column;
+    gap: 3rem;
+  }
+}
+
+.about-content {
+  flex: 1;
+  min-width: 300px;
+
+  .section-tag {
+    display: inline-block;
+    background: var.$secondary;
+    color: var.$accent-light;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: var.$font-family-secondary;
+    font-size: 2.5rem;
+    color: var.$text-primary;
+    margin-bottom: 1.5rem;
+  }
+
+  .lead {
+    font-size: 1.2rem;
+    color: var.$tertiary;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    color: var.$tertiary;
+
+    i {
+      color: var.$success;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+.about-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.about-image {
+  position: relative;
+  flex: 1;
+  min-width: 300px;
+
+  img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.stats-overlay {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  background: rgba(var.$accent-light, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid var.$border-color;
+
+  .stat-item {
+    text-align: center;
+
+    .stat-number {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var.$secondary;
     }
 
-    .separator-services {
-      height: 2px;
-      background-color: $accent-light;
-      margin-top: 1rem;
+    .stat-label {
+      font-size: 0.9rem;
+      color: var.$text-gray;
+      font-weight: 500;
+    }
+  }
+}
+
+// Team Preview Section
+.team-preview {
+  padding: 5rem 0;
+  background: var.$bg-light;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.team-card {
+  background: var.$accent-light;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  border: 1px solid var.$border-color;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  .member-photo {
+    height: 250px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .member-info {
+    padding: 1.5rem;
+
+    h3 {
+      font-size: 1.3rem;
+      color: var.$text-primary;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
     }
 
-    .container-mini-cards {
-      display: flex;
-      justify-content: space-evenly;
-      margin-top: 4rem;
+    .member-role {
+      color: var.$secondary;
+      font-weight: 500;
+      margin-bottom: 1rem;
     }
+  }
+}
+
+.member-specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  .specialty-tag {
+    background: var.$bg-light;
+    color: var.$tertiary;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+}
+
+// Testimonials Section
+.testimonials {
+  padding: 5rem 0;
+  background: var.$accent-light;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: var.$bg-light;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var.$border-color;
+
+  .testimonial-content {
+    margin-bottom: 1.5rem;
+
+    .rating {
+      margin-bottom: 1rem;
+
+      i {
+        color: var.$warning;
+        margin-right: 0.25rem;
+      }
+    }
+
+    p {
+      font-style: italic;
+      color: var.$tertiary;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .author-info {
+      h4 {
+        color: var.$text-primary;
+        margin: 0 0 0.25rem 0;
+        font-weight: 600;
+      }
+
+      span {
+        color: var.$text-gray;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// CTA Section
+.cta-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
+  color: var.$accent-light;
+  text-align: center;
+
+  .cta-content {
+    h2 {
+      font-family: var.$font-family-secondary;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+  }
+
+  .cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+// Common Button Styles
+.btn-primary {
+  background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
+  color: var.$accent-light;
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      var.$btn-primary-hover 0%,
+      color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
+    );
+    transform: translateY(-2px);
+  }
+
+  &.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var.$link-color;
+  padding: 0.875rem 1.5rem;
+  border: 2px solid var.$link-color;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background: var.$link-color;
+    color: var.$accent-light;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-outline-primary {
+  background: transparent;
+  color: var.$link-color;
+  padding: 0.875rem 1.5rem;
+  border: 2px solid var.$link-color;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var.$link-color;
+    color: var.$accent-light;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-whatsapp {
+  background: var.$success;
+  color: var.$accent-light;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+
+  &:hover {
+    background: color.adjust(var.$success, $lightness: -10%);
+    transform: translateY(-2px);
+  }
+}
+
+.section-cta {
+  text-align: center;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .about-grid,
+  .services-grid,
+  .team-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 </style>
