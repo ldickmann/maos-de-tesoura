@@ -79,7 +79,7 @@
             </div>
           </div>
           <div class="about-image">
-            <img src="/images/barber-banner.jpg" alt="Interior da barbearia" />
+            <img :src="barberBannerImg" alt="Interior da barbearia" />
             <div class="stats-overlay">
               <div class="stat-item">
                 <span class="stat-number">3000+</span>
@@ -197,6 +197,9 @@ import { useNotificationStore } from '@/stores/notification'
 import { useServicesStore } from '@/stores/services'
 import { useContentStore } from '@/stores/content'
 import BannerComponent from '@/components/BannerComponent.vue'
+
+// Importar as imagens
+import barberBannerImg from '@/assets/images/barber-banner.jpg'
 
 const router = useRouter()
 const bookingStore = useBookingStore()

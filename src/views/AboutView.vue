@@ -3,7 +3,7 @@
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-background">
-        <img src="/images/barber-banner.jpg" alt="Interior da barbearia" />
+        <img :src="bannerImage" alt="Interior da barbearia" />
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-content">
@@ -199,6 +199,8 @@
 <script setup>
 import { ref } from 'vue'
 import { useNotificationStore } from '@/stores/notification'
+import bannerImage from '@/assets/images/barber-banner.jpg'
+import cardImage from '@/assets/images/image-1-card.jpg'
 
 const notificationStore = useNotificationStore()
 
@@ -211,7 +213,7 @@ const teamMembers = ref([
     id: 1,
     name: 'João Silva',
     role: 'Barbeiro Master',
-    photo: '/images/professional-1.jpg',
+    photo: cardImage,
     description:
       'Fundador da Mãos de Tesoura, com mais de 15 anos de experiência. Especialista em cortes clássicos e modernos.',
     specialties: ['Cortes Clássicos', 'Barbas Tradicionais', 'Consultoria de Estilo'],
@@ -220,7 +222,7 @@ const teamMembers = ref([
     id: 2,
     name: 'Pedro Santos',
     role: 'Barbeiro Sênior',
-    photo: '/images/professional-2.jpg',
+    photo: cardImage,
     description:
       'Formado pela escola de barbearia tradicional, Pedro é conhecido por sua precisão e atenção aos detalhes.',
     specialties: ['Cortes Modernos', 'Design de Barba', 'Tratamentos Capilares'],
@@ -229,7 +231,7 @@ const teamMembers = ref([
     id: 3,
     name: 'Carlos Oliveira',
     role: 'Barbeiro Especialista',
-    photo: '/images/professional-3.jpg',
+    photo: cardImage,
     description:
       'Jovem talento com grande paixão pela arte da barbearia. Sempre atualizado com as últimas tendências.',
     specialties: ['Cortes Jovens', 'Estilos Contemporâneos', 'Sobrancelha Masculina'],

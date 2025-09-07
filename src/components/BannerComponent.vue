@@ -26,8 +26,9 @@
 import { ref } from 'vue'
 import { useNotificationStore } from '@/stores/notification'
 import LineComponent from './LineComponent.vue'
+import bannerImg from '@/assets/images/barber-banner.jpg'
 
-const bannerImage = ref('/images/barber-banner.jpg')
+const bannerImage = ref(bannerImg)
 const notificationStore = useNotificationStore()
 
 const handleBooking = () => {

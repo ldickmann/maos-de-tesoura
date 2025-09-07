@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   base: '/maos-de-tesoura/',
-  plugins: [vue()],
+  plugins: [vue()], // Removido vueDevTools temporariamente
   css: {
     preprocessorOptions: {
       scss: {
@@ -24,10 +24,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-      },
-    },
   },
 })
