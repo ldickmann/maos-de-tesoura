@@ -233,6 +233,8 @@ const bookService = async (service) => {
 </script>
 
 <style scoped lang="scss">
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
 .services-page {
   padding: 88px 0 2rem;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
