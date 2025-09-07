@@ -1,4 +1,5 @@
 <template>
+  <!-- Componente Card, que exibirá um cartão com badge, título, descrição e imagem -->
   <section :class="classSectionCard">
     <div class="my-card">
       <section class="card-section">

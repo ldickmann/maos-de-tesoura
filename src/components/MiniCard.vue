@@ -1,4 +1,5 @@
 <template>
+  <!-- Componente MiniCard, que exibirá um cartão compacto com título, subtítulo e ícone -->
   <section :class="miniCardSection">
     <div class="card-section">
       <div v-if="title" :class="titleClass">{{ title }}</div>

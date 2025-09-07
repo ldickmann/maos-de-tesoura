@@ -17,7 +17,7 @@ export const useNotificationStore = defineStore('notification', () => {
 
     notifications.value.push(newNotification)
 
-    // Auto remove notification after duration
+    // Remover notificação automaticamente após a duração
     if (!newNotification.persistent) {
       setTimeout(() => {
         removeNotification(id)
@@ -38,7 +38,7 @@ export const useNotificationStore = defineStore('notification', () => {
     notifications.value = []
   }
 
-  // Helper methods for different types
+  // Helper auxiliares para diferentes tipos
   const showSuccess = (message, options = {}) => {
     return addNotification({ ...options, type: 'success', message })
   }

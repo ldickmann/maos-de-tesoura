@@ -1,4 +1,5 @@
 <template>
+  <!-- Componente de Notification System, que exibirá notificações do tipo sucesso, erro, aviso ou informação -->
   <Teleport to="body">
     <div v-if="notifications.length" class="notification-container">
       <TransitionGroup name="notification" tag="div">

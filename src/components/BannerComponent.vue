@@ -1,4 +1,5 @@
 <template>
+  <!-- Componente Banner, que exibirá um banner com imagem de fundo, texto sobreposto e botão de ação -->
   <div class="banner">
     <img :src="bannerImage" class="banner-img" alt="Barbearia Banner" />
 

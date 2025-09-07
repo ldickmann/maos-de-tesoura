@@ -1,4 +1,5 @@
 <template>
+  <!-- Componente de Loading Spinner, que exibirá um spinner de carregamento com uma mensagem opcional -->
   <div class="loading-container">
     <div class="spinner"></div>
     <p v-if="message" class="loading-message">{{ message }}</p>

@@ -1,4 +1,5 @@
 <template>
+  <!-- Componente Footer, que exibirá o rodapé do site com informações de contato, links rápidos e inscrição na newsletter -->
   <footer class="footer">
     <div class="footer-main">
       <div class="container">

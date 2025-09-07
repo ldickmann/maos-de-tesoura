@@ -54,9 +54,5 @@ export const useContentStore = defineStore('content', () => {
   const teamMembers = ref(teamData)
   const testimonials = ref(testimonialsData)
 
-  // No futuro, pode ter actions para buscar esses dados de uma API
-  // async function fetchTeam() { ... }
-  // async function fetchTestimonials() { ... }
-
   return { teamMembers, testimonials }
 })

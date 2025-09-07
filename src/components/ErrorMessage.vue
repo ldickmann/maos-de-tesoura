@@ -1,4 +1,5 @@
 <template>
+  <!-- Componente de Error Message, que exibirá uma mensagem de erro com opções para tentar novamente ou voltar ao início -->
   <div class="error-container">
     <div class="error-icon">
       <i class="fas fa-exclamation-triangle"></i>

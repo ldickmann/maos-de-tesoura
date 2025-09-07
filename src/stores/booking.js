@@ -30,8 +30,20 @@ export const useBookingStore = defineStore('booking', () => {
   ])
 
   const availableTimes = ref([
-    '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-    '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30',
+    '09:00',
+    '09:30',
+    '10:00',
+    '10:30',
+    '11:00',
+    '11:30',
+    '14:00',
+    '14:30',
+    '15:00',
+    '15:30',
+    '16:00',
+    '16:30',
+    '17:00',
+    '17:30',
   ])
 
   // Computadas
@@ -56,7 +68,10 @@ export const useBookingStore = defineStore('booking', () => {
   // Actions
   function setService(service) {
     selectedService.value = service
-    if (selectedProfessional.value && !selectedProfessional.value.specialties.includes(service.id)) {
+    if (
+      selectedProfessional.value &&
+      !selectedProfessional.value.specialties.includes(service.id)
+    ) {
       selectedProfessional.value = null
     }
   }
@@ -122,8 +137,8 @@ export const useBookingStore = defineStore('booking', () => {
     clientNotes,
     isLoading,
     errors,
-    professionals, // Expondo para a view
-    availableTimes, // Expondo para a view
+    professionals,
+    availableTimes,
     bookingData,
     availableProfessionals,
     setService,

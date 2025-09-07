@@ -1,4 +1,5 @@
 <template>
+  <!-- Componente de Header Flutuante, que permanecerá fixo no topo da página com navegação responsiva -->
   <header :class="['header-floating', { scrolled }]">
     <nav class="toolbar">
       <div class="logo">
@@ -21,7 +22,6 @@
           >
             {{ item.label }}
           </a>
-          <!-- Item com rota normal -->
           <router-link v-else :to="item.to" class="nav-link">
             {{ item.label }}
           </router-link>
@@ -131,7 +131,7 @@ const menuItems = [
   top: 0;
   left: 0;
   padding: 1rem 0;
-  background: rgba(var.$primary, 0.85); // Alterado para ser mais visível
+  background: rgba(var.$primary, 0.85);
   backdrop-filter: blur(15px);
   z-index: 1000;
   transition: all 0.3s ease-in-out;
@@ -225,7 +225,7 @@ const menuItems = [
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(var.$secondary, 0.3);
-    border: none; // Adicionado para remover borda padrão
+    border: none;
 
     &:hover {
       background: linear-gradient(
@@ -267,7 +267,7 @@ const menuItems = [
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 80px; // Ajustar para a altura do header
+  top: 80px;
   left: 0;
   right: 0;
   background: var.$primary;
