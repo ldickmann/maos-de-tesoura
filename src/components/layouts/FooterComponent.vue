@@ -381,6 +381,11 @@ const scrollToTop = () => {
       font-size: 1.1rem;
     }
   }
+
+  @media screen and (max-width: 430px) {
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 // Contact info in footer
@@ -432,6 +437,10 @@ const scrollToTop = () => {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  @media screen and (max-width: 430px) {
+    align-items: center;
+  }
 }
 
 .contact-item {
