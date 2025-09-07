@@ -238,6 +238,8 @@ const teamMembers = ref([
 </script>
 
 <style scoped lang="scss">
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
 .about-page {
   padding-top: 88px;
   font-family: 'Hanken Grotesk', sans-serif;

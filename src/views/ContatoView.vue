@@ -328,6 +328,8 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped lang="scss">
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
 .contact-page {
   padding-top: 88px;
   font-family: 'Hanken Grotesk', sans-serif;
