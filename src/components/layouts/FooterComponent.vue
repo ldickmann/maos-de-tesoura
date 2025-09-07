@@ -254,10 +254,13 @@ const scrollToTop = () => {
 </script>
 
 <style scoped lang="scss">
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
+
 .footer {
-  background: #212121;
+  background: var.$primary;
   color: white;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: var.$font-family-tertiary;
 }
 
 .container {
@@ -306,7 +309,7 @@ const scrollToTop = () => {
   }
 
   h4 {
-    color: #ff7b42;
+    color: var.$secondary;
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
@@ -318,14 +321,14 @@ const scrollToTop = () => {
   margin-bottom: 1.5rem;
 
   h3 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
     font-size: 1.5rem;
-    color: white;
+    color: var.$accent-light;
     margin-bottom: 0.5rem;
   }
 
   .footer-tagline {
-    color: #ff7b42;
+    color: var.$secondary;
     font-weight: 500;
     margin: 0;
   }
@@ -369,11 +372,11 @@ const scrollToTop = () => {
 
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 0 4px 15px rgba(255, 123, 66, 0.3);
+      box-shadow: 0 4px 15px rgba(var.$secondary, 0.3);
     }
 
     i {
-      color: white;
+      color: var.$accent-light;
       font-size: 1.1rem;
     }
   }
@@ -394,7 +397,7 @@ const scrollToTop = () => {
     font-size: 0.9rem;
 
     i {
-      color: #ff7b42;
+      color: var.$secondary;
       width: 16px;
       text-align: center;
     }
@@ -417,7 +420,7 @@ const scrollToTop = () => {
       cursor: pointer;
 
       &:hover {
-        color: #ff7b42;
+        color: var.$secondary;
       }
     }
   }
@@ -436,7 +439,7 @@ const scrollToTop = () => {
   gap: 1rem;
 
   i {
-    color: #ff7b42;
+    color: var.$secondary;
     font-size: 1.1rem;
     margin-top: 0.25rem;
     flex-shrink: 0;
@@ -515,14 +518,14 @@ const scrollToTop = () => {
 
     &:focus {
       outline: none;
-      border-color: #ff7b42;
+      border-color: var.$secondary;
     }
   }
 
   .newsletter-btn {
     padding: 0.875rem 1.5rem;
-    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-    color: white;
+    background: linear-gradient(135deg, var.$secondary 0%, var.$btn-primary-hover 100%);
+    color: var.$accent-light;
     border: none;
     border-radius: 8px;
     font-weight: 600;
@@ -534,7 +537,11 @@ const scrollToTop = () => {
     white-space: nowrap;
 
     &:hover:not(:disabled) {
-      background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
+      background: linear-gradient(
+        135deg,
+        var.$btn-primary-hover 0%,
+        color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
+      );
     }
 
     &:disabled {
@@ -546,7 +553,7 @@ const scrollToTop = () => {
 
 // Footer Bottom
 .footer-bottom {
-  background: #1a1a1a;
+  background: var.$bg-footer;
   padding: 1.5rem 0;
   border-top: 1px solid #333;
 }
@@ -587,7 +594,7 @@ const scrollToTop = () => {
       cursor: pointer;
 
       &:hover {
-        color: #ff7b42;
+        color: var.$secondary;
       }
     }
   }
