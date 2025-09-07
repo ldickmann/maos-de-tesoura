@@ -433,7 +433,11 @@ onMounted(() => {
     cursor: pointer;
 
     &:hover {
-      background: linear-gradient(135deg, var.$btn-primary-hover 0%, color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%);
+      background: linear-gradient(
+        135deg,
+        var.$btn-primary-hover 0%,
+        color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
+      );
       transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(255, 123, 66, 0.3);
     }

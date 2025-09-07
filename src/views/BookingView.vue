@@ -247,7 +247,8 @@ const minDate = computed(() => {
 })
 
 const availableProfessionals = computed(() => {
-  return bookingStore.getAvailableProfessionals()
+  if (!bookingStore.selectedService) return []
+  return bookingStore.getAvailableProfessionals(bookingStore.selectedService.id)
 })
 
 // Métodos
@@ -285,8 +286,8 @@ const selectTime = (time) => {
 }
 
 const getAvailableTimesForSelectedDate = () => {
-  if (!selectedDate.value) return []
-  return bookingStore.getAvailableTimesForDate(selectedDate.value)
+  if (!selectedDate.value || !bookingStore.selectedProfessional) return []
+  return bookingStore.getAvailableSlots(bookingStore.selectedProfessional.id, selectedDate.value)
 }
 
 const formatPhoneInput = (event) => {

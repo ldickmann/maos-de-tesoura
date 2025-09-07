@@ -24,9 +24,33 @@ export const useBookingStore = defineStore('booking', () => {
 
   // Dados que viriam de uma API (profissionais e horários)
   const professionals = ref([
-    { id: 1, name: 'João Silva', specialties: [1, 2, 3, 4] },
-    { id: 2, name: 'Pedro Santos', specialties: [1, 3] },
-    { id: 3, name: 'Carlos Oliveira', specialties: [1, 2, 3, 4] },
+    {
+      id: 1,
+      name: 'João Silva',
+      specialties: [1, 2, 3, 4],
+      photo: '/images/professional-1.jpg',
+      experience: '5 anos',
+      rating: 4.9,
+      available: true,
+    },
+    {
+      id: 2,
+      name: 'Pedro Santos',
+      specialties: [1, 3],
+      photo: '/images/professional-2.jpg',
+      experience: '8 anos',
+      rating: 4.8,
+      available: true,
+    },
+    {
+      id: 3,
+      name: 'Carlos Oliveira',
+      specialties: [1, 2, 3, 4],
+      photo: '/images/professional-3.jpg',
+      experience: '3 anos',
+      rating: 4.7,
+      available: true,
+    },
   ])
 
   const availableTimes = ref([
@@ -63,6 +87,64 @@ export const useBookingStore = defineStore('booking', () => {
   const availableProfessionals = computed(() => {
     if (!selectedService.value) return professionals.value
     return professionals.value.filter((p) => p.specialties.includes(selectedService.value.id))
+  })
+
+  // Função para obter profissionais disponíveis para um serviço específico
+  const getAvailableProfessionals = (serviceId) => {
+    if (!serviceId) return professionals.value
+    return professionals.value.filter((p) => p.specialties.includes(serviceId))
+  }
+
+  // Função para obter horários disponíveis para um profissional em uma data
+  const getAvailableSlots = (professionalId, date) => {
+    if (!professionalId || !date) return availableTimes.value
+
+    // Aqui você poderia implementar lógica para filtrar horários ocupados
+    // Por enquanto retorna todos os horários disponíveis
+    return availableTimes.value
+  }
+
+  // Função para verificar se um horário está disponível
+  const isTimeSlotAvailable = (professionalId, date, time) => {
+    // Implementar lógica de verificação de disponibilidade
+    // Por enquanto sempre retorna true
+    return true
+  }
+
+  // Função para obter profissional por ID
+  const getProfessionalById = (id) => {
+    return professionals.value.find((p) => p.id === id)
+  }
+
+  // Função para validar se todas as seleções estão completas
+  const isBookingComplete = computed(() => {
+    return !!(
+      selectedService.value &&
+      selectedProfessional.value &&
+      selectedDate.value &&
+      selectedTime.value &&
+      clientName.value &&
+      clientPhone.value
+    )
+  })
+
+  // Função para obter resumo do agendamento
+  const getBookingSummary = computed(() => {
+    if (!isBookingComplete.value) return null
+
+    return {
+      service: selectedService.value?.name,
+      professional: selectedProfessional.value?.name,
+      date: new Date(selectedDate.value).toLocaleDateString('pt-BR'),
+      time: selectedTime.value,
+      duration: selectedService.value?.duration,
+      price: selectedService.value?.price,
+      client: {
+        name: clientName.value,
+        phone: clientPhone.value,
+        email: clientEmail.value,
+      },
+    }
   })
 
   // Actions
@@ -141,6 +223,12 @@ export const useBookingStore = defineStore('booking', () => {
     availableTimes,
     bookingData,
     availableProfessionals,
+    getAvailableProfessionals,
+    getAvailableSlots,
+    isTimeSlotAvailable,
+    getProfessionalById,
+    isBookingComplete,
+    getBookingSummary,
     setService,
     setProfessional,
     setDate,
