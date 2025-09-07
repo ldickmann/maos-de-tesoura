@@ -29,7 +29,7 @@
               <span class="duration">{{ service.duration }} min</span>
               <span class="price">R$ {{ service.price.toFixed(2) }}</span>
             </div>
-            <button class="service-btn">
+            <button @click="handleBookingAlert" class="service-btn">
               <i class="fas fa-calendar"></i>
               Agendar
             </button>
@@ -49,10 +49,10 @@
       <div class="container">
         <div class="about-grid">
           <div class="about-content">
-            <span class="section-tag">Desde 1999</span>
+            <span class="section-tag">Desde 2009</span>
             <h2>Tradição e Qualidade</h2>
             <p class="lead">
-              Há mais de 20 anos dedicados à arte da barbearia clássica, combinando técnicas
+              Há mais de 16 anos dedicados à arte da barbearia clássica, combinando técnicas
               tradicionais com um toque moderno.
             </p>
             <ul class="features-list">
@@ -82,15 +82,15 @@
             <img src="/images/barber-banner.jpg" alt="Interior da barbearia" />
             <div class="stats-overlay">
               <div class="stat-item">
-                <span class="stat-number">5000+</span>
+                <span class="stat-number">3000+</span>
                 <span class="stat-label">Clientes</span>
               </div>
               <div class="stat-item">
-                <span class="stat-number">25+</span>
+                <span class="stat-number">16+</span>
                 <span class="stat-label">Anos</span>
               </div>
               <div class="stat-item">
-                <span class="stat-number">98%</span>
+                <span class="stat-number">96%</span>
                 <span class="stat-label">Satisfação</span>
               </div>
             </div>
@@ -173,10 +173,10 @@
           <h2>Pronto para Renovar seu Visual?</h2>
           <p>Agende agora mesmo e experimente nossos serviços premium</p>
           <div class="cta-actions">
-            <router-link to="/booking" class="btn-primary btn-large">
+            <button @click="handleBookingAlert" class="btn-primary btn-large">
               <i class="fas fa-calendar-check"></i>
               Agendar Horário
-            </router-link>
+            </button>
             <a href="https://wa.me/5511987654321" class="btn-whatsapp" target="_blank">
               <i class="fab fa-whatsapp"></i>
               WhatsApp
@@ -185,9 +185,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Footer -->
-    <FooterComponent />
   </main>
 </template>
 
@@ -200,7 +197,6 @@ import { useNotificationStore } from '@/stores/notification'
 import { useServicesStore } from '@/stores/services'
 import { useContentStore } from '@/stores/content'
 import BannerComponent from '@/components/BannerComponent.vue'
-import FooterComponent from '@/components/layouts/FooterComponent.vue'
 
 const router = useRouter()
 const bookingStore = useBookingStore()
@@ -223,6 +219,11 @@ const selectService = (service) => {
   router.push('/booking')
 }
 
+// Função para emitir alert de função não implementada
+const handleBookingAlert = () => {
+  alert('Função Não implementada')
+}
+
 // Carregar dados ao montar o componente
 onMounted(() => {
   if (services.value.length === 0) {
@@ -236,6 +237,10 @@ onMounted(() => {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 }
 
 // Section Headers

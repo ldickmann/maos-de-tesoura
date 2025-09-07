@@ -51,12 +51,10 @@
             </button>
             <button
               class="book-button"
-              @click="bookService(service)"
-              :disabled="isBooking === service.id"
+              @click="handleBookingAlert"
             >
-              <i v-if="isBooking === service.id" class="fas fa-spinner fa-spin"></i>
-              <i v-else class="fas fa-calendar-plus"></i>
-              {{ isBooking === service.id ? 'Redirecionando...' : 'Agendar Agora' }}
+              <i class="fas fa-calendar-plus"></i>
+              Agendar Agora
             </button>
           </div>
         </div>
@@ -94,10 +92,10 @@
       <div class="cta-section">
         <h2>Pronto para transformar seu visual?</h2>
         <p>Agende agora mesmo e experimente nossos serviços premium.</p>
-        <router-link to="/booking" class="cta-button">
+        <button @click="handleBookingAlert" class="cta-button">
           <i class="fas fa-calendar-check"></i>
           Ver Horários Disponíveis
-        </router-link>
+        </button>
       </div>
     </div>
   </div>
@@ -195,6 +193,10 @@ const services = ref([
 
 const toggleDetails = (service) => {
   service.expanded = !service.expanded
+}
+
+const handleBookingAlert = () => {
+  alert('Função Não implementada')
 }
 
 const bookService = async (service) => {

@@ -166,10 +166,10 @@
             masculino.
           </p>
           <div class="cta-buttons">
-            <router-link to="/booking" class="btn-primary">
+            <button @click="handleBookingAlert" class="btn-primary">
               <i class="fas fa-calendar-plus"></i>
               Agendar Horário
-            </router-link>
+            </button>
             <router-link to="/contato" class="btn-secondary">
               <i class="fas fa-map-marker-alt"></i>
               Nos Visite
@@ -183,6 +183,10 @@
 
 <script setup>
 import { ref } from 'vue'
+
+const handleBookingAlert = () => {
+  alert('Função Não implementada')
+}
 
 const teamMembers = ref([
   {

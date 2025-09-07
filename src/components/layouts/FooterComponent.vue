@@ -10,23 +10,9 @@
               <p class="footer-tagline">A Barbearia dos Homens</p>
             </div>
             <p class="footer-description">
-              Há mais de 20 anos oferecendo os melhores serviços de barbearia, combinando tradição,
+              Há mais de 16 anos oferecendo os melhores serviços de barbearia, combinando tradição,
               qualidade e um atendimento excepcional.
             </p>
-            <div class="contact-info-footer">
-              <div class="contact-item-footer">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Rua da Barbearia, 123 - Centro, Navegantes/SC</span>
-              </div>
-              <div class="contact-item-footer">
-                <i class="fas fa-envelope"></i>
-                <span>devluksjs@gmail.com</span>
-              </div>
-              <div class="contact-item-footer">
-                <i class="fas fa-phone"></i>
-                <span>(47) 55555-5555</span>
-              </div>
-            </div>
             <div class="social-links">
               <a
                 href="https://github.com/ldickmann"
@@ -45,7 +31,7 @@
                 <i class="fab fa-linkedin-in"></i>
               </a>
               <a
-                href="https://wa.me/5511987654321"
+                href="https://wa.me/5547555555555"
                 target="_blank"
                 class="social-link whatsapp"
                 aria-label="WhatsApp"
@@ -245,6 +231,10 @@ const showNotImplemented = () => {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 }
 
 // Footer Main
@@ -261,6 +251,7 @@ const showNotImplemented = () => {
   @media (max-width: 968px) {
     flex-direction: column;
     gap: 2rem;
+    text-align: center;
   }
 }
 
@@ -271,6 +262,14 @@ const showNotImplemented = () => {
   &:first-child {
     flex: 2;
     min-width: 300px;
+  }
+
+  @media (max-width: 968px) {
+    min-width: auto;
+
+    &:first-child {
+      min-width: auto;
+    }
   }
 
   h4 {

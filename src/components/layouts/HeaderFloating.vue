@@ -18,10 +18,10 @@
         <router-link v-for="(item, index) in menuItems" :key="index" :to="item.to" class="mobile-nav-link" @click="closeMobileMenu">
           {{ item.label }}
         </router-link>
-        <router-link to="/booking" class="mobile-btn-accent" @click="closeMobileMenu">Agendar Horário</router-link>
+        <button @click="handleBooking" class="mobile-btn-accent">Agendar Horário</button>
       </div>
       <div class="action-button">
-        <router-link to="/booking" class="btn-accent">Agendar Horário</router-link>
+        <button @click="handleBooking" class="btn-accent">Agendar Horário</button>
       </div>
       <button class="mobile-menu-toggle" @click="toggleMobileMenu">
         <span></span>
@@ -49,6 +49,11 @@ const toggleMobileMenu = () => {
 
 const closeMobileMenu = () => {
   mobileMenuOpen.value = false
+}
+
+const handleBooking = () => {
+  alert('Função Não implementada')
+  closeMobileMenu()
 }
 
 onMounted(() => {

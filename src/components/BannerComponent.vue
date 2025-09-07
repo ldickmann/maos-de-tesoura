@@ -25,7 +25,7 @@
       </div> -->
 
       <div class="card-actions">
-        <router-link to="/booking" class="btn-outline">Agende um Horário</router-link>
+        <button @click="handleBooking" class="btn-outline">Agende um Horário</button>
       </div>
     </div>
 
@@ -42,6 +42,10 @@ import { ref } from 'vue'
 import LineComponent from './LineComponent.vue'
 
 const bannerImage = ref('/images/barber-banner.jpg')
+
+const handleBooking = () => {
+  alert('Função Não implementada')
+}
 </script>
 
 <style scoped lang="scss">
