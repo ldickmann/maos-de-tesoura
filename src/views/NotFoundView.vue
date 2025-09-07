@@ -20,7 +20,7 @@
   justify-content: center;
   text-align: center;
   padding: 2rem;
-  background-color: var.$dark-page;
+  background-color: var.$bg-dark;
 
   &__container {
     max-width: 500px;
@@ -55,7 +55,7 @@
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: var.$hover-accent;
+      background-color: var.$btn-primary-hover;
     }
   }
 }
