@@ -1,11 +1,10 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
-  base: '/maos-de-tesoura/', // Nome do seu repositório
-  plugins: [vue(), vueDevTools()],
+  base: '/maos-de-tesoura/',
+  plugins: [vue()],
   css: {
     preprocessorOptions: {
       scss: {
@@ -25,5 +24,10 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   },
 })

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
-  history: createWebHistory('/maos-de-tesoura/'), // Base do seu repositório
+  history: createWebHistory(import.meta.env.BASE_URL), // Usa a base URL do Vite
   routes: [
     {
       path: '/',
