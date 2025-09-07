@@ -222,27 +222,30 @@ const teamMembers = ref([
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
 // Hero Section
 .hero-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   min-height: 60vh;
   align-items: center;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  flex-wrap: wrap;
+  gap: 2rem;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     min-height: auto;
     padding: 2rem 0;
   }
 }
 
 .hero-content {
+  flex: 1;
+  min-width: 300px;
   padding: 2rem;
 
   @media (max-width: 768px) {
@@ -252,8 +255,8 @@ const teamMembers = ref([
 }
 
 .hero-title {
-  font-family: 'Bungee Hairline', sans-serif;
-  font-size: 3.5rem;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 3rem;
   color: #212121;
   margin-bottom: 1rem;
   line-height: 1.1;
@@ -271,6 +274,8 @@ const teamMembers = ref([
 }
 
 .hero-image {
+  flex: 1;
+  min-width: 300px;
   position: relative;
   height: 500px;
   overflow: hidden;

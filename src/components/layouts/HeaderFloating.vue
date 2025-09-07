@@ -53,17 +53,17 @@ const menuItems = [
   top: 0;
   left: 0;
   padding: 1rem 0;
-  background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
   z-index: 1000;
   transition: all 0.3s ease-in-out;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   &.scrolled {
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(25px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -161,15 +161,15 @@ const menuItems = [
   .menu {
     display: none;
   }
-  
+
   .toolbar {
     padding: 0 1rem;
   }
-  
+
   .logo .nav-link-logo {
     font-size: 1.2rem;
   }
-  
+
   .logo .highlight {
     font-size: 1.5rem;
   }

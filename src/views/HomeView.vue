@@ -233,7 +233,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -269,10 +269,16 @@ onMounted(() => {
 }
 
 .services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
   margin-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }
 
 .service-card {
@@ -283,6 +289,9 @@ onMounted(() => {
   transition: all 0.3s ease;
   cursor: pointer;
   text-align: center;
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
 
   &:hover {
     transform: translateY(-8px);
@@ -366,18 +375,21 @@ onMounted(() => {
 }
 
 .about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 4rem;
   align-items: center;
+  flex-wrap: wrap;
 
   @media (max-width: 968px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 3rem;
   }
 }
 
 .about-content {
+  flex: 1;
+  min-width: 300px;
+
   .section-tag {
     display: inline-block;
     background: #ff7b42;
@@ -431,6 +443,8 @@ onMounted(() => {
 
 .about-image {
   position: relative;
+  flex: 1;
+  min-width: 300px;
 
   img {
     width: 100%;

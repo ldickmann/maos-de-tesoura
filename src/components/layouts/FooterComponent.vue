@@ -28,10 +28,20 @@
               </div>
             </div>
             <div class="social-links">
-              <a href="https://github.com/ldickmann" target="_blank" class="social-link github" aria-label="GitHub">
+              <a
+                href="https://github.com/ldickmann"
+                target="_blank"
+                class="social-link github"
+                aria-label="GitHub"
+              >
                 <i class="fab fa-github"></i>
               </a>
-              <a href="https://linkedin.com/in/lucasdickmann" target="_blank" class="social-link linkedin" aria-label="LinkedIn">
+              <a
+                href="https://linkedin.com/in/lucasdickmann"
+                target="_blank"
+                class="social-link linkedin"
+                aria-label="LinkedIn"
+              >
                 <i class="fab fa-linkedin-in"></i>
               </a>
               <a
@@ -42,7 +52,12 @@
               >
                 <i class="fab fa-whatsapp"></i>
               </a>
-              <a href="#" class="social-link instagram" aria-label="Instagram" @click="showNotImplemented">
+              <a
+                href="#"
+                class="social-link instagram"
+                aria-label="Instagram"
+                @click="showNotImplemented"
+              >
                 <i class="fab fa-instagram"></i>
               </a>
             </div>
@@ -79,13 +94,13 @@
                 <i class="fas fa-map-marker-alt"></i>
                 <div>
                   <p>Rua da Barbearia, 123</p>
-                  <p>Centro - São Paulo/SP</p>
+                  <p>Centro - Navegantes/SC</p>
                 </div>
               </div>
               <div class="contact-item">
                 <i class="fas fa-phone"></i>
                 <div>
-                  <p>(11) 98765-4321</p>
+                  <p>(47) 55555-5555</p>
                   <small>Segunda a Sábado</small>
                 </div>
               </div>
@@ -99,7 +114,7 @@
               <div class="contact-item">
                 <i class="fas fa-envelope"></i>
                 <div>
-                  <p>contato@maosdetesoura.com</p>
+                  <p>devluksjs@gmail.com</p>
                 </div>
               </div>
             </div>
@@ -213,7 +228,7 @@ const openModal = (type) => {
   notificationStore.showWarning(`Função não implementada: ${type}`)
 }
 
-// Show not implemented alert - para funcionalidades que precisam de backend  
+// Show not implemented alert - para funcionalidades que precisam de backend
 const showNotImplemented = () => {
   notificationStore.showWarning('Função não implementada')
 }
@@ -227,7 +242,7 @@ const showNotImplemented = () => {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -238,22 +253,26 @@ const showNotImplemented = () => {
 }
 
 .footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  display: flex;
+  flex-wrap: wrap;
   gap: 3rem;
+  justify-content: space-between;
 
   @media (max-width: 968px) {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  @media (max-width: 568px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 2rem;
   }
 }
 
 .footer-section {
+  flex: 1;
+  min-width: 250px;
+
+  &:first-child {
+    flex: 2;
+    min-width: 300px;
+  }
+
   h4 {
     color: #ff7b42;
     font-size: 1.2rem;
@@ -324,6 +343,28 @@ const showNotImplemented = () => {
     i {
       color: white;
       font-size: 1.1rem;
+    }
+  }
+}
+
+// Contact info in footer
+.contact-info-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+
+  .contact-item-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #b0b0b0;
+    font-size: 0.9rem;
+
+    i {
+      color: #ff7b42;
+      width: 16px;
+      text-align: center;
     }
   }
 }

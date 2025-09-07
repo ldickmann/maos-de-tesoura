@@ -124,7 +124,7 @@
                   </div>
                   <div class="info-details">
                     <strong>Endereço</strong>
-                    <p>Rua da Barbearia, 123<br />Centro - São Paulo/SP<br />CEP: 01234-567</p>
+                    <p>Rua da Barbearia, 123<br />Centro - Navegantes/SC<br />CEP: 88370-000</p>
                   </div>
                 </div>
 
@@ -134,7 +134,7 @@
                   </div>
                   <div class="info-details">
                     <strong>Telefone</strong>
-                    <p>(11) 98765-4321</p>
+                    <p>(47) 55555-5555</p>
                     <small>Segunda a Sábado, 8h às 19h</small>
                   </div>
                 </div>
@@ -145,7 +145,7 @@
                   </div>
                   <div class="info-details">
                     <strong>Email</strong>
-                    <p>contato@maosdetesoura.com</p>
+                    <p>devluksjs@gmail.com</p>
                     <small>Resposta em até 24h</small>
                   </div>
                 </div>
@@ -172,7 +172,11 @@
                     <i class="fab fa-github"></i>
                     GitHub
                   </a>
-                  <a href="https://linkedin.com/in/lucasdickmann" target="_blank" class="social-btn linkedin">
+                  <a
+                    href="https://linkedin.com/in/lucasdickmann"
+                    target="_blank"
+                    class="social-btn linkedin"
+                  >
                     <i class="fab fa-linkedin-in"></i>
                     LinkedIn
                   </a>
@@ -195,7 +199,11 @@
                 </div>
               </div>
               <div class="map-actions">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+da+Barbearia+123+Centro+São+Paulo+SP" target="_blank" class="map-link">
+                <a
+                  href="https://www.google.com/maps/dir/?api=1&destination=Rua+da+Barbearia+123+Centro+Navegantes+SC"
+                  target="_blank"
+                  class="map-link"
+                >
                   <i class="fas fa-directions"></i>
                   Como Chegar
                 </a>
@@ -326,7 +334,7 @@ const handleSubmit = async () => {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -339,13 +347,13 @@ const handleSubmit = async () => {
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 2rem;
 
   h1 {
-    font-family: 'Bungee Hairline', sans-serif;
-    font-size: 3.5rem;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 3rem;
     color: #212121;
     margin-bottom: 1.5rem;
 
@@ -369,18 +377,21 @@ const handleSubmit = async () => {
 }
 
 .content-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  display: flex;
   gap: 4rem;
+  flex-wrap: wrap;
 
   @media (max-width: 968px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 3rem;
   }
 }
 
 // Contact Form
 .contact-form-container {
+  flex: 1.5;
+  min-width: 300px;
+
   .form-header {
     margin-bottom: 2rem;
 
@@ -500,6 +511,8 @@ const handleSubmit = async () => {
 
 // Contact Info
 .contact-info-container {
+  flex: 1;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   gap: 2rem;

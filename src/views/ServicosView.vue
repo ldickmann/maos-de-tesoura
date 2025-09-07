@@ -235,7 +235,7 @@ const bookService = async (service) => {
 
 <style scoped lang="scss">
 .services-page {
-  padding: 88px 2rem 2rem;
+  padding: 88px 0 2rem;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   min-height: 100vh;
   font-family: 'Hanken Grotesk', sans-serif;
@@ -243,11 +243,13 @@ const bookService = async (service) => {
 
 .page-header {
   text-align: center;
-  margin: 2rem 0 4rem;
+  margin: 2rem auto 4rem;
+  max-width: 1440px;
+  padding: 0 2rem;
 
   h1 {
     font-size: 3rem;
-    font-family: 'Bungee Hairline', sans-serif;
+    font-family: 'Archivo Black', sans-serif;
     color: #212121;
     margin-bottom: 1rem;
 
@@ -266,15 +268,18 @@ const bookService = async (service) => {
 }
 
 .services-container {
-  max-width: 1000px;
+  max-width: 1440px;
   margin: 0 auto 4rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
+  padding: 0 2rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    padding: 0 1rem;
+    max-width: 100%;
   }
 }
 
@@ -475,19 +480,20 @@ const bookService = async (service) => {
 
 // Seção de informações adicionais
 .additional-info {
-  max-width: 1000px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding-top: 4rem;
+  padding: 4rem 2rem 0;
 }
 
 .info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
   margin-bottom: 4rem;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+  @media (max-width: 968px) {
+    flex-direction: column;
     gap: 1.5rem;
   }
 }
@@ -499,6 +505,9 @@ const bookService = async (service) => {
   border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease;
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
 
   &:hover {
     transform: translateY(-4px);
