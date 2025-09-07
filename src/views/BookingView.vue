@@ -2,11 +2,11 @@
   <div class="booking-page">
     <LoadingSpinner v-if="isLoading" message="Processando agendamento..." />
 
+    <ErrorMessage v-else-if="bookingError" :message="bookingError" @retry="resetBookingError" />
+
     <div v-else class="booking-container">
       <h1>Agende seu Horário</h1>
-      <p class="subtitle">
-        Siga os passos abaixo para garantir o seu horário conosco.
-      </p>
+      <p class="subtitle">Siga os passos abaixo para garantir o seu horário conosco.</p>
 
       <div v-if="bookingStore.selectedService" class="booking-flow">
         <!-- Etapa 1: Resumo do Serviço -->
@@ -16,7 +16,9 @@
             <div>
               <h3>{{ bookingStore.selectedService.name }}</h3>
               <p class="service-description">{{ bookingStore.selectedService.description }}</p>
-              <p class="service-duration">Duração: {{ bookingStore.selectedService.duration }} min</p>
+              <p class="service-duration">
+                Duração: {{ bookingStore.selectedService.duration }} min
+              </p>
             </div>
             <p class="service-price">R$ {{ bookingStore.selectedService.price.toFixed(2) }}</p>
           </div>
@@ -32,7 +34,7 @@
               class="professional-card"
               :class="{
                 selected: bookingStore.selectedProfessional?.id === pro.id,
-                error: errors.professional
+                error: errors.professional,
               }"
               @click="selectProfessional(pro)"
             >
@@ -76,7 +78,7 @@
                 class="time-slot"
                 :class="{
                   selected: bookingStore.selectedTime === time,
-                  error: errors.time
+                  error: errors.time,
                 }"
                 @click="selectTime(time)"
               >
@@ -196,11 +198,7 @@
               </div>
             </div>
           </div>
-          <button
-            @click="confirmBooking"
-            class="confirm-button"
-            :disabled="isLoading"
-          >
+          <button @click="confirmBooking" class="confirm-button" :disabled="isLoading">
             <i class="fas fa-check"></i>
             Confirmar Agendamento
           </button>
@@ -211,9 +209,7 @@
         <div class="no-service-content">
           <i class="fas fa-calendar-times"></i>
           <h2>Nenhum serviço selecionado</h2>
-          <p>
-            Para fazer um agendamento, você precisa primeiro escolher um serviço.
-          </p>
+          <p>Para fazer um agendamento, você precisa primeiro escolher um serviço.</p>
           <router-link to="/servicos" class="btn-primary">
             <i class="fas fa-cut"></i>
             Ver Serviços Disponíveis
@@ -232,6 +228,7 @@ import { useNotificationStore } from '@/stores/notification'
 import { useRouter } from 'vue-router'
 import { validateBooking, formatPhone } from '@/utils/validation'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import ErrorMessage from '@/components/ErrorMessage.vue'
 
 const bookingStore = useBookingStore()
 const notificationStore = useNotificationStore()
@@ -239,6 +236,7 @@ const router = useRouter()
 
 // Estados locais
 const isLoading = ref(false)
+const bookingError = ref(null)
 const selectedDate = ref('')
 const errors = ref({})
 
@@ -309,7 +307,7 @@ const formatDate = (dateString) => {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   })
 }
 
@@ -331,24 +329,28 @@ const confirmBooking = async () => {
     isLoading.value = true
 
     // Simular chamada à API
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    await new Promise((resolve) => setTimeout(resolve, 2000))
 
     // Mostrar sucesso
     notificationStore.showSuccess(
       `Agendamento confirmado para ${formatDate(bookingStore.selectedDate)} às ${bookingStore.selectedTime}!`,
-      { duration: 8000 }
+      { duration: 8000 },
     )
 
     // Reset e redirect
     bookingStore.resetBooking()
     router.push('/')
-
   } catch (error) {
     notificationStore.showError('Erro ao confirmar agendamento. Tente novamente.')
+    bookingError.value = 'Ocorreu um erro ao confirmar seu agendamento. Por favor, tente novamente.'
     console.error('Booking error:', error)
   } finally {
     isLoading.value = false
   }
+}
+
+const resetBookingError = () => {
+  bookingError.value = null
 }
 
 // Lifecycle
@@ -358,53 +360,29 @@ onMounted(() => {
     notificationStore.showWarning('Selecione um serviço antes de agendar')
   }
 })
-</script>
 
-const selectProfessional = (professional) => {
-  selectedProfessional.value = professional
-  bookingStore.setProfessional(professional)
-  // Reset date/time if professional changes
-  selectedDate.value = ''
-  selectedTime.value = ''
-  bookingStore.setDate(null)
-  bookingStore.setTime(null)
-}
-
-const onDateChange = () => {
-  bookingStore.setDate(selectedDate.value)
-  // Reset time if date changes
-  selectedTime.value = ''
-  bookingStore.setTime(null)
-}
-
-const selectTime = (time) => {
-  selectedTime.value = time
-  bookingStore.setTime(time)
-}
-
-const confirmBooking = () => {
-  const details = bookingStore.selectedService
-  alert(
-    `Agendamento Confirmado!\n\nServiço: ${details.title}\nProfissional: ${bookingStore.selectedProfessional.name}\nData: ${bookingStore.selectedDate}\nHora: ${bookingStore.selectedTime}\nPreço: ${details.price}`
-  )
-  bookingStore.resetBooking()
-  router.push('/')
-}
-
-// Redirect if no service is selected when component is mounted
-onMounted(() => {
-  if (!bookingStore.selectedService) {
-    // Optional: redirect immediately
-    // router.push('/servicos');
-  }
+// Capturar erros de módulos não encontrados
+window.addEventListener(
+  'error',
+  (event) => {
+    if (event.message && event.message.includes('Failed to fetch dynamically imported module')) {
+      bookingError.value =
+        'Não foi possível carregar alguns recursos da página. Por favor, tente novamente mais tarde.'
+      notificationStore.showError('Erro ao carregar módulos da aplicação')
+    }
+  },
+  true,
+)
 </script>
 
 <style scoped lang="scss">
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
 .booking-page {
   padding: 88px 2rem 2rem;
-  background-color: #f9f9f9;
+  background-color: var.$bg-light;
   min-height: 100vh;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: var.$font-family-tertiary;
 }
 
 .booking-container {
@@ -418,15 +396,15 @@ onMounted(() => {
 
 h1 {
   text-align: center;
-  font-family: 'Bungee Hairline', sans-serif;
+  font-family: var.$font-family-secondary;
   font-size: 2.5rem;
-  color: #212121;
+  color: var.$text-primary;
   margin-bottom: 0.5rem;
 }
 
 .subtitle {
   text-align: center;
-  color: #6c6c6c;
+  color: var.$text-gray;
   margin-bottom: 3rem;
   font-size: 1.1rem;
 }
@@ -436,13 +414,13 @@ h1 {
   padding: 1.5rem;
   background: #fafafa;
   border-radius: 8px;
-  border-left: 4px solid #ff7b42;
+  border-left: 4px solid var.$secondary;
 }
 
 .step h2 {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var.$font-family-primary;
   font-size: 1.4rem;
-  color: #333;
+  color: var.$text-primary;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
@@ -461,18 +439,18 @@ h1 {
 
 .service-summary h3 {
   font-size: 1.3rem;
-  color: #333;
+  color: var.$text-primary;
   margin: 0 0 0.5rem 0;
 }
 
 .service-description {
-  color: #666;
+  color: var.$text-gray;
   margin: 0.25rem 0;
   font-size: 0.9rem;
 }
 
 .service-duration {
-  color: #888;
+  color: var.$text-gray;
   font-size: 0.85rem;
   margin: 0.25rem 0;
 }
@@ -480,7 +458,7 @@ h1 {
 .service-price {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #ff7b42;
+  color: var.$secondary;
   margin: 0;
   text-align: right;
 }
@@ -540,7 +518,8 @@ h1 {
   font-weight: 600;
 }
 
-.date-section, .time-section {
+.date-section,
+.time-section {
   margin-bottom: 1.5rem;
 }
 
@@ -611,7 +590,8 @@ h1 {
   flex-direction: column;
 }
 
-.form-input, .form-textarea {
+.form-input,
+.form-textarea {
   padding: 0.8rem;
   font-size: 1rem;
   border: 2px solid #ddd;
