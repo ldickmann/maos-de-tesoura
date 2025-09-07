@@ -17,7 +17,7 @@
           <div
             v-for="service in featuredServices"
             :key="service.id"
-            class="service-card"
+            class="service"
             @click="selectService(service)"
           >
             <div class="service-icon">
@@ -233,6 +233,9 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
+
 .container {
   max-width: 1440px;
   margin: 0 auto;
@@ -249,9 +252,9 @@ onMounted(() => {
   margin-bottom: 3rem;
 
   h2 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-secondary;
     font-size: 2.5rem;
-    color: #212121;
+    color: var.$text-primary;
     margin-bottom: 1rem;
 
     @media (max-width: 768px) {
@@ -261,7 +264,7 @@ onMounted(() => {
 
   p {
     font-size: 1.1rem;
-    color: #6c757d;
+    color: var.$text-gray;
     max-width: 600px;
     margin: 0 auto;
   }
@@ -270,7 +273,7 @@ onMounted(() => {
 // Services Preview Section
 .services-preview {
   padding: 5rem 0;
-  background: #f8f9fa;
+  background: var.$bg-light;
 }
 
 .services-grid {
@@ -282,7 +285,7 @@ onMounted(() => {
 }
 
 .service-card {
-  background: white;
+  background: var.$accent-light;
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -292,6 +295,7 @@ onMounted(() => {
   flex: 1;
   min-width: 280px;
   max-width: 350px;
+  border: 1px solid var.$border-color;
 
   &:hover {
     transform: translateY(-8px);
@@ -301,7 +305,7 @@ onMounted(() => {
   .service-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
+    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -310,19 +314,18 @@ onMounted(() => {
 
     i {
       font-size: 2rem;
-      color: white;
+      color: var.$accent-light;
     }
   }
-
   h3 {
     font-size: 1.4rem;
-    color: #212121;
+    color: var.$text-primary;
     margin-bottom: 1rem;
     font-weight: 600;
   }
 
   .service-description {
-    color: #6c757d;
+    color: var.$text-gray;
     margin-bottom: 1.5rem;
     line-height: 1.5;
   }
@@ -333,16 +336,16 @@ onMounted(() => {
     align-items: center;
     margin-bottom: 1.5rem;
     padding: 1rem;
-    background: #f8f9fa;
+    background: var.$bg-light;
     border-radius: 8px;
 
     .duration {
-      color: #495057;
+      color: var.$tertiary;
       font-weight: 500;
     }
 
     .price {
-      color: #ff7b42;
+      color: var.$secondary;
       font-weight: bold;
       font-size: 1.2rem;
     }
@@ -351,8 +354,8 @@ onMounted(() => {
   .service-btn {
     width: 100%;
     padding: 0.875rem;
-    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-    color: white;
+    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
+    color: var.$accent-light;
     border: none;
     border-radius: 8px;
     font-weight: 600;
@@ -363,7 +366,11 @@ onMounted(() => {
     gap: 0.5rem;
 
     &:hover {
-      background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
+      background: linear-gradient(
+        135deg,
+        var.$btn-primary-hover 0%,
+        color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
+      );
     }
   }
 }
@@ -371,7 +378,7 @@ onMounted(() => {
 // About Preview Section
 .about-preview {
   padding: 5rem 0;
-  background: white;
+  background: var.$accent-light;
 }
 
 .about-grid {
@@ -392,8 +399,8 @@ onMounted(() => {
 
   .section-tag {
     display: inline-block;
-    background: #ff7b42;
-    color: white;
+    background: var.$secondary;
+    color: var.$accent-light;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -402,15 +409,15 @@ onMounted(() => {
   }
 
   h2 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-secondary;
     font-size: 2.5rem;
-    color: #212121;
+    color: var.$text-primary;
     margin-bottom: 1.5rem;
   }
 
   .lead {
     font-size: 1.2rem;
-    color: #495057;
+    color: var.$tertiary;
     line-height: 1.6;
     margin-bottom: 2rem;
   }
@@ -426,10 +433,10 @@ onMounted(() => {
     align-items: center;
     gap: 1rem;
     padding: 0.75rem 0;
-    color: #495057;
+    color: var.$tertiary;
 
     i {
-      color: #28a745;
+      color: var.$success;
       font-size: 1.1rem;
     }
   }
@@ -458,13 +465,14 @@ onMounted(() => {
   bottom: 2rem;
   left: 2rem;
   right: 2rem;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(var.$accent-light, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 1.5rem;
   display: flex;
   justify-content: space-around;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid var.$border-color;
 
   .stat-item {
     text-align: center;
@@ -473,12 +481,12 @@ onMounted(() => {
       display: block;
       font-size: 1.8rem;
       font-weight: bold;
-      color: #ff7b42;
+      color: var.$secondary;
     }
 
     .stat-label {
       font-size: 0.9rem;
-      color: #6c757d;
+      color: var.$text-gray;
       font-weight: 500;
     }
   }
@@ -487,7 +495,7 @@ onMounted(() => {
 // Team Preview Section
 .team-preview {
   padding: 5rem 0;
-  background: #f8f9fa;
+  background: var.$bg-light;
 }
 
 .team-grid {
@@ -498,11 +506,12 @@ onMounted(() => {
 }
 
 .team-card {
-  background: white;
+  background: $accent-light;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
+  border: 1px solid $border-color;
 
   &:hover {
     transform: translateY(-4px);
@@ -524,13 +533,13 @@ onMounted(() => {
 
     h3 {
       font-size: 1.3rem;
-      color: #212121;
+      color: $text-primary;
       margin-bottom: 0.5rem;
       font-weight: 600;
     }
 
     .member-role {
-      color: #ff7b42;
+      color: $secondary;
       font-weight: 500;
       margin-bottom: 1rem;
     }
@@ -543,8 +552,8 @@ onMounted(() => {
   gap: 0.5rem;
 
   .specialty-tag {
-    background: #f8f9fa;
-    color: #495057;
+    background: $bg-light;
+    color: $tertiary;
     padding: 0.25rem 0.75rem;
     border-radius: 12px;
     font-size: 0.85rem;
@@ -555,7 +564,7 @@ onMounted(() => {
 // Testimonials Section
 .testimonials {
   padding: 5rem 0;
-  background: white;
+  background: var.$accent-light;
 }
 
 .testimonials-grid {
@@ -565,10 +574,11 @@ onMounted(() => {
 }
 
 .testimonial-card {
-  background: #f8f9fa;
+  background: var.$bg-light;
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var.$border-color;
 
   .testimonial-content {
     margin-bottom: 1.5rem;
@@ -577,14 +587,14 @@ onMounted(() => {
       margin-bottom: 1rem;
 
       i {
-        color: #ffc107;
+        color: var.$warning;
         margin-right: 0.25rem;
       }
     }
 
     p {
       font-style: italic;
-      color: #495057;
+      color: var.$tertiary;
       line-height: 1.6;
       margin: 0;
     }
@@ -610,13 +620,13 @@ onMounted(() => {
 
     .author-info {
       h4 {
-        color: #212121;
+        color: var.$text-primary;
         margin: 0 0 0.25rem 0;
         font-weight: 600;
       }
 
       span {
-        color: #6c757d;
+        color: var.$text-gray;
         font-size: 0.9rem;
       }
     }
@@ -626,13 +636,13 @@ onMounted(() => {
 // CTA Section
 .cta-section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-  color: white;
+  background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
+  color: var.$accent-light;
   text-align: center;
 
   .cta-content {
     h2 {
-      font-family: 'Archivo Black', sans-serif;
+      font-family: var.$font-family-secondary;
       font-size: 2.5rem;
       margin-bottom: 1rem;
 
@@ -658,8 +668,8 @@ onMounted(() => {
 
 // Common Button Styles
 .btn-primary {
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-  color: white;
+  background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
+  color: var.$accent-light;
   padding: 0.875rem 1.5rem;
   border-radius: 8px;
   text-decoration: none;
@@ -668,9 +678,14 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  border: none;
 
   &:hover {
-    background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
+    background: linear-gradient(
+      135deg,
+      var.$btn-primary-hover 0%,
+      color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
+    );
     transform: translateY(-2px);
   }
 
@@ -682,9 +697,9 @@ onMounted(() => {
 
 .btn-secondary {
   background: transparent;
-  color: #ff7b42;
+  color: var.$link-color;
   padding: 0.875rem 1.5rem;
-  border: 2px solid #ff7b42;
+  border: 2px solid var.$link-color;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
@@ -694,32 +709,32 @@ onMounted(() => {
   gap: 0.5rem;
 
   &:hover {
-    background: #ff7b42;
-    color: white;
+    background: var.$link-color;
+    color: var.$accent-light;
     transform: translateY(-2px);
   }
 }
 
 .btn-outline-primary {
   background: transparent;
-  color: #ff7b42;
+  color: var.$link-color;
   padding: 0.875rem 1.5rem;
-  border: 2px solid #ff7b42;
+  border: 2px solid var.$link-color;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
 
   &:hover {
-    background: #ff7b42;
-    color: white;
+    background: var.$link-color;
+    color: var.$accent-light;
     transform: translateY(-2px);
   }
 }
 
 .btn-whatsapp {
-  background: #25d366;
-  color: white;
+  background: var.$success;
+  color: var.$accent-light;
   padding: 1rem 2rem;
   border-radius: 8px;
   text-decoration: none;
@@ -729,9 +744,10 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  border: none;
 
   &:hover {
-    background: #128c7e;
+    background: color.adjust(var.$success, $lightness: -10%);
     transform: translateY(-2px);
   }
 }

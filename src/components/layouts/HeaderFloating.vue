@@ -122,22 +122,25 @@ const menuItems = [
 </script>
 
 <style scoped lang="scss">
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
+
 .header-floating {
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
   padding: 1rem 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba($primary, 0.85); // Alterado para ser mais visível
   backdrop-filter: blur(15px);
   z-index: 1000;
   transition: all 0.3s ease-in-out;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba($accent-light, 0.1);
 
   &.scrolled {
-    background: rgba(0, 0, 0, 0.95);
+    background: $primary; // Fundo sólido ao rolar
     backdrop-filter: blur(25px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba($accent-light, 0.2);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
   }
 }
@@ -198,13 +201,13 @@ const menuItems = [
 
     &:hover {
       color: $text-accent;
-      background: rgba(255, 123, 66, 0.1);
+      background: rgba($secondary, 0.1);
       transform: translateY(-2px);
     }
 
     &.router-link-active {
       color: $text-accent;
-      background: rgba(255, 123, 66, 0.2);
+      background: rgba($secondary, 0.2);
     }
   }
 }
@@ -214,19 +217,24 @@ const menuItems = [
   font-family: $font-family-secondary;
 
   .btn-accent {
-    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-    color: white;
+    background: linear-gradient(135deg, $btn-primary-bg 0%, $btn-primary-hover 100%);
+    color: $accent-light;
     text-decoration: none;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 123, 66, 0.3);
+    box-shadow: 0 4px 15px rgba($secondary, 0.3);
+    border: none; // Adicionado para remover borda padrão
 
     &:hover {
-      background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
+      background: linear-gradient(
+        135deg,
+        $btn-primary-hover 0%,
+        darken($btn-primary-hover, 5%) 100%
+      );
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 123, 66, 0.4);
+      box-shadow: 0 6px 20px rgba($secondary, 0.4);
     }
   }
 }
@@ -246,7 +254,7 @@ const menuItems = [
   span {
     width: 100%;
     height: 3px;
-    background: white;
+    background: $accent-light;
     border-radius: 2px;
     transition: all 0.3s ease;
   }
@@ -259,10 +267,10 @@ const menuItems = [
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 80px;
+  top: 80px; // Ajustar para a altura do header
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.95);
+  background: $primary;
   backdrop-filter: blur(20px);
   flex-direction: column;
   padding: 2rem;
@@ -276,26 +284,26 @@ const menuItems = [
   }
 
   .mobile-nav-link {
-    color: white;
+    color: $accent-light;
     text-decoration: none;
     padding: 1rem 0;
     font-size: 1.2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba($accent-light, 0.1);
     text-align: center;
     transition: color 0.3s ease;
 
     &:hover {
-      color: #ff7b42;
+      color: $secondary;
     }
 
     &.router-link-active {
-      color: #ff7b42;
+      color: $secondary;
     }
   }
 
   .mobile-btn-accent {
-    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-    color: white;
+    background: linear-gradient(135deg, $btn-primary-bg 0%, $btn-primary-hover 100%);
+    color: $accent-light;
     text-decoration: none;
     padding: 1rem 2rem;
     border-radius: 8px;
@@ -303,14 +311,19 @@ const menuItems = [
     margin-top: 1rem;
     font-weight: 600;
     transition: all 0.3s ease;
+    border: none;
 
     &:hover {
-      background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
+      background: linear-gradient(
+        135deg,
+        $btn-primary-hover 0%,
+        darken($btn-primary-hover, 5%) 100%
+      );
     }
   }
 }
 
-// Responsivo
+// Responsividade
 @media (max-width: 968px) {
   .menu,
   .action-button {
