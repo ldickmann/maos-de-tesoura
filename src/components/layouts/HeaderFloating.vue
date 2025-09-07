@@ -2,28 +2,40 @@
   <header :class="['header-floating', { scrolled }]">
     <nav class="toolbar">
       <div class="logo">
-        <router-link to="/" class="nav-link-logo">
+        <a href="#" @click="navigateToSection('home')" class="nav-link-logo">
           <span class="logo-line">Mãos de</span>
-        </router-link>
-        <router-link to="/" class="nav-link-logo">
+        </a>
+        <a href="#" @click="navigateToSection('home')" class="nav-link-logo">
           <span class="logo-line highlight">Tesoura</span>
-        </router-link>
+        </a>
       </div>
       <div class="menu">
-        <router-link v-for="(item, index) in menuItems" :key="index" :to="item.to" class="nav-link">
-          {{ item.label }}
-        </router-link>
+        <template v-for="(item, index) in menuItems" :key="index">
+          <!-- Item com ação personalizada (Home) -->
+          <a
+            v-if="item.action"
+            href="#"
+            @click="item.action"
+            class="nav-link"
+            :class="{ 'router-link-active': $route.path === '/' }"
+          >
+            {{ item.label }}
+          </a>
+          <!-- Item com rota normal -->
+          <router-link v-else :to="item.to" class="nav-link">
+            {{ item.label }}
+          </router-link>
+        </template>
       </div>
       <div class="mobile-menu" :class="{ active: mobileMenuOpen }">
-        <router-link
-          v-for="(item, index) in menuItems"
-          :key="index"
-          :to="item.to"
-          class="mobile-nav-link"
-          @click="closeMobileMenu"
-        >
-          {{ item.label }}
-        </router-link>
+        <template v-for="(item, index) in menuItems" :key="`mobile-${index}`">
+          <a v-if="item.action" href="#" @click="item.action" class="mobile-nav-link">
+            {{ item.label }}
+          </a>
+          <router-link v-else :to="item.to" class="mobile-nav-link" @click="closeMobileMenu">
+            {{ item.label }}
+          </router-link>
+        </template>
         <button @click="handleBooking" class="mobile-btn-accent">Agendar Horário</button>
       </div>
       <div class="action-button">
@@ -40,7 +52,10 @@
 
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { useRouter } from 'vue-router'
 import { useNotificationStore } from '@/stores/notification'
+
+const router = useRouter()
 
 const notificationStore = useNotificationStore()
 const scrollY = ref(0)
@@ -60,8 +75,34 @@ const closeMobileMenu = () => {
 }
 
 const handleBooking = () => {
-  notificationStore.showInfo('Função Não implementada')
+  router.push('/booking')
   closeMobileMenu()
+}
+
+// Navegação suave para seções da home
+const navigateToSection = (sectionId) => {
+  closeMobileMenu()
+
+  const doScroll = () => {
+    if (sectionId === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        const headerHeight = 100
+        const elementPosition = element.offsetTop - headerHeight
+        window.scrollTo({ top: elementPosition, behavior: 'smooth' })
+      }
+    }
+  }
+
+  if (router.currentRoute.value.path !== '/') {
+    router.push('/').then(() => {
+      setTimeout(doScroll, 100)
+    })
+  } else {
+    doScroll()
+  }
 }
 
 onMounted(() => {
@@ -73,7 +114,7 @@ onBeforeUnmount(() => {
 })
 
 const menuItems = [
-  { label: 'Home', to: '/' },
+  { label: 'Home', action: () => navigateToSection('home') },
   { label: 'Serviços', to: '/servicos' },
   { label: 'Sobre', to: '/about' },
   { label: 'Contato', to: '/contato' },

@@ -53,11 +53,15 @@
           <div class="footer-section">
             <h4>Links Rápidos</h4>
             <ul class="footer-links">
-              <li><router-link to="/">Home</router-link></li>
-              <li><router-link to="/servicos">Serviços</router-link></li>
-              <li><router-link to="/about">Sobre Nós</router-link></li>
-              <li><router-link to="/contato">Contato</router-link></li>
-              <li><router-link to="/booking">Agendamento</router-link></li>
+              <li>
+                <router-link :to="{ path: '/', hash: '#home' }" @click="scrollToTop"
+                  >Home</router-link
+                >
+              </li>
+              <li><router-link to="/servicos" @click="scrollToTop">Serviços</router-link></li>
+              <li><router-link to="/about" @click="scrollToTop">Sobre Nós</router-link></li>
+              <li><router-link to="/contato" @click="scrollToTop">Contato</router-link></li>
+              <li><router-link to="/booking" @click="scrollToTop">Agendamento</router-link></li>
             </ul>
           </div>
 
@@ -194,18 +198,43 @@ const subscribeNewsletter = async () => {
 
 // Select service and redirect
 const selectService = (serviceId) => {
-  // Encontrar o serviço pelo ID
   const services = [
-    { id: 1, name: 'Corte de Cabelo', duration: 30, price: 25.0 },
-    { id: 2, name: 'Barba + Bigode', duration: 25, price: 20.0 },
-    { id: 3, name: 'Combo Completo', duration: 45, price: 35.0 },
-    { id: 4, name: 'Sobrancelha', duration: 15, price: 10.0 },
+    {
+      id: 1,
+      name: 'Corte de Cabelo',
+      duration: 30,
+      price: 25.0,
+      description: 'Corte de cabelo masculino com finalização.',
+    },
+    {
+      id: 2,
+      name: 'Barba + Bigode',
+      duration: 25,
+      price: 20.0,
+      description: 'Design e cuidados para barba e bigode.',
+    },
+    {
+      id: 3,
+      name: 'Combo Completo',
+      duration: 45,
+      price: 35.0,
+      description: 'Combo completo para um visual harmonioso.',
+    },
+    {
+      id: 4,
+      name: 'Sobrancelha',
+      duration: 15,
+      price: 10.0,
+      description: 'Design de sobrancelha masculina.',
+    },
   ]
 
   const service = services.find((s) => s.id === serviceId)
   if (service) {
     bookingStore.setService(service)
-    router.push('/booking')
+    router.push('/booking').then(() => {
+      window.scrollTo(0, 0)
+    })
   }
 }
 
@@ -217,6 +246,10 @@ const openModal = (type) => {
 // Show not implemented alert - para funcionalidades que precisam de backend
 const showNotImplemented = () => {
   notificationStore.showWarning('Função não implementada')
+}
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 </script>
 
@@ -257,7 +290,7 @@ const showNotImplemented = () => {
 
 .footer-section {
   flex: 1;
-  min-width: 250px;
+  min-width: 220px;
 
   &:first-child {
     flex: 2;
