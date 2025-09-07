@@ -25,7 +25,7 @@
       </div> -->
 
       <div class="card-actions">
-        <button class="btn-outline">Agende um Horário</button>
+        <router-link to="/booking" class="btn-outline">Agende um Horário</router-link>
       </div>
     </div>
 
@@ -150,6 +150,8 @@ const bannerImage = ref('/images/barber-banner.jpg')
   font-size: 1rem;
   text-transform: uppercase;
   border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
   transition:
     background 0.3s,
     color 0.3s;

@@ -13,22 +13,37 @@
               Há mais de 20 anos oferecendo os melhores serviços de barbearia, combinando tradição,
               qualidade e um atendimento excepcional.
             </p>
+            <div class="contact-info-footer">
+              <div class="contact-item-footer">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Rua da Barbearia, 123 - Centro, Navegantes/SC</span>
+              </div>
+              <div class="contact-item-footer">
+                <i class="fas fa-envelope"></i>
+                <span>devluksjs@gmail.com</span>
+              </div>
+              <div class="contact-item-footer">
+                <i class="fas fa-phone"></i>
+                <span>(47) 55555-5555</span>
+              </div>
+            </div>
             <div class="social-links">
-              <a href="#" class="social-link instagram" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
+              <a href="https://github.com/ldickmann" target="_blank" class="social-link github" aria-label="GitHub">
+                <i class="fab fa-github"></i>
               </a>
-              <a href="#" class="social-link facebook" aria-label="Facebook">
-                <i class="fab fa-facebook-f"></i>
+              <a href="https://linkedin.com/in/lucasdickmann" target="_blank" class="social-link linkedin" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
               </a>
               <a
                 href="https://wa.me/5511987654321"
+                target="_blank"
                 class="social-link whatsapp"
                 aria-label="WhatsApp"
               >
                 <i class="fab fa-whatsapp"></i>
               </a>
-              <a href="#" class="social-link youtube" aria-label="YouTube">
-                <i class="fab fa-youtube"></i>
+              <a href="#" class="social-link instagram" aria-label="Instagram" @click="showNotImplemented">
+                <i class="fab fa-instagram"></i>
               </a>
             </div>
           </div>
@@ -129,9 +144,9 @@
             <p>&copy; {{ currentYear }} Mãos de Tesoura. Todos os direitos reservados.</p>
           </div>
           <div class="footer-bottom-links">
-            <a href="#" @click="openModal('privacy')">Política de Privacidade</a>
-            <a href="#" @click="openModal('terms')">Termos de Uso</a>
-            <a href="#" @click="openModal('cookies')">Cookies</a>
+            <a href="#" @click.prevent="openModal('privacy')">Política de Privacidade</a>
+            <a href="#" @click.prevent="openModal('terms')">Termos de Uso</a>
+            <a href="#" @click.prevent="openModal('cookies')">Cookies</a>
           </div>
         </div>
       </div>
@@ -193,9 +208,14 @@ const selectService = (serviceId) => {
   }
 }
 
-// Open modal (placeholder)
+// Open modal (placeholder) - apenas para funcionalidades que precisam de backend
 const openModal = (type) => {
-  notificationStore.showInfo(`Modal de ${type} será implementado em breve`)
+  notificationStore.showWarning(`Função não implementada: ${type}`)
+}
+
+// Show not implemented alert - para funcionalidades que precisam de backend  
+const showNotImplemented = () => {
+  notificationStore.showWarning('Função não implementada')
 }
 </script>
 
@@ -280,20 +300,20 @@ const openModal = (type) => {
     transition: all 0.3s ease;
     text-decoration: none;
 
+    &.github {
+      background: #333;
+    }
+
+    &.linkedin {
+      background: #0077b5;
+    }
+
     &.instagram {
       background: linear-gradient(135deg, #e4405f, #c13584);
     }
 
-    &.facebook {
-      background: #4267b2;
-    }
-
     &.whatsapp {
       background: #25d366;
-    }
-
-    &.youtube {
-      background: #ff0000;
     }
 
     &:hover {

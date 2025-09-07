@@ -168,17 +168,17 @@
               <div class="social-links">
                 <h4>Nossas Redes Sociais</h4>
                 <div class="social-buttons">
-                  <a href="#" class="social-btn instagram">
-                    <i class="fab fa-instagram"></i>
-                    Instagram
+                  <a href="https://github.com/ldickmann" target="_blank" class="social-btn github">
+                    <i class="fab fa-github"></i>
+                    GitHub
                   </a>
-                  <a href="#" class="social-btn whatsapp">
+                  <a href="https://linkedin.com/in/lucasdickmann" target="_blank" class="social-btn linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                    LinkedIn
+                  </a>
+                  <a href="https://wa.me/5511987654321" target="_blank" class="social-btn whatsapp">
                     <i class="fab fa-whatsapp"></i>
                     WhatsApp
-                  </a>
-                  <a href="#" class="social-btn facebook">
-                    <i class="fab fa-facebook"></i>
-                    Facebook
                   </a>
                 </div>
               </div>
@@ -195,11 +195,11 @@
                 </div>
               </div>
               <div class="map-actions">
-                <a href="#" class="map-link">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Rua+da+Barbearia+123+Centro+São+Paulo+SP" target="_blank" class="map-link">
                   <i class="fas fa-directions"></i>
                   Como Chegar
                 </a>
-                <a href="#" class="map-link">
+                <a href="#" class="map-link" @click.prevent="showNotImplemented">
                   <i class="fas fa-street-view"></i>
                   Street View
                 </a>
@@ -278,6 +278,10 @@ const formatPhoneInput = (event) => {
 
 const clearErrors = () => {
   errors.value = {}
+}
+
+const showNotImplemented = () => {
+  notificationStore.showWarning('Função não implementada')
 }
 
 const handleSubmit = async () => {
@@ -594,13 +598,23 @@ const handleSubmit = async () => {
   font-weight: 500;
   transition: all 0.3s ease;
 
-  &.instagram {
-    background: linear-gradient(135deg, #e4405f 0%, #c13584 100%);
+  &.github {
+    background: linear-gradient(135deg, #333 0%, #24292e 100%);
     color: white;
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(225, 64, 95, 0.3);
+      box-shadow: 0 4px 15px rgba(51, 51, 51, 0.3);
+    }
+  }
+
+  &.linkedin {
+    background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
+    color: white;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
     }
   }
 
@@ -611,16 +625,6 @@ const handleSubmit = async () => {
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-    }
-  }
-
-  &.facebook {
-    background: linear-gradient(135deg, #4267b2 0%, #365899 100%);
-    color: white;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(66, 103, 178, 0.3);
     }
   }
 }

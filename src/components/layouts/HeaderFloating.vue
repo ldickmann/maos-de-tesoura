@@ -15,7 +15,7 @@
         </router-link>
       </div>
       <div class="action-button">
-        <router-link to="/agendamento" class="btn-accent">Agendar Horário</router-link>
+        <router-link to="/booking" class="btn-accent">Agendar Horário</router-link>
       </div>
     </nav>
   </header>
@@ -53,12 +53,17 @@ const menuItems = [
   top: 0;
   left: 0;
   padding: 1rem 0;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
   z-index: 1000;
-  transition: background 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   &.scrolled {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -68,6 +73,7 @@ const menuItems = [
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 2rem;
 }
 
 .logo {
@@ -82,15 +88,18 @@ const menuItems = [
     text-transform: uppercase;
     color: $text-secondary;
     font-size: 1.5rem;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
     &:hover {
       color: $text-accent;
+      transform: translateY(-2px);
     }
   }
 
   .highlight {
     font-size: 2rem;
+    color: $text-accent;
   }
 }
 
@@ -105,12 +114,22 @@ const menuItems = [
   .nav-link {
     text-decoration: none;
     color: $text-secondary;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding: 0.5rem 1rem;
-    transition: color 0.3s;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    position: relative;
 
     &:hover {
       color: $text-accent;
+      background: rgba(255, 123, 66, 0.1);
+      transform: translateY(-2px);
+    }
+
+    &.router-link-active {
+      color: $text-accent;
+      background: rgba(255, 123, 66, 0.2);
     }
   }
 }
@@ -120,17 +139,39 @@ const menuItems = [
   font-family: $font-family-secondary;
 
   .btn-accent {
-    background: $bg-accent;
-    color: $text-secondary;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
+    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
+    color: white;
     text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 123, 66, 0.3);
 
     &:hover {
-      background: $hover-accent;
+      background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 123, 66, 0.4);
     }
+  }
+}
+
+// Responsivo
+@media (max-width: 968px) {
+  .menu {
+    display: none;
+  }
+  
+  .toolbar {
+    padding: 0 1rem;
+  }
+  
+  .logo .nav-link-logo {
+    font-size: 1.2rem;
+  }
+  
+  .logo .highlight {
+    font-size: 1.5rem;
   }
 }
 </style>
