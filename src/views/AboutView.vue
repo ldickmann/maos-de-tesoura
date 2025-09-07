@@ -4,7 +4,7 @@
     <section class="hero-section">
       <div class="hero-content">
         <h1 class="hero-title">Nossa História</h1>
-        <p class="hero-subtitle">Mais de 10 anos dedicados à arte da barbearia clássica</p>
+        <p class="hero-subtitle">Mais de 16 anos dedicados à arte da barbearia clássica</p>
       </div>
       <div class="hero-image">
         <img src="/images/barber-banner.jpg" alt="Interior da barbearia" />
@@ -18,7 +18,7 @@
           <div class="story-text">
             <h2>A Tradição que Faz a Diferença</h2>
             <p class="lead">
-              Fundada em 2014, a Mãos de Tesoura nasceu do sonho de resgatar a tradição da barbearia
+              Fundada em 2009, a Mãos de Tesoura nasceu do sonho de resgatar a tradição da barbearia
               clássica, combinando técnicas ancestrais com um toque moderno.
             </p>
             <p>
@@ -225,6 +225,10 @@ const teamMembers = ref([
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 }
 
 // Hero Section

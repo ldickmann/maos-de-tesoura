@@ -281,6 +281,10 @@ const bookService = async (service) => {
     padding: 0 1rem;
     max-width: 100%;
   }
+
+  @media (max-width: 480px) {
+    padding: 0 0.5rem;
+  }
 }
 
 .service-card {

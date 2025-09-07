@@ -51,6 +51,10 @@ const bannerImage = ref('/images/barber-banner.jpg')
   font-family: $font-family-tertiary;
   position: relative;
   overflow: visible;
+
+  @media (max-width: 768px) {
+    height: 80vh;
+  }
 }
 
 .banner-img {
@@ -72,6 +76,11 @@ const bannerImage = ref('/images/barber-banner.jpg')
   border-radius: 10px;
   text-align: center;
   background: rgba($tertiary, 0.4);
+
+  @media (max-width: 768px) {
+    height: 80vh;
+    padding: 1rem;
+  }
 }
 
 .toolbar-title {
@@ -87,12 +96,20 @@ const bannerImage = ref('/images/barber-banner.jpg')
 .text-overline {
   font-size: 1.5rem;
   font-weight: 400;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 }
 
 .text-overline-toolbar {
   font-size: 1rem;
   line-height: 1rem;
   font-weight: 300;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 }
 
 .highlight-text {
@@ -103,6 +120,17 @@ const bannerImage = ref('/images/barber-banner.jpg')
   font-weight: 400;
   line-height: 4rem;
   text-transform: uppercase;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+    line-height: 2.5rem;
+    -webkit-text-stroke-width: 1px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.5rem;
+    line-height: 2rem;
+  }
 }
 
 .line-text-row {

@@ -180,7 +180,7 @@
                     <i class="fab fa-linkedin-in"></i>
                     LinkedIn
                   </a>
-                  <a href="https://wa.me/5511987654321" target="_blank" class="social-btn whatsapp">
+                  <a href="https://wa.me/5547555555555" target="_blank" class="social-btn whatsapp">
                     <i class="fab fa-whatsapp"></i>
                     WhatsApp
                   </a>
@@ -337,6 +337,10 @@ const handleSubmit = async () => {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 }
 
 // Hero Section

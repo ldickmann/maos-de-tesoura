@@ -14,9 +14,20 @@
           {{ item.label }}
         </router-link>
       </div>
+      <div class="mobile-menu" :class="{ active: mobileMenuOpen }">
+        <router-link v-for="(item, index) in menuItems" :key="index" :to="item.to" class="mobile-nav-link" @click="closeMobileMenu">
+          {{ item.label }}
+        </router-link>
+        <router-link to="/booking" class="mobile-btn-accent" @click="closeMobileMenu">Agendar Horário</router-link>
+      </div>
       <div class="action-button">
         <router-link to="/booking" class="btn-accent">Agendar Horário</router-link>
       </div>
+      <button class="mobile-menu-toggle" @click="toggleMobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
   </header>
 </template>
@@ -25,10 +36,19 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 const scrollY = ref(0)
+const mobileMenuOpen = ref(false)
 const scrolled = computed(() => scrollY.value > 0)
 
 const updateScroll = () => {
   scrollY.value = window.scrollY
+}
+
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value
+}
+
+const closeMobileMenu = () => {
+  mobileMenuOpen.value = false
 }
 
 onMounted(() => {
@@ -42,6 +62,7 @@ onBeforeUnmount(() => {
 const menuItems = [
   { label: 'Home', to: '/' },
   { label: 'Serviços', to: '/servicos' },
+  { label: 'Sobre', to: '/about' },
   { label: 'Contato', to: '/contato' },
 ]
 </script>
@@ -156,20 +177,100 @@ const menuItems = [
   }
 }
 
-// Responsivo
-@media (max-width: 968px) {
-  .menu {
-    display: none;
+// Mobile Menu
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  
+  span {
+    width: 100%;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  @media (max-width: 968px) {
+    display: flex;
+  }
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  flex-direction: column;
+  padding: 2rem;
+  z-index: 999;
+  transform: translateY(-100%);
+  transition: all 0.3s ease;
+
+  &.active {
+    display: flex;
+    transform: translateY(0);
   }
 
+  .mobile-nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 1rem 0;
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #ff7b42;
+    }
+
+    &.router-link-active {
+      color: #ff7b42;
+    }
+  }
+
+  .mobile-btn-accent {
+    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
+    }
+  }
+}
+
+// Responsivo
+@media (max-width: 968px) {
+  .menu,
+  .action-button {
+    display: none;
+  }
+  
   .toolbar {
     padding: 0 1rem;
   }
-
+  
   .logo .nav-link-logo {
     font-size: 1.2rem;
   }
-
+  
   .logo .highlight {
     font-size: 1.5rem;
   }
