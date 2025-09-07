@@ -39,12 +39,14 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useNotificationStore } from '@/stores/notification'
 import LineComponent from './LineComponent.vue'
 
 const bannerImage = ref('/images/barber-banner.jpg')
+const notificationStore = useNotificationStore()
 
 const handleBooking = () => {
-  alert('Função Não implementada')
+  notificationStore.showInfo('Função Não implementada')
 }
 </script>
 

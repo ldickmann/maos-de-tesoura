@@ -2,12 +2,27 @@
   <div class="about-page">
     <!-- Hero Section -->
     <section class="hero-section">
+      <div class="hero-background">
+        <img src="/images/barber-banner.jpg" alt="Interior da barbearia" />
+        <div class="hero-overlay"></div>
+      </div>
       <div class="hero-content">
         <h1 class="hero-title">Nossa História</h1>
         <p class="hero-subtitle">Mais de 16 anos dedicados à arte da barbearia clássica</p>
-      </div>
-      <div class="hero-image">
-        <img src="/images/barber-banner.jpg" alt="Interior da barbearia" />
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">16+</span>
+            <span class="stat-label">Anos de Tradição</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">5000+</span>
+            <span class="stat-label">Clientes Satisfeitos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Profissionais</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -183,9 +198,12 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useNotificationStore } from '@/stores/notification'
+
+const notificationStore = useNotificationStore()
 
 const handleBookingAlert = () => {
-  alert('Função Não implementada')
+  notificationStore.showInfo('Função Não implementada')
 }
 
 const teamMembers = ref([
@@ -237,78 +255,143 @@ const teamMembers = ref([
 
 // Hero Section
 .hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
   display: flex;
-  min-height: 60vh;
   align-items: center;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  flex-wrap: wrap;
-  gap: 2rem;
+  justify-content: center;
+  overflow: hidden;
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    min-height: auto;
-    padding: 2rem 0;
+    height: 80vh;
+    min-height: 500px;
   }
 }
 
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6) contrast(1.1);
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  z-index: 2;
+}
+
 .hero-content {
-  flex: 1;
-  min-width: 300px;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: white;
+  max-width: 800px;
   padding: 2rem;
 
   @media (max-width: 768px) {
-    text-align: center;
     padding: 1rem;
   }
 }
 
 .hero-title {
   font-family: 'Archivo Black', sans-serif;
-  font-size: 3rem;
-  color: #212121;
+  font-size: 4rem;
+  color: white;
   margin-bottom: 1rem;
   line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.2rem;
   }
 }
 
 .hero-subtitle {
-  font-size: 1.3rem;
-  color: #6c757d;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
-  margin: 0;
-}
-
-.hero-image {
-  flex: 1;
-  min-width: 300px;
-  position: relative;
-  height: 500px;
-  overflow: hidden;
+  margin-bottom: 3rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-weight: 300;
 
   @media (max-width: 768px) {
-    height: 300px;
-    margin: 2rem 1rem 0;
-    border-radius: 12px;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 2rem;
+    flex-wrap: wrap;
   }
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: sepia(10%) contrast(1.1);
+  @media (max-width: 480px) {
+    gap: 1rem;
+  }
+}
+
+.stat-item {
+  text-align: center;
+
+  .stat-number {
+    display: block;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 2.5rem;
+    color: #e67e22;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(255, 123, 66, 0.1) 0%, transparent 50%);
+  .stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+    }
   }
 }
 

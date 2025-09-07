@@ -15,7 +15,13 @@
         </router-link>
       </div>
       <div class="mobile-menu" :class="{ active: mobileMenuOpen }">
-        <router-link v-for="(item, index) in menuItems" :key="index" :to="item.to" class="mobile-nav-link" @click="closeMobileMenu">
+        <router-link
+          v-for="(item, index) in menuItems"
+          :key="index"
+          :to="item.to"
+          class="mobile-nav-link"
+          @click="closeMobileMenu"
+        >
           {{ item.label }}
         </router-link>
         <button @click="handleBooking" class="mobile-btn-accent">Agendar Horário</button>
@@ -34,7 +40,9 @@
 
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { useNotificationStore } from '@/stores/notification'
 
+const notificationStore = useNotificationStore()
 const scrollY = ref(0)
 const mobileMenuOpen = ref(false)
 const scrolled = computed(() => scrollY.value > 0)
@@ -52,7 +60,7 @@ const closeMobileMenu = () => {
 }
 
 const handleBooking = () => {
-  alert('Função Não implementada')
+  notificationStore.showInfo('Função Não implementada')
   closeMobileMenu()
 }
 
@@ -193,7 +201,7 @@ const menuItems = [
   border: none;
   cursor: pointer;
   padding: 0;
-  
+
   span {
     width: 100%;
     height: 3px;
@@ -201,7 +209,7 @@ const menuItems = [
     border-radius: 2px;
     transition: all 0.3s ease;
   }
-  
+
   @media (max-width: 968px) {
     display: flex;
   }
@@ -267,15 +275,15 @@ const menuItems = [
   .action-button {
     display: none;
   }
-  
+
   .toolbar {
     padding: 0 1rem;
   }
-  
+
   .logo .nav-link-logo {
     font-size: 1.2rem;
   }
-  
+
   .logo .highlight {
     font-size: 1.5rem;
   }

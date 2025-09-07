@@ -221,7 +221,7 @@ const selectService = (service) => {
 
 // Função para emitir alert de função não implementada
 const handleBookingAlert = () => {
-  alert('Função Não implementada')
+  notificationStore.showInfo('Função Não implementada')
 }
 
 // Carregar dados ao montar o componente

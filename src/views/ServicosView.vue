@@ -49,10 +49,7 @@
               <i :class="service.expanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
               {{ service.expanded ? 'Ver Menos' : 'Ver Detalhes' }}
             </button>
-            <button
-              class="book-button"
-              @click="handleBookingAlert"
-            >
+            <button class="book-button" @click="handleBookingAlert">
               <i class="fas fa-calendar-plus"></i>
               Agendar Agora
             </button>
@@ -196,7 +193,7 @@ const toggleDetails = (service) => {
 }
 
 const handleBookingAlert = () => {
-  alert('Função Não implementada')
+  notificationStore.showInfo('Função Não implementada')
 }
 
 const bookService = async (service) => {
