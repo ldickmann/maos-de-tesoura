@@ -36,12 +36,13 @@ const handleBooking = () => {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/styles/scss/_variables.scss';
+@use 'sass:color';
+@use '@/assets/styles/scss/_variables.scss' as var;
 
 .banner {
   width: 100%;
   height: 100vh;
-  font-family: $font-family-tertiary;
+  font-family: var.$font-family-tertiary;
   position: relative;
   overflow: hidden;
   @media (max-width: 768px) {
@@ -67,7 +68,7 @@ const handleBooking = () => {
   justify-content: center;
   padding: 2rem;
   text-align: center;
-  background: linear-gradient(to top, rgba($primary, 0.7), transparent);
+  background: linear-gradient(to top, rgba(var.$primary, 0.7), transparent);
 
   @media (max-width: 768px) {
     padding: 1rem;
@@ -75,7 +76,7 @@ const handleBooking = () => {
 }
 
 .toolbar-title {
-  color: $accent-light;
+  color: var.$accent-light;
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
@@ -106,7 +107,7 @@ const handleBooking = () => {
 
 .highlight-text {
   -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: $secondary;
+  -webkit-text-stroke-color: var.$secondary;
   color: transparent;
   font-size: 5rem;
   font-weight: 400;
@@ -140,8 +141,8 @@ const handleBooking = () => {
 
 .btn-outline {
   background: transparent;
-  color: $accent-light;
-  border: 2px solid $accent-light;
+  color: var.$accent-light;
+  border: 2px solid var.$accent-light;
   padding: 1.3rem 2rem;
   cursor: pointer;
   font-size: 1rem;
@@ -150,15 +151,15 @@ const handleBooking = () => {
   text-decoration: none;
   display: inline-block;
   transition: all 0.3s ease;
-  font-family: $font-family-secondary;
+  font-family: var.$font-family-secondary;
   font-weight: bold;
 
   &:hover {
-    background-color: $secondary;
-    border-color: $secondary;
-    color: $primary;
+    background-color: var.$secondary;
+    border-color: var.$secondary;
+    color: var.$primary;
     transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba($secondary, 0.4);
+    box-shadow: 0 4px 15px rgba(var.$secondary, 0.4);
   }
 }
 </style>
