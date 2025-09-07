@@ -199,7 +199,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useNotificationStore } from '@/stores/notification'
-import bannerImage from '@/assets/images/barber-banner.jpg'
+import bannerImage from '@/assets/images/banner-about-img.jpg'
 import cardImage from '@/assets/images/image-1-card.jpg'
 
 const notificationStore = useNotificationStore()
