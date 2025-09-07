@@ -1,0 +1,46 @@
+// ==============================
+// Variables
+// ==============================
+
+// Colors
+// ========================
+// Palette
+$primary: #212121; // Dark Gray
+$secondary: #ff7b42; // Orange
+$tertiary: #343a40; // Darker Gray
+$accent: #f8f9fa; // Light Gray
+$accent-light: #ffffff; // White
+$success: #28a745; // Green
+$danger: #dc3545; // Red
+$warning: #ffc107; // Yellow
+$info: #17a2b8; // Teal
+
+// Text
+$text-primary: $primary;
+$text-secondary: $accent-light;
+$text-gray: #6c757d;
+$text-accent: $secondary;
+
+// Backgrounds
+$bg-light: $accent;
+$bg-dark: $primary;
+$bg-footer: #1a1a1a;
+
+// Buttons
+$btn-primary-bg: $secondary;
+$btn-primary-hover: #e66b32;
+$btn-secondary-bg: $text-gray;
+$btn-secondary-hover: #5a6268;
+
+// Borders
+$border-color: #dee2e6;
+
+// Links
+$link-color: $secondary;
+$link-hover-color: $btn-primary-hover;
+
+// Fonts
+// ========================
+$font-family-primary: 'Archivo Black', sans-serif;
+$font-family-secondary: 'Bungee Hairline', sans-serif;
+$font-family-tertiary: 'Hanken Grotesk', sans-serif;
