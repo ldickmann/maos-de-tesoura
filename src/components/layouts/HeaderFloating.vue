@@ -131,16 +131,16 @@ const menuItems = [
   top: 0;
   left: 0;
   padding: 1rem 0;
-  background: rgba($primary, 0.85); // Alterado para ser mais visível
+  background: rgba(var.$primary, 0.85); // Alterado para ser mais visível
   backdrop-filter: blur(15px);
   z-index: 1000;
   transition: all 0.3s ease-in-out;
-  border-bottom: 1px solid rgba($accent-light, 0.1);
+  border-bottom: 1px solid rgba(var.$accent-light, 0.1);
 
   &.scrolled {
-    background: $primary; // Fundo sólido ao rolar
+    background: var.$primary; // Fundo sólido ao rolar
     backdrop-filter: blur(25px);
-    border-bottom: 1px solid rgba($accent-light, 0.2);
+    border-bottom: 1px solid rgba(var.$accent-light, 0.2);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
   }
 }
@@ -158,26 +158,26 @@ const menuItems = [
   display: flex;
   flex-direction: column;
   font-weight: bold;
-  font-family: $font-family-secondary;
+  font-family: var.$font-family-secondary;
   line-height: 1;
 
   .nav-link-logo {
     text-decoration: none;
     text-transform: uppercase;
-    color: $text-secondary;
+    color: var.$text-secondary;
     font-size: 1.5rem;
     transition: all 0.3s ease;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
     &:hover {
-      color: $text-accent;
+      color: var.$text-accent;
       transform: translateY(-2px);
     }
   }
 
   .highlight {
     font-size: 2rem;
-    color: $text-accent;
+    color: var.$text-accent;
   }
 }
 
@@ -186,12 +186,12 @@ const menuItems = [
   display: flex;
   justify-content: center;
   gap: 1rem;
-  font-family: $font-family-secondary;
+  font-family: var.$font-family-secondary;
   font-weight: bold;
 
   .nav-link {
     text-decoration: none;
-    color: $text-secondary;
+    color: var.$text-secondary;
     font-size: 1.1rem;
     padding: 0.5rem 1rem;
     border-radius: 8px;
@@ -200,41 +200,41 @@ const menuItems = [
     position: relative;
 
     &:hover {
-      color: $text-accent;
-      background: rgba($secondary, 0.1);
+      color: var.$text-accent;
+      background: rgba(var.$secondary, 0.1);
       transform: translateY(-2px);
     }
 
     &.router-link-active {
-      color: $text-accent;
-      background: rgba($secondary, 0.2);
+      color: var.$text-accent;
+      background: rgba(var.$secondary, 0.2);
     }
   }
 }
 
 .action-button {
   display: flex;
-  font-family: $font-family-secondary;
+  font-family: var.$font-family-secondary;
 
   .btn-accent {
-    background: linear-gradient(135deg, $btn-primary-bg 0%, $btn-primary-hover 100%);
-    color: $accent-light;
+    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
+    color: var.$accent-light;
     text-decoration: none;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba($secondary, 0.3);
+    box-shadow: 0 4px 15px rgba(var.$secondary, 0.3);
     border: none; // Adicionado para remover borda padrão
 
     &:hover {
       background: linear-gradient(
         135deg,
-        $btn-primary-hover 0%,
-        darken($btn-primary-hover, 5%) 100%
+        var.$btn-primary-hover 0%,
+        color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
       );
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba($secondary, 0.4);
+      box-shadow: 0 6px 20px rgba(var.$secondary, 0.4);
     }
   }
 }
@@ -254,7 +254,7 @@ const menuItems = [
   span {
     width: 100%;
     height: 3px;
-    background: $accent-light;
+    background: var.$accent-light;
     border-radius: 2px;
     transition: all 0.3s ease;
   }
@@ -270,7 +270,7 @@ const menuItems = [
   top: 80px; // Ajustar para a altura do header
   left: 0;
   right: 0;
-  background: $primary;
+  background: var.$primary;
   backdrop-filter: blur(20px);
   flex-direction: column;
   padding: 2rem;
@@ -284,26 +284,26 @@ const menuItems = [
   }
 
   .mobile-nav-link {
-    color: $accent-light;
+    color: var.$accent-light;
     text-decoration: none;
     padding: 1rem 0;
     font-size: 1.2rem;
-    border-bottom: 1px solid rgba($accent-light, 0.1);
+    border-bottom: 1px solid rgba(var.$accent-light, 0.1);
     text-align: center;
     transition: color 0.3s ease;
 
     &:hover {
-      color: $secondary;
+      color: var.$secondary;
     }
 
     &.router-link-active {
-      color: $secondary;
+      color: var.$secondary;
     }
   }
 
   .mobile-btn-accent {
-    background: linear-gradient(135deg, $btn-primary-bg 0%, $btn-primary-hover 100%);
-    color: $accent-light;
+    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
+    color: var.$accent-light;
     text-decoration: none;
     padding: 1rem 2rem;
     border-radius: 8px;
@@ -316,8 +316,8 @@ const menuItems = [
     &:hover {
       background: linear-gradient(
         135deg,
-        $btn-primary-hover 0%,
-        darken($btn-primary-hover, 5%) 100%
+        var.$btn-primary-hover 0%,
+        color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
       );
     }
   }
