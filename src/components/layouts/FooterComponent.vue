@@ -7,7 +7,7 @@
           <!-- Company Info -->
           <div class="footer-section">
             <div class="footer-logo">
-              <h3>Mãos de Tesoura</h3>
+              <h2>Mãos de Tesoura</h2>
               <p class="footer-tagline">A Barbearia dos Homens</p>
             </div>
             <p class="footer-description">
@@ -18,26 +18,29 @@
               <a
                 href="https://github.com/ldickmann"
                 target="_blank"
+                rel="noopener noreferrer"
                 class="social-link github"
                 aria-label="GitHub"
               >
-                <i class="fab fa-github"></i>
+                <i class="fab fa-github" aria-hidden="true"></i>
               </a>
               <a
                 href="https://linkedin.com/in/lucasdickmann"
                 target="_blank"
+                rel="noopener noreferrer"
                 class="social-link linkedin"
                 aria-label="LinkedIn"
               >
-                <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
               </a>
               <a
                 href="https://wa.me/5547555555555"
                 target="_blank"
+                rel="noopener noreferrer"
                 class="social-link whatsapp"
                 aria-label="WhatsApp"
               >
-                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
               </a>
               <a
                 href="#"
@@ -45,14 +48,14 @@
                 aria-label="Instagram"
                 @click="showNotImplemented"
               >
-                <i class="fab fa-instagram"></i>
+                <i class="fab fa-instagram" aria-hidden="true"></i>
               </a>
             </div>
           </div>
 
           <!-- Quick Links -->
           <div class="footer-section">
-            <h4>Links Rápidos</h4>
+            <h2>Links Rápidos</h2>
             <ul class="footer-links">
               <li>
                 <router-link :to="{ path: '/', hash: '#home' }" @click="scrollToTop"
@@ -68,7 +71,7 @@
 
           <!-- Services -->
           <div class="footer-section">
-            <h4>Nossos Serviços</h4>
+            <h2>Nossos Serviços</h2>
             <ul class="footer-links">
               <li><a href="#" @click="selectService(1)">Corte de Cabelo</a></li>
               <li><a href="#" @click="selectService(2)">Barba + Bigode</a></li>
@@ -79,33 +82,37 @@
 
           <!-- Contact Info -->
           <div class="footer-section">
-            <h4>Contato</h4>
+            <h2>Contato</h2>
             <div class="contact-info">
               <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                 <div>
                   <p>Rua da Barbearia, 123</p>
                   <p>Centro - Navegantes/SC</p>
                 </div>
               </div>
               <div class="contact-item">
-                <i class="fas fa-phone"></i>
+                <i class="fas fa-phone" aria-hidden="true"></i>
                 <div>
-                  <p>(47) 55555-5555</p>
+                  <p><a href="tel:+5547555555555" class="contact-link">(47) 55555-5555</a></p>
                   <small>Segunda a Sábado</small>
                 </div>
               </div>
               <div class="contact-item">
-                <i class="fas fa-clock"></i>
+                <i class="fas fa-clock" aria-hidden="true"></i>
                 <div>
                   <p>Seg-Sex: 9h às 19h</p>
                   <p>Sáb: 8h às 17h</p>
                 </div>
               </div>
               <div class="contact-item">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-envelope" aria-hidden="true"></i>
                 <div>
-                  <p>devluksjs@gmail.com</p>
+                  <p>
+                    <a href="mailto:devluksjs@gmail.com" class="contact-link"
+                      >devluksjs@gmail.com</a
+                    >
+                  </p>
                 </div>
               </div>
             </div>
@@ -119,21 +126,27 @@
       <div class="container">
         <div class="newsletter-content">
           <div class="newsletter-text">
-            <h3>Fique por Dentro das Novidades</h3>
+            <h2>Fique por Dentro das Novidades</h2>
             <p>Receba ofertas especiais, dicas de cuidados e novidades da barbearia</p>
           </div>
           <form @submit.prevent="subscribeNewsletter" class="newsletter-form">
             <div class="input-group">
+              <label for="newsletter-email" class="sr-only">Seu e-mail</label>
               <input
+                id="newsletter-email"
                 type="email"
                 v-model="emailNewsletter"
                 placeholder="Seu melhor email"
                 required
-                class="newsletter-input"
+                class="form-input form-input--dark newsletter-input"
               />
-              <button type="submit" class="newsletter-btn" :disabled="isSubscribing">
-                <i v-if="isSubscribing" class="fas fa-spinner fa-spin"></i>
-                <i v-else class="fas fa-paper-plane"></i>
+              <button
+                type="submit"
+                class="btn btn--primary newsletter-btn"
+                :disabled="isSubscribing"
+              >
+                <i v-if="isSubscribing" class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                <i v-else class="fas fa-paper-plane" aria-hidden="true"></i>
                 {{ isSubscribing ? 'Enviando...' : 'Inscrever' }}
               </button>
             </div>
@@ -256,7 +269,6 @@ const scrollToTop = () => {
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
 @use '@/assets/styles/scss/_mixins.scss' as mx;
 
@@ -268,13 +280,7 @@ const scrollToTop = () => {
 }
 
 .container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 2rem;
-
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-  }
+  @include mx.container;
 }
 
 // Footer Main
@@ -288,7 +294,7 @@ const scrollToTop = () => {
   gap: 3rem;
   justify-content: space-between;
 
-  @media (max-width: 968px) {
+  @include mx.down(var.$bp-lg) {
     flex-direction: column;
     gap: 2rem;
     text-align: center;
@@ -312,7 +318,7 @@ const scrollToTop = () => {
     }
   }
 
-  h4 {
+  h2 {
     color: var.$secondary;
     font-size: 1.2rem;
     font-weight: 600;
@@ -324,7 +330,7 @@ const scrollToTop = () => {
 .footer-logo {
   margin-bottom: 1.5rem;
 
-  h3 {
+  h2 {
     font-family: var.$font-family-primary;
     font-size: 1.5rem;
     color: var.$accent-light;
@@ -339,7 +345,7 @@ const scrollToTop = () => {
 }
 
 .footer-description {
-  color: #b0b0b0;
+  color: var.$text-on-dark-muted;
   line-height: 1.6;
   margin-bottom: 2rem;
 }
@@ -355,7 +361,9 @@ const scrollToTop = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition:
+      transform var.$duration-base var.$ease,
+      box-shadow var.$duration-base var.$ease;
     text-decoration: none;
 
     &.github {
@@ -385,31 +393,9 @@ const scrollToTop = () => {
     }
   }
 
-  @media screen and (max-width: 430px) {
+  @include mx.down(var.$bp-lg) {
     align-items: center;
     justify-content: center;
-  }
-}
-
-// Contact info in footer
-.contact-info-footer {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
-
-  .contact-item-footer {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: #b0b0b0;
-    font-size: 0.9rem;
-
-    i {
-      color: var.$secondary;
-      width: 16px;
-      text-align: center;
-    }
   }
 }
 
@@ -423,9 +409,12 @@ const scrollToTop = () => {
     margin-bottom: 0.75rem;
 
     a {
-      color: #b0b0b0;
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      color: var.$text-on-dark-muted;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: color var.$duration-base var.$ease;
       cursor: pointer;
 
       &:hover {
@@ -441,7 +430,7 @@ const scrollToTop = () => {
   flex-direction: column;
   gap: 1.5rem;
 
-  @media screen and (max-width: 430px) {
+  @include mx.down(var.$bp-lg) {
     align-items: center;
   }
 }
@@ -460,9 +449,23 @@ const scrollToTop = () => {
 
   div {
     p {
-      color: #b0b0b0;
+      color: var.$text-on-dark-muted;
       margin: 0 0 0.25rem 0;
       line-height: 1.4;
+    }
+
+    // Telefone e e-mail: mesmo estilo dos links do rodapé
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      color: inherit;
+      text-decoration: none;
+      transition: color var.$duration-base var.$ease;
+
+      &:hover {
+        color: var.$secondary;
+      }
     }
 
     small {
@@ -492,7 +495,7 @@ const scrollToTop = () => {
 }
 
 .newsletter-text {
-  h3 {
+  h2 {
     font-size: 1.5rem;
     color: white;
     margin-bottom: 0.5rem;
@@ -500,7 +503,7 @@ const scrollToTop = () => {
   }
 
   p {
-    color: #b0b0b0;
+    color: var.$text-on-dark-muted;
     margin: 0;
     line-height: 1.5;
   }
@@ -518,48 +521,10 @@ const scrollToTop = () => {
 
   .newsletter-input {
     flex: 1;
-    padding: 0.875rem 1rem;
-    border: 1px solid #444;
-    border-radius: 8px;
-    background: #333;
-    color: white;
-    font-size: 1rem;
-
-    &::placeholder {
-      color: #888;
-    }
-
-    &:focus {
-      border-color: var.$secondary;
-    }
   }
 
   .newsletter-btn {
-    padding: 0.875rem 1.5rem;
-    background: linear-gradient(135deg, var.$secondary 0%, var.$btn-primary-hover 100%);
-    color: var.$accent-light;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
     white-space: nowrap;
-
-    &:hover:not(:disabled) {
-      background: linear-gradient(
-        135deg,
-        var.$btn-primary-hover 0%,
-        color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
-      );
-    }
-
-    &:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
   }
 }
 
@@ -599,10 +564,14 @@ const scrollToTop = () => {
     }
 
     a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 24px;
       color: #888;
       text-decoration: none;
       font-size: 0.9rem;
-      transition: color 0.3s ease;
+      transition: color var.$duration-base var.$ease;
       cursor: pointer;
 
       &:hover {

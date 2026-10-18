@@ -181,11 +181,11 @@
             masculino.
           </p>
           <div class="cta-buttons">
-            <button @click="handleBookingAlert" class="btn-primary">
+            <button @click="handleBookingAlert" class="btn btn--primary btn--lg cta-btn">
               <i class="fas fa-calendar-plus"></i>
               Agendar Horário
             </button>
-            <router-link to="/contato" class="btn-secondary">
+            <router-link to="/contato" class="btn btn--outline btn--lg cta-btn">
               <i class="fas fa-map-marker-alt"></i>
               Nos Visite
             </router-link>
@@ -758,44 +758,11 @@ const teamMembers = ref([
   flex-wrap: wrap;
 }
 
-.btn-primary,
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
+.cta-btn {
   gap: 0.75rem;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
 
   i {
     font-size: 1.2rem;
-  }
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-  color: white;
-
-  &:hover {
-    background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 123, 66, 0.4);
-  }
-}
-
-.btn-secondary {
-  background: transparent;
-  color: #ff7b42;
-  border: 2px solid #ff7b42;
-
-  &:hover {
-    background: #ff7b42;
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 123, 66, 0.3);
   }
 }
 
@@ -804,11 +771,9 @@ const teamMembers = ref([
     flex-direction: column;
     align-items: center;
 
-    .btn-primary,
-    .btn-secondary {
+    .cta-btn {
       width: 100%;
       max-width: 280px;
-      justify-content: center;
     }
   }
 }

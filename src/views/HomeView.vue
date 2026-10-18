@@ -29,7 +29,7 @@
               <span class="duration">{{ service.duration }} min</span>
               <span class="price">R$ {{ service.price.toFixed(2) }}</span>
             </div>
-            <button @click="handleBookingAlert" class="service-btn">
+            <button @click="handleBookingAlert" class="btn btn--primary service-btn">
               <i class="fas fa-calendar"></i>
               Agendar
             </button>
@@ -37,9 +37,7 @@
         </div>
 
         <div class="section-cta">
-          <router-link to="/servicos" class="btn-outline-primary">
-            Ver Todos os Serviços
-          </router-link>
+          <router-link to="/servicos" class="btn btn--outline"> Ver Todos os Serviços </router-link>
         </div>
       </div>
     </section>
@@ -74,8 +72,8 @@
               </li>
             </ul>
             <div class="about-actions">
-              <router-link to="/about" class="btn-primary"> Nossa História </router-link>
-              <router-link to="/contato" class="btn-secondary"> Fale Conosco </router-link>
+              <router-link to="/about" class="btn btn--primary"> Nossa História </router-link>
+              <router-link to="/contato" class="btn btn--outline"> Fale Conosco </router-link>
             </div>
           </div>
           <div class="about-image">
@@ -129,9 +127,7 @@
         </div>
 
         <div class="section-cta">
-          <router-link to="/about" class="btn-outline-primary">
-            Conhecer Toda a Equipe
-          </router-link>
+          <router-link to="/about" class="btn btn--outline"> Conhecer Toda a Equipe </router-link>
         </div>
       </div>
     </section>
@@ -173,11 +169,11 @@
           <h2>Pronto para Renovar seu Visual?</h2>
           <p>Agende agora mesmo e experimente nossos serviços premium</p>
           <div class="cta-actions">
-            <button @click="handleBookingAlert" class="btn-primary btn-large">
+            <button @click="handleBookingAlert" class="btn btn--primary btn--lg">
               <i class="fas fa-calendar-check"></i>
               Agendar Horário
             </button>
-            <a href="https://wa.me/5511987654321" class="btn-whatsapp" target="_blank">
+            <a href="https://wa.me/5511987654321" class="btn btn--whatsapp btn--lg" target="_blank">
               <i class="fab fa-whatsapp"></i>
               WhatsApp
             </a>
@@ -236,7 +232,6 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
 
 .container {
@@ -419,32 +414,7 @@ onMounted(() => {
   .service-btn {
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
-    color: var.$accent-light;
-    border: none;
-    border-radius: 12px;
-    font-weight: 600;
     font-size: 1rem;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    cursor: pointer;
-
-    &:hover {
-      background: linear-gradient(
-        135deg,
-        var.$btn-primary-hover 0%,
-        color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
-      );
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(255, 123, 66, 0.3);
-    }
-
-    &:active {
-      transform: translateY(0);
-    }
   }
 }
 
@@ -878,92 +848,6 @@ onMounted(() => {
       width: 100%;
       gap: 1rem;
     }
-  }
-}
-
-// Common Button Styles
-.btn-primary {
-  background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
-  color: var.$accent-light;
-  padding: 0.875rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: none;
-
-  &:hover {
-    background: linear-gradient(
-      135deg,
-      var.$btn-primary-hover 0%,
-      color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
-    );
-    transform: translateY(-2px);
-  }
-
-  &.btn-large {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-  }
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var.$link-color;
-  padding: 0.875rem 1.5rem;
-  border: 2px solid var.$link-color;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  &:hover {
-    background: var.$link-color;
-    color: var.$accent-light;
-    transform: translateY(-2px);
-  }
-}
-
-.btn-outline-primary {
-  background: transparent;
-  color: var.$link-color;
-  padding: 0.875rem 1.5rem;
-  border: 2px solid var.$link-color;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: var.$link-color;
-    color: var.$accent-light;
-    transform: translateY(-2px);
-  }
-}
-
-.btn-whatsapp {
-  background: var.$success;
-  color: var.$accent-light;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: none;
-
-  &:hover {
-    background: color.adjust(var.$success, $lightness: -10%);
-    transform: translateY(-2px);
   }
 }
 

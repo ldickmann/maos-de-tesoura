@@ -163,7 +163,7 @@ Fecham o que a sessão anterior deixou em aberto:
 
 ### Fase 2 — Componentes base
 
-- [ ] **2.1 Botões compartilhados**, em um novo `scss/_buttons.scss` importado uma vez em `main.scss` (K1, K2, R1, E6, ST9, C1, C9, D4).
+- [x] **2.1 Botões compartilhados**, em um novo `scss/_buttons.scss` importado uma vez em `main.scss` (K1, K2, R1, E6, ST9, C1, C9, D4).
   - **Classes:**
     - **`.btn` (base):** `border: none`, `cursor: pointer`, `display: inline-flex`, `align-items` e `justify-content: center`, `gap`, `$radius-md` (8px), estados `:active` e `:disabled` (`opacity .6`, `cursor: not-allowed`) e foco da 1.3.
     - **`.btn--primary`:**
@@ -188,8 +188,24 @@ Fecham o que a sessão anterior deixou em aberto:
     - nenhum `<button>` mostra a borda nativa;
     - `grep -rn 'color.adjust' src` não encontra nada;
     - `#d55a22` some.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.37s`, sem avisos. `npx prettier --check` nos 12 arquivos alterados → `All matched files use Prettier code style!`
+    - `grep -rn 'color.adjust\|#d55a22' src` → nada. O `@use 'sass:color'` saiu dos 3 arquivos que restavam (Header, Home, Rodapé).
+    - **Medição no navegador** (script que percorre `button` e `a.btn` em 6 telas a 1440 e 390):
+      - todos os botões laranja: texto `rgb(33,33,33)`, **6,26:1 / 4,99:1** em repouso e **4,99:1** em hover;
+      - outline em hover: 6,26:1; `.btn--on-accent` (3.2): 16,1:1; WhatsApp: 3,13:1 em repouso (F2) e 5,14:1 em hover;
+      - raio 8px em todos;
+      - nenhum `<button>` com borda `outset`/`inset`;
+      - a 390, "Nossa História" e "Fale Conosco" têm desvio de centro de 0px. "Inscrever" e os botões com ícone desviam 4px, que é metade do `gap` reservado para o ícone do Font Awesome (bloqueado pela rede).
+    - **Decisões de implementação:**
+      - a base unifica cor, raio, borda, cursor, peso 600, hover (sobe 2px), `:active` e `:disabled`;
+      - padding e tamanho de fonte de cada instância ficam no CSS do componente (`.btn-accent`, `.banner-btn`, `.service-btn`, `.details-button`/`.book-button`, `.map-link`, `.error-btn`, `.empty-btn`, `.not-found__button`), menos onde batem exatamente com `.btn--lg` (1rem 2rem, 1.1rem);
+      - os botões "Agendar Horário" e "Nos Visite" da Sobre já passaram a `.btn--primary` e `.btn--outline` (3.4); o da 404 já usa `.btn--primary` (3.7);
+      - o CTA final da Home está com `.btn--primary .btn--lg` até a 3.2, que troca para `.btn--on-accent`;
+      - o hover do WhatsApp usa `#1e7e34`, valor exato do `color.adjust($success, $lightness: -10%)` que havia antes;
+      - o "Ver Detalhes" de Serviços e o botão cinza do ErrorMessage ganharam a base `.btn`, mas mantêm as próprias cores; no hover, o "Ver Detalhes" mostra texto laranja sobre #f8f9fa (2,44:1, C2/F1).
 
-- [ ] **2.2 Campos de formulário**, em um novo `scss/_forms.scss` (K3, K4, R3, C6, AC11).
+- [x] **2.2 Campos de formulário**, em um novo `scss/_forms.scss` (K3, K4, R3, C6, AC11).
   - **O que muda:**
     - Entram as classes `.form-label`, `.form-input`, `.form-select`, `.form-textarea` e `.form-error`, mais a variante escura da newsletter.
     - O select ganha `appearance: none`, fundo branco e uma seta só (o SVG atual).
@@ -203,8 +219,15 @@ Fecham o que a sessão anterior deixou em aberto:
     - a captura do Contato mostra uma seta só no select;
     - os contrastes dos placeholders foram recalculados;
     - a newsletter tem `<label for>` ligado ao campo.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.42s`, sem avisos. `npx prettier --check` nos 5 arquivos alterados → `All matched files use Prettier code style!` (antes, o Prettier tirou uma linha em branco que sobrou no `BookingView.vue`).
+    - **Select:** `appearance: none`, fundo `rgb(255,255,255)`, uma seta só (recorte conferido).
+    - **Placeholders:** `rgb(108,117,125)` sobre branco dá **4,69:1** (antes #adb5bd, 2,07:1); na newsletter, `rgb(176,176,176)` sobre #333 dá **5,83:1** (antes #888, 3,56:1).
+    - **Newsletter:** `<label for="newsletter-email" class="sr-only">Seu e-mail</label>`, invisível na tela.
+    - **Rótulos do agendamento sem ":"** (ex.: `[ 'Data' ]`). O campo de data passou a `.form-input`, e `.error-message` virou `.form-error` nos dois formulários. O `.error-message` do `ErrorMessage.vue` é outro elemento e não mudou.
+    - **Unificação:** padding 0.875rem, raio 8px, rótulo 0.95rem e a sombra de foco do Contato também no agendamento. A borda do agendamento ia de #ddd para `$border-color` (#dee2e6): os dois cinzas já reprovam do mesmo jeito (1,36 e 1,30:1), e o escurecimento continua no F3.
 
-- [ ] **2.3 NotificationSystem** (RS1, RS2, AC6, ST8, A5, T5).
+- [x] **2.3 NotificationSystem** (RS1, RS2, AC6, ST8, A5, T5).
   - **O que muda:**
     - **Posição:**
       - o contêiner fica em `top: calc($header-height + 12px)` (e o equivalente mobile);
@@ -219,15 +242,33 @@ Fecham o que a sessão anterior deixou em aberto:
     - `overflowers` vazio a 390 e 768;
     - na captura do agendamento vazio, o toast não cobre o header;
     - os `role` aparecem no DOM.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.27s`, sem avisos. `npx prettier --check src/components/NotificationSystem.vue` → `All matched files use Prettier code style!`
+    - Medição no `/booking` vazio, que dispara o toast:
+      - **1440:** toast em `top: 101` e header em `bottom: 89`, da esquerda 1020 à direita 1420.
+      - **768:** toast em `top: 88` e header em 76, da esquerda 10 à direita 758 (viewport 768).
+      - **390:** toast em `top: 88` e header em 76, da esquerda 10 à direita 380 (viewport 390).
+      - Nos três: `role="status"`, `aria-live="polite"`, `z-index: 9999` e "×" com alvo de 44×44.
+    - O tipo `error` recebe `role="alert"` e `aria-live="assertive"`, coerente com o papel.
+    - **Saída:** depois de fechar o último toast, `.notification-leave-active` aparece (`durante=1`) e o contêiner continua montado (`contêiner=1`).
+    - As margens negativas do "×" mantêm o espaço de 24×24 no toast, que não cresce. O ícone ganhou `aria-hidden`, e as cores de estado viraram tokens (`$success`, `$danger`, `$warning`, `$info`).
 
-- [ ] **2.4 LoadingSpinner e ErrorMessage** (ST5, AC9, T5).
+- [x] **2.4 LoadingSpinner e ErrorMessage** (ST5, AC9, T5).
   - **O que muda:**
     - O spinner ganha `role="status"` e `aria-live="polite"`, com tamanho em rem; com movimento reduzido, a rotação para e o texto fica.
     - O ErrorMessage ganha `role="alert"`, título em `h2` com o mesmo estilo e os botões da 2.1.
   - **Efeito:** nenhum.
   - **Verificar:** inspeção do DOM.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.26s`, sem avisos. `npx prettier --check LoadingSpinner.vue ErrorMessage.vue` → `All matched files use Prettier code style!`
+    - **Spinner**, inspecionado no envio do Contato (Serviços importa o componente mas não o usa):
+      - `role="status"`, `aria-live="polite"`, desenho com `aria-hidden="true"`, `width` 2.5rem = 40px;
+      - animação `spin 1s xinfinite`, e com `reducedMotion: 'reduce'` fica `0s x1` (parada); o texto "Enviando mensagem..." continua.
+    - **ErrorMessage**, provocado no `/booking` com o `ErrorEvent` que o listener do próprio componente espera:
+      - `role="alert"`, título em `H2` com 24px como antes, ícones com `aria-hidden`;
+      - botão `btn btn--primary` com texto `rgb(33,33,33)`.
 
-- [ ] **2.5 Header** (AC3, AC4, AC14, K5, K6, E2, E3, RS4, A4, A2).
+- [x] **2.5 Header** (AC3, AC4, AC14, K5, K6, E2, E3, RS4, A4, A2).
   - **O que muda:**
     - **Hambúrguer:**
       - `aria-label` alterna entre "Abrir menu" e "Fechar menu";
@@ -250,8 +291,26 @@ Fecham o que a sessão anterior deixou em aberto:
     - na métrica do Apêndice B, `abertoAposEsc` dá 0, `toggleAria` vem preenchido e `menuTop` é igual a `headerBottom`;
     - o alvo do botão mede ≥ 44×44;
     - com Tab, o logo é uma parada só.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.56s`, sem avisos.
+      - Na primeira versão, o `@include mx.container` antes das declarações do `.toolbar` gerou 3 avisos `mixed-decls` do Sass; a ordem foi corrigida.
+    - `npx prettier --check src/components/layouts/HeaderFloating.vue` → `All matched files use Prettier code style!`
+    - **Medição a 768 e 390:**
+      - hambúrguer: alvo de **44×44**;
+      - aberto: `aria-label` "Fechar menu", `aria-expanded` "true", `aria-controls` "menu-mobile";
+      - `menuTop` 76 = `headerBottom` 76;
+      - "Home" ativo no mobile; links em `"Bungee Hairline" 700`, como o desktop.
+    - **Esc:** `abertoAposEsc` = 0, `aria-expanded` volta a "false", e o foco volta ao botão.
+    - **Fechamento por rota:** depois do "voltar" do navegador com o menu aberto, nenhum menu fica ativo.
+    - **Janela alargada:** abrindo o menu e alargando para 1200, o menu fica invisível.
+    - **Tab:** a primeira parada é "MÃOS DE TESOURA" (um link só). O logo continua com `href="#"` (B11).
+    - **Altura e alinhamento:**
+      - `headerHeight` 89 a 1440 e 76 a 768 e 390, com `min-height` pelos tokens;
+      - logo em x=32 a 1440 (antes ≈54) e x=16 a 768 e 390, igual ao conteúdo.
+    - **Margem negativa:** a primeira versão do botão de 44px aumentava o header mobile para 77px, porque o botão ficava mais alto que o logo (43,2px). A margem negativa de 9,5px em todos os lados deixa o espaço ocupado em 25×25 e o desenho no mesmo lugar.
+    - **Contêiner:** o toolbar usa o mixin `container`. Por isso sai a regra que dava `padding: 0 1rem` já em ≤ 968, e entre 769 e 968 o logo também se alinha ao conteúdo (32px).
 
-- [ ] **2.6 Rodapé** (E8, AC7, AC9, AC12, AC13, AC14, D5).
+- [x] **2.6 Rodapé** (E8, AC7, AC9, AC12, AC13, AC14, D5).
   - **O que muda:**
     - **Alinhamento:** redes sociais e bloco de contato centralizados a partir do mesmo breakpoint dos títulos (≤ 968).
     - **Links:**
@@ -263,6 +322,18 @@ Fecham o que a sessão anterior deixou em aberto:
     - **Limpeza:** sai o CSS morto de `:392-411`.
   - **Efeito:** sutil a 768.
   - **Verificar:** capturas a 768 e 390; `smallTargets` sem itens do rodapé abaixo de 24px de altura.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.52s`, sem avisos. `npx prettier --check src/components/layouts/FooterComponent.vue` → `All matched files use Prettier code style!`, depois de o Prettier quebrar a linha do `mailto:`.
+    - **`smallTargets` com altura < 24px na Home:**
+      - antes: 12 links do rodapé (18–21px), mais "MÃOS DE" a 768 e 390;
+      - depois: **nenhum** nas 3 larguras.
+    - **Captura a 768:** redes sociais e bloco de contato centralizados, como os títulos (antes, alinhados à esquerda). Os links ficaram com um pouco mais de respiro (24px de altura mínima).
+    - **Links e acessibilidade:**
+      - `tel:+5547555555555` e `mailto:devluksjs@gmail.com` com a classe `.contact-link`, no mesmo estilo dos links;
+      - `rel="noopener noreferrer"` nos 3 links externos;
+      - `aria-hidden` nos 10 ícones.
+    - **Títulos:** `h3`/`h4` viraram `h2`, com o mesmo estilo. As regras já fixavam tamanho, peso e margem, e todos ficam um nível abaixo do `h1` da página.
+    - **Limpeza:** saiu o `.contact-info-footer` morto; `#b0b0b0` virou `$text-on-dark-muted`; o `.container` usa o mixin.
 
 ### Fase 3 — Telas
 

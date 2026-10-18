@@ -4,7 +4,9 @@
       <h1>404</h1>
       <h2>Página não encontrada</h2>
       <p>Desculpe, a página que você está procurando não existe.</p>
-      <router-link to="/" class="not-found__button"> Voltar para Home </router-link>
+      <router-link to="/" class="btn btn--primary not-found__button">
+        Voltar para Home
+      </router-link>
     </div>
   </div>
 </template>
@@ -47,17 +49,7 @@
   }
 
   &__button {
-    display: inline-block;
     padding: 0.8rem 1.6rem;
-    background-color: var.$secondary;
-    color: var.$text-secondary;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: var.$btn-primary-hover;
-    }
   }
 }
 </style>

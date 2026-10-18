@@ -44,7 +44,7 @@
               <p class="pro-name">{{ pro.name }}</p>
             </div>
           </div>
-          <div v-if="errors.professional" class="error-message">
+          <div v-if="errors.professional" class="form-error">
             {{ errors.professional }}
           </div>
         </div>
@@ -54,23 +54,23 @@
           <h2>3. Escolha a Data e Hora</h2>
 
           <div class="date-section">
-            <label for="booking-date" class="form-label">Data:</label>
+            <label for="booking-date" class="form-label">Data</label>
             <input
               id="booking-date"
               type="date"
               v-model="selectedDate"
               @change="onDateChange"
-              class="date-input"
+              class="form-input"
               :class="{ error: errors.date }"
               :min="minDate"
             />
-            <div v-if="errors.date" class="error-message">
+            <div v-if="errors.date" class="form-error">
               {{ errors.date }}
             </div>
           </div>
 
           <div v-if="selectedDate" class="time-section">
-            <label class="form-label">Horário disponível:</label>
+            <label class="form-label">Horário disponível</label>
             <div class="time-selection">
               <div
                 v-for="time in getAvailableTimesForSelectedDate()"
@@ -85,7 +85,7 @@
                 {{ time }}
               </div>
             </div>
-            <div v-if="errors.time" class="error-message">
+            <div v-if="errors.time" class="form-error">
               {{ errors.time }}
             </div>
             <div v-if="getAvailableTimesForSelectedDate().length === 0" class="no-times">
@@ -99,7 +99,7 @@
           <h2>4. Seus Dados</h2>
           <form @submit.prevent="validateAndConfirm" class="client-form">
             <div class="form-group">
-              <label for="client-name" class="form-label">Nome Completo:</label>
+              <label for="client-name" class="form-label">Nome Completo</label>
               <input
                 id="client-name"
                 type="text"
@@ -108,13 +108,13 @@
                 :class="{ error: errors.clientName }"
                 placeholder="Digite seu nome completo"
               />
-              <div v-if="errors.clientName" class="error-message">
+              <div v-if="errors.clientName" class="form-error">
                 {{ errors.clientName }}
               </div>
             </div>
 
             <div class="form-group">
-              <label for="client-phone" class="form-label">Telefone:</label>
+              <label for="client-phone" class="form-label">Telefone</label>
               <input
                 id="client-phone"
                 type="tel"
@@ -125,13 +125,13 @@
                 placeholder="(11) 99999-9999"
                 maxlength="15"
               />
-              <div v-if="errors.clientPhone" class="error-message">
+              <div v-if="errors.clientPhone" class="form-error">
                 {{ errors.clientPhone }}
               </div>
             </div>
 
             <div class="form-group">
-              <label for="client-email" class="form-label">Email:</label>
+              <label for="client-email" class="form-label">Email</label>
               <input
                 id="client-email"
                 type="email"
@@ -140,13 +140,13 @@
                 :class="{ error: errors.clientEmail }"
                 placeholder="seu.email@exemplo.com"
               />
-              <div v-if="errors.clientEmail" class="error-message">
+              <div v-if="errors.clientEmail" class="form-error">
                 {{ errors.clientEmail }}
               </div>
             </div>
 
             <div class="form-group">
-              <label for="client-notes" class="form-label">Observações (opcional):</label>
+              <label for="client-notes" class="form-label">Observações (opcional)</label>
               <textarea
                 id="client-notes"
                 v-model="bookingStore.clientNotes"
@@ -210,7 +210,7 @@
           <i class="fas fa-calendar-times"></i>
           <h2>Nenhum serviço selecionado</h2>
           <p>Para fazer um agendamento, você precisa primeiro escolher um serviço.</p>
-          <router-link to="/servicos" class="btn-primary">
+          <router-link to="/servicos" class="btn btn--primary empty-btn">
             <i class="fas fa-cut"></i>
             Ver Serviços Disponíveis
           </router-link>
@@ -523,30 +523,6 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
-.form-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.date-input {
-  width: 100%;
-  padding: 0.8rem;
-  font-size: 1rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  transition: border-color 0.3s ease;
-
-  &:focus {
-    border-color: #ff7b42;
-  }
-
-  &.error {
-    border-color: #dc3545;
-  }
-}
-
 .time-selection {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -587,28 +563,6 @@ h1 {
 .form-group {
   display: flex;
   flex-direction: column;
-}
-
-.form-input,
-.form-textarea {
-  padding: 0.8rem;
-  font-size: 1rem;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  transition: border-color 0.3s ease;
-
-  &:focus {
-    border-color: #ff7b42;
-  }
-
-  &.error {
-    border-color: #dc3545;
-  }
-}
-
-.form-textarea {
-  resize: vertical;
-  font-family: inherit;
 }
 
 .confirmation-summary {
@@ -707,30 +661,8 @@ h1 {
   line-height: 1.6;
 }
 
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.empty-btn {
   padding: 1rem 2rem;
-  background-color: #ff7b42;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: #e66b32;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 123, 66, 0.3);
-  }
-}
-
-.error-message {
-  color: #dc3545;
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
-  font-weight: 500;
 }
 
 .no-times {

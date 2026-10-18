@@ -17,7 +17,9 @@
       </div>
 
       <div class="card-actions">
-        <button @click="handleBooking" class="btn-outline">Agende um Horário</button>
+        <button @click="handleBooking" class="btn btn--outline-light banner-btn">
+          Agende um Horário
+        </button>
       </div>
     </div>
   </div>
@@ -142,27 +144,11 @@ const handleBooking = () => {
   text-align: center;
 }
 
-.btn-outline {
-  background: transparent;
-  color: var.$accent-light;
-  border: 2px solid var.$accent-light;
+.banner-btn {
   padding: 1.3rem 2rem;
-  cursor: pointer;
   font-size: 1rem;
   text-transform: uppercase;
-  border-radius: 4px;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
   font-family: var.$font-family-secondary;
   font-weight: bold;
-
-  &:hover {
-    background-color: var.$secondary;
-    border-color: var.$secondary;
-    color: var.$primary;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(var.$secondary, 0.4);
-  }
 }
 </style>

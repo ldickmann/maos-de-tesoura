@@ -35,7 +35,7 @@
                   :class="{ error: errors.name }"
                   placeholder="Digite seu nome completo"
                 />
-                <div v-if="errors.name" class="error-message">
+                <div v-if="errors.name" class="form-error">
                   {{ errors.name }}
                 </div>
               </div>
@@ -50,7 +50,7 @@
                   :class="{ error: errors.email }"
                   placeholder="seu.email@exemplo.com"
                 />
-                <div v-if="errors.email" class="error-message">
+                <div v-if="errors.email" class="form-error">
                   {{ errors.email }}
                 </div>
               </div>
@@ -83,7 +83,7 @@
                   <option value="sugestao">Sugestão</option>
                   <option value="outros">Outros</option>
                 </select>
-                <div v-if="errors.subject" class="error-message">
+                <div v-if="errors.subject" class="form-error">
                   {{ errors.subject }}
                 </div>
               </div>
@@ -98,13 +98,13 @@
                   rows="5"
                   placeholder="Digite sua mensagem aqui..."
                 ></textarea>
-                <div v-if="errors.message" class="error-message">
+                <div v-if="errors.message" class="form-error">
                   {{ errors.message }}
                 </div>
                 <div class="character-count">{{ formData.message.length }}/500 caracteres</div>
               </div>
 
-              <button type="submit" class="submit-btn" :disabled="isLoading">
+              <button type="submit" class="btn btn--primary btn--lg" :disabled="isLoading">
                 <i v-if="isLoading" class="fas fa-spinner fa-spin"></i>
                 <i v-else class="fas fa-paper-plane"></i>
                 {{ isLoading ? 'Enviando...' : 'Enviar Mensagem' }}
@@ -202,12 +202,12 @@
                 <a
                   href="https://www.google.com/maps/dir/?api=1&destination=Rua+da+Barbearia+123+Centro+Navegantes+SC"
                   target="_blank"
-                  class="map-link"
+                  class="btn btn--outline map-link"
                 >
                   <i class="fas fa-directions"></i>
                   Como Chegar
                 </a>
-                <a href="#" class="map-link" @click.prevent="showNotImplemented">
+                <a href="#" class="btn btn--outline map-link" @click.prevent="showNotImplemented">
                   <i class="fas fa-street-view"></i>
                   Street View
                 </a>
@@ -424,51 +424,7 @@ const handleSubmit = async () => {
   flex-direction: column;
 }
 
-.form-label {
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-}
-
-.form-input,
-.form-select,
 .form-textarea {
-  padding: 0.875rem;
-  border: 2px solid #dee2e6;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: all 0.3s ease;
-
-  &:focus {
-    border-color: #ff7b42;
-    box-shadow: 0 0 0 3px rgba(255, 123, 66, 0.1);
-  }
-
-  &.error {
-    border-color: #dc3545;
-
-    &:focus {
-      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
-    }
-  }
-
-  &::placeholder {
-    color: #adb5bd;
-  }
-}
-
-.form-select {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 0.5rem center;
-  background-repeat: no-repeat;
-  background-size: 1.5em 1.5em;
-  padding-right: 2.5rem;
-}
-
-.form-textarea {
-  resize: vertical;
   min-height: 120px;
 }
 
@@ -477,40 +433,6 @@ const handleSubmit = async () => {
   color: #6c757d;
   text-align: right;
   margin-top: 0.25rem;
-}
-
-.submit-btn {
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  &:hover:not(:disabled) {
-    background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 123, 66, 0.3);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-}
-
-.error-message {
-  color: #dc3545;
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
-  font-weight: 500;
 }
 
 // Contact Info
@@ -704,24 +626,7 @@ const handleSubmit = async () => {
 
 .map-link {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
   padding: 0.75rem 1rem;
-  background: white;
-  color: #ff7b42;
-  text-decoration: none;
-  border: 2px solid #ff7b42;
-  border-radius: 8px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: #ff7b42;
-    color: white;
-    transform: translateY(-2px);
-  }
 }
 
 // FAQ Section

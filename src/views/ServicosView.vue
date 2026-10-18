@@ -42,14 +42,14 @@
 
           <div class="card-actions">
             <button
-              class="details-button"
+              class="btn details-button"
               @click="toggleDetails(service)"
               :aria-expanded="service.expanded"
             >
               <i :class="service.expanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
               {{ service.expanded ? 'Ver Menos' : 'Ver Detalhes' }}
             </button>
-            <button class="book-button" @click="handleBookingAlert">
+            <button class="btn btn--primary book-button" @click="handleBookingAlert">
               <i class="fas fa-calendar-plus"></i>
               Agendar Agora
             </button>
@@ -89,7 +89,7 @@
       <div class="cta-section">
         <h2>Pronto para transformar seu visual?</h2>
         <p>Agende agora mesmo e experimente nossos serviços premium.</p>
-        <button @click="handleBookingAlert" class="cta-button">
+        <button @click="handleBookingAlert" class="btn btn--primary btn--lg cta-button">
           <i class="fas fa-calendar-check"></i>
           Ver Horários Disponíveis
         </button>
@@ -483,23 +483,7 @@ const bookService = async (service) => {
 .details-button,
 .book-button {
   padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
   font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: 'Hanken Grotesk', sans-serif;
-  text-decoration: none;
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
 }
 
 .details-button {
@@ -523,19 +507,7 @@ const bookService = async (service) => {
 
 .book-button {
   flex: 2;
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-  color: white;
-  border: 2px solid transparent;
-
-  &:hover:not(:disabled) {
-    background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 123, 66, 0.3);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
+  border: 2px solid transparent; // mesma altura do botão de detalhes, que tem borda
 }
 
 // Seção de informações adicionais
@@ -677,23 +649,7 @@ const bookService = async (service) => {
 }
 
 .cta-button {
-  display: inline-flex;
-  align-items: center;
   gap: 0.75rem;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-  color: white;
-  text-decoration: none;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 123, 66, 0.4);
-  }
 
   i {
     font-size: 1.2rem;

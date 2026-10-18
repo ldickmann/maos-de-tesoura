@@ -1,14 +1,17 @@
 <template>
   <!-- Componente de Notification System, que exibirá notificações do tipo sucesso, erro, aviso ou informação -->
   <Teleport to="body">
-    <div v-if="notifications.length" class="notification-container">
+    <!-- Sempre montado, para o último toast também animar a saída -->
+    <div class="notification-container">
       <TransitionGroup name="notification" tag="div">
         <div
           v-for="notification in notifications"
           :key="notification.id"
           :class="['notification', `notification--${notification.type}`]"
+          :role="notification.type === 'error' ? 'alert' : 'status'"
+          :aria-live="notification.type === 'error' ? 'assertive' : 'polite'"
         >
-          <div class="notification__icon">
+          <div class="notification__icon" aria-hidden="true">
             <i :class="getIconClass(notification.type)"></i>
           </div>
           <div class="notification__content">
@@ -47,13 +50,21 @@ const getIconClass = (type) => {
 </script>
 
 <style scoped lang="scss">
+@use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
+
+// Abaixo do header, para não cobrir o logo, o menu nem o botão de agendar
 .notification-container {
   position: fixed;
-  top: 20px;
+  top: calc(#{var.$header-height} + 12px);
   right: 20px;
-  z-index: 9999;
+  z-index: var.$z-toast;
   max-width: 400px;
   width: 100%;
+
+  @include mx.down(var.$bp-lg) {
+    top: calc(#{var.$header-height-mobile} + 12px);
+  }
 }
 
 .notification {
@@ -68,40 +79,40 @@ const getIconClass = (type) => {
   min-height: 60px;
 
   &--success {
-    border-left-color: #28a745;
+    border-left-color: var.$success;
 
     .notification__icon {
-      color: #28a745;
+      color: var.$success;
     }
   }
 
   &--error {
-    border-left-color: #dc3545;
+    border-left-color: var.$danger;
 
     .notification__icon {
-      color: #dc3545;
+      color: var.$danger;
     }
   }
 
   &--warning {
-    border-left-color: #ffc107;
+    border-left-color: var.$warning;
 
     .notification__icon {
-      color: #ffc107;
+      color: var.$warning;
     }
   }
 
   &--info {
-    border-left-color: #17a2b8;
+    border-left-color: var.$info;
 
     .notification__icon {
-      color: #17a2b8;
+      color: var.$info;
     }
   }
 }
 
 .notification__icon {
-  font-size: 20px;
+  font-size: 1.25rem;
   margin-right: 12px;
   flex-shrink: 0;
 }
@@ -112,27 +123,30 @@ const getIconClass = (type) => {
 
 .notification__message {
   margin: 0;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.4;
   color: #333;
 }
 
+// Área de toque de 44×44; as margens negativas mantêm o espaço de 24×24 no toast
 .notification__close {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 1.25rem;
   cursor: pointer;
-  color: #999;
+  color: var.$text-gray;
   padding: 0;
-  width: 24px;
-  height: 24px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.2s ease;
+  transition:
+    color var.$duration-fast var.$ease,
+    background-color var.$duration-fast var.$ease;
   flex-shrink: 0;
-  margin-left: 8px;
+  margin: -10px -10px -10px -2px;
 
   &:hover {
     color: #666;
@@ -141,12 +155,11 @@ const getIconClass = (type) => {
 }
 
 // Animações
-.notification-enter-active {
-  transition: all 0.3s ease;
-}
-
+.notification-enter-active,
 .notification-leave-active {
-  transition: all 0.3s ease;
+  transition:
+    transform var.$duration-base var.$ease,
+    opacity var.$duration-base var.$ease;
 }
 
 .notification-enter-from {
@@ -160,14 +173,14 @@ const getIconClass = (type) => {
 }
 
 .notification-move {
-  transition: transform 0.3s ease;
+  transition: transform var.$duration-base var.$ease;
 }
 
 @media (max-width: 768px) {
   .notification-container {
-    top: 10px;
     right: 10px;
     left: 10px;
+    width: auto;
     max-width: none;
   }
 
@@ -177,7 +190,7 @@ const getIconClass = (type) => {
   }
 
   .notification__message {
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 }
 </style>
