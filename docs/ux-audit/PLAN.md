@@ -18,15 +18,33 @@
     - os estados *selecionado* de profissional e horário no agendamento;
     - o *hover* dos botões outline, que hoje preenchem de laranja.
   - **O que não conta:**
-    - superfícies laranja que não são botão, como o título e o texto da seção CTA da Home, os cards de números da Sobre e a etiqueta "Desde 2009" (C11);
+    - ~~superfícies laranja que não são botão, como o título e o texto da seção CTA da Home, os cards de números da Sobre e a etiqueta "Desde 2009" (C11);~~ *entrou na execução pela decisão 3 abaixo (3.2 e 3.4);*
     - texto laranja sobre fundo claro (C2).
 
-    Esses casos continuam em F1.
+    Esse caso continua em F1.
   - **Regra de hover:**
     - Com texto `#212121`, o fundo do botão não pode ficar mais escuro que `$btn-primary-hover` (#e66b32, 4,99:1).
     - O escurecimento atual reprovaria: `color.adjust($btn-primary-hover, $lightness: -5%)` = #e35b1c dá 4,43:1, e #d55a22 dá 4,08:1.
 - **Continua fora:** todo o resto da tabela "Fica de fora", incluindo os **19 bugs funcionais** (B1–B19).
 - **Screenshots "antes":** a sessão de execução tira as capturas (item 0.2) **antes de editar qualquer arquivo**.
+
+## Decisões da sessão de execução (2026-10-18)
+
+Fecham o que a sessão anterior deixou em aberto:
+
+1. **"Botões laranja"** inclui os estados *selecionados* de profissional e horário no agendamento (3.6) e o *hover* dos botões outline que preenche de laranja (2.1). Confirma a definição acima.
+2. **Hover dos botões laranja em `#e66b32`** (`$btn-primary-hover`) aprovado. Nenhum botão laranja escurece além disso.
+3. **C11 entra na execução:** texto `#212121` também
+   - no título e no texto da seção CTA da Home (3.2);
+   - na etiqueta "Desde 2009" da Home (3.2);
+   - nos cards de números da Sobre (3.4).
+
+   O C11 sai do F1. O `opacity: .9` do parágrafo do CTA e dos rótulos dos cards também sai: `#212121` a 90% sobre o fim do gradiente (#e66b32) dá **4,40:1**, abaixo de 4,5. Sem a opacidade, o pior trecho dá 4,99:1 e o início 6,26:1.
+4. **ESLint fora desta execução:** o `vue-eslint-parser` **não** é instalado. A verificação de cada item usa `yarn build` e `npx prettier --check` só nos arquivos alterados.
+
+**Citações conferidas antes de editar** (as linhas novas do C1 e do C11 não tinham passado pelo revisor): abri cada arquivo em `5a36cae` e todas as citações batem com o código.
+- C1: `HeaderFloating.vue:220-221`, `:305-306`; `HomeView.vue:422-423`, `:886-887`, `:926-928`, `:943-945`; `ServicosView.vue:526-527`, `:683-684`; `ContatoView.vue:486-487`, `:722-724`; `FooterComponent.vue:537-538`; `AboutView.vue:780-781`, `:795-797`; `BookingView.vue:488-491`, `:573-576`, `:718-719`; `ErrorMessage.vue:103-105`; `NotFoundView.vue:51-52`.
+- C11: `HomeView.vue:845-866` (seção CTA; `opacity: .9` em `:865`); `HomeView.vue:473-482` (`.section-tag`, usada em `:52` com "Desde 2009"); `AboutView.vue:496-525` (`.stat-card`; `opacity: .9` em `:523`).
 
 ## Como usar este checklist
 
@@ -39,7 +57,7 @@
   - Não corrigir bugs funcionais (B1–B19). Se um item de UI encostar em um deles, o comportamento atual fica como está; o item cita o bug quando isso acontece.
   - Não adicionar, remover nem atualizar dependências.
 - **Estado inicial conhecido**, medido em `d6a5aea`:
-  - **Lint:** `npx eslint .` **não roda** (`Cannot find module 'vue-eslint-parser'`, dependência par ausente). Resolver exige adicionar uma dependência, que está fora do escopo (F10).
+  - **Lint:** `npx eslint .` **não roda** (`Cannot find module 'vue-eslint-parser'`, dependência par ausente). Resolver exige adicionar uma dependência, que está fora do escopo (F10). Pela decisão 4, o ESLint fica fora desta execução.
   - **`yarn lint`:** aplica `--fix`; não usar como verificação.
   - **Formatação:** `npx prettier --check src/` só acusa `src/stores/services.js`, que este plano não toca.
   - **Ícones:** a rede da sessão da auditoria bloqueava `cdnjs.cloudflare.com` (Font Awesome) e `cdn.materialdesignicons.com`. O script do Apêndice B aborta esses requests de propósito.
@@ -231,13 +249,15 @@
     - `document.title` muda ao navegar;
     - o primeiro Tab mostra o link de pular.
 
-- [ ] **3.2 Home e Banner** (C3, H2, C4, E4, E7, E9, E10, ST2, ST3, AC1, AC7, AC8, AC12, AC15, TX1, TX6, RS3, D5).
+- [ ] **3.2 Home e Banner** (C3, H2, C4, C11, E4, E7, E9, E10, ST2, ST3, AC1, AC7, AC8, AC12, AC15, TX1, TX6, RS3, D5).
   - **Banner:**
     - o título do topo vira `<h1>`, com o mesmo estilo;
     - `alt=""` na imagem decorativa.
   - **visível, aprovado — CTA final:**
     - "Agendar Horário" usa `.btn--on-accent` (fundo #212121);
-    - o título e o texto da seção continuam brancos sobre laranja (C11, F1).
+    - ~~o título e o texto da seção continuam brancos sobre laranja (C11, F1).~~
+    - **C11 (decisão 3):** o título e o texto da seção passam a `$primary` (#212121), e sai o `opacity: .9` do parágrafo (`HomeView.vue:845-866`). Contraste: 6,26:1 no início do gradiente e 4,99:1 no fim.
+  - **visível, aprovado — etiqueta "Desde 2009" (C11, decisão 3):** a `.section-tag` (`HomeView.vue:473-482`) passa a texto `$primary` sobre `$secondary` (6,26:1).
   - **visível, aprovado — tablet:** o breakpoint de celular dos grids passa a `max-width: 767px`, então a 768 os cards ficam em 2 colunas (serviços, equipe e depoimentos).
   - **Layout:**
     - **cards de serviço:** `display: flex; flex-direction: column`, com preço e botão empurrados para baixo;
@@ -261,6 +281,7 @@
     - capturas nas 3 larguras;
     - `h1` dá 1;
     - o botão do CTA final aparece com fundo escuro;
+    - o título, o texto do CTA final e a etiqueta "Desde 2009" aparecem em #212121, e o contraste recalculado dá ≥ 4,5:1;
     - os preços usam vírgula;
     - os cards alinham;
     - a 768 há 2 colunas;
@@ -284,11 +305,12 @@
     - capturas nas 3 larguras;
     - `grep -cE '#[0-9a-fA-F]{3,6}' src/views/ServicosView.vue` cai para perto de 0.
 
-- [ ] **3.4 Sobre** (H1, C9, ST2, AC8, K2, D3).
+- [ ] **3.4 Sobre** (H1, C9, C11, ST2, AC8, K2, D3).
   - **visível, aprovado — véu escuro:** o `.hero-overlay` passa a `position: absolute; inset: 0`, com `background: linear-gradient(to top, rgba($primary, .7), rgba($primary, .35))`, como o Banner da Home.
   - **Cores:**
     - os números do topo saem de #e67e22 e vão para `$secondary`;
-    - os cards de números laranja ficam como estão (C11, F1).
+    - ~~os cards de números laranja ficam como estão (C11, F1).~~
+    - **C11 (decisão 3), visível, aprovado:** os cards de números (`AboutView.vue:496-525`) passam a texto `$primary` (#212121), e sai o `opacity: .9` do `.stat-label`. Contraste: 6,26:1 no início do gradiente e 4,99:1 no fim.
   - **Botões:**
     - o CTA "Agendar Horário" usa `.btn--primary`;
     - "Nos Visite" usa `.btn--outline`.
@@ -298,6 +320,7 @@
   - **Verificar:**
     - recorte ampliado do topo antes × depois;
     - recalcular o contraste de título, números e rótulos sobre o pior trecho do véu;
+    - os cards de números aparecem com texto #212121, e o contraste recalculado dá ≥ 4,5:1;
     - a 390, o título não encosta nas bordas.
 
 - [ ] **3.5 Contato** (E1, ST2, ST4, ST7, AC7, AC12, AC13, D3).
@@ -358,7 +381,7 @@
 - [ ] **4.1 Build e formatação**
   - `yarn build` sem erros nem avisos novos.
   - `npx prettier --check` nos arquivos alterados.
-  - Registrar que o ESLint segue sem rodar (estado inicial).
+  - Registrar que o ESLint segue sem rodar (estado inicial; fora desta execução pela decisão 4).
 - [ ] **4.2 Capturas "depois"**
   - Rodar `node /tmp/capturas.cjs docs/ux-audit/screenshots/depois`.
   - Montar os pares com `convert antes/X.png depois/X.png +append comparacao/X.png` em `docs/ux-audit/screenshots/comparacao/`.
@@ -375,7 +398,7 @@
   - Registrar que o fluxo para na etapa 4 por causa de B1 e B2.
 - [ ] **4.5 Contraste**
   - Recalcular todos os pares alterados.
-  - **Ficam falhando por decisão** (F1–F4): texto laranja sobre claro (C2, T4), texto branco sobre superfícies laranja (C11), verde do WhatsApp (C7), bordas dos inputs (C8) e ícone de aviso (C10).
+  - **Ficam falhando por decisão** (F1–F4): texto laranja sobre claro (C2, T4), verde do WhatsApp (C7), bordas dos inputs (C8) e ícone de aviso (C10). O C11 saiu desta lista pela decisão 3.
   - **Nenhum outro par pode falhar.**
 - [ ] **4.6 Contagens**
   - Rodar de novo o Apêndice A da `AUDIT.md`.
@@ -394,7 +417,7 @@
 
 | # | Itens | Por quê | Observação |
 |---|---|---|---|
-| F1 | C2 e T4 (texto laranja sobre fundo claro, 2,30–2,57:1); C11 (texto branco sobre superfícies laranja que não são botão) | Muda o uso da cor da marca fora dos botões; é decisão de identidade. | A parte "texto #212121 nos botões laranja" já foi aprovada e está em 2.1, 3.6 e 3.7. Opções para o restante: preços e cargos em `#212121`, com o laranja como acento, e texto escuro sobre as superfícies laranja; ou uma cor nova, mais escura, na paleta. |
+| F1 | C2 e T4 (texto laranja sobre fundo claro, 2,30–2,57:1) | Muda o uso da cor da marca fora dos botões; é decisão de identidade. | A parte "texto #212121 nos botões laranja" já foi aprovada e está em 2.1, 3.6 e 3.7. O C11 (texto sobre superfícies laranja) saiu desta linha pela decisão 3 e está em 3.2 e 3.4. Opções para o restante: preços e cargos em `#212121`, com o laranja como acento; ou uma cor nova, mais escura, na paleta. |
 | F2 | C7: verde do WhatsApp e do botão de confirmar, com texto branco | Cor de marca de terceiro e cor de estado. | — |
 | F3 | C8: borda dos inputs (1,30–1,36:1) | Escurecer muda o aspecto dos formulários. | Opção: `$text-gray`, que dá 4,69:1. |
 | F4 | C10: ícone de aviso amarelo | Exigiria um tom novo. | — |
