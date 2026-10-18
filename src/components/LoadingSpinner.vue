@@ -17,7 +17,6 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
 
 .loading-container {

@@ -43,7 +43,6 @@ defineEmits(['retry'])
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
 
 .error-container {

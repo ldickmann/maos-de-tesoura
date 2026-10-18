@@ -44,3 +44,67 @@ $link-hover-color: $btn-primary-hover;
 $font-family-primary: 'Archivo Black', sans-serif;
 $font-family-secondary: 'Bungee Hairline', sans-serif;
 $font-family-tertiary: 'Hanken Grotesk', sans-serif;
+
+// Tokens (só valores que já existem no código)
+// ========================
+
+// Text
+$text-muted: $btn-secondary-hover; // #5a6268: subtítulos sobre fundo claro (5,89:1 sobre $bg-light)
+$text-on-dark-muted: #b0b0b0; // texto secundário sobre fundos escuros
+
+// Surfaces
+$surface-dark-2: #2c2c2c;
+
+// Buttons
+$btn-primary-text: $primary; // texto escuro nos botões laranja (6,26:1 / 4,99:1)
+$btn-on-accent-bg: $primary; // botão sobre superfície laranja
+$btn-on-accent-hover: $tertiary;
+$gradient-primary: linear-gradient(135deg, $secondary 0%, $btn-primary-hover 100%);
+// Não há token de hover mais escuro que $btn-primary-hover: com texto $primary ele reprovaria o AA.
+
+// Radius
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-2xl: 20px;
+$radius-pill: 999px;
+
+// Shadows
+$shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+$shadow-accent: 0 4px 15px rgba($secondary, 0.3);
+
+// Font sizes
+$font-size-xs: 0.85rem;
+$font-size-sm: 0.9rem;
+$font-size-base: 1rem;
+$font-size-md: 1.1rem;
+$font-size-lg: 1.2rem;
+$font-size-xl: 1.5rem;
+$font-size-2xl: 2rem;
+$font-size-3xl: 2.5rem;
+$font-size-4xl: 3rem;
+
+// Motion
+$duration-fast: 0.2s;
+$duration-base: 0.3s;
+$ease: ease;
+
+// Layout
+$container-max: 1440px;
+$container-pad: 2rem;
+$container-pad-mobile: 1rem;
+$header-height: 89px; // altura medida do header no desktop
+$header-height-mobile: 76px; // altura medida do header em ≤ $bp-lg
+
+// Breakpoints (usar com os mixins down/up de _mixins.scss)
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 968px;
+
+// z-index
+$z-menu: 999;
+$z-header: 1000;
+$z-toast: 9999;

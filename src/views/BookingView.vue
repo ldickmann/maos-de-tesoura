@@ -377,7 +377,6 @@ window.addEventListener(
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
 .booking-page {
   padding: 88px 2rem 2rem;
@@ -540,7 +539,6 @@ h1 {
   transition: border-color 0.3s ease;
 
   &:focus {
-    outline: none;
     border-color: #ff7b42;
   }
 
@@ -600,7 +598,6 @@ h1 {
   transition: border-color 0.3s ease;
 
   &:focus {
-    outline: none;
     border-color: #ff7b42;
   }
 

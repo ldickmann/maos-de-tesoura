@@ -233,8 +233,8 @@ const bookService = async (service) => {
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
 .services-page {
   padding: 88px 0 2rem;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -649,6 +649,7 @@ const bookService = async (service) => {
 }
 
 .cta-section {
+  @include mx.on-dark-surface;
   text-align: center;
   padding: 3rem 2rem;
   background: linear-gradient(135deg, #212121 0%, #495057 100%);

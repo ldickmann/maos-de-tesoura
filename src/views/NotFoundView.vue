@@ -10,10 +10,11 @@
 </template>
 
 <style lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
 
 .not-found {
+  @include mx.on-dark-surface;
   min-height: 100vh;
   display: flex;
   align-items: center;

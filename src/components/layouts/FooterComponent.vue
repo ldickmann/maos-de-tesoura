@@ -250,15 +250,18 @@ const showNotImplemented = () => {
 }
 
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
 }
 </script>
 
 <style scoped lang="scss">
 @use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
 
 .footer {
+  @include mx.on-dark-surface;
   background: var.$primary;
   color: white;
   font-family: var.$font-family-tertiary;
@@ -527,7 +530,6 @@ const scrollToTop = () => {
     }
 
     &:focus {
-      outline: none;
       border-color: var.$secondary;
     }
   }

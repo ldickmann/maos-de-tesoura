@@ -1,3 +1,4 @@
+// Ponto único de entrada do CSS global: o reset de _base.scss é emitido só aqui.
 @forward './scss/variables';
 @forward './scss/typography';
 @forward './scss/base';

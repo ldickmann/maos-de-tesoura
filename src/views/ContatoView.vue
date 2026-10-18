@@ -328,7 +328,6 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
 .contact-page {
   padding-top: 88px;
@@ -443,7 +442,6 @@ const handleSubmit = async () => {
   transition: all 0.3s ease;
 
   &:focus {
-    outline: none;
     border-color: #ff7b42;
     box-shadow: 0 0 0 3px rgba(255, 123, 66, 0.1);
   }

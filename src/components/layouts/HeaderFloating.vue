@@ -79,19 +79,23 @@ const handleBooking = () => {
   closeMobileMenu()
 }
 
+// Rolagem suave, exceto com prefers-reduced-motion
+const scrollBehavior = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+
 // Navegação suave para seções da home
 const navigateToSection = (sectionId) => {
   closeMobileMenu()
 
   const doScroll = () => {
     if (sectionId === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: scrollBehavior() })
     } else {
       const element = document.getElementById(sectionId)
       if (element) {
         const headerHeight = 100
         const elementPosition = element.offsetTop - headerHeight
-        window.scrollTo({ top: elementPosition, behavior: 'smooth' })
+        window.scrollTo({ top: elementPosition, behavior: scrollBehavior() })
       }
     }
   }
@@ -124,8 +128,10 @@ const menuItems = [
 <style scoped lang="scss">
 @use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
 
 .header-floating {
+  @include mx.on-dark-surface;
   position: fixed;
   width: 100%;
   top: 0;

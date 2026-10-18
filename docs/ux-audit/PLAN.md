@@ -86,7 +86,7 @@ Fecham o que a sessão anterior deixou em aberto:
 
 ### Fase 1 — Variáveis, tokens e base global
 
-- [ ] **1.1 Pipeline SCSS** (D1, D2, D6). Efeito: **nenhum**.
+- [x] **1.1 Pipeline SCSS** (D1, D2, D6). Efeito: **nenhum**.
   - **Arquivos:** `vite.config.js`, `src/assets/styles/main.scss`, `scss/_typography.scss`, `scss/_base.scss`, e os 11 arquivos com `@use 'sass:color'` sem uso.
   - **O que muda:**
     - O `additionalData` deixa de injetar `typography` e `base`. Todos os componentes já fazem `@use '@/assets/styles/scss/_variables.scss' as var`.
@@ -97,8 +97,14 @@ Fecham o que a sessão anterior deixou em aberto:
     - `yarn build` passa;
     - no Apêndice A, "reset no build" dá **1** e "sass:color sem uso" dá **0**;
     - `compare -metric AE antes/X.png depois/X.png null:` dá 0 nas telas. Diferença só em toast ou spinner em movimento é aceitável.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.42s`, sem avisos. `npx prettier --check` nos 15 arquivos alterados → `All matched files use Prettier code style!`
+    - Apêndice A: `reset no build (box-sizing:inherit): 1` e `arquivos com @use 'sass:color' sem uso: 0`.
+    - `compare -metric AE`: **0 em 38 das 41 capturas**. As 3 `agendamento-fluxo-*` diferem (178044, 82318 e 43595 px) só no header e no horário sob o mouse.
+    - **Ruído do script, não regressão:** o Apêndice B tira a captura do fluxo logo depois do `scrollTo(0, 0)`, com o header e o hover ainda em transição (0,3 s). Duas rodadas seguidas **no mesmo código** diferem nos mesmos 178044 px (cor do header 41 × 38). O script não foi alterado, para manter "antes" e "depois" comparáveis.
+    - `_typography.scss` passou a só reexportar as três famílias de `_variables.scss` (`@forward … show`).
 
-- [ ] **1.2 Tokens em `_variables.scss`** e mixins em um novo `_mixins.scss` (D3, D4, E1, E3, E12, R2, S1, T5, A2, RS3). Efeito: **nenhum** nesta etapa. Os tokens são usados nas fases seguintes, preservando os valores.
+- [x] **1.2 Tokens em `_variables.scss`** e mixins em um novo `_mixins.scss` (D3, D4, E1, E3, E12, R2, S1, T5, A2, RS3). Efeito: **nenhum** nesta etapa. Os tokens são usados nas fases seguintes, preservando os valores.
   - **O que muda:** criar tokens só com valores que já existem no código.
     - **Texto:**
       - `$text-muted: #5a6268` (hoje é `$btn-secondary-hover`);
@@ -118,8 +124,17 @@ Fecham o que a sessão anterior deixou em aberto:
     - **Breakpoints:** `$bp-sm: 480px`, `$bp-md: 768px` e `$bp-lg: 968px`, com os mixins `down($bp)` e `up($bp)`.
     - **z-index:** `$z-menu: 999`, `$z-header: 1000` e `$z-toast: 9999`.
   - **Verificar:** `yarn build` passa, e os arquivos ainda não importam os novos tokens.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.60s`, sem avisos. `npx prettier --check _variables.scss _mixins.scss` → `All matched files use Prettier code style!`. Nenhum `.vue` importa `_mixins` ou os tokens novos.
+    - Os mixins foram compilados à parte com `npx sass`: `down($bp-md)` → `(max-width: 768px)`, `down($bp-md - 1px)` → `(max-width: 767px)`, `up($bp-lg)` → `(min-width: 969px)`.
+    - **Detalhes de implementação:**
+      - `$container-pad` (2rem) e `$container-pad-mobile` (1rem) são dois tokens.
+      - `_mixins.scss` também traz `container`, com o bloco `.container` idêntico copiado em 4 arquivos (D4).
+      - `$radius-pill: 999px` substitui o 20px/15px das etiquetas, que já ficam totalmente arredondadas. Como o raio é limitado à metade da altura, o pixel não muda; isso é conferido nas capturas.
+      - Escala de fonte: `$font-size-xs` (0.85rem) a `$font-size-4xl` (3rem), com os 9 tamanhos mais usados.
+      - As sombras usam as cores mais frequentes de cada geometria: `sm` rgba(0,0,0,.05), `md` .08, `lg` .12 e `accent` rgba($secondary,.3).
 
-- [ ] **1.3 Base global em `_base.scss`** (T1, T2, ST1, A1).
+- [x] **1.3 Base global em `_base.scss`** (T1, T2, ST1, A1).
   - **O que muda:**
     - **visível, aprovado:** o `body` passa a `$font-family-tertiary` (Hanken Grotesk). Os títulos da 404 recebem Archivo Black explicitamente (3.7); o `h3` do rodapé já define a própria fonte (`FooterComponent.vue:325`).
     - **sutil:** `button, input, select, textarea { font: inherit; }`. O botão do header herda a Bungee Hairline que o wrapper já define (`HeaderFloating.vue:217`).
@@ -133,6 +148,18 @@ Fecham o que a sessão anterior deixou em aberto:
     - Nas capturas da Home e da 404, o corpo aparece em Hanken; a métrica `bodyFont` começa com "Hanken Grotesk".
     - Com Tab em todas as telas, o anel aparece no claro e no escuro.
     - Playwright com `reducedMotion: 'reduce'`: o `transitionDuration` do card de serviço dá `0s`.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.69s`, sem avisos. `npx prettier --check` nos arquivos alterados → `All matched files use Prettier code style!`
+    - `bodyFont` = `"Hanken Grotesk", sans-serif` na Home e na 404, e em todas as 41 capturas.
+    - `reducedMotion: 'reduce'` → `.service` com `transitionDuration = 0s`; sem a preferência, `0.4s`.
+    - Anel com Tab (lido 400 ms depois, porque o `transition: all` ainda anima o `outline-width` até as fases 2–3):
+      - logo e menu do header: `solid 2px rgb(255,255,255)`, offset 2px;
+      - newsletter: branco;
+      - campo do Contato: `rgb(33,33,33)`.
+    - **Implementação do anel no escuro:** o `:focus-visible` usa `var(--focus-ring-color, $primary)`, e o mixin `on-dark-surface` (`_mixins.scss`) troca a cor para `$accent-light`. Aplicado em `.header-floating` (inclui o menu mobile), `.banner`, `.footer`, `.not-found` e no `.cta-section` de Serviços (gradiente #212121→#495057). As seções escuras da Sobre não têm elementos focáveis.
+    - **Outline nos inputs:** saíram os `outline: none` de `ContatoView.vue:445`, `BookingView.vue:542` e `:602` e `FooterComponent.vue:530`.
+    - **Citação incompleta:** além de `HeaderFloating.vue:88` e `FooterComponent.vue:253`, havia um terceiro `scrollTo` suave em `HeaderFloating.vue:94` (rolagem até uma seção). Os três passaram a respeitar `prefers-reduced-motion`.
+    - **Efeito visto nas capturas:** o corpo da Home aparece em Hanken. O botão do header herda a Bungee Hairline, em caixa alta, e fica mais largo, o que desloca o menu central uns 18px.
 
 ### Fase 2 — Componentes base
 

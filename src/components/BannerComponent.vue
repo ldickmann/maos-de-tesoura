@@ -38,10 +38,11 @@ const handleBooking = () => {
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
 
 .banner {
+  @include mx.on-dark-surface;
   width: 100%;
   height: 100vh;
   font-family: var.$font-family-tertiary;

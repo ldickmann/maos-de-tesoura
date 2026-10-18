@@ -1,9 +1,6 @@
 // =======================
 // Variables for Typography
 // =======================
+// As famílias de fonte são definidas uma vez em _variables.scss.
 
-@forward 'variables';
-
-$font-family-primary: 'Archivo Black', sans-serif;
-$font-family-secondary: 'Bungee Hairline', sans-serif;
-$font-family-tertiary: 'Hanken Grotesk', sans-serif;
+@forward 'variables' show $font-family-primary, $font-family-secondary, $font-family-tertiary;
