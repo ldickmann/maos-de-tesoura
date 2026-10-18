@@ -55,8 +55,8 @@ defineEmits(['retry'])
   min-height: 300px;
   margin: 2rem auto;
   max-width: 600px;
-  background: white;
-  border-radius: 16px;
+  background: var.$accent-light;
+  border-radius: var.$radius-xl;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 

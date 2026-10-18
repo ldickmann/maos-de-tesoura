@@ -618,38 +618,151 @@ Fecham o que a sessão anterior deixou em aberto:
 
 ### Fase 4 — Verificação ponta a ponta
 
-- [ ] **4.1 Build e formatação**
+- [x] **4.1 Build e formatação**
   - `yarn build` sem erros nem avisos novos.
   - `npx prettier --check` nos arquivos alterados.
   - Registrar que o ESLint segue sem rodar (estado inicial; fora desta execução pela decisão 4).
-- [ ] **4.2 Capturas "depois"**
+  - **Resultado:**
+    ```
+    $ yarn build
+    ✓ 69 modules transformed.
+    dist/assets/image-1-card-….jpg      141.32 kB
+    dist/assets/barber-banner-….jpg     196.80 kB
+    dist/assets/banner-about-img-….jpg  297.72 kB
+    …
+    ✓ built in 2.44s            (0 linhas com warn/error/deprecat)
+
+    $ npx prettier --check <26 arquivos .vue/.js/.scss alterados desde 5a36cae, mais vite.config.js>
+    All matched files use Prettier code style!
+
+    $ npx eslint .
+    Error: Cannot find module 'vue-eslint-parser'      (estado inicial; decisão 4)
+    ```
+- [x] **4.2 Capturas "depois"**
   - Rodar `node /tmp/capturas.cjs docs/ux-audit/screenshots/depois`.
   - Montar os pares com `convert antes/X.png depois/X.png +append comparacao/X.png` em `docs/ux-audit/screenshots/comparacao/`.
   - Revisar cada par contra o efeito previsto em cada item.
-- [ ] **4.3 Métricas** (`metrics.json` "depois"):
+  - **Resultado:**
+    - **Capturas:** o script do Apêndice B rodou de novo sem alteração e gerou `ok: 41 PNG` em `depois/`; os 41 pares estão em `comparacao/`.
+      - A pasta `comparacao/` (33 MB) não foi versionada, porque é derivada de `antes/` e `depois/`; o comando acima a regera.
+    - **Revisão par a par:** folhas com as dobras de cada tela nas 3 larguras, mais as páginas inteiras da Home e da Sobre a 1440 e o fluxo a 390.
+    - **Diferença fora do previsto, corrigida:**
+      - telefone e e-mail do Contato com 21px de altura (abaixo dos 24px do 4.3);
+      - passaram a `inline-flex` com `min-height: 24px`, como no rodapé;
+      - as capturas "depois" foram refeitas com a correção.
+    - **Todas as outras diferenças são as previstas:**
+      - Hanken no corpo;
+      - texto #212121 nos botões laranja e no C11;
+      - raio de 8px e sem borda nativa;
+      - 2 colunas a 768;
+      - cards alinhados;
+      - véu na Sobre;
+      - sem faixa no Contato;
+      - toast abaixo do header e ausente no agendamento vazio;
+      - menu mobile em Bungee Hairline com "Home" ativo e sem fresta;
+      - rodapé centralizado a 768;
+      - logo alinhado ao conteúdo;
+      - 404 com parágrafo mais claro.
+    - **Botão do header:** "AGENDAR HORÁRIO" passou a Bungee Hairline em caixa alta, herdada do wrapper como a 1.3 previa. Em hairline sobre laranja, o traço fica fino, mas o contraste calculado é 6,26/4,99:1.
+    - **Tokens de mesmo valor no fim:** a última troca de literais por tokens (4.6) não mudou o pixel. 39 das 41 capturas deram `compare -metric AE` = 0 contra a rodada anterior; as 2 restantes são `agendamento-fluxo-768/390`, com o ruído de transição já descrito na 1.1.
+- [x] **4.3 Métricas** (`metrics.json` "depois"):
   - **layout:**
     - `overflowers` vazio em todas as telas;
     - `headerHeight` igual ao token;
     - `smallTargets` sem controles principais abaixo de 44px nem links abaixo de 24px;
   - **página:** `h1` e `main` iguais a 1 em todas;
   - **menu:** `abertoAposEsc` igual a 0.
-- [ ] **4.4 Teclado ponta a ponta**
+  - **Resultado** (script sobre o `metrics.json` "depois"):
+    - "todas as telas: overflowers vazio, h1=1, main=1, header no token, nenhum botão <44 nem link <24: **true**";
+    - antes, `overflowers` 2 no agendamento vazio a 768 e 390, `h1` 0 na Home e `main` 0 em 6 das 7 telas.
+    - **Menu:** `abertoAposEsc` 0 (antes 1); `toggleAria` `{"label":"Abrir menu","expanded":"false"}` (antes nulo).
+      - O `menuTop` "depois" sai 0 porque o script mede depois do Esc, com o menu já fechado (`display: none`). Com o menu aberto, a 2.5 mediu `menuTop` 76 = `headerBottom` 76.
+    - **`smallTargets` restantes:** só links, todos com ≥ 24px de altura: menu do desktop (39px), ícones sociais (40×40), links do rodapé e do Contato (24px) e logo (43px).
+- [x] **4.4 Teclado ponta a ponta**
   - Com o foco sempre visível, percorrer: Home → card de serviço do rodapé (abre o agendamento com um serviço) → profissional → data → horário → dados.
   - Registrar que o fluxo para na etapa 4 por causa de B1 e B2.
-- [ ] **4.5 Contraste**
+  - **Resultado:**
+    - **Bloqueio no rodapé (B11):** "Corte de Cabelo" recebe foco na 27ª parada, com anel branco, mas Enter **não abre o agendamento**. O `href="#"` sem `.prevent` leva a URL a `/#` e o roteador volta para `/`. É o mesmo comportamento do commit original (testei numa worktree de `5a36cae`). Bug registrado e não corrigido.
+    - **Caminho alternativo:** botão "Agendar" do 1º card da Home (9ª parada); Enter navega para `/booking` com "Corte Masculino", pelo B9.
+    - **Agendamento:**
+      - profissional (1 Tab) e Enter, que deixa `aria-pressed="true"`;
+      - data (3 Tabs) digitada `2026-10-20`;
+      - horário (2 Tabs) e Espaço em "10:00", que deixa `aria-pressed="true"`;
+      - **a etapa 4 aparece**;
+      - nome, telefone, e-mail e observações preenchidos pelo teclado.
+    - **Fim do fluxo:** depois das observações, o Tab vai para o rodapé, porque não há botão de envio (B2), e a etapa 5 continua ausente (B1). **O fluxo para na etapa 4.**
+    - **Foco sempre visível:** percorri todas as paradas de Tab de cada página a 1440 (Home 44, Serviços 43, Sobre 36, Contato 47, Agendamento 35, 404 35). Em todas o anel aparece (`outline` sólido de 2px).
+- [x] **4.5 Contraste**
   - Recalcular todos os pares alterados.
   - **Ficam falhando por decisão** (F1–F4): texto laranja sobre claro (C2, T4), verde do WhatsApp (C7), bordas dos inputs (C8) e ícone de aviso (C10). O C11 saiu desta lista pela decisão 3.
   - **Nenhum outro par pode falhar.**
-- [ ] **4.6 Contagens**
+  - **Resultado:**
+
+    | Par | Contraste | Mínimo |
+    |---|---|---|
+    | #212121 sobre #ff7b42: botões laranja, selecionados, C11 (início) | 6,26 | 4,5 |
+    | #212121 sobre #e66b32: fim do gradiente e hover | 4,99 | 4,5 |
+    | Branco sobre #212121 (`.btn--on-accent`, link de pular) / sobre #343a40 (hover) | 16,10 / 11,51 | 4,5 |
+    | Branco sobre #1e7e34 (WhatsApp hover) | 5,14 | 4,5 |
+    | Branco sobre #6c757d / #5a6268 (botão neutro do ErrorMessage) | 4,69 / 6,21 | 4,5 |
+    | #5a6268 sobre #f8f9fa / #e9ecef (subtítulos) | 5,89 / 5,24 | 4,5 |
+    | #b0b0b0 sobre #212121 (404, rodapé) / sobre #333 (placeholder da newsletter) | 7,42 / 5,83 | 4,5 |
+    | #6c757d sobre branco (placeholder, "×" do toast) | 4,69 | 4,5 |
+    | #ff7b42 sobre #212121 (menu ativo) | 6,26 | 4,5 |
+    | #495057 sobre #f8f9fa (links do Contato) | 7,76 | 4,5 |
+    | Anel #212121 sobre branco / anel branco sobre #2c2c2c | 16,10 / 13,97 | 3 |
+    | Topo da Sobre sobre o véu (pior pixel): título, subtítulo, rótulos | 5,40 a 6,10 | 3 ou 4,5 |
+
+    - **Falhando por decisão (F1–F4):**
+      - laranja sobre branco: 2,57; sobre #f8f9fa: 2,44 (outline em repouso, preços, cargos e hover do "Ver Detalhes");
+      - WhatsApp em repouso: 3,13; bordas dos campos: 1,30; ícone de aviso: 1,63.
+    - **⚠ Falhando fora da lista:** o "10+" da Sobre a 1440 dá 2,72:1 sobre o pior trecho do véu (ver o "Pendente" da 3.4). Corrigir exige mudar o valor aprovado do véu.
+- [x] **4.6 Contagens**
   - Rodar de novo o Apêndice A da `AUDIT.md`.
   - **Esperado:**
     - reset igual a 1 e `sass:color` sem uso igual a 0;
     - `:focus-visible` e `prefers-reduced-motion` maiores que 0;
     - hex, `rgba` e `white` literais em forte queda (sobram só as cores de marca de terceiros: GitHub, LinkedIn, WhatsApp, Instagram);
     - `transition: all` igual a 0.
-- [ ] **4.7 Fechar a auditoria**
+  - **Resultado:**
+
+    | Contagem | Antes | Depois | Por quê |
+    |---|---|---|---|
+    | hex literais | 198 | **11** | Só sobram cores de marca: GitHub `#333`/`#24292e`, LinkedIn `#0077b5`/`#005885`, WhatsApp `#25d366`/`#128c7e` e Instagram `#e4405f`/`#c13584`. Os demais viraram tokens de mesmo valor. Na rodada final, `#2c2c2c`, `#333`, `#888`, `#666`, `#f0f0f0` e `#f3f3f3` também viraram tokens. |
+    | `rgb()`/`rgba()` literais | 57 | **21** | 16 sombras neutras `rgba(0,0,0,…)` com geometrias sem token, 3 sombras das marcas (GitHub, LinkedIn, WhatsApp) e 2 no `CardComponent`, que é órfão (F10). As cores da paleta passaram a `rgba(var.$x, …)`. |
+    | `white` | 39 | **0** | Virou `$accent-light`. |
+    | `border-radius` distintos | 12 | **10** | O script conta textos: 5 são tokens (`$radius-md/lg/xl/2xl/pill`); restam `50%` (círculos), `6px` e `2px` (sem token no plano) e `0.5rem`/`1rem` dos órfãos (F10). |
+    | `box-shadow` distintos | 30 | **25** | `$shadow-sm/md/lg/accent` onde a geometria coincidia; as outras ficaram para não mudar o visual. |
+    | `transition: all` | 40 | **0** | Viraram propriedades específicas, ou saíram onde não havia o que animar. |
+    | media queries distintas | 7 | **9** | Contagem textual. Entram as definições dos mixins `down`/`up`, as faixas de tablet escritas com tokens e o `prefers-reduced-motion`; saem `481–768`, `769–1200` e `screen and (max-width: 430px)`. No CSS compilado são 9: 480, 767 (celular dos grids), 768, 967 (reserva de altura da Home), 968, 768–1024, 768–1200, 769–1024 e reduced motion. |
+    | `:focus-visible` | 0 | **1** | A regra global de `_base.scss`. |
+    | `prefers-reduced-motion` | 0 | **5** | 1 regra CSS (`_base.scss`), 2 `matchMedia` (rolagem suave do header e do rodapé) e 2 comentários. |
+    | tamanhos de fonte em rem | 22 | **23** | Entra `0.8125rem`, o 13px do toast em rem. |
+    | tamanhos de fonte em px | 3 (5 declarações) | **0 (0)** | Toasts e spinner passaram a rem. |
+    | rem em `padding`/`margin`/`gap` | 375 | **318** | Saíram os CSS de botão duplicados, os blocos de media query repetidos da Home e as cópias de `.container` (mixin). |
+    | px em `padding`/`margin`/`gap` | 11 | **12** | Saem os 4 deslocamentos fixos do header (88/80px, agora tokens) e o `margin-left: 8px` do "×". Entram as margens negativas do "×" (4 valores, para o alvo de 44×44) e o `9.5px` de padding e margem do hambúrguer (2). |
+    | gradiente laranja repetido | 18 | **0** | `$gradient-primary`. |
+    | `sass:color` sem uso | 11 | **0** | 1.1 e 2.1. |
+    | reset no build | 14 | **1** | 1.1. |
+
+    - **Arquivos alterados na 4.6:** os tokens que faltavam (`$bg-muted`, que antes se chamava `$bg-placeholder`, `$bg-track`, `$surface-dark-3`, `$border-dark` e `$text-on-dark-subtle`) e o uso deles em Rodapé, toasts, spinner, ErrorMessage, Contato, Agendamento e `_forms.scss`.
+    - Os raios de 8, 12 e 16px desses arquivos viraram tokens.
+    - `yarn build` e `npx prettier --check` passaram, e as capturas não mudaram (ver 4.2).
+- [x] **4.7 Fechar a auditoria**
   - Na coluna "Plano" da `AUDIT.md`, marcar cada ID como ✅ corrigido, ⏸ fora (F#) ou 🐞 bug funcional.
   - Anexar a saída das verificações 4.1–4.6.
+  - **Resultado:**
+    - Coluna "Plano" marcada nos 93 achados: **76 ✅, 16 ⏸ (F#) e 1 ◐ parcial (E12)**.
+      - O ◐ entrou na legenda: a 1.2 citava o E12, mas a lista de tokens dela não tem escala de espaçamento.
+    - Os 19 bugs (seção 14) ganharam a coluna "Plano" com 🐞 (F12). No B11, ficou registrado que ele também bloqueia o caminho do rodapé no 4.4.
+    - O C11 passou de F1 para ✅ (decisão 3), e o H1 levou a nota da pendência do "10+".
+    - Nova seção "Fechamento da execução" (decisões, legenda, totais e pendências) e o **Apêndice C** com as saídas de 4.1–4.6.
+
+## Pendente depois da execução
+
+- **"10+" sobre o véu da Sobre (H1, 3.4):** 2,72:1 a 1440. Exige escolher outro valor de véu, por exemplo `rgba($primary, .8)` → `.45`, que dá 3,29:1, ou aceitar a falha.
+- **E12:** a escala de espaçamento não foi criada, porque não estava na lista de tokens da 1.2.
+- **Caminho do rodapé até o agendamento:** bloqueado pelo B11, que fica fora por decisão (F12).
 
 ---
 

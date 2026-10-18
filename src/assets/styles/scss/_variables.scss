@@ -57,12 +57,16 @@ $text-soft: #666; // textos de apoio do agendamento
 
 // Surfaces
 $surface-dark-2: #2c2c2c;
+$surface-dark-3: #333; // campos e divisórias sobre fundo escuro
+$border-dark: #444; // borda do campo da newsletter
+$text-on-dark-subtle: #888; // textos de rodapé menores
 $bg-light-2: #e9ecef; // fim do gradiente claro dos topos de página
 $secondary-tint: #fff5f2; // fundo laranja bem claro (selecionado/hover)
 $secondary-tint-2: #ffefe8; // fundo do resumo do serviço
 $secondary-border-light: #ffd4c4;
 $bg-subtle: #fafafa; // fundo das etapas do agendamento
-$bg-placeholder: #f0f0f0; // fundo de fotos e avatares sem imagem
+$bg-muted: #f0f0f0; // fundo neutro: fotos e avatares sem imagem, hover do fechar do toast
+$bg-track: #f3f3f3; // trilho do spinner
 
 // Estado de sucesso (confirmação do agendamento)
 $success-light: #20c997;

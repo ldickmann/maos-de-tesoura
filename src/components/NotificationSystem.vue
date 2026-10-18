@@ -70,8 +70,8 @@ const getIconClass = (type) => {
 .notification {
   display: flex;
   align-items: center;
-  background: white;
-  border-radius: 8px;
+  background: var.$accent-light;
+  border-radius: var.$radius-md;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   margin-bottom: 10px;
   padding: 16px;
@@ -125,7 +125,7 @@ const getIconClass = (type) => {
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.4;
-  color: #333;
+  color: var.$text-strong;
 }
 
 // Área de toque de 44×44; as margens negativas mantêm o espaço de 24×24 no toast
@@ -149,8 +149,8 @@ const getIconClass = (type) => {
   margin: -10px -10px -10px -2px;
 
   &:hover {
-    color: #666;
-    background-color: #f0f0f0;
+    color: var.$text-soft;
+    background-color: var.$bg-muted;
   }
 }
 

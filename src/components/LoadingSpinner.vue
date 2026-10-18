@@ -28,8 +28,8 @@ defineProps({
   min-height: 200px;
   margin: 2rem auto;
   max-width: 600px;
-  background: white;
-  border-radius: 16px;
+  background: var.$accent-light;
+  border-radius: var.$radius-xl;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
@@ -37,7 +37,7 @@ defineProps({
 .spinner {
   width: 2.5rem;
   height: 2.5rem;
-  border: 0.25rem solid #f3f3f3;
+  border: 0.25rem solid var.$bg-track;
   border-top: 0.25rem solid var.$secondary;
   border-radius: 50%;
   animation: spin 1s linear infinite;

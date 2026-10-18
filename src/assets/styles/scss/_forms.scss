@@ -62,11 +62,11 @@
 // Variante para fundos escuros (newsletter do rodapé)
 .form-input--dark {
   padding: 0.875rem 1rem;
-  border: 1px solid #444;
-  background-color: #333;
+  border: 1px solid $border-dark;
+  background-color: $surface-dark-3;
   color: $accent-light;
 
-  // 5,83:1 sobre #333
+  // 5,83:1 sobre $surface-dark-3
   &::placeholder {
     color: $text-on-dark-muted;
   }

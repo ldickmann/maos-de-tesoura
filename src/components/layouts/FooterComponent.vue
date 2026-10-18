@@ -275,7 +275,7 @@ const scrollToTop = () => {
 .footer {
   @include mx.on-dark-surface;
   background: var.$primary;
-  color: white;
+  color: var.$accent-light;
   font-family: var.$font-family-tertiary;
 }
 
@@ -469,7 +469,7 @@ const scrollToTop = () => {
     }
 
     small {
-      color: #888;
+      color: var.$text-on-dark-subtle;
       font-size: 0.85rem;
     }
   }
@@ -477,7 +477,7 @@ const scrollToTop = () => {
 
 // Newsletter Section
 .newsletter-section {
-  background: #2c2c2c;
+  background: var.$surface-dark-2;
   padding: 2.5rem 0;
 }
 
@@ -497,7 +497,7 @@ const scrollToTop = () => {
 .newsletter-text {
   h2 {
     font-size: 1.5rem;
-    color: white;
+    color: var.$accent-light;
     margin-bottom: 0.5rem;
     font-weight: 600;
   }
@@ -532,7 +532,7 @@ const scrollToTop = () => {
 .footer-bottom {
   background: var.$bg-footer;
   padding: 1.5rem 0;
-  border-top: 1px solid #333;
+  border-top: 1px solid var.$surface-dark-3;
 }
 
 .footer-bottom-content {
@@ -548,7 +548,7 @@ const scrollToTop = () => {
 
   .copyright {
     p {
-      color: #888;
+      color: var.$text-on-dark-subtle;
       margin: 0;
       font-size: 0.9rem;
     }
@@ -568,7 +568,7 @@ const scrollToTop = () => {
       align-items: center;
       justify-content: center;
       min-height: 24px;
-      color: #888;
+      color: var.$text-on-dark-subtle;
       text-decoration: none;
       font-size: 0.9rem;
       transition: color var.$duration-base var.$ease;

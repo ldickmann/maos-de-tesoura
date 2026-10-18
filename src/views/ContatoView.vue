@@ -482,7 +482,7 @@ const handleSubmit = async () => {
 
 .info-card {
   background: var.$bg-light;
-  border-radius: 16px;
+  border-radius: var.$radius-xl;
   padding: 2rem;
   border: 1px solid var.$bg-light-2;
 
@@ -545,8 +545,11 @@ const handleSubmit = async () => {
     font-size: 0.85rem;
   }
 
-  // Telefone e e-mail: sublinhados para se distinguir do texto em volta
+  // Telefone e e-mail: sublinhados para se distinguir do texto em volta, com 24px de altura
   .contact-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
     color: inherit;
     text-decoration: underline;
     text-underline-offset: 2px;
@@ -579,7 +582,7 @@ const handleSubmit = async () => {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  border-radius: 8px;
+  border-radius: var.$radius-md;
   text-decoration: none;
   font-weight: 500;
   transition:
@@ -588,7 +591,7 @@ const handleSubmit = async () => {
 
   &.github {
     background: linear-gradient(135deg, #333 0%, #24292e 100%);
-    color: white;
+    color: var.$accent-light;
 
     &:hover {
       transform: translateY(-2px);
@@ -598,7 +601,7 @@ const handleSubmit = async () => {
 
   &.linkedin {
     background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
-    color: white;
+    color: var.$accent-light;
 
     &:hover {
       transform: translateY(-2px);
@@ -608,7 +611,7 @@ const handleSubmit = async () => {
 
   &.whatsapp {
     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-    color: white;
+    color: var.$accent-light;
 
     &:hover {
       transform: translateY(-2px);
@@ -630,7 +633,7 @@ const handleSubmit = async () => {
 .map-placeholder {
   background: var.$bg-light;
   border: 2px dashed var.$border-color;
-  border-radius: 12px;
+  border-radius: var.$radius-lg;
   height: 200px;
   display: flex;
   align-items: center;
@@ -707,7 +710,7 @@ const handleSubmit = async () => {
 .faq-item {
   background: var.$accent-light;
   padding: 2rem;
-  border-radius: 12px;
+  border-radius: var.$radius-lg;
   box-shadow: var.$shadow-sm;
 
   h3 {

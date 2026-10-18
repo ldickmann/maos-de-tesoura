@@ -445,7 +445,7 @@ h1 {
   margin-bottom: 2.5rem;
   padding: 1.5rem;
   background: var.$bg-subtle;
-  border-radius: 8px;
+  border-radius: var.$radius-md;
   border-left: 4px solid var.$secondary;
 }
 
@@ -462,7 +462,7 @@ h1 {
 .service-summary {
   background: var.$secondary-tint-2;
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: var.$radius-md;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -544,7 +544,7 @@ h1 {
   margin: 0 auto 1rem;
   border-radius: 50%;
   overflow: hidden;
-  background: var.$bg-placeholder;
+  background: var.$bg-muted;
 
   img {
     width: 100%;
@@ -616,7 +616,7 @@ h1 {
 .confirmation-summary {
   background: linear-gradient(135deg, var.$success-bg 0%, var.$success-bg-2 100%);
   border: 1px solid var.$success-border;
-  border-radius: 8px;
+  border-radius: var.$radius-md;
   padding: 2rem;
   margin-bottom: 1.5rem;
 }
@@ -662,7 +662,7 @@ h1 {
   color: var.$accent-light;
   background: linear-gradient(135deg, var.$success 0%, var.$success-light 100%);
   border: none;
-  border-radius: 8px;
+  border-radius: var.$radius-md;
   cursor: pointer;
   transition:
     transform var.$duration-base var.$ease,

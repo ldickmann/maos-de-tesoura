@@ -585,7 +585,7 @@ const teamMembers = ref([
 .member-photo {
   height: 250px;
   overflow: hidden;
-  background: var.$bg-placeholder;
+  background: var.$bg-muted;
 
   img {
     width: 100%;
