@@ -1,7 +1,11 @@
 <template>
+  <a href="#conteudo" class="skip-link" @click.prevent="focusMain">Pular para o conteúdo</a>
+
   <HeaderFloating />
 
-  <RouterView />
+  <main id="conteudo" ref="mainContent" tabindex="-1">
+    <RouterView />
+  </main>
 
   <FooterComponent />
 
@@ -10,10 +14,16 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import HeaderFloating from '@/components/layouts/HeaderFloating.vue'
 import FooterComponent from '@/components/layouts/FooterComponent.vue'
 import NotificationSystem from '@/components/NotificationSystem.vue'
-</script>
 
-<style scoped></style>
+const mainContent = ref(null)
+
+// Leva o foco ao conteúdo sem acrescentar #conteudo à URL
+const focusMain = () => {
+  mainContent.value?.focus()
+}
+</script>

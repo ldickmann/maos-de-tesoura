@@ -51,9 +51,28 @@ $font-family-tertiary: 'Hanken Grotesk', sans-serif;
 // Text
 $text-muted: $btn-secondary-hover; // #5a6268: subtítulos sobre fundo claro (5,89:1 sobre $bg-light)
 $text-on-dark-muted: #b0b0b0; // texto secundário sobre fundos escuros
+$text-body: #495057; // texto corrido dos cards sobre branco
+$text-strong: #333; // rótulos e títulos de apoio
+$text-soft: #666; // textos de apoio do agendamento
 
 // Surfaces
 $surface-dark-2: #2c2c2c;
+$bg-light-2: #e9ecef; // fim do gradiente claro dos topos de página
+$secondary-tint: #fff5f2; // fundo laranja bem claro (selecionado/hover)
+$secondary-tint-2: #ffefe8; // fundo do resumo do serviço
+$secondary-border-light: #ffd4c4;
+$bg-subtle: #fafafa; // fundo das etapas do agendamento
+$bg-placeholder: #f0f0f0; // fundo de fotos e avatares sem imagem
+
+// Estado de sucesso (confirmação do agendamento)
+$success-light: #20c997;
+$success-hover: #218838;
+$success-dark: #1e7e34;
+$success-text: #155724;
+$success-bg: #f0fff8;
+$success-bg-2: #e8f5e8;
+$success-border: #c3e6cb;
+$info-light: #d1ecf1;
 
 // Buttons
 $btn-primary-text: $primary; // texto escuro nos botões laranja (6,26:1 / 4,99:1)

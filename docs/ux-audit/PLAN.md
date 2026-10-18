@@ -337,7 +337,7 @@ Fecham o que a sessão anterior deixou em aberto:
 
 ### Fase 3 — Telas
 
-- [ ] **3.1 App e roteador** (AC2, AC10, D8). Efeito: **nenhum**.
+- [x] **3.1 App e roteador** (AC2, AC10, D8). Efeito: **nenhum**.
   - **Arquivos:** `App.vue`, `router/index.js` e `HomeView.vue`.
   - **O que muda:**
     - O `<RouterView>` fica dentro de `<main id="conteudo" tabindex="-1">`.
@@ -349,8 +349,20 @@ Fecham o que a sessão anterior deixou em aberto:
     - na métrica `main` do Apêndice B, cada página tem 1;
     - `document.title` muda ao navegar;
     - o primeiro Tab mostra o link de pular.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.75s`, sem avisos. `npx prettier --check App.vue router/index.js HomeView.vue _base.scss` → `All matched files use Prettier code style!`
+    - **`main` = 1** em `/`, `/servicos`, `/about`, `/contato`, `/booking` e na 404.
+    - **Títulos da aba:**
+      - `/`: "Mãos de Tesoura"; as demais: "Serviços | Mãos de Tesoura", "Sobre | …", "Contato | …", "Agendamento | …" e "Página não encontrada | …";
+      - na navegação pelo menu, sem recarregar, o título também muda;
+      - a Home não tem `meta.title` e usa o nome da marca, como o `index.html`, porque "Início" ou "Home" no título seria o TX5 (F9).
+    - **Link de pular:**
+      - o primeiro Tab mostra "Pular para o conteúdo" no topo (`top: 8`), com fundo #212121 e anel branco;
+      - Enter leva o foco para `MAIN#conteudo` sem acrescentar `#conteudo` à URL (`@click.prevent`), e o Tab seguinte vai ao primeiro controle da página;
+      - o `<main tabindex="-1">` não mostra anel ao receber o foco.
+    - O `<style scoped></style>` vazio saiu; o estilo do link de pular está em `_base.scss`.
 
-- [ ] **3.2 Home e Banner** (C3, H2, C4, C11, E4, E7, E9, E10, ST2, ST3, AC1, AC7, AC8, AC12, AC15, TX1, TX6, RS3, D5).
+- [x] **3.2 Home e Banner** (C3, H2, C4, C11, E4, E7, E9, E10, ST2, ST3, AC1, AC7, AC8, AC12, AC15, TX1, TX6, RS3, D5).
   - **Banner:**
     - o título do topo vira `<h1>`, com o mesmo estilo;
     - `alt=""` na imagem decorativa.
@@ -387,8 +399,31 @@ Fecham o que a sessão anterior deixou em aberto:
     - os cards alinham;
     - a 768 há 2 colunas;
     - a altura da seção de serviços em t=0 é igual à de t=2s (sem pulo).
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.51s`, sem avisos. `npx prettier --check HomeView.vue BannerComponent.vue LineComponent.vue utils/format.js` → `All matched files use Prettier code style!`
+    - **Medição a 1440, 768 e 390:**
+      - `h1` = 1 ("A BARBEARIA ONDE VOCÊ VIRA REFERÊNCIA"), `alt=""` no Banner;
+      - preços "R$ 25,00", "R$ 15,00", "R$ 35,00";
+      - a 1440, o topo do bloco de preço e o do botão são iguais nos 3 cards (1395/1493);
+      - a 768, 2 cards na 1ª linha e 1 na 2ª, também na equipe e nos depoimentos;
+      - números da foto `position: static` a 768 e 390.
+    - **CTA final:**
+      - título e texto `rgb(33,33,33)` com opacidade 1: **6,26:1 / 4,99:1**;
+      - botão `.btn--on-accent` com fundo `rgb(33,33,33)` e texto branco: 16,1:1;
+      - no mobile, os dois botões têm a mesma largura (736/736 a 768, 358/358 a 390).
+    - **Outras cores:** etiqueta "Desde 2009" `rgb(33,33,33)` sobre #ff7b42: **6,26:1**. Subtítulos `$text-muted` sobre #f8f9fa: **5,89:1**.
+    - **Depoimentos e links:** estrelas com `role="img"` e "5 de 5 estrelas"; o texto do depoimento não começa mais com aspas; WhatsApp com `rel="noopener noreferrer"`.
+    - **Carregamento** (Playwright com `page.clock` congelado, spinner na tela em t0):
+      - Δ da altura da seção entre t0 e t2s = **0** a 1440, 1280, 1100, 768 e 390;
+      - a reserva usa a altura da grade pronta medida em cada layout: 3 por linha a partir de 968px, 2 linhas de 768 a 967, empilhado de 481 a 767 e até 480;
+      - **limitação:** a altura depende da quebra das descrições do mock. Entre 968 e 1099px os cards de 3 por linha ficam mais altos, e sobra um pulo de 26 a 57px. Eliminar isso pediria mudar a store ou o desenho do card, o que está fora do item.
+    - **Limpeza:**
+      - saíram os dois blocos de media query duplicados, a regra morta `.duration i` e o código morto do `LineComponent.vue` (`lineStyle`, refs e as classes de largura e altura que o `:style` sobrescrevia);
+      - o `transition` passou a propriedades específicas;
+      - os literais viraram tokens (`$gradient-primary`, `$shadow-md/lg`, raios, `rgba($secondary, …)`).
+    - **Hover:** equipe e depoimentos não sobem mais; estrelas e etiquetas de especialidade perderam o hover.
 
-- [ ] **3.3 Serviços** (C4, E1, E5, E10, ST2, A3, AC9, K2, TX1, D3, D5).
+- [x] **3.3 Serviços** (C4, E1, E5, E10, ST2, A3, AC9, K2, TX1, D3, D5).
   - **O que muda:**
     - **Botões:**
       - "Ver Detalhes" fica numa linha só (`white-space: nowrap` e base flexível);
@@ -405,8 +440,25 @@ Fecham o que a sessão anterior deixou em aberto:
   - **Verificar:**
     - capturas nas 3 larguras;
     - `grep -cE '#[0-9a-fA-F]{3,6}' src/views/ServicosView.vue` cai para perto de 0.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.93s`, sem avisos. `npx prettier --check ServicosView.vue _variables.scss` → `All matched files use Prettier code style!`
+    - `grep -cE '#[0-9a-fA-F]{3,6}' src/views/ServicosView.vue` → **0** (antes 36). Também não sobra `white` nem `rgba()` literal.
+    - **Rótulos em uma linha:** "Ver Detalhes" e "Agendar Agora" ocupam uma linha cada a 1440, 1280, 1024, 768 e 390.
+      - A primeira tentativa (só o "Ver Detalhes" com `nowrap` e base `auto`) quebrava o "Agendar Agora" em duas linhas a 1440.
+      - Solução: os dois botões com base `auto` e `nowrap`; o "Agendar Agora" mantém o dobro da sobra (`flex: 2 1 auto`); a linha de botões pode quebrar (`flex-wrap`).
+      - Onde os dois não cabem lado a lado (1280, 768), o "Agendar Agora" desce inteiro para a linha de baixo.
+    - **Colunas:** a 768, 2 cards na 1ª linha, e os cards de informação também em 2 colunas. A 390, 1 coluna.
+    - **Títulos:** cards em `h2` com o mesmo estilo (`H1 H2 H2 H2 H2 …`). O "O que inclui:" e o "Benefícios:" do card aberto passaram de `h4` a `h3`, com o mesmo tamanho (1.1rem, que já vinha da regra), para não pular nível depois do `h2`.
+    - **Animação:** `animation-fill-mode: both`. O 4º card fica com `opacity: 0` durante o atraso, em vez de aparecer e sumir.
+    - **Topo e cores:**
+      - `padding-top` 89px a 1440 e 76px a 768 e 390, igual ao header;
+      - subtítulo `rgb(90,98,104)` (5,89:1);
+      - preço "R$ 25,00".
+    - **`.info-card`:** perdeu todo o hover (subida, sombra, barra superior e ícone que crescia), porque não é clicável.
+    - **Tokens novos:** três valores existentes sem token viraram tokens (`$text-body` #495057, `$bg-light-2` #e9ecef, `$secondary-tint` #fff5f2), seguindo a regra da 1.2. Eles também aparecem no Contato, na Sobre e no Agendamento.
+    - **Regra morta `:499-502`:** era o `&:disabled` dos botões dos cards, que nunca ficam desabilitados. Já tinha saído na 2.1, quando o estado foi para o `.btn`.
 
-- [ ] **3.4 Sobre** (H1, C9, C11, ST2, AC8, K2, D3).
+- [x] **3.4 Sobre** (H1, C9, C11, ST2, AC8, K2, D3). ⚠ Um par de contraste depende de decisão (ver "Pendente" abaixo).
   - **visível, aprovado — véu escuro:** o `.hero-overlay` passa a `position: absolute; inset: 0`, com `background: linear-gradient(to top, rgba($primary, .7), rgba($primary, .35))`, como o Banner da Home.
   - **Cores:**
     - os números do topo saem de #e67e22 e vão para `$secondary`;
@@ -423,8 +475,29 @@ Fecham o que a sessão anterior deixou em aberto:
     - recalcular o contraste de título, números e rótulos sobre o pior trecho do véu;
     - os cards de números aparecem com texto #212121, e o contraste recalculado dá ≥ 4,5:1;
     - a 390, o título não encosta nas bordas.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.44s`, sem avisos. `npx prettier --check AboutView.vue HomeView.vue` → `All matched files use Prettier code style!`
+    - `grep -cE '#[0-9a-fA-F]{3,6}' src/views/AboutView.vue` → 1 (antes 29). Sobra o `#f0f0f0` do fundo das fotos, que não tem token.
+    - **Véu:** `.hero-overlay` com `position: absolute` e `linear-gradient(to top, rgba(33,33,33,.7), rgba(33,33,33,.35))`. O recorte ampliado do topo, antes × depois, mostra a ilustração escurecida.
+    - **Cores:**
+      - números do topo `rgb(255,123,66)` (antes #e67e22);
+      - cards de números com texto `rgb(33,33,33)` e rótulo com opacidade 1: **6,26:1 / 4,99:1** (C11).
+    - **Título a 390:** o texto fica a 18px de cada borda. `alt=""` na ilustração, e a equipe sem a subida.
+    - **Contraste sobre o pior trecho do véu** (texto escondido, cor do texto contra cada pixel da caixa):
 
-- [ ] **3.5 Contato** (E1, ST2, ST4, ST7, AC7, AC12, AC13, D3).
+      | Texto | 1440: pior / p5 | 390: pior / p5 | Mínimo |
+      |---|---|---|---|
+      | Título (branco) | 6,10 / 7,62 | 5,83 / 6,10 | 3:1 |
+      | Subtítulo (branco 90%) | 5,72 / 6,93 | 5,40 / 6,66 | 3:1 a 1440, 4,5:1 a 390 |
+      | Números (#ff7b42) | **2,72** / 2,77 ("10+"); 3,53 e 5,41 nos outros | 3,13 / 3,42 a 5,70 | 3:1 |
+      | Rótulos (branco 80%) | 5,87 / 6,64 | 6,53 / 6,64 | 4,5:1 |
+
+  - **⚠ Pendente (decisão):**
+    - O "10+" a 1440 fica sobre a faixa clara "SHOP" da ilustração, onde o véu do plano cobre cerca de 62%, e dá 2,72:1. Isso reprova o 3:1 de texto grande.
+    - Não é C2 nem está no F1–F4. Corrigir exige mudar o valor aprovado do véu, então não alterei.
+    - **Medido sem mudar o código**, injetando o CSS no Playwright: com o véu `rgba($primary, .8)` → `rgba($primary, .45)`, o pior número dá **3,29:1** a 1440 e 3,67:1 a 390; com `.85` → `.5`, 3,61:1 e 3,97:1.
+
+- [x] **3.5 Contato** (E1, ST2, ST4, ST7, AC7, AC12, AC13, D3).
   - **Header:** o topo compensa o header com o token, sem a faixa de 12px.
   - **Envio:**
     - o formulário **não some**: campos e botão ficam `disabled`, com o "Enviando..." que já existe no template;
@@ -443,8 +516,26 @@ Fecham o que a sessão anterior deixou em aberto:
     - a 390 e 768 não há faixa clara entre o header e o topo;
     - num envio inválido, o foco vai ao primeiro erro e o leitor anuncia a mensagem;
     - num envio válido, o form continua visível com o botão desabilitado.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.83s`, sem avisos. `npx prettier --check src/views/ContatoView.vue` → `All matched files use Prettier code style!`
+    - **Topo:** `headerBottom`/`heroTop` = 89/89 a 1440 e 76/76 a 768 e 390, sem faixa (antes, 12px).
+    - **Envio inválido pelo teclado** (só o nome preenchido):
+      - o foco vai para `#email`, o primeiro campo com erro;
+      - `email` e `message` ficam com `aria-invalid="true"` e `aria-describedby` apontando para a mensagem; os demais com `aria-invalid="false"`;
+      - as mensagens têm `role="alert"` ("Email é obrigatório", "Mensagem deve ter pelo menos 10 caracteres").
+    - **Envio válido:**
+      - durante o envio, o form continua visível, o botão mostra "Enviando..." e fica `disabled`, e os 5 campos também;
+      - depois de 2s, o form é limpo e reabilitado, como antes;
+      - a espera simulada não mudou.
+    - **Validação:** a função e as regras não mudaram. Ela só passou a rodar antes de ligar o `isLoading`, para o foco não cair num campo desabilitado. O assunto continua sem validar (B15).
+      - Na primeira versão acrescentei `novalidate` ao form, o que desligaria a validação nativa do `type="email"`; tirei antes do build final.
+    - **Links:**
+      - telefone e e-mail com `tel:`/`mailto:`, sublinhados no card claro para se distinguir do texto;
+      - os 4 links externos do Contato com `rel="noopener noreferrer"` (7 no total, com o rodapé).
+    - **FAQ:** sem a subida.
+    - **Hex:** 3 (antes 40), todos de marcas de terceiros (GitHub, LinkedIn, WhatsApp). O `LoadingSpinner` saiu do Contato, porque o form não some mais.
 
-- [ ] **3.6 Agendamento** (AC5, C1, C9, ST6, ST7, E1, K4, TX1, D3).
+- [x] **3.6 Agendamento** (AC5, C1, C9, ST6, ST7, E1, K4, TX1, D3).
   - **Seleção:**
     - os cards de profissional e os horários viram `<button type="button">`, com `aria-pressed`, as mesmas classes e o mesmo visual;
     - a lógica de seleção não muda (B17 fica).
@@ -460,22 +551,70 @@ Fecham o que a sessão anterior deixou em aberto:
     - Playwright só com teclado: Tab até o profissional, Enter, preencher a data, Tab até o horário, Espaço, e a etapa 4 aparece;
     - `aria-pressed="true"` no item escolhido;
     - a 1440, o topo do card não fica sob o header.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.72s`, sem avisos. `npx prettier --check BookingView.vue _variables.scss _buttons.scss _forms.scss AboutView.vue` → `All matched files use Prettier code style!`, depois de o Prettier quebrar duas linhas longas.
+    - **Playwright só com teclado:**
+      - Tab até o profissional (`BUTTON.professional-card`, `aria-pressed="false"`, anel `2px rgb(33,33,33)`) e Enter, que deixa `aria-pressed="true"`;
+      - Tab até a data e a data digitada (`2026-10-20`);
+      - Tab até o horário e Espaço em "10:00", que deixa `aria-pressed="true"`;
+      - **a etapa 4 aparece**; a etapa 5 continua com 0 ocorrências (B1, B2).
+    - **Caminho até o agendamento:**
+      - o link "Corte de Cabelo" do rodapé **não abre** o agendamento: o `href="#"` sem `.prevent` leva a URL a `/#` e o roteador volta para `/` (B11);
+      - conferi no commit original `5a36cae`, numa worktree temporária: o comportamento é idêntico, então não é regressão;
+      - o teste seguiu pelo botão "Agendar" do primeiro card da Home, cujo clique sobe até o card e navega (B9).
+    - **Selecionado:** fundo `rgb(255,123,66)` e texto `rgb(33,33,33)`, **6,26:1**, nos cards de profissional e nos horários.
+    - **Estado vazio:** 0 toasts (antes, um toast repetia a mensagem); botão `btn btn--primary`.
+    - **Topo:** o card começa em 89 a 1440 e em 76 a 390, igual ao `bottom` do header (antes, 1px por baixo a 1440).
+    - **Hex:** 0 (antes 38). Para valores sem token, incluindo os verdes da confirmação, foram criados tokens com os mesmos valores (`$success-light/hover/dark/text/bg/bg-2/border`, `$info-light`, `$bg-subtle`, `$bg-placeholder`, `$secondary-tint-2`, `$secondary-border-light`, `$text-strong`, `$text-soft`).
+      - O `#ddd` das bordas de profissional e horário foi para `$border-color` (#dee2e6), como os campos na 2.2.
+    - **Botões e grupos:**
+      - os botões mantêm as classes e o visual; o conteúdo virou `span` (um `<button>` não aceita `p` nem `div`);
+      - o avatar do profissional, que não aparece por causa do B7, ganhou `alt=""` para o nome não ser lido duas vezes;
+      - os grupos têm `role="group"` com `aria-labelledby` (título da etapa e rótulo "Horário disponível", que passou de `<label>` sem campo para `<span>`).
+    - **Erros:** `aria-invalid`, `aria-describedby` e `role="alert"` como no Contato. Na prática nunca aparecem, porque `validateAndConfirm` nunca roda (B2).
 
-- [ ] **3.7 404** (C1, C5, D7, T1). Efeito: sutil.
+- [x] **3.7 404** (C1, C5, D7, T1). Efeito: sutil.
   - **O que muda:**
     - o `<style>` passa a `scoped`;
     - o parágrafo passa a `$text-on-dark-muted` (7,42:1);
     - os títulos recebem Archivo Black explícita, preservando o visual depois da 1.3;
     - o botão usa `.btn--primary`, com texto #212121.
   - **Verificar:** captura nas 3 larguras; recalcular o contraste.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.50s`, sem avisos. `npx prettier --check src/views/NotFoundView.vue` → `All matched files use Prettier code style!`
+    - **Escopo:** o CSS da 404 sai com `[data-v-…]` no build (`.not-found[data-v-b8192afb]`); não vaza mais.
+    - **Medição a 1440, 768 e 390:**
+      - `h1` e `h2` em `"Archivo Black"`, como antes da 1.3;
+      - parágrafo `rgb(176,176,176)` sobre #212121: **7,42:1** (antes #6c757d, 3,43:1);
+      - botão com texto `rgb(33,33,33)`: 6,26:1 / 4,99:1.
+    - **Capturas antes × depois:** títulos iguais; o parágrafo passa de Archivo Black a Hanken (T1, aprovado); o botão tem raio de 8px e texto escuro.
 
-- [ ] **3.8 Imagens** (D10). Efeito: sutil.
+- [x] **3.8 Imagens** (D10). Efeito: sutil.
   - **O que muda:**
     - Reprocessar os 3 JPGs com o ImageMagick do sistema: `convert in.jpg -resize '1920x1920>' -quality 80 -strip out.jpg`.
     - Adicionar `width`/`height` e `loading="lazy"` nas imagens abaixo da dobra (todas, menos as dos heros).
   - **Verificar:**
     - na saída do `yarn build`, cada JPG cai bem abaixo dos 2–3,6 MB atuais;
     - a dobra a 1440 sem diferença perceptível lado a lado.
+  - **Resultado:**
+    - `convert in.jpg -resize '1920x1920>' -quality 80 -strip out.jpg` (ImageMagick do sistema), com o mesmo nome e o mesmo formato JPEG:
+      - `barber-banner.jpg`: 7360×4912 → 1920×1281;
+      - `image-1-card.jpg`: 6642×4433 → 1920×1281;
+      - `banner-about-img.jpg`: 6522×3833 → 1920×1128.
+    - **`yarn build`** → `✓ built in 2.70s`, sem avisos:
+
+      | Arquivo | Antes | Depois |
+      |---|---|---|
+      | `barber-banner` | 2.099,92 kB | **196,80 kB** |
+      | `image-1-card` | 2.408,46 kB | **141,32 kB** |
+      | `banner-about-img` | 3.646,45 kB | **297,72 kB** |
+
+    - `npx prettier --check HomeView.vue AboutView.vue BookingView.vue` → `All matched files use Prettier code style!`
+    - **Atributos:**
+      - `width`/`height` com as dimensões novas e `loading="lazy"` na foto da seção "Tradição", nas fotos da equipe (Home e Sobre), nos avatares dos depoimentos e no avatar do profissional (que não aparece, B7);
+      - os dois heros (Banner e topo da Sobre) não mudaram.
+    - **Proporção:** a foto da seção "Tradição" só tinha `width: 100%` no CSS e ganhou `height: auto`, para o atributo `height` não distorcê-la. A proporção medida segue igual à natural (1,499).
+    - **Dobra a 1440, antes × depois da redução:** PSNR de 46,5 dB na Home e 43,0 dB na Sobre; indistinguíveis lado a lado.
 
 ### Fase 4 — Verificação ponta a ponta
 

@@ -1,13 +1,15 @@
 <template>
   <!-- Componente Banner, que exibirá um banner com imagem de fundo, texto sobreposto e botão de ação -->
   <div class="banner">
-    <img :src="bannerImage" class="banner-img" alt="Barbearia Banner" />
+    <img :src="bannerImage" class="banner-img" alt="" />
 
     <div class="banner-overlay">
       <div class="toolbar">
         <div class="toolbar-title">
-          <p class="text-overline">A Barbearia onde você vira</p>
-          <span class="highlight-text">Referência</span>
+          <h1 class="banner-title">
+            <span class="text-overline">A Barbearia onde você vira</span>
+            <span class="highlight-text">Referência</span>
+          </h1>
           <div class="line-text-row">
             <LineComponent class="line" :isVertical="false" lineWidth="50px" lineHeight="1px" />
             <p class="text-overline-toolbar">Desde 2009</p>
@@ -89,6 +91,15 @@ const handleBooking = () => {
   justify-content: center;
   gap: 1rem;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+// O h1 agrupa as duas linhas do título sem mudar o desenho
+.banner-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 400;
 }
 
 .text-overline {

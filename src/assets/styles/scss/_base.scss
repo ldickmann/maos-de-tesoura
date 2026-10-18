@@ -49,6 +49,31 @@ textarea {
   }
 }
 
+// O <main> recebe foco só pelo link de pular; não precisa de anel
+main[tabindex='-1']:focus {
+  outline: none;
+}
+
+// Link "Pular para o conteúdo": aparece só quando recebe foco
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: $z-toast;
+  padding: 0.75rem 1rem;
+  border-radius: $radius-md;
+  background: $primary;
+  color: $accent-light;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+
+  &:focus {
+    transform: none;
+    outline-color: $accent-light;
+  }
+}
+
 // Texto só para leitores de tela
 .sr-only {
   position: absolute;

@@ -90,7 +90,7 @@
   color: $accent-light;
 
   &:hover:not(:disabled) {
-    background: #1e7e34; // $success com 10% menos luminosidade
+    background: $success-dark; // $success com 10% menos luminosidade
   }
 }
 

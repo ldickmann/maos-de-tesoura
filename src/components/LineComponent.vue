@@ -7,9 +7,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-
-const props = defineProps({
+defineProps({
   isVertical: {
     type: Boolean,
     default: false,
@@ -23,35 +21,13 @@ const props = defineProps({
     default: '1px',
   },
 })
-
-const lineStyle = computed(() => {
-  return {
-    width: props.isVertical ? props.lineHeight : props.lineWidth,
-    height: props.isVertical ? props.lineWidth : props.lineHeight,
-    backgroundColor: 'black',
-  }
-})
-
-const isVertical = ref(props.isVertical)
-const lineWidth = ref(props.lineWidth)
-const lineHeight = ref(props.lineHeight)
 </script>
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/_variables.scss' as var;
 
+// Largura e altura vêm das props, pelo :style do template
 .line {
   background-color: var.$bg-light;
-  transition: all 0.3s ease-in-out;
-}
-
-.line-vertical {
-  width: 1px;
-  height: 100%;
-}
-
-.line-horizontal {
-  width: 100%;
-  height: 1px;
 }
 </style>

@@ -11,7 +11,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 @use '@/assets/styles/scss/_variables.scss' as var;
 @use '@/assets/styles/scss/_mixins.scss' as mx;
 
@@ -29,7 +29,9 @@
     max-width: 500px;
     padding: 2rem;
 
+    // Os títulos mantêm a Archivo Black que herdavam do body antes da 1.3
     h1 {
+      font-family: var.$font-family-primary;
       font-size: 6rem;
       color: var.$secondary;
       margin: 0;
@@ -37,13 +39,15 @@
     }
 
     h2 {
+      font-family: var.$font-family-primary;
       font-size: 2rem;
       color: var.$text-secondary;
       margin: 1rem 0;
     }
 
+    // 7,42:1 sobre $bg-dark
     p {
-      color: var.$text-gray;
+      color: var.$text-on-dark-muted;
       margin-bottom: 2rem;
     }
   }
