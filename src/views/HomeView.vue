@@ -312,12 +312,17 @@ onMounted(() => {
     gap: 1.5rem;
   }
 
-  @media (min-width: var.$bp-md) and (max-width: 1200px) {
+  // Mesma distribuição de antes: space-around até 1024px e space-evenly até 1200px
+  @media (min-width: var.$bp-md) and (max-width: 1024px) {
+    justify-content: space-around;
+  }
+
+  @media (min-width: 1025px) and (max-width: 1200px) {
     justify-content: space-evenly;
   }
 
   // Enquanto os serviços carregam, reserva a altura da grade pronta (3 cards do mock),
-  // medida em cada layout. Entre 969 e 1099px as descrições quebram de outro jeito e
+  // medida em cada layout. Entre 968 e 1099px as descrições quebram de outro jeito e
   // sobra uma diferença de até 57px.
   &--loading {
     justify-content: flex-start; // spinner no topo; as margens auto dele centralizam na horizontal
@@ -646,7 +651,7 @@ onMounted(() => {
   }
 
   @media (min-width: var.$bp-md) and (max-width: 1024px) {
-    justify-content: space-evenly;
+    justify-content: space-around;
   }
 }
 
@@ -744,7 +749,7 @@ onMounted(() => {
   }
 
   @media (min-width: var.$bp-md) and (max-width: 1024px) {
-    justify-content: space-evenly;
+    justify-content: space-around;
   }
 }
 

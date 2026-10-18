@@ -653,9 +653,10 @@ const bookService = async (service) => {
   }
 }
 
-// fill-mode both: durante o atraso o card já fica no estado inicial da animação
+// fill-mode backwards: durante o atraso o card já fica no estado inicial da animação.
+// Não usar both/forwards: o transform final ficaria preso e anularia o hover do card.
 .service-card {
-  animation: fadeInUp 0.6s ease-out both;
+  animation: fadeInUp 0.6s ease-out backwards;
 }
 
 .service-card:nth-child(1) {
@@ -672,6 +673,6 @@ const bookService = async (service) => {
 }
 
 .card-details {
-  animation: fadeInUp 0.4s ease-out both;
+  animation: fadeInUp 0.4s ease-out backwards;
 }
 </style>

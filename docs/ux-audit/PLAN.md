@@ -419,6 +419,11 @@ Fecham o que a sessão anterior deixou em aberto:
       - **limitação:** a altura depende da quebra das descrições do mock. Entre 968 e 1099px os cards de 3 por linha ficam mais altos, e sobra um pulo de 26 a 57px. Eliminar isso pediria mudar a store ou o desenho do card, o que está fora do item.
     - **Limpeza:**
       - saíram os dois blocos de media query duplicados, a regra morta `.duration i` e o código morto do `LineComponent.vue` (`lineStyle`, refs e as classes de largura e altura que o `:style` sobrescrevia);
+      - **corrigido depois da revisão independente:** ao tirar as duplicatas, eu tinha mantido o `space-evenly`, que perdia na cascata. Agora vale o que valia antes:
+        - `space-around` de 768 a 1024px nas três grades;
+        - `space-evenly` de 1025 a 1200px só em serviços;
+        - as faixas não se sobrepõem;
+        - a 900px o 1º card voltou a x=58;
       - o `transition` passou a propriedades específicas;
       - os literais viraram tokens (`$gradient-primary`, `$shadow-md/lg`, raios, `rgba($secondary, …)`).
     - **Hover:** equipe e depoimentos não sobem mais; estrelas e etiquetas de especialidade perderam o hover.
@@ -450,6 +455,9 @@ Fecham o que a sessão anterior deixou em aberto:
     - **Colunas:** a 768, 2 cards na 1ª linha, e os cards de informação também em 2 colunas. A 390, 1 coluna.
     - **Títulos:** cards em `h2` com o mesmo estilo (`H1 H2 H2 H2 H2 …`). O "O que inclui:" e o "Benefícios:" do card aberto passaram de `h4` a `h3`, com o mesmo tamanho (1.1rem, que já vinha da regra), para não pular nível depois do `h2`.
     - **Animação:** `animation-fill-mode: both`. O 4º card fica com `opacity: 0` durante o atraso, em vez de aparecer e sumir.
+      - **Corrigido depois da revisão independente:** com `both`, o `transform` final da animação ficava preso e anulava o `:hover` do card, que parou de subir.
+      - Passou a `backwards`, que cobre o mesmo caso do A3, que só acontece durante o atraso.
+      - Medido: 4º card com `opacity: 0` no atraso; card em hover com `matrix(1,0,0,1,0,-10)`, a subida de antes.
     - **Topo e cores:**
       - `padding-top` 89px a 1440 e 76px a 768 e 390, igual ao header;
       - subtítulo `rgb(90,98,104)` (5,89:1);
@@ -734,7 +742,7 @@ Fecham o que a sessão anterior deixou em aberto:
     | `border-radius` distintos | 12 | **10** | O script conta textos: 5 são tokens (`$radius-md/lg/xl/2xl/pill`); restam `50%` (círculos), `6px` e `2px` (sem token no plano) e `0.5rem`/`1rem` dos órfãos (F10). |
     | `box-shadow` distintos | 30 | **25** | `$shadow-sm/md/lg/accent` onde a geometria coincidia; as outras ficaram para não mudar o visual. |
     | `transition: all` | 40 | **0** | Viraram propriedades específicas, ou saíram onde não havia o que animar. |
-    | media queries distintas | 7 | **9** | Contagem textual. Entram as definições dos mixins `down`/`up`, as faixas de tablet escritas com tokens e o `prefers-reduced-motion`; saem `481–768`, `769–1200` e `screen and (max-width: 430px)`. No CSS compilado são 9: 480, 767 (celular dos grids), 768, 967 (reserva de altura da Home), 968, 768–1024, 768–1200, 769–1024 e reduced motion. |
+    | media queries distintas | 7 | **10** | Contagem textual. Entram as definições dos mixins `down`/`up`, as faixas de tablet escritas com tokens, a faixa `1025–1200` (que restaura a distribuição original da Home, depois da revisão) e o `prefers-reduced-motion`; saem `481–768`, `769–1200` e `screen and (max-width: 430px)`. No CSS compilado são 10: 480, 767 (celular dos grids), 768, 967 (reserva de altura da Home), 968, 768–1024, 768–1200, 769–1024, 1025–1200 e reduced motion. |
     | `:focus-visible` | 0 | **1** | A regra global de `_base.scss`. |
     | `prefers-reduced-motion` | 0 | **5** | 1 regra CSS (`_base.scss`), 2 `matchMedia` (rolagem suave do header e do rodapé) e 2 comentários. |
     | tamanhos de fonte em rem | 22 | **23** | Entra `0.8125rem`, o 13px do toast em rem. |
@@ -763,6 +771,23 @@ Fecham o que a sessão anterior deixou em aberto:
 - **"10+" sobre o véu da Sobre (H1, 3.4):** 2,72:1 a 1440. Exige escolher outro valor de véu, por exemplo `rgba($primary, .8)` → `.45`, que dá 3,29:1, ou aceitar a falha.
 - **E12:** a escala de espaçamento não foi criada, porque não estava na lista de tokens da 1.2.
 - **Caminho do rodapé até o agendamento:** bloqueado pelo B11, que fica fora por decisão (F12).
+
+## Revisão independente (subagente, depois da fase 4)
+
+Comparou o diff `5a36cae..HEAD` com este plano, item por item, e reproduziu as verificações da fase 4.
+
+- **Média, corrigida:** em Serviços, o `animation-fill-mode: both` travava o `transform` e anulava a subida do card no hover. Agora é `backwards` (ver 3.3).
+- **Baixa, corrigida:** na Home, a limpeza das media queries duplicadas mudava a distribuição das grades entre 769 e 1024px (`space-evenly` × `space-around`). Agora vale o que valia antes (ver 3.2).
+- **Baixa, mantida e documentada (decisão sua):** a base `.btn` sobe 2px no hover. Isso unifica o hover (K1), mas:
+  - o botão do hero passou de 3px para 2px;
+  - "Ver Detalhes", "Inscrever", o botão da 404 e o "Agendar" do menu mobile ganharam uma subida que não tinham.
+- **Baixa, mantida e documentada (decisão sua):** a borda dos campos e dos cards de seleção do Agendamento foi de `#ddd` para `$border-color` (#dee2e6), com contraste de 1,36 para 1,30:1. Os dois reprovam; o F3 continua.
+- **Confirmadas pelo revisor:** as pendências (a) "10+" 2,72:1, (b) E12, (c) B11 no rodapé, (d) pulo de até 57px entre 968 e 1099px e (e) ESLint. Ele também confirmou que `package.json`, `yarn.lock`, `index.html`, as stores e `validation.js` não mudaram, e que os bugs B1–B19 continuam.
+- **Depois das correções:**
+  - `yarn build` → `✓ built in 2.62s`, sem avisos. `npx prettier --check HomeView.vue ServicosView.vue` → `All matched files use Prettier code style!`
+  - Capturas "depois" refeitas, e o 4.3 continua valendo em todas as telas.
+  - Mudou o `home-768`, pela distribuição de tablet.
+  - As de Serviços mudaram só no antialiasing do texto dos cards (PSNR 72 dB), porque o card não fica mais em camada de composição.
 
 ---
 
