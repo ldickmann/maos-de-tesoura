@@ -69,17 +69,20 @@ Fecham o que a sessão anterior deixou em aberto:
 
 ### Fase 0 — Preparação (antes de editar qualquer arquivo)
 
-- [ ] **0.1 Ambiente**
+- [x] **0.1 Ambiente**
   - Rodar `yarn install --frozen-lockfile` e `yarn dev --port 5173 --strictPort`. O app abre em `http://localhost:5173/maos-de-tesoura/`.
   - **Verificar:** a Home abre no navegador.
-- [ ] **0.2 Capturas "antes"**
+  - **Resultado:** `yarn install` só avisa do `vue-eslint-parser` ausente (estado inicial). Vite 6.2.2 pronto em 498 ms; a Home responde 200.
+- [x] **0.2 Capturas "antes"**
   - Gravar o script do Apêndice B fora do repositório, por exemplo em `/tmp/capturas.cjs`.
   - Rodar `node /tmp/capturas.cjs docs/ux-audit/screenshots/antes`.
   - Telas: Home, Serviços, Sobre, Contato, Agendamento vazio, Agendamento preenchido até a etapa 4 e 404, em 1440, 768 e 390, mais o menu mobile em 768 e 390.
   - **Verificar:** 41 PNG e o `metrics.json` na pasta. Os nomes batem com as evidências da `AUDIT.md`: `home-1440.png`, `home-1440-dobra.png` e assim por diante.
-- [ ] **0.3 Linha de base das contagens**
+  - **Resultado:** o script foi extraído do Apêndice B **sem nenhuma alteração** (gravado no scratchpad da sessão, fora do repositório) e rodou de primeira em 2 min 8 s: `ok: 41 PNG`, mais o `metrics.json`. As métricas reproduzem a auditoria: `headerHeight` 89/76, `menuTop` 80 × `headerBottom` 76, `abertoAposEsc` 1, `toggleAria` nulo, `h1` 0 na Home, `bodyFont` "Archivo Black", `overflowers` só no toast do agendamento vazio a 768 e 390, `etapa5` 0.
+- [x] **0.3 Linha de base das contagens**
   - Rodar `yarn build` e o script do Apêndice A da `AUDIT.md`.
   - **Verificar:** a saída é igual à registrada na auditoria.
+  - **Resultado:** `yarn build` passa sem avisos (`✓ built in 2.53s`). A saída do Apêndice A é **idêntica** às 16 linhas registradas na auditoria (`diff` vazio).
 
 ### Fase 1 — Variáveis, tokens e base global
 
