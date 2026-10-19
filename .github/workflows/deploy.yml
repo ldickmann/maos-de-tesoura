@@ -1,0 +1,46 @@
+# Publica o site no GitHub Pages a cada push na main.
+# O build vai para a branch gh-pages, que é a fonte do Pages, e substitui o
+# conteúdo anterior, como o `yarn deploy`. Também pode ser rodado à mão em
+# Actions → "Deploy no GitHub Pages" → Run workflow.
+name: Deploy no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Um deploy por vez; um push novo espera o anterior terminar
+concurrency:
+  group: deploy-gh-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Instalar dependências
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Publicar na gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin "https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          yarn gh-pages -d dist --nojekyll \
+            -m "deploy: ${GITHUB_SHA::7}" \
+            -u "github-actions-bot <support+actions@github.com>"
