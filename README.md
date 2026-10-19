@@ -72,14 +72,14 @@ O projeto não usa variáveis de ambiente.
 
 ## Scripts
 
-| Comando        | O que faz                                                                            |
-| -------------- | ------------------------------------------------------------------------------------ |
-| `yarn dev`     | Servidor de desenvolvimento com recarga automática                                   |
-| `yarn build`   | Gera o build de produção em `dist/`                                                  |
-| `yarn preview` | Serve o `dist/` localmente para conferir o build                                     |
-| `yarn deploy`  | Roda o build e publica o `dist/` na branch `gh-pages` (veja [Deploy](#deploy))       |
-| `yarn format`  | Formata `src/` com o Prettier                                                        |
-| `yarn lint`    | Roda o ESLint com `--fix`. Hoje falha (veja as [limitações](#limitações-conhecidas)) |
+| Comando        | O que faz                                                                                                                |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `yarn dev`     | Servidor de desenvolvimento com recarga automática                                                                       |
+| `yarn build`   | Gera o build de produção em `dist/`                                                                                      |
+| `yarn preview` | Serve o `dist/` localmente para conferir o build                                                                         |
+| `yarn deploy`  | Roda o build e publica o `dist/` na `gh-pages` à mão; o workflow faz isso a cada push na `main` (veja [Deploy](#deploy)) |
+| `yarn format`  | Formata `src/` com o Prettier                                                                                            |
+| `yarn lint`    | Roda o ESLint com `--fix`. Hoje falha (veja as [limitações](#limitações-conhecidas))                                     |
 
 Para conferir a formatação sem alterar arquivos: `npx prettier --check src/`.
 
@@ -162,15 +162,17 @@ Os achados, as decisões e as verificações estão em [`docs/ux-audit/`](docs/u
 
 O site é servido pelo **GitHub Pages** a partir da branch `gh-pages`.
 
-```bash
-git checkout main
-git pull
-yarn deploy
-```
+**O deploy é automático.** Cada push na `main`, inclusive o merge de um PR, roda o workflow [`Deploy no GitHub Pages`](.github/workflows/deploy.yml). Ele:
 
-- **O deploy é manual.** O merge na `main` não publica nada sozinho, porque não há workflow de GitHub Actions.
-- O `yarn deploy` usa o pacote [`gh-pages`](https://github.com/tschaub/gh-pages), que **substitui todo o conteúdo** da branch `gh-pages` pelo `dist/` atual.
-- O GitHub Pages leva cerca de 1 minuto para publicar.
+1. instala as dependências com `yarn install --frozen-lockfile`;
+2. roda `yarn build`;
+3. publica o `dist/` na `gh-pages` com o pacote [`gh-pages`](https://github.com/tschaub/gh-pages).
+
+Em seguida, o GitHub Pages leva cerca de 1 minuto para publicar.
+
+- Para publicar de novo sem um commit novo, use **Actions → Deploy no GitHub Pages → Run workflow**.
+- Para publicar da sua máquina, rode `yarn deploy` na `main`. Ele faz o mesmo build e a mesma publicação.
+- A publicação **substitui todo o conteúdo** da branch `gh-pages` pelo `dist/` atual.
 - Se o repositório mudar de nome, ajuste a `base` em `vite.config.js`.
 
 ## Fluxo de trabalho
@@ -178,7 +180,7 @@ yarn deploy
 1. Crie uma branch a partir da `develop` (`feat/...`, `fix/...`, `docs/...`).
 2. Antes de abrir o PR, rode `yarn build` e `yarn format`.
 3. Abra o PR para a `develop`.
-4. Para lançar uma versão, abra um PR da `develop` para a `main` e rode o [deploy](#deploy) a partir da `main`.
+4. Para lançar uma versão, abra um PR da `develop` para a `main`. O merge dispara o [deploy](#deploy).
 
 As mensagens de commit seguem o padrão `tipo: descrição` (`feat`, `fix`, `style`, `docs`, `refactor`), como no histórico.
 
