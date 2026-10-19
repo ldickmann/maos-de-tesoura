@@ -1,0 +1,84 @@
+// ========================
+// Campos de formulário compartilhados
+// ========================
+// A borda tem pelo menos 3:1 contra o campo e o fundo (WCAG 1.4.11, C8).
+
+@use './variables' as *;
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: $text-strong;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.875rem;
+  border: 2px solid $border-input;
+  border-radius: $radius-md;
+  background-color: $accent-light;
+  font-size: 1rem;
+  transition:
+    border-color $duration-base $ease,
+    box-shadow $duration-base $ease;
+
+  &:focus {
+    border-color: $secondary;
+    box-shadow: 0 0 0 3px rgba($secondary, 0.1);
+  }
+
+  &.error {
+    border-color: $danger;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($danger, 0.1);
+    }
+  }
+
+  // 4,69:1 sobre branco
+  &::placeholder {
+    color: $text-gray;
+  }
+}
+
+// Uma seta só: tira a nativa e mantém o SVG
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+// Variante para fundos escuros (newsletter do rodapé)
+.form-input--dark {
+  padding: 0.875rem 1rem;
+  border: 1px solid $border-input-dark;
+  background-color: $surface-dark-3;
+  color: $accent-light;
+
+  // 5,83:1 sobre $surface-dark-3
+  &::placeholder {
+    color: $text-on-dark-muted;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.form-error {
+  color: $danger;
+  font-size: $font-size-xs;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}

@@ -1,18 +1,18 @@
 <template>
   <!-- Componente de Error Message, que exibirá uma mensagem de erro com opções para tentar novamente ou voltar ao início -->
-  <div class="error-container">
-    <div class="error-icon">
+  <div class="error-container" role="alert">
+    <div class="error-icon" aria-hidden="true">
       <i class="fas fa-exclamation-triangle"></i>
     </div>
-    <h3 class="error-title">{{ title }}</h3>
+    <h2 class="error-title">{{ title }}</h2>
     <p class="error-message">{{ message }}</p>
     <div class="error-actions">
-      <button v-if="showRetry" class="btn btn-primary" @click="$emit('retry')">
-        <i class="fas fa-redo"></i>
+      <button v-if="showRetry" class="btn btn--primary error-btn" @click="$emit('retry')">
+        <i class="fas fa-redo" aria-hidden="true"></i>
         Tentar Novamente
       </button>
-      <router-link v-if="showBackHome" to="/" class="btn btn-secondary">
-        <i class="fas fa-home"></i>
+      <router-link v-if="showBackHome" to="/" class="btn error-btn error-btn--neutral">
+        <i class="fas fa-home" aria-hidden="true"></i>
         Voltar ao Início
       </router-link>
     </div>
@@ -43,7 +43,6 @@ defineEmits(['retry'])
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
 
 .error-container {
@@ -56,8 +55,8 @@ defineEmits(['retry'])
   min-height: 300px;
   margin: 2rem auto;
   max-width: 600px;
-  background: white;
-  border-radius: 16px;
+  background: var.$accent-light;
+  border-radius: var.$radius-xl;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
@@ -88,35 +87,16 @@ defineEmits(['retry'])
   justify-content: center;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.error-btn {
   padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
 
-  &.btn-primary {
-    background-color: var.$secondary;
-    color: white;
-
-    &:hover {
-      background-color: var.$btn-primary-hover;
-      transform: translateY(-2px);
-    }
-  }
-
-  &.btn-secondary {
+  // Botão neutro: branco sobre cinza (4,69:1; hover 6,21:1)
+  &--neutral {
     background-color: var.$btn-secondary-bg;
-    color: white;
+    color: var.$accent-light;
 
     &:hover {
       background-color: var.$btn-secondary-hover;
-      transform: translateY(-2px);
     }
   }
 }
@@ -133,9 +113,8 @@ defineEmits(['retry'])
     max-width: 200px;
   }
 
-  .btn {
+  .error-btn {
     width: 100%;
-    justify-content: center;
   }
 }
 </style>

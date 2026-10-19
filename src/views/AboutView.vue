@@ -3,7 +3,7 @@
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-background">
-        <img :src="bannerImage" alt="Interior da barbearia" />
+        <img :src="bannerImage" alt="" />
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-content">
@@ -51,24 +51,24 @@
               <h3>Nossos Valores</h3>
               <ul class="values-list">
                 <li>
-                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star" aria-hidden="true"></i>
                   <span
                     ><strong>Excelência:</strong> Busca constante pela perfeição em cada
                     serviço</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-heart"></i>
+                  <i class="fas fa-heart" aria-hidden="true"></i>
                   <span><strong>Cuidado:</strong> Atendimento personalizado e respeitoso</span>
                 </li>
                 <li>
-                  <i class="fas fa-handshake"></i>
+                  <i class="fas fa-handshake" aria-hidden="true"></i>
                   <span
                     ><strong>Confiança:</strong> Relacionamento duradouro com nossos clientes</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-leaf"></i>
+                  <i class="fas fa-leaf" aria-hidden="true"></i>
                   <span
                     ><strong>Sustentabilidade:</strong> Produtos de qualidade e responsabilidade
                     ambiental</span
@@ -111,7 +111,13 @@
         <div class="team-grid">
           <div v-for="member in teamMembers" :key="member.id" class="team-card">
             <div class="member-photo">
-              <img :src="member.photo" :alt="member.name" />
+              <img
+                :src="member.photo"
+                :alt="member.name"
+                width="1920"
+                height="1281"
+                loading="lazy"
+              />
             </div>
             <div class="member-info">
               <h3>{{ member.name }}</h3>
@@ -145,7 +151,7 @@
           <div class="mission-pillars">
             <div class="pillar">
               <div class="pillar-icon">
-                <i class="fas fa-cut"></i>
+                <i class="fas fa-cut" aria-hidden="true"></i>
               </div>
               <h3>Tradição</h3>
               <p>Técnicas clássicas preservadas e aperfeiçoadas ao longo dos anos</p>
@@ -153,7 +159,7 @@
 
             <div class="pillar">
               <div class="pillar-icon">
-                <i class="fas fa-rocket"></i>
+                <i class="fas fa-rocket" aria-hidden="true"></i>
               </div>
               <h3>Inovação</h3>
               <p>Sempre em busca de novas tendências e produtos de qualidade</p>
@@ -161,7 +167,7 @@
 
             <div class="pillar">
               <div class="pillar-icon">
-                <i class="fas fa-users"></i>
+                <i class="fas fa-users" aria-hidden="true"></i>
               </div>
               <h3>Comunidade</h3>
               <p>Construindo relacionamentos duradouros com nossos clientes</p>
@@ -181,12 +187,12 @@
             masculino.
           </p>
           <div class="cta-buttons">
-            <button @click="handleBookingAlert" class="btn-primary">
-              <i class="fas fa-calendar-plus"></i>
+            <button @click="handleBookingAlert" class="btn btn--primary btn--lg cta-btn">
+              <i class="fas fa-calendar-plus" aria-hidden="true"></i>
               Agendar Horário
             </button>
-            <router-link to="/contato" class="btn-secondary">
-              <i class="fas fa-map-marker-alt"></i>
+            <router-link to="/contato" class="btn btn--outline btn--lg cta-btn">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
               Nos Visite
             </router-link>
           </div>
@@ -240,21 +246,15 @@ const teamMembers = ref([
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
 
 .about-page {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: var.$font-family-tertiary;
 }
 
 .container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 2rem;
-
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-  }
+  @include mx.container;
 }
 
 // Hero Section
@@ -267,7 +267,7 @@ const teamMembers = ref([
   justify-content: center;
   overflow: hidden;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md) {
     height: 80vh;
     min-height: 500px;
   }
@@ -289,55 +289,56 @@ const teamMembers = ref([
   }
 }
 
+// Véu escuro sobre a ilustração, como o Banner da Home
 .hero-overlay {
-  display: flex;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   z-index: 2;
+  background: linear-gradient(to top, rgba(var.$primary, 0.8), rgba(var.$primary, 0.45));
 }
 
 .hero-content {
   position: relative;
   z-index: 3;
   text-align: center;
-  color: white;
+  color: var.$accent-light;
   max-width: 800px;
   padding: 2rem;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md) {
     padding: 1rem;
   }
 }
 
 .hero-title {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var.$font-family-primary;
   font-size: 4rem;
-  color: white;
+  color: var.$accent-light;
   margin-bottom: 1rem;
   line-height: 1.1;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   text-transform: uppercase;
   letter-spacing: 2px;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md) {
     font-size: 2.8rem;
     letter-spacing: 1px;
   }
 
-  @media (max-width: 480px) {
+  @include mx.down(var.$bp-sm) {
     font-size: 2.2rem;
   }
 }
 
 .hero-subtitle {
   font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(var.$accent-light, 0.9);
   line-height: 1.6;
   margin-bottom: 3rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   font-weight: 300;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md) {
     font-size: 1.2rem;
     margin-bottom: 2rem;
   }
@@ -349,12 +350,12 @@ const teamMembers = ref([
   gap: 3rem;
   margin-top: 2rem;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md) {
     gap: 2rem;
     flex-wrap: wrap;
   }
 
-  @media (max-width: 480px) {
+  @include mx.down(var.$bp-sm) {
     gap: 1rem;
   }
 }
@@ -364,14 +365,14 @@ const teamMembers = ref([
 
   .stat-number {
     display: block;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
     font-size: 2.5rem;
-    color: #e67e22;
+    color: var.$secondary;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     line-height: 1;
 
-    @media (max-width: 768px) {
+    @include mx.down(var.$bp-md) {
       font-size: 2rem;
     }
   }
@@ -379,13 +380,13 @@ const teamMembers = ref([
   .stat-label {
     display: block;
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(var.$accent-light, 0.8);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-top: 0.5rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 
-    @media (max-width: 768px) {
+    @include mx.down(var.$bp-md) {
       font-size: 0.8rem;
     }
   }
@@ -394,7 +395,7 @@ const teamMembers = ref([
 // Story Section
 .story-section {
   padding: 5rem 0;
-  background: white;
+  background: var.$accent-light;
 }
 
 .story-grid {
@@ -403,7 +404,7 @@ const teamMembers = ref([
   gap: 4rem;
   align-items: flex-start;
 
-  @media (max-width: 968px) {
+  @include mx.down(var.$bp-lg) {
     flex-direction: column;
     gap: 3rem;
   }
@@ -413,26 +414,26 @@ const teamMembers = ref([
   flex: 2;
 
   h2 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
     font-size: 2.5rem;
-    color: #212121;
+    color: var.$primary;
     margin-bottom: 1.5rem;
 
-    @media (max-width: 768px) {
+    @include mx.down(var.$bp-md) {
       font-size: 2rem;
     }
   }
 
   .lead {
     font-size: 1.2rem;
-    color: #495057;
+    color: var.$text-body;
     line-height: 1.6;
     margin-bottom: 1.5rem;
     font-weight: 500;
   }
 
   p {
-    color: #6c757d;
+    color: var.$text-gray;
     line-height: 1.7;
     margin-bottom: 1.5rem;
   }
@@ -442,7 +443,7 @@ const teamMembers = ref([
   margin-top: 2.5rem;
 
   h3 {
-    color: #212121;
+    color: var.$primary;
     margin-bottom: 1.5rem;
     font-size: 1.4rem;
     font-weight: 600;
@@ -461,18 +462,18 @@ const teamMembers = ref([
     margin-bottom: 1rem;
 
     i {
-      color: #ff7b42;
+      color: var.$secondary;
       font-size: 1.1rem;
       margin-top: 0.2rem;
       flex-shrink: 0;
     }
 
     span {
-      color: #495057;
+      color: var.$text-body;
       line-height: 1.5;
 
       strong {
-        color: #212121;
+        color: var.$primary;
       }
     }
   }
@@ -484,43 +485,43 @@ const teamMembers = ref([
   flex-wrap: wrap;
   gap: 1.5rem;
 
-  @media (max-width: 968px) {
+  @include mx.down(var.$bp-lg) {
     justify-content: center;
   }
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md) {
     justify-content: space-between;
   }
 }
 
+// Texto $primary sobre o laranja, sem opacidade: 6,26:1 no início do gradiente e 4,99:1 no fim
 .stat-card {
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-  color: white;
+  background: var.$gradient-primary;
+  color: var.$primary;
   padding: 2rem 1.5rem;
-  border-radius: 16px;
+  border-radius: var.$radius-xl;
   text-align: center;
-  box-shadow: 0 8px 25px rgba(255, 123, 66, 0.2);
+  box-shadow: 0 8px 25px rgba(var.$secondary, 0.2);
   flex: 1 1 calc(50% - 0.75rem);
   min-width: 120px;
 
-  @media (max-width: 968px) {
+  @include mx.down(var.$bp-lg) {
     flex: 1 1 calc(25% - 1.125rem);
   }
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md) {
     flex: 1 1 calc(50% - 0.75rem);
   }
 
   .stat-number {
     font-size: 2.5rem;
     font-weight: 700;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
     margin-bottom: 0.5rem;
   }
 
   .stat-label {
     font-size: 0.9rem;
-    opacity: 0.9;
     font-weight: 500;
   }
 }
@@ -528,24 +529,24 @@ const teamMembers = ref([
 // Team Section
 .team-section {
   padding: 5rem 0;
-  background: #f8f9fa;
+  background: var.$bg-light;
 }
 
 .section-title {
-  font-family: 'Archivo Black', sans-serif;
+  font-family: var.$font-family-primary;
   font-size: 2.5rem;
-  color: #212121;
+  color: var.$primary;
   text-align: center;
   margin-bottom: 1rem;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md) {
     font-size: 2rem;
   }
 }
 
 .section-subtitle {
   text-align: center;
-  color: #6c757d;
+  color: var.$text-gray;
   font-size: 1.1rem;
   margin-bottom: 3rem;
   max-width: 600px;
@@ -559,36 +560,32 @@ const teamMembers = ref([
   gap: 2rem;
   justify-content: center;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md) {
     flex-direction: column;
     align-items: center;
   }
 }
 
+// Sem efeito de "levantar": o card não é clicável
 .team-card {
-  background: white;
-  border-radius: 16px;
+  background: var.$accent-light;
+  border-radius: var.$radius-xl;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
   flex: 1 1 350px;
   max-width: 400px;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md) {
     flex: none;
     width: 100%;
     max-width: 500px;
-  }
-
-  &:hover {
-    transform: translateY(-8px);
   }
 }
 
 .member-photo {
   height: 250px;
   overflow: hidden;
-  background: #f0f0f0;
+  background: var.$bg-muted;
 
   img {
     width: 100%;
@@ -602,20 +599,20 @@ const teamMembers = ref([
 
   h3 {
     font-size: 1.5rem;
-    color: #212121;
+    color: var.$primary;
     margin-bottom: 0.5rem;
     font-weight: 600;
   }
 
   .member-role {
-    color: #ff7b42;
+    color: var.$secondary;
     font-weight: 600;
     font-size: 1rem;
     margin-bottom: 1rem;
   }
 
   .member-description {
-    color: #6c757d;
+    color: var.$text-gray;
     line-height: 1.6;
     margin-bottom: 1.5rem;
   }
@@ -623,7 +620,7 @@ const teamMembers = ref([
 
 .member-specialties {
   h4 {
-    color: #212121;
+    color: var.$primary;
     font-size: 1rem;
     margin-bottom: 0.75rem;
     font-weight: 600;
@@ -638,13 +635,13 @@ const teamMembers = ref([
     gap: 0.5rem;
 
     li {
-      background: #f8f9fa;
-      color: #495057;
+      background: var.$bg-light;
+      color: var.$text-body;
       padding: 0.4rem 0.8rem;
-      border-radius: 20px;
+      border-radius: var.$radius-pill;
       font-size: 0.85rem;
       font-weight: 500;
-      border: 1px solid #dee2e6;
+      border: 1px solid var.$border-color;
     }
   }
 }
@@ -652,19 +649,19 @@ const teamMembers = ref([
 // Mission Section
 .mission-section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, #212121 0%, #495057 100%);
-  color: white;
+  background: linear-gradient(135deg, var.$primary 0%, var.$text-body 100%);
+  color: var.$accent-light;
 }
 
 .mission-content {
   text-align: center;
 
   h2 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
     font-size: 2.5rem;
     margin-bottom: 2rem;
 
-    @media (max-width: 768px) {
+    @include mx.down(var.$bp-md) {
       font-size: 2rem;
     }
   }
@@ -697,7 +694,7 @@ const teamMembers = ref([
     width: 80px;
     height: 80px;
     margin: 0 auto 1.5rem;
-    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
+    background: var.$gradient-primary;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -705,7 +702,7 @@ const teamMembers = ref([
 
     i {
       font-size: 2rem;
-      color: white;
+      color: var.$accent-light;
     }
   }
 
@@ -725,25 +722,25 @@ const teamMembers = ref([
 // CTA Section
 .cta-section {
   padding: 4rem 0;
-  background: white;
+  background: var.$accent-light;
 }
 
 .cta-content {
   text-align: center;
 
   h2 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
     font-size: 2.2rem;
-    color: #212121;
+    color: var.$primary;
     margin-bottom: 1rem;
 
-    @media (max-width: 768px) {
+    @include mx.down(var.$bp-md) {
       font-size: 1.8rem;
     }
   }
 
   p {
-    color: #6c757d;
+    color: var.$text-gray;
     font-size: 1.1rem;
     margin-bottom: 2rem;
     max-width: 600px;
@@ -759,57 +756,22 @@ const teamMembers = ref([
   flex-wrap: wrap;
 }
 
-.btn-primary,
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
+.cta-btn {
   gap: 0.75rem;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  text-decoration: none;
-  transition: all 0.3s ease;
 
   i {
     font-size: 1.2rem;
   }
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-  color: white;
-
-  &:hover {
-    background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 123, 66, 0.4);
-  }
-}
-
-.btn-secondary {
-  background: transparent;
-  color: #ff7b42;
-  border: 2px solid #ff7b42;
-
-  &:hover {
-    background: #ff7b42;
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 123, 66, 0.3);
-  }
-}
-
-@media (max-width: 768px) {
+@include mx.down(var.$bp-md) {
   .cta-buttons {
     flex-direction: column;
     align-items: center;
 
-    .btn-primary,
-    .btn-secondary {
+    .cta-btn {
       width: 100%;
       max-width: 280px;
-      justify-content: center;
     }
   }
 }

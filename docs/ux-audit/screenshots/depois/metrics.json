@@ -1,0 +1,2936 @@
+{
+  "home-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "servicos-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "sobre-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "contato-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "agendamento-vazio-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "404-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "agendamento-fluxo-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ],
+    "etapa5": 0
+  },
+  "home-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "servicos-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "sobre-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "contato-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "agendamento-vazio-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "404-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "agendamento-fluxo-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ],
+    "etapa5": 0
+  },
+  "menu-mobile-768": {
+    "abertoAposEsc": 0,
+    "toggleAria": {
+      "label": "Abrir menu",
+      "expanded": "false"
+    },
+    "menuTop": 0,
+    "headerBottom": 76
+  },
+  "home-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "servicos-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "sobre-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "contato-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "agendamento-vazio-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "404-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ]
+  },
+  "agendamento-fluxo-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Hanken Grotesk\", sans-serif",
+    "h1": 1,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE\nTESOURA",
+        "w": 118,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "(47) 55555-5555",
+        "w": 115,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "devluksjs@gmail.com",
+        "w": 153,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "Desenvolvimento por Lucas E. D",
+        "w": 306,
+        "h": 40
+      }
+    ],
+    "etapa5": 0
+  },
+  "menu-mobile-390": {
+    "abertoAposEsc": 0,
+    "toggleAria": {
+      "label": "Abrir menu",
+      "expanded": "false"
+    },
+    "menuTop": 0,
+    "headerBottom": 76
+  }
+}
