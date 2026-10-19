@@ -10,8 +10,6 @@ export default defineConfig({
       scss: {
         additionalData: `
         @use "@/assets/styles/scss/variables.scss" as *;
-        @use "@/assets/styles/scss/typography.scss" as *;
-        @use "@/assets/styles/scss/base.scss" as *;
         `,
       },
     },

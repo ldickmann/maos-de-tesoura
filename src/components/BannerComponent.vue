@@ -1,13 +1,15 @@
 <template>
   <!-- Componente Banner, que exibirá um banner com imagem de fundo, texto sobreposto e botão de ação -->
   <div class="banner">
-    <img :src="bannerImage" class="banner-img" alt="Barbearia Banner" />
+    <img :src="bannerImage" class="banner-img" alt="" />
 
     <div class="banner-overlay">
       <div class="toolbar">
         <div class="toolbar-title">
-          <p class="text-overline">A Barbearia onde você vira</p>
-          <span class="highlight-text">Referência</span>
+          <h1 class="banner-title">
+            <span class="text-overline">A Barbearia onde você vira</span>
+            <span class="highlight-text">Referência</span>
+          </h1>
           <div class="line-text-row">
             <LineComponent class="line" :isVertical="false" lineWidth="50px" lineHeight="1px" />
             <p class="text-overline-toolbar">Desde 2009</p>
@@ -17,7 +19,9 @@
       </div>
 
       <div class="card-actions">
-        <button @click="handleBooking" class="btn-outline">Agende um Horário</button>
+        <button @click="handleBooking" class="btn btn--outline-light banner-btn">
+          Agende um Horário
+        </button>
       </div>
     </div>
   </div>
@@ -38,10 +42,11 @@ const handleBooking = () => {
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
 
 .banner {
+  @include mx.on-dark-surface;
   width: 100%;
   height: 100vh;
   font-family: var.$font-family-tertiary;
@@ -86,6 +91,15 @@ const handleBooking = () => {
   justify-content: center;
   gap: 1rem;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+// O h1 agrupa as duas linhas do título sem mudar o desenho
+.banner-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 400;
 }
 
 .text-overline {
@@ -141,27 +155,11 @@ const handleBooking = () => {
   text-align: center;
 }
 
-.btn-outline {
-  background: transparent;
-  color: var.$accent-light;
-  border: 2px solid var.$accent-light;
+.banner-btn {
   padding: 1.3rem 2rem;
-  cursor: pointer;
   font-size: 1rem;
   text-transform: uppercase;
-  border-radius: 4px;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
   font-family: var.$font-family-secondary;
   font-weight: bold;
-
-  &:hover {
-    background-color: var.$secondary;
-    border-color: var.$secondary;
-    color: var.$primary;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(var.$secondary, 0.4);
-  }
 }
 </style>

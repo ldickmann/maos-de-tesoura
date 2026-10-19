@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div>
     <!-- Banner Section -->
     <section class="section-banner">
       <BannerComponent />
@@ -13,33 +13,35 @@
           <p>Descubra os melhores tratamentos para o homem moderno</p>
         </div>
 
-        <div class="services-grid">
-          <div
-            v-for="service in featuredServices"
-            :key="service.id"
-            class="service"
-            @click="selectService(service)"
-          >
-            <div class="service-icon">
-              <i :class="service.icon"></i>
+        <!-- Enquanto carrega, a grade mantém a altura dos cards para a página não pular -->
+        <div class="services-grid" :class="{ 'services-grid--loading': isLoading }">
+          <LoadingSpinner v-if="isLoading" message="Carregando serviços..." />
+          <template v-else>
+            <div
+              v-for="service in featuredServices"
+              :key="service.id"
+              class="service"
+              @click="selectService(service)"
+            >
+              <div class="service-icon">
+                <i :class="service.icon" aria-hidden="true"></i>
+              </div>
+              <h3>{{ service.name }}</h3>
+              <p class="service-description">{{ service.description }}</p>
+              <div class="service-details">
+                <span class="duration">{{ service.duration }} min</span>
+                <span class="price">{{ formatPrice(service.price) }}</span>
+              </div>
+              <button @click="handleBookingAlert" class="btn btn--primary service-btn">
+                <i class="fas fa-calendar" aria-hidden="true"></i>
+                Agendar
+              </button>
             </div>
-            <h3>{{ service.name }}</h3>
-            <p class="service-description">{{ service.description }}</p>
-            <div class="service-details">
-              <span class="duration">{{ service.duration }} min</span>
-              <span class="price">R$ {{ service.price.toFixed(2) }}</span>
-            </div>
-            <button @click="handleBookingAlert" class="service-btn">
-              <i class="fas fa-calendar"></i>
-              Agendar
-            </button>
-          </div>
+          </template>
         </div>
 
         <div class="section-cta">
-          <router-link to="/servicos" class="btn-outline-primary">
-            Ver Todos os Serviços
-          </router-link>
+          <router-link to="/servicos" class="btn btn--outline"> Ver Todos os Serviços </router-link>
         </div>
       </div>
     </section>
@@ -57,29 +59,35 @@
             </p>
             <ul class="features-list">
               <li>
-                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
                 Profissionais experientes e qualificados
               </li>
               <li>
-                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
                 Produtos premium e equipamentos modernos
               </li>
               <li>
-                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
                 Ambiente acolhedor e sofisticado
               </li>
               <li>
-                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
                 Atendimento personalizado
               </li>
             </ul>
             <div class="about-actions">
-              <router-link to="/about" class="btn-primary"> Nossa História </router-link>
-              <router-link to="/contato" class="btn-secondary"> Fale Conosco </router-link>
+              <router-link to="/about" class="btn btn--primary"> Nossa História </router-link>
+              <router-link to="/contato" class="btn btn--outline"> Fale Conosco </router-link>
             </div>
           </div>
           <div class="about-image">
-            <img :src="barberBannerImg" alt="Interior da barbearia" />
+            <img
+              :src="barberBannerImg"
+              alt="Interior da barbearia"
+              width="1920"
+              height="1281"
+              loading="lazy"
+            />
             <div class="stats-overlay">
               <div class="stat-item">
                 <span class="stat-number">3000+</span>
@@ -110,7 +118,13 @@
         <div class="team-grid">
           <div v-for="member in teamMembers" :key="member.id" class="team-card">
             <div class="member-photo">
-              <img :src="member.photo" :alt="member.name" />
+              <img
+                :src="member.photo"
+                :alt="member.name"
+                width="1920"
+                height="1281"
+                loading="lazy"
+              />
             </div>
             <div class="member-info">
               <h3>{{ member.name }}</h3>
@@ -129,9 +143,7 @@
         </div>
 
         <div class="section-cta">
-          <router-link to="/about" class="btn-outline-primary">
-            Conhecer Toda a Equipe
-          </router-link>
+          <router-link to="/about" class="btn btn--outline"> Conhecer Toda a Equipe </router-link>
         </div>
       </div>
     </section>
@@ -147,14 +159,20 @@
         <div class="testimonials-grid">
           <div v-for="testimonial in testimonials" :key="testimonial.id" class="testimonial-card">
             <div class="testimonial-content">
-              <div class="rating">
-                <i v-for="n in 5" :key="n" class="fas fa-star"></i>
+              <div class="rating" role="img" aria-label="5 de 5 estrelas">
+                <i v-for="n in 5" :key="n" class="fas fa-star" aria-hidden="true"></i>
               </div>
-              <p>"{{ testimonial.text }}"</p>
+              <p>{{ testimonial.text }}</p>
             </div>
             <div class="testimonial-author">
               <div class="author-avatar">
-                <img :src="testimonial.avatar" :alt="testimonial.name" />
+                <img
+                  :src="testimonial.avatar"
+                  :alt="testimonial.name"
+                  width="1920"
+                  height="1281"
+                  loading="lazy"
+                />
               </div>
               <div class="author-info">
                 <h4>{{ testimonial.name }}</h4>
@@ -173,19 +191,24 @@
           <h2>Pronto para Renovar seu Visual?</h2>
           <p>Agende agora mesmo e experimente nossos serviços premium</p>
           <div class="cta-actions">
-            <button @click="handleBookingAlert" class="btn-primary btn-large">
-              <i class="fas fa-calendar-check"></i>
+            <button @click="handleBookingAlert" class="btn btn--on-accent btn--lg">
+              <i class="fas fa-calendar-check" aria-hidden="true"></i>
               Agendar Horário
             </button>
-            <a href="https://wa.me/5511987654321" class="btn-whatsapp" target="_blank">
-              <i class="fab fa-whatsapp"></i>
+            <a
+              href="https://wa.me/5511987654321"
+              class="btn btn--whatsapp btn--lg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
               WhatsApp
             </a>
           </div>
         </div>
       </div>
     </section>
-  </main>
+  </div>
 </template>
 
 <script setup>
@@ -197,6 +220,8 @@ import { useNotificationStore } from '@/stores/notification'
 import { useServicesStore } from '@/stores/services'
 import { useContentStore } from '@/stores/content'
 import BannerComponent from '@/components/BannerComponent.vue'
+import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import { formatPrice } from '@/utils/format'
 
 // Importar as imagens
 import barberBannerImg from '@/assets/images/barber-banner.jpg'
@@ -207,7 +232,7 @@ const notificationStore = useNotificationStore()
 
 // Stores de conteúdo
 const servicesStore = useServicesStore()
-const { services } = storeToRefs(servicesStore)
+const { services, isLoading } = storeToRefs(servicesStore)
 
 const contentStore = useContentStore()
 const { teamMembers, testimonials } = storeToRefs(contentStore)
@@ -236,17 +261,11 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
 
 .container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 2rem;
-
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-  }
+  @include mx.container;
 }
 
 // Section Headers
@@ -267,7 +286,7 @@ onMounted(() => {
 
   p {
     font-size: 1.1rem;
-    color: var.$text-gray;
+    color: var.$text-muted; // 5,89:1 sobre $bg-light
     max-width: 600px;
     margin: 0 auto;
   }
@@ -287,29 +306,66 @@ onMounted(() => {
   margin-bottom: 3rem;
 
   // Responsividade com flexbox
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md - 1px) {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
   }
 
-  @media (min-width: 769px) and (max-width: 1200px) {
+  // Mesma distribuição de antes: space-around até 1024px e space-evenly até 1200px
+  @media (min-width: var.$bp-md) and (max-width: 1024px) {
+    justify-content: space-around;
+  }
+
+  @media (min-width: 1025px) and (max-width: 1200px) {
     justify-content: space-evenly;
+  }
+
+  // Enquanto os serviços carregam, reserva a altura da grade pronta (3 cards do mock),
+  // medida em cada layout. Entre 968 e 1099px as descrições quebram de outro jeito e
+  // sobra uma diferença de até 57px.
+  &--loading {
+    justify-content: flex-start; // spinner no topo; as margens auto dele centralizam na horizontal
+    align-items: flex-start;
+    min-height: 458.5625px; // 3 por linha
+
+    // a 968px ainda cabem 3 cards (3 × 280px + 2 × 32px = 904px de contêiner)
+    @include mx.down(var.$bp-lg - 1px) {
+      min-height: 949.125px; // 2 linhas
+    }
+
+    @include mx.down(var.$bp-md - 1px) {
+      min-height: 1423.6875px; // empilhados
+    }
+
+    @include mx.down(var.$bp-sm) {
+      min-height: 1510.6875px; // empilhados, com duração e preço em coluna
+    }
+
+    .loading-container {
+      width: 100%;
+    }
   }
 }
 
+// Coluna flex: duração, preço e botão ficam alinhados na base de todos os cards
 .service {
+  display: flex;
+  flex-direction: column;
   background: var.$accent-light;
   padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease;
+  border-radius: var.$radius-2xl;
+  box-shadow: var.$shadow-md;
+  transition:
+    transform 0.4s var.$ease,
+    box-shadow 0.4s var.$ease,
+    border-color 0.4s var.$ease;
   cursor: pointer;
   text-align: center;
   flex: 1;
   min-width: 280px;
   max-width: 350px;
-  border: 1px solid rgba(255, 123, 66, 0.1);
+  border: 1px solid rgba(var.$secondary, 0.1);
   position: relative;
   overflow: hidden;
 
@@ -321,15 +377,15 @@ onMounted(() => {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
+    background: var.$gradient-primary;
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: transform var.$duration-base var.$ease;
   }
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-    border-color: rgba(255, 123, 66, 0.3);
+    box-shadow: var.$shadow-lg;
+    border-color: rgba(var.$secondary, 0.3);
 
     &::before {
       transform: scaleX(1);
@@ -337,11 +393,11 @@ onMounted(() => {
 
     .service-icon {
       transform: scale(1.1);
-      box-shadow: 0 8px 25px rgba(255, 123, 66, 0.3);
+      box-shadow: 0 8px 25px rgba(var.$secondary, 0.3);
     }
   }
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md - 1px) {
     width: 100%;
     max-width: 400px;
     padding: 2rem 1.5rem;
@@ -350,14 +406,16 @@ onMounted(() => {
   .service-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
+    background: var.$gradient-primary;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 123, 66, 0.2);
+    transition:
+      transform var.$duration-base var.$ease,
+      box-shadow var.$duration-base var.$ease;
+    box-shadow: 0 4px 15px rgba(var.$secondary, 0.2);
 
     i {
       font-size: 2rem;
@@ -384,10 +442,11 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: auto;
     margin-bottom: 2rem;
     padding: 1.2rem;
     background: var.$bg-light;
-    border-radius: 12px;
+    border-radius: var.$radius-lg;
     border-left: 4px solid var.$btn-primary-bg;
 
     @media (max-width: 480px) {
@@ -402,10 +461,6 @@ onMounted(() => {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-
-      i {
-        color: var.$btn-primary-bg;
-      }
     }
 
     .price {
@@ -419,32 +474,7 @@ onMounted(() => {
   .service-btn {
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
-    color: var.$accent-light;
-    border: none;
-    border-radius: 12px;
-    font-weight: 600;
     font-size: 1rem;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    cursor: pointer;
-
-    &:hover {
-      background: linear-gradient(
-        135deg,
-        var.$btn-primary-hover 0%,
-        color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
-      );
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(255, 123, 66, 0.3);
-    }
-
-    &:active {
-      transform: translateY(0);
-    }
   }
 }
 
@@ -460,9 +490,13 @@ onMounted(() => {
   align-items: center;
   flex-wrap: wrap;
 
-  @media (max-width: 968px) {
+  @include mx.down(var.$bp-lg) {
     flex-direction: column;
     gap: 3rem;
+  }
+
+  @include mx.down(var.$bp-md) {
+    gap: 2rem;
   }
 }
 
@@ -470,12 +504,13 @@ onMounted(() => {
   flex: 1;
   min-width: 300px;
 
+  // Texto escuro sobre o laranja: 6,26:1
   .section-tag {
     display: inline-block;
     background: var.$secondary;
-    color: var.$accent-light;
+    color: var.$primary;
     padding: 0.5rem 1rem;
-    border-radius: 20px;
+    border-radius: var.$radius-pill;
     font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: 1rem;
@@ -539,7 +574,8 @@ onMounted(() => {
 
   img {
     width: 100%;
-    border-radius: 16px;
+    height: auto; // a proporção vem dos atributos width/height
+    border-radius: var.$radius-xl;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   }
 }
@@ -549,9 +585,9 @@ onMounted(() => {
   bottom: 2rem;
   left: 2rem;
   right: 2rem;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(var.$accent-light, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 16px;
+  border-radius: var.$radius-xl;
   padding: 2rem;
   display: flex;
   justify-content: space-around;
@@ -559,19 +595,14 @@ onMounted(() => {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   border: 1px solid var.$border-color;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem;
-    bottom: 1rem;
-    left: 1rem;
-    right: 1rem;
-  }
-
-  @media (max-width: 480px) {
+  // Abaixo da foto, para não cobrir metade dela
+  @include mx.down(var.$bp-md) {
     position: static;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
     margin-top: 1rem;
-    border-radius: 12px;
+    border-radius: var.$radius-lg;
   }
 
   .stat-item {
@@ -613,23 +644,23 @@ onMounted(() => {
   gap: 2rem;
   margin-bottom: 3rem;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md - 1px) {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
-    justify-content: space-evenly;
+  @media (min-width: var.$bp-md) and (max-width: 1024px) {
+    justify-content: space-around;
   }
 }
 
+// Sem efeito de "levantar": o card não é clicável
 .team-card {
   background: var.$accent-light;
-  border-radius: 20px;
+  border-radius: var.$radius-2xl;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease;
+  box-shadow: var.$shadow-md;
   border: 1px solid var.$border-color;
   flex: 1;
   min-width: 280px;
@@ -637,12 +668,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
 
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-  }
-
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md - 1px) {
     width: 100%;
     max-width: 400px;
   }
@@ -698,17 +724,10 @@ onMounted(() => {
     background: var.$bg-light;
     color: var.$tertiary;
     padding: 0.4rem 0.8rem;
-    border-radius: 15px;
+    border-radius: var.$radius-pill;
     font-size: 0.85rem;
     font-weight: 500;
     border: 1px solid var.$border-color;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: var.$btn-primary-bg;
-      color: var.$accent-light;
-      border-color: var.$btn-primary-bg;
-    }
   }
 }
 
@@ -724,35 +743,30 @@ onMounted(() => {
   justify-content: center;
   gap: 2rem;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md - 1px) {
     flex-direction: column;
     align-items: center;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
-    justify-content: space-evenly;
+  @media (min-width: var.$bp-md) and (max-width: 1024px) {
+    justify-content: space-around;
   }
 }
 
+// Sem efeito de "levantar": o depoimento não é clicável
 .testimonial-card {
   background: var.$bg-light;
   padding: 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-radius: var.$radius-2xl;
+  box-shadow: var.$shadow-md;
   border: 1px solid var.$border-color;
   flex: 1;
   min-width: 320px;
   max-width: 400px;
   display: flex;
   flex-direction: column;
-  transition: all 0.4s ease;
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-  }
-
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md - 1px) {
     width: 100%;
     max-width: 450px;
   }
@@ -769,11 +783,6 @@ onMounted(() => {
       i {
         color: var.$warning;
         font-size: 1.1rem;
-        transition: transform 0.2s ease;
-
-        &:hover {
-          transform: scale(1.2);
-        }
       }
     }
 
@@ -842,10 +851,11 @@ onMounted(() => {
 }
 
 // CTA Section
+// Texto $primary sobre o laranja, sem opacidade: 6,26:1 no início do gradiente e 4,99:1 no fim
 .cta-section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
-  color: var.$accent-light;
+  background: var.$gradient-primary;
+  color: var.$primary;
   text-align: center;
 
   .cta-content {
@@ -862,7 +872,6 @@ onMounted(() => {
     p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
-      opacity: 0.9;
     }
   }
 
@@ -873,97 +882,13 @@ onMounted(() => {
     gap: 1.5rem;
     flex-wrap: wrap;
 
-    @media (max-width: 768px) {
+    // Os dois botões com a mesma largura no celular
+    @include mx.down(var.$bp-md) {
       flex-direction: column;
+      align-items: stretch;
       width: 100%;
       gap: 1rem;
     }
-  }
-}
-
-// Common Button Styles
-.btn-primary {
-  background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
-  color: var.$accent-light;
-  padding: 0.875rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: none;
-
-  &:hover {
-    background: linear-gradient(
-      135deg,
-      var.$btn-primary-hover 0%,
-      color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
-    );
-    transform: translateY(-2px);
-  }
-
-  &.btn-large {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-  }
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var.$link-color;
-  padding: 0.875rem 1.5rem;
-  border: 2px solid var.$link-color;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  &:hover {
-    background: var.$link-color;
-    color: var.$accent-light;
-    transform: translateY(-2px);
-  }
-}
-
-.btn-outline-primary {
-  background: transparent;
-  color: var.$link-color;
-  padding: 0.875rem 1.5rem;
-  border: 2px solid var.$link-color;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: var.$link-color;
-    color: var.$accent-light;
-    transform: translateY(-2px);
-  }
-}
-
-.btn-whatsapp {
-  background: var.$success;
-  color: var.$accent-light;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: none;
-
-  &:hover {
-    background: color.adjust(var.$success, $lightness: -10%);
-    transform: translateY(-2px);
   }
 }
 
@@ -975,73 +900,8 @@ onMounted(() => {
   padding: 1rem 0;
 }
 
-// Responsive adjustments with flexbox priority
-@media (max-width: 768px) {
-  .container {
-    padding: 0 1rem;
-  }
-
-  // Force flexbox direction on mobile
-  .about-grid {
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .services-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .team-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .testimonials-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .cta-actions {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-  }
-
-  .about-actions {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-
-  // Stats overlay responsive with flexbox
-  .stats-overlay {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-
-    .stat-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-}
-
-// Tablet adjustments
-@media (min-width: 769px) and (max-width: 1024px) {
-  .services-grid {
-    justify-content: space-around;
-  }
-
-  .team-grid {
-    justify-content: space-around;
-  }
-
-  .testimonials-grid {
-    justify-content: space-around;
-  }
-
+// Tablet
+@media (min-width: var.$bp-md + 1px) and (max-width: 1024px) {
   .about-grid {
     gap: 3rem;
   }

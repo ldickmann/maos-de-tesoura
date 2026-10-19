@@ -1,0 +1,1023 @@
+# Plano de correções de UI/UX — Mãos de Tesoura
+
+- **Auditoria:** [`AUDIT.md`](./AUDIT.md). Os IDs entre parênteses (T1, C3…) remetem a ela.
+- **Commit base:** `d6a5aea`. **Aprovado em:** 2026-10-18.
+- **Identidade que fica:** a paleta de `_variables.scss`, as fontes Archivo Black, Bungee Hairline e Hanken Grotesk, e o logo tipográfico.
+
+## Decisões (2026-10-18)
+
+- **Itens ⚠ aprovados:**
+  - Hanken Grotesk no `body` (1.3);
+  - a mesma fonte no menu mobile e no desktop (2.5);
+  - fundo `#212121` no botão do CTA final da Home (3.2);
+  - 2 colunas no tablet (3.2, 3.3);
+  - véu escuro no topo da página Sobre (3.4).
+- **Saiu do "fica de fora" e entrou na execução:** texto **`#212121` nos botões laranja** (C1).
+  - **O que conta como "botão laranja":**
+    - todo `<button>` ou link com aparência de botão com fundo laranja;
+    - os estados *selecionado* de profissional e horário no agendamento;
+    - o *hover* dos botões outline, que hoje preenchem de laranja.
+  - **O que não conta:**
+    - ~~superfícies laranja que não são botão, como o título e o texto da seção CTA da Home, os cards de números da Sobre e a etiqueta "Desde 2009" (C11);~~ *entrou na execução pela decisão 3 abaixo (3.2 e 3.4);*
+    - texto laranja sobre fundo claro (C2).
+
+    Esse caso continua em F1.
+  - **Regra de hover:**
+    - Com texto `#212121`, o fundo do botão não pode ficar mais escuro que `$btn-primary-hover` (#e66b32, 4,99:1).
+    - O escurecimento atual reprovaria: `color.adjust($btn-primary-hover, $lightness: -5%)` = #e35b1c dá 4,43:1, e #d55a22 dá 4,08:1.
+- **Continua fora:** todo o resto da tabela "Fica de fora", incluindo os **19 bugs funcionais** (B1–B19).
+- **Screenshots "antes":** a sessão de execução tira as capturas (item 0.2) **antes de editar qualquer arquivo**.
+
+## Decisões da sessão de execução (2026-10-18)
+
+Fecham o que a sessão anterior deixou em aberto:
+
+1. **"Botões laranja"** inclui os estados *selecionados* de profissional e horário no agendamento (3.6) e o *hover* dos botões outline que preenche de laranja (2.1). Confirma a definição acima.
+2. **Hover dos botões laranja em `#e66b32`** (`$btn-primary-hover`) aprovado. Nenhum botão laranja escurece além disso.
+3. **C11 entra na execução:** texto `#212121` também
+   - no título e no texto da seção CTA da Home (3.2);
+   - na etiqueta "Desde 2009" da Home (3.2);
+   - nos cards de números da Sobre (3.4).
+
+   O C11 sai do F1. O `opacity: .9` do parágrafo do CTA e dos rótulos dos cards também sai: `#212121` a 90% sobre o fim do gradiente (#e66b32) dá **4,40:1**, abaixo de 4,5. Sem a opacidade, o pior trecho dá 4,99:1 e o início 6,26:1.
+4. **ESLint fora desta execução:** o `vue-eslint-parser` **não** é instalado. A verificação de cada item usa `yarn build` e `npx prettier --check` só nos arquivos alterados.
+
+**Citações conferidas antes de editar** (as linhas novas do C1 e do C11 não tinham passado pelo revisor): abri cada arquivo em `5a36cae` e todas as citações batem com o código.
+- C1: `HeaderFloating.vue:220-221`, `:305-306`; `HomeView.vue:422-423`, `:886-887`, `:926-928`, `:943-945`; `ServicosView.vue:526-527`, `:683-684`; `ContatoView.vue:486-487`, `:722-724`; `FooterComponent.vue:537-538`; `AboutView.vue:780-781`, `:795-797`; `BookingView.vue:488-491`, `:573-576`, `:718-719`; `ErrorMessage.vue:103-105`; `NotFoundView.vue:51-52`.
+- C11: `HomeView.vue:845-866` (seção CTA; `opacity: .9` em `:865`); `HomeView.vue:473-482` (`.section-tag`, usada em `:52` com "Desde 2009"); `AboutView.vue:496-525` (`.stat-card`; `opacity: .9` em `:523`).
+
+## Como usar este checklist
+
+- **Ordem:** preparação → tokens e base global → componentes base → telas → verificação ponta a ponta. Marque `[x]` ao concluir cada item.
+- **Efeito visual:**
+  - **nenhum:** o pixel não muda;
+  - **sutil:** só se percebe lado a lado;
+  - **visível:** se nota sem comparar. Os itens visíveis já foram aprovados nas decisões acima.
+- **Regras de escopo:**
+  - Não corrigir bugs funcionais (B1–B19). Se um item de UI encostar em um deles, o comportamento atual fica como está; o item cita o bug quando isso acontece.
+  - Não adicionar, remover nem atualizar dependências.
+- **Estado inicial conhecido**, medido em `d6a5aea`:
+  - **Lint:** `npx eslint .` **não roda** (`Cannot find module 'vue-eslint-parser'`, dependência par ausente). Resolver exige adicionar uma dependência, que está fora do escopo (F10). Pela decisão 4, o ESLint fica fora desta execução.
+  - **`yarn lint`:** aplica `--fix`; não usar como verificação.
+  - **Formatação:** `npx prettier --check src/` só acusa `src/stores/services.js`, que este plano não toca.
+  - **Ícones:** a rede da sessão da auditoria bloqueava `cdnjs.cloudflare.com` (Font Awesome) e `cdn.materialdesignicons.com`. O script do Apêndice B aborta esses requests de propósito.
+- **Commits:** sugestão de um commit por item, citando os IDs, por exemplo `style: unificar botões (K1, K2, R1, C1)`.
+
+---
+
+## Entra na execução
+
+### Fase 0 — Preparação (antes de editar qualquer arquivo)
+
+- [x] **0.1 Ambiente**
+  - Rodar `yarn install --frozen-lockfile` e `yarn dev --port 5173 --strictPort`. O app abre em `http://localhost:5173/maos-de-tesoura/`.
+  - **Verificar:** a Home abre no navegador.
+  - **Resultado:** `yarn install` só avisa do `vue-eslint-parser` ausente (estado inicial). Vite 6.2.2 pronto em 498 ms; a Home responde 200.
+- [x] **0.2 Capturas "antes"**
+  - Gravar o script do Apêndice B fora do repositório, por exemplo em `/tmp/capturas.cjs`.
+  - Rodar `node /tmp/capturas.cjs docs/ux-audit/screenshots/antes`.
+  - Telas: Home, Serviços, Sobre, Contato, Agendamento vazio, Agendamento preenchido até a etapa 4 e 404, em 1440, 768 e 390, mais o menu mobile em 768 e 390.
+  - **Verificar:** 41 PNG e o `metrics.json` na pasta. Os nomes batem com as evidências da `AUDIT.md`: `home-1440.png`, `home-1440-dobra.png` e assim por diante.
+  - **Resultado:** o script foi extraído do Apêndice B **sem nenhuma alteração** (gravado no scratchpad da sessão, fora do repositório) e rodou de primeira em 2 min 8 s: `ok: 41 PNG`, mais o `metrics.json`. As métricas reproduzem a auditoria: `headerHeight` 89/76, `menuTop` 80 × `headerBottom` 76, `abertoAposEsc` 1, `toggleAria` nulo, `h1` 0 na Home, `bodyFont` "Archivo Black", `overflowers` só no toast do agendamento vazio a 768 e 390, `etapa5` 0.
+- [x] **0.3 Linha de base das contagens**
+  - Rodar `yarn build` e o script do Apêndice A da `AUDIT.md`.
+  - **Verificar:** a saída é igual à registrada na auditoria.
+  - **Resultado:** `yarn build` passa sem avisos (`✓ built in 2.53s`). A saída do Apêndice A é **idêntica** às 16 linhas registradas na auditoria (`diff` vazio).
+
+### Fase 1 — Variáveis, tokens e base global
+
+- [x] **1.1 Pipeline SCSS** (D1, D2, D6). Efeito: **nenhum**.
+  - **Arquivos:** `vite.config.js`, `src/assets/styles/main.scss`, `scss/_typography.scss`, `scss/_base.scss`, e os 11 arquivos com `@use 'sass:color'` sem uso.
+  - **O que muda:**
+    - O `additionalData` deixa de injetar `typography` e `base`. Todos os componentes já fazem `@use '@/assets/styles/scss/_variables.scss' as var`.
+    - `_typography.scss` para de redeclarar as fontes, e `_base.scss` passa a ler as variáveis de `_variables.scss`.
+    - O reset é emitido uma vez, via `main.scss`.
+    - Sai o `@use 'sass:color'` onde não há `color.*(`.
+  - **Verificar:**
+    - `yarn build` passa;
+    - no Apêndice A, "reset no build" dá **1** e "sass:color sem uso" dá **0**;
+    - `compare -metric AE antes/X.png depois/X.png null:` dá 0 nas telas. Diferença só em toast ou spinner em movimento é aceitável.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.42s`, sem avisos. `npx prettier --check` nos 15 arquivos alterados → `All matched files use Prettier code style!`
+    - Apêndice A: `reset no build (box-sizing:inherit): 1` e `arquivos com @use 'sass:color' sem uso: 0`.
+    - `compare -metric AE`: **0 em 38 das 41 capturas**. As 3 `agendamento-fluxo-*` diferem (178044, 82318 e 43595 px) só no header e no horário sob o mouse.
+    - **Ruído do script, não regressão:** o Apêndice B tira a captura do fluxo logo depois do `scrollTo(0, 0)`, com o header e o hover ainda em transição (0,3 s). Duas rodadas seguidas **no mesmo código** diferem nos mesmos 178044 px (cor do header 41 × 38). O script não foi alterado, para manter "antes" e "depois" comparáveis.
+    - `_typography.scss` passou a só reexportar as três famílias de `_variables.scss` (`@forward … show`).
+
+- [x] **1.2 Tokens em `_variables.scss`** e mixins em um novo `_mixins.scss` (D3, D4, E1, E3, E12, R2, S1, T5, A2, RS3). Efeito: **nenhum** nesta etapa. Os tokens são usados nas fases seguintes, preservando os valores.
+  - **O que muda:** criar tokens só com valores que já existem no código.
+    - **Texto:**
+      - `$text-muted: #5a6268` (hoje é `$btn-secondary-hover`);
+      - `$text-on-dark-muted: #b0b0b0` (vem do rodapé).
+    - **Superfícies:** `$surface-dark-2: #2c2c2c`.
+    - **Botões:**
+      - `$btn-primary-text: $primary`, a decisão do C1;
+      - `$btn-on-accent-bg: $primary`;
+      - `$btn-on-accent-hover: $tertiary`;
+      - `$gradient-primary: linear-gradient(135deg, $secondary 0%, $btn-primary-hover 100%)`;
+      - **não criar** token de hover mais escuro que `$btn-primary-hover`.
+    - **Raios:** `$radius-sm` (4px), `$radius-md` (8px), `$radius-lg` (12px), `$radius-xl` (16px), `$radius-2xl` (20px) e `$radius-pill`.
+    - **Sombras:** quatro níveis com as geometrias mais usadas: `$shadow-sm` (0 4px 15px), `$shadow-md` (0 10px 30px), `$shadow-lg` (0 20px 40px) e `$shadow-accent` (laranja).
+    - **Tipografia:** escala em rem com os tamanhos existentes.
+    - **Movimento:** `$duration-fast: .2s`, `$duration-base: .3s` e `$ease: ease`.
+    - **Layout:** `$container-max: 1440px`, `$container-pad: 2rem` / `1rem`, `$header-height: 89px` e `$header-height-mobile: 76px`. As alturas são as medidas; o header passa a usar `min-height` com esses tokens.
+    - **Breakpoints:** `$bp-sm: 480px`, `$bp-md: 768px` e `$bp-lg: 968px`, com os mixins `down($bp)` e `up($bp)`.
+    - **z-index:** `$z-menu: 999`, `$z-header: 1000` e `$z-toast: 9999`.
+  - **Verificar:** `yarn build` passa, e os arquivos ainda não importam os novos tokens.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.60s`, sem avisos. `npx prettier --check _variables.scss _mixins.scss` → `All matched files use Prettier code style!`. Nenhum `.vue` importa `_mixins` ou os tokens novos.
+    - Os mixins foram compilados à parte com `npx sass`: `down($bp-md)` → `(max-width: 768px)`, `down($bp-md - 1px)` → `(max-width: 767px)`, `up($bp-lg)` → `(min-width: 969px)`.
+    - **Detalhes de implementação:**
+      - `$container-pad` (2rem) e `$container-pad-mobile` (1rem) são dois tokens.
+      - `_mixins.scss` também traz `container`, com o bloco `.container` idêntico copiado em 4 arquivos (D4).
+      - `$radius-pill: 999px` substitui o 20px/15px das etiquetas, que já ficam totalmente arredondadas. Como o raio é limitado à metade da altura, o pixel não muda; isso é conferido nas capturas.
+      - Escala de fonte: `$font-size-xs` (0.85rem) a `$font-size-4xl` (3rem), com os 9 tamanhos mais usados.
+      - As sombras usam as cores mais frequentes de cada geometria: `sm` rgba(0,0,0,.05), `md` .08, `lg` .12 e `accent` rgba($secondary,.3).
+
+- [x] **1.3 Base global em `_base.scss`** (T1, T2, ST1, A1).
+  - **O que muda:**
+    - **visível, aprovado:** o `body` passa a `$font-family-tertiary` (Hanken Grotesk). Os títulos da 404 recebem Archivo Black explicitamente (3.7); o `h3` do rodapé já define a própria fonte (`FooterComponent.vue:325`).
+    - **sutil:** `button, input, select, textarea { font: inherit; }`. O botão do header herda a Bungee Hairline que o wrapper já define (`HeaderFloating.vue:217`).
+    - **sutil:** `:focus-visible` global com `outline: 2px solid $primary` e `outline-offset: 2px`.
+      - Em superfícies escuras (header, menu mobile, rodapé, 404, seções `$primary`/gradiente cinza), o anel usa `$accent-light`.
+      - Nos inputs, o outline volta e a borda laranja de foco continua.
+    - **nenhum:** `@media (prefers-reduced-motion: reduce)` zera `transition-duration`, `animation-duration` e `animation-iteration-count`, e põe `scroll-behavior: auto`.
+      - Os dois `window.scrollTo({ behavior: 'smooth' })` (`HeaderFloating.vue:88`, `FooterComponent.vue:253`) passam a usar `'auto'` quando `matchMedia('(prefers-reduced-motion: reduce)').matches`.
+    - **nenhum:** cria-se o utilitário `.sr-only`.
+  - **Verificar:**
+    - Nas capturas da Home e da 404, o corpo aparece em Hanken; a métrica `bodyFont` começa com "Hanken Grotesk".
+    - Com Tab em todas as telas, o anel aparece no claro e no escuro.
+    - Playwright com `reducedMotion: 'reduce'`: o `transitionDuration` do card de serviço dá `0s`.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.69s`, sem avisos. `npx prettier --check` nos arquivos alterados → `All matched files use Prettier code style!`
+    - `bodyFont` = `"Hanken Grotesk", sans-serif` na Home e na 404, e em todas as 41 capturas.
+    - `reducedMotion: 'reduce'` → `.service` com `transitionDuration = 0s`; sem a preferência, `0.4s`.
+    - Anel com Tab (lido 400 ms depois, porque o `transition: all` ainda anima o `outline-width` até as fases 2–3):
+      - logo e menu do header: `solid 2px rgb(255,255,255)`, offset 2px;
+      - newsletter: branco;
+      - campo do Contato: `rgb(33,33,33)`.
+    - **Implementação do anel no escuro:** o `:focus-visible` usa `var(--focus-ring-color, $primary)`, e o mixin `on-dark-surface` (`_mixins.scss`) troca a cor para `$accent-light`. Aplicado em `.header-floating` (inclui o menu mobile), `.banner`, `.footer`, `.not-found` e no `.cta-section` de Serviços (gradiente #212121→#495057). As seções escuras da Sobre não têm elementos focáveis.
+    - **Outline nos inputs:** saíram os `outline: none` de `ContatoView.vue:445`, `BookingView.vue:542` e `:602` e `FooterComponent.vue:530`.
+    - **Citação incompleta:** além de `HeaderFloating.vue:88` e `FooterComponent.vue:253`, havia um terceiro `scrollTo` suave em `HeaderFloating.vue:94` (rolagem até uma seção). Os três passaram a respeitar `prefers-reduced-motion`.
+    - **Efeito visto nas capturas:** o corpo da Home aparece em Hanken. O botão do header herda a Bungee Hairline, em caixa alta, e fica mais largo, o que desloca o menu central uns 18px.
+
+### Fase 2 — Componentes base
+
+- [x] **2.1 Botões compartilhados**, em um novo `scss/_buttons.scss` importado uma vez em `main.scss` (K1, K2, R1, E6, ST9, C1, C9, D4).
+  - **Classes:**
+    - **`.btn` (base):** `border: none`, `cursor: pointer`, `display: inline-flex`, `align-items` e `justify-content: center`, `gap`, `$radius-md` (8px), estados `:active` e `:disabled` (`opacity .6`, `cursor: not-allowed`) e foco da 1.3.
+    - **`.btn--primary`:**
+      - fundo `$gradient-primary`;
+      - **texto `$btn-primary-text` (#212121)**, que dá 6,26:1 no início do gradiente e 4,99:1 no fim;
+      - hover com fundo sólido `$btn-primary-hover` (4,99:1), sem escurecer além disso.
+    - **`.btn--outline`:** borda e texto laranja como hoje (o contraste do texto laranja está em F1). No hover, fundo `$secondary` e **texto #212121**.
+    - **`.btn--outline-light`:** o botão do hero, mantido como está; o hover já usa #212121.
+    - **`.btn--on-accent`:** fundo `$btn-on-accent-bg` (#212121), texto `$accent-light` (16,1:1) e hover `$btn-on-accent-hover`. Uso no CTA da Home (3.2).
+    - **`.btn--whatsapp`:** mantém o verde e o texto branco atuais (F2).
+    - **`.btn--lg`:** tamanho maior.
+  - **Onde aplicar** (e remover o CSS de botão duplicado de cada arquivo):
+    - **componentes:** `HeaderFloating.vue` (`.btn-accent` e `.mobile-btn-accent`), `BannerComponent.vue`, `FooterComponent.vue` (newsletter), `ErrorMessage.vue`;
+    - **views:** `HomeView.vue` (`.service-btn`, `.btn-primary`, `.btn-secondary`, `.btn-outline-primary`, `.btn-whatsapp`), `ServicosView.vue` (`.details-button`, `.book-button`, `.cta-button`), `AboutView.vue` (`.btn-primary`, `.btn-secondary`), `ContatoView.vue` (`.submit-btn`, `.map-link`), `BookingView.vue` (`.btn-primary` do estado vazio), `NotFoundView.vue`.
+  - **Efeito:**
+    - **visível, aprovado:** os botões laranja passam a ter texto #212121;
+    - **sutil:** o raio dos botões unifica em 8px (hoje há 4, 8 e 12), some a borda nativa dos CTAs de Serviços e Sobre, e os rótulos ficam centralizados nos botões de largura total.
+  - **Verificar:**
+    - capturas antes × depois;
+    - recalcular o contraste de cada botão, em repouso e em hover, e todos dão ≥ 4,5:1 (exceto o WhatsApp, em F2);
+    - a 390, "Nossa História", "Fale Conosco" e "Inscrever" ficam centralizados;
+    - nenhum `<button>` mostra a borda nativa;
+    - `grep -rn 'color.adjust' src` não encontra nada;
+    - `#d55a22` some.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.37s`, sem avisos. `npx prettier --check` nos 12 arquivos alterados → `All matched files use Prettier code style!`
+    - `grep -rn 'color.adjust\|#d55a22' src` → nada. O `@use 'sass:color'` saiu dos 3 arquivos que restavam (Header, Home, Rodapé).
+    - **Medição no navegador** (script que percorre `button` e `a.btn` em 6 telas a 1440 e 390):
+      - todos os botões laranja: texto `rgb(33,33,33)`, **6,26:1 / 4,99:1** em repouso e **4,99:1** em hover;
+      - outline em hover: 6,26:1; `.btn--on-accent` (3.2): 16,1:1; WhatsApp: 3,13:1 em repouso (F2) e 5,14:1 em hover;
+      - raio 8px em todos;
+      - nenhum `<button>` com borda `outset`/`inset`;
+      - a 390, "Nossa História" e "Fale Conosco" têm desvio de centro de 0px. "Inscrever" e os botões com ícone desviam 4px, que é metade do `gap` reservado para o ícone do Font Awesome (bloqueado pela rede).
+    - **Decisões de implementação:**
+      - a base unifica cor, raio, borda, cursor, peso 600, hover (sobe 2px), `:active` e `:disabled`;
+      - padding e tamanho de fonte de cada instância ficam no CSS do componente (`.btn-accent`, `.banner-btn`, `.service-btn`, `.details-button`/`.book-button`, `.map-link`, `.error-btn`, `.empty-btn`, `.not-found__button`), menos onde batem exatamente com `.btn--lg` (1rem 2rem, 1.1rem);
+      - os botões "Agendar Horário" e "Nos Visite" da Sobre já passaram a `.btn--primary` e `.btn--outline` (3.4); o da 404 já usa `.btn--primary` (3.7);
+      - o CTA final da Home está com `.btn--primary .btn--lg` até a 3.2, que troca para `.btn--on-accent`;
+      - o hover do WhatsApp usa `#1e7e34`, valor exato do `color.adjust($success, $lightness: -10%)` que havia antes;
+      - o "Ver Detalhes" de Serviços e o botão cinza do ErrorMessage ganharam a base `.btn`, mas mantêm as próprias cores; no hover, o "Ver Detalhes" mostra texto laranja sobre #f8f9fa (2,44:1, C2/F1).
+
+- [x] **2.2 Campos de formulário**, em um novo `scss/_forms.scss` (K3, K4, R3, C6, AC11).
+  - **O que muda:**
+    - Entram as classes `.form-label`, `.form-input`, `.form-select`, `.form-textarea` e `.form-error`, mais a variante escura da newsletter.
+    - O select ganha `appearance: none`, fundo branco e uma seta só (o SVG atual).
+    - Placeholder em `$text-gray` (4,69:1); no escuro, `$text-on-dark-muted` sobre #333 (5,83:1).
+    - Os rótulos ficam sem ":", como no Contato.
+    - A newsletter ganha um `<label class="sr-only">`.
+    - A cor da borda dos campos **não muda** (F3).
+  - **Arquivos:** `ContatoView.vue`, `BookingView.vue` e `FooterComponent.vue`.
+  - **Efeito:** sutil.
+  - **Verificar:**
+    - a captura do Contato mostra uma seta só no select;
+    - os contrastes dos placeholders foram recalculados;
+    - a newsletter tem `<label for>` ligado ao campo.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.42s`, sem avisos. `npx prettier --check` nos 5 arquivos alterados → `All matched files use Prettier code style!` (antes, o Prettier tirou uma linha em branco que sobrou no `BookingView.vue`).
+    - **Select:** `appearance: none`, fundo `rgb(255,255,255)`, uma seta só (recorte conferido).
+    - **Placeholders:** `rgb(108,117,125)` sobre branco dá **4,69:1** (antes #adb5bd, 2,07:1); na newsletter, `rgb(176,176,176)` sobre #333 dá **5,83:1** (antes #888, 3,56:1).
+    - **Newsletter:** `<label for="newsletter-email" class="sr-only">Seu e-mail</label>`, invisível na tela.
+    - **Rótulos do agendamento sem ":"** (ex.: `[ 'Data' ]`). O campo de data passou a `.form-input`, e `.error-message` virou `.form-error` nos dois formulários. O `.error-message` do `ErrorMessage.vue` é outro elemento e não mudou.
+    - **Unificação:** padding 0.875rem, raio 8px, rótulo 0.95rem e a sombra de foco do Contato também no agendamento. A borda do agendamento ia de #ddd para `$border-color` (#dee2e6): os dois cinzas já reprovam do mesmo jeito (1,36 e 1,30:1), e o escurecimento continua no F3.
+
+- [x] **2.3 NotificationSystem** (RS1, RS2, AC6, ST8, A5, T5).
+  - **O que muda:**
+    - **Posição:**
+      - o contêiner fica em `top: calc($header-height + 12px)` (e o equivalente mobile);
+      - no mobile usa `left`/`right` sem `width: 100%`;
+      - `z-index: $z-toast`.
+    - **Leitores de tela:** cada toast leva `role="status"` e `aria-live="polite"`; o tipo `error` usa `role="alert"`.
+    - **Botão fechar:** área de 44×44 (o "×" continua do mesmo tamanho) e cor `$text-gray`.
+    - **Animação:** o contêiner fica sempre montado (sai o `v-if`), então o último toast anima a saída.
+    - **Tipografia:** tamanhos em rem e Hanken herdada do `body`.
+  - **Efeito:** sutil; o toast desce para baixo do header.
+  - **Verificar:**
+    - `overflowers` vazio a 390 e 768;
+    - na captura do agendamento vazio, o toast não cobre o header;
+    - os `role` aparecem no DOM.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.27s`, sem avisos. `npx prettier --check src/components/NotificationSystem.vue` → `All matched files use Prettier code style!`
+    - Medição no `/booking` vazio, que dispara o toast:
+      - **1440:** toast em `top: 101` e header em `bottom: 89`, da esquerda 1020 à direita 1420.
+      - **768:** toast em `top: 88` e header em 76, da esquerda 10 à direita 758 (viewport 768).
+      - **390:** toast em `top: 88` e header em 76, da esquerda 10 à direita 380 (viewport 390).
+      - Nos três: `role="status"`, `aria-live="polite"`, `z-index: 9999` e "×" com alvo de 44×44.
+    - O tipo `error` recebe `role="alert"` e `aria-live="assertive"`, coerente com o papel.
+    - **Saída:** depois de fechar o último toast, `.notification-leave-active` aparece (`durante=1`) e o contêiner continua montado (`contêiner=1`).
+    - As margens negativas do "×" mantêm o espaço de 24×24 no toast, que não cresce. O ícone ganhou `aria-hidden`, e as cores de estado viraram tokens (`$success`, `$danger`, `$warning`, `$info`).
+
+- [x] **2.4 LoadingSpinner e ErrorMessage** (ST5, AC9, T5).
+  - **O que muda:**
+    - O spinner ganha `role="status"` e `aria-live="polite"`, com tamanho em rem; com movimento reduzido, a rotação para e o texto fica.
+    - O ErrorMessage ganha `role="alert"`, título em `h2` com o mesmo estilo e os botões da 2.1.
+  - **Efeito:** nenhum.
+  - **Verificar:** inspeção do DOM.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.26s`, sem avisos. `npx prettier --check LoadingSpinner.vue ErrorMessage.vue` → `All matched files use Prettier code style!`
+    - **Spinner**, inspecionado no envio do Contato (Serviços importa o componente mas não o usa):
+      - `role="status"`, `aria-live="polite"`, desenho com `aria-hidden="true"`, `width` 2.5rem = 40px;
+      - animação `spin 1s xinfinite`, e com `reducedMotion: 'reduce'` fica `0s x1` (parada); o texto "Enviando mensagem..." continua.
+    - **ErrorMessage**, provocado no `/booking` com o `ErrorEvent` que o listener do próprio componente espera:
+      - `role="alert"`, título em `H2` com 24px como antes, ícones com `aria-hidden`;
+      - botão `btn btn--primary` com texto `rgb(33,33,33)`.
+
+- [x] **2.5 Header** (AC3, AC4, AC14, K5, K6, E2, E3, RS4, A4, A2).
+  - **O que muda:**
+    - **Hambúrguer:**
+      - `aria-label` alterna entre "Abrir menu" e "Fechar menu";
+      - `aria-expanded` e `aria-controls` apontam para o menu;
+      - área de toque de 44×44 (o desenho continua com 25px).
+    - **Fechamento:** o menu fecha com **Esc** e quando a rota muda (`watch` em `route.fullPath`). Fechar ao clicar fora é o B19 e fica fora.
+    - **Logo:**
+      - vira **um link só** em volta das duas linhas, com o mesmo handler `navigateToSection('home')`;
+      - o `href="#"` continua (o `#` na URL é o B11, fora do escopo).
+    - **Menu mobile:**
+      - **visível, aprovado:** os links passam a usar `$font-family-secondary`, como no desktop;
+      - "Home" aparece ativo;
+      - `top: $header-height-mobile`;
+      - fica escondido acima de 968px.
+    - **Limpeza:**
+      - sai a transição morta do menu;
+      - `transition: all` vira propriedades específicas.
+    - **Contêiner:** o toolbar passa a `$container-max`, alinhando o logo com o conteúdo.
+  - **Verificar:**
+    - na métrica do Apêndice B, `abertoAposEsc` dá 0, `toggleAria` vem preenchido e `menuTop` é igual a `headerBottom`;
+    - o alvo do botão mede ≥ 44×44;
+    - com Tab, o logo é uma parada só.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.56s`, sem avisos.
+      - Na primeira versão, o `@include mx.container` antes das declarações do `.toolbar` gerou 3 avisos `mixed-decls` do Sass; a ordem foi corrigida.
+    - `npx prettier --check src/components/layouts/HeaderFloating.vue` → `All matched files use Prettier code style!`
+    - **Medição a 768 e 390:**
+      - hambúrguer: alvo de **44×44**;
+      - aberto: `aria-label` "Fechar menu", `aria-expanded` "true", `aria-controls` "menu-mobile";
+      - `menuTop` 76 = `headerBottom` 76;
+      - "Home" ativo no mobile; links em `"Bungee Hairline" 700`, como o desktop.
+    - **Esc:** `abertoAposEsc` = 0, `aria-expanded` volta a "false", e o foco volta ao botão.
+    - **Fechamento por rota:** depois do "voltar" do navegador com o menu aberto, nenhum menu fica ativo.
+    - **Janela alargada:** abrindo o menu e alargando para 1200, o menu fica invisível.
+    - **Tab:** a primeira parada é "MÃOS DE TESOURA" (um link só). O logo continua com `href="#"` (B11).
+    - **Altura e alinhamento:**
+      - `headerHeight` 89 a 1440 e 76 a 768 e 390, com `min-height` pelos tokens;
+      - logo em x=32 a 1440 (antes ≈54) e x=16 a 768 e 390, igual ao conteúdo.
+    - **Margem negativa:** a primeira versão do botão de 44px aumentava o header mobile para 77px, porque o botão ficava mais alto que o logo (43,2px). A margem negativa de 9,5px em todos os lados deixa o espaço ocupado em 25×25 e o desenho no mesmo lugar.
+    - **Contêiner:** o toolbar usa o mixin `container`. Por isso sai a regra que dava `padding: 0 1rem` já em ≤ 968, e entre 769 e 968 o logo também se alinha ao conteúdo (32px).
+
+- [x] **2.6 Rodapé** (E8, AC7, AC9, AC12, AC13, AC14, D5).
+  - **O que muda:**
+    - **Alinhamento:** redes sociais e bloco de contato centralizados a partir do mesmo breakpoint dos títulos (≤ 968).
+    - **Links:**
+      - telefone com `tel:` e e-mail com `mailto:`, no mesmo estilo;
+      - `rel="noopener noreferrer"` nos externos;
+      - altura mínima de 24px.
+    - **Títulos:** os níveis se ajustam sem mudar o estilo.
+    - **Acessibilidade:** `aria-hidden` nos ícones.
+    - **Limpeza:** sai o CSS morto de `:392-411`.
+  - **Efeito:** sutil a 768.
+  - **Verificar:** capturas a 768 e 390; `smallTargets` sem itens do rodapé abaixo de 24px de altura.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.52s`, sem avisos. `npx prettier --check src/components/layouts/FooterComponent.vue` → `All matched files use Prettier code style!`, depois de o Prettier quebrar a linha do `mailto:`.
+    - **`smallTargets` com altura < 24px na Home:**
+      - antes: 12 links do rodapé (18–21px), mais "MÃOS DE" a 768 e 390;
+      - depois: **nenhum** nas 3 larguras.
+    - **Captura a 768:** redes sociais e bloco de contato centralizados, como os títulos (antes, alinhados à esquerda). Os links ficaram com um pouco mais de respiro (24px de altura mínima).
+    - **Links e acessibilidade:**
+      - `tel:+5547555555555` e `mailto:devluksjs@gmail.com` com a classe `.contact-link`, no mesmo estilo dos links;
+      - `rel="noopener noreferrer"` nos 3 links externos;
+      - `aria-hidden` nos 10 ícones.
+    - **Títulos:** `h3`/`h4` viraram `h2`, com o mesmo estilo. As regras já fixavam tamanho, peso e margem, e todos ficam um nível abaixo do `h1` da página.
+    - **Limpeza:** saiu o `.contact-info-footer` morto; `#b0b0b0` virou `$text-on-dark-muted`; o `.container` usa o mixin.
+
+### Fase 3 — Telas
+
+- [x] **3.1 App e roteador** (AC2, AC10, D8). Efeito: **nenhum**.
+  - **Arquivos:** `App.vue`, `router/index.js` e `HomeView.vue`.
+  - **O que muda:**
+    - O `<RouterView>` fica dentro de `<main id="conteudo" tabindex="-1">`.
+    - Entra o link "Pular para o conteúdo", que só aparece no foco.
+    - O `<main>` da Home vira `<div>`.
+    - Cada rota ganha `meta.title`, aplicado por um `router.afterEach` (sem `scrollBehavior`, que é o B12).
+    - Sai o `<style scoped></style>` vazio.
+  - **Verificar:**
+    - na métrica `main` do Apêndice B, cada página tem 1;
+    - `document.title` muda ao navegar;
+    - o primeiro Tab mostra o link de pular.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.75s`, sem avisos. `npx prettier --check App.vue router/index.js HomeView.vue _base.scss` → `All matched files use Prettier code style!`
+    - **`main` = 1** em `/`, `/servicos`, `/about`, `/contato`, `/booking` e na 404.
+    - **Títulos da aba:**
+      - `/`: "Mãos de Tesoura"; as demais: "Serviços | Mãos de Tesoura", "Sobre | …", "Contato | …", "Agendamento | …" e "Página não encontrada | …";
+      - na navegação pelo menu, sem recarregar, o título também muda;
+      - a Home não tem `meta.title` e usa o nome da marca, como o `index.html`, porque "Início" ou "Home" no título seria o TX5 (F9).
+    - **Link de pular:**
+      - o primeiro Tab mostra "Pular para o conteúdo" no topo (`top: 8`), com fundo #212121 e anel branco;
+      - Enter leva o foco para `MAIN#conteudo` sem acrescentar `#conteudo` à URL (`@click.prevent`), e o Tab seguinte vai ao primeiro controle da página;
+      - o `<main tabindex="-1">` não mostra anel ao receber o foco.
+    - O `<style scoped></style>` vazio saiu; o estilo do link de pular está em `_base.scss`.
+
+- [x] **3.2 Home e Banner** (C3, H2, C4, C11, E4, E7, E9, E10, ST2, ST3, AC1, AC7, AC8, AC12, AC15, TX1, TX6, RS3, D5).
+  - **Banner:**
+    - o título do topo vira `<h1>`, com o mesmo estilo;
+    - `alt=""` na imagem decorativa.
+  - **visível, aprovado — CTA final:**
+    - "Agendar Horário" usa `.btn--on-accent` (fundo #212121);
+    - ~~o título e o texto da seção continuam brancos sobre laranja (C11, F1).~~
+    - **C11 (decisão 3):** o título e o texto da seção passam a `$primary` (#212121), e sai o `opacity: .9` do parágrafo (`HomeView.vue:845-866`). Contraste: 6,26:1 no início do gradiente e 4,99:1 no fim.
+  - **visível, aprovado — etiqueta "Desde 2009" (C11, decisão 3):** a `.section-tag` (`HomeView.vue:473-482`) passa a texto `$primary` sobre `$secondary` (6,26:1).
+  - **visível, aprovado — tablet:** o breakpoint de celular dos grids passa a `max-width: 767px`, então a 768 os cards ficam em 2 colunas (serviços, equipe e depoimentos).
+  - **Layout:**
+    - **cards de serviço:** `display: flex; flex-direction: column`, com preço e botão empurrados para baixo;
+    - **números sobre a foto:** ficam estáticos em ≤ 768;
+    - **CTA no mobile:** sai o conflito de especificidade, e os dois botões ficam com a mesma largura.
+  - **Carregamento:** enquanto `servicesStore.isLoading`, aparece o `LoadingSpinner`, com a altura da grade reservada. A store não muda.
+  - **Preços:** o novo `src/utils/format.js` traz `formatPrice()` com `Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })`, que dá "R$ 25,00".
+  - **Hover em itens não clicáveis:**
+    - equipe e depoimentos perdem o efeito de "levantar";
+    - as estrelas perdem a escala;
+    - as tags de especialidade perdem a troca de cor (`HomeView.vue:707-711`).
+  - **Depoimentos:** as aspas literais saem e fica só a decorativa; as estrelas ganham `role="img"` e `aria-label="5 de 5 estrelas"`.
+  - **Acessibilidade:**
+    - `aria-hidden` nos ícones;
+    - `rel="noopener noreferrer"` no WhatsApp.
+  - **Cor dos subtítulos:** os subtítulos de seção passam a `$text-muted` (5,89:1).
+  - **Limpeza:**
+    - saem as media queries duplicadas, a regra morta `HomeView.vue:406-408` e o código morto de `LineComponent.vue` (`:27-37`, `:49-57`);
+    - o card de serviço continua sendo uma `div` clicável (B9, fora do escopo).
+  - **Verificar:**
+    - capturas nas 3 larguras;
+    - `h1` dá 1;
+    - o botão do CTA final aparece com fundo escuro;
+    - o título, o texto do CTA final e a etiqueta "Desde 2009" aparecem em #212121, e o contraste recalculado dá ≥ 4,5:1;
+    - os preços usam vírgula;
+    - os cards alinham;
+    - a 768 há 2 colunas;
+    - a altura da seção de serviços em t=0 é igual à de t=2s (sem pulo).
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.51s`, sem avisos. `npx prettier --check HomeView.vue BannerComponent.vue LineComponent.vue utils/format.js` → `All matched files use Prettier code style!`
+    - **Medição a 1440, 768 e 390:**
+      - `h1` = 1 ("A BARBEARIA ONDE VOCÊ VIRA REFERÊNCIA"), `alt=""` no Banner;
+      - preços "R$ 25,00", "R$ 15,00", "R$ 35,00";
+      - a 1440, o topo do bloco de preço e o do botão são iguais nos 3 cards (1395/1493);
+      - a 768, 2 cards na 1ª linha e 1 na 2ª, também na equipe e nos depoimentos;
+      - números da foto `position: static` a 768 e 390.
+    - **CTA final:**
+      - título e texto `rgb(33,33,33)` com opacidade 1: **6,26:1 / 4,99:1**;
+      - botão `.btn--on-accent` com fundo `rgb(33,33,33)` e texto branco: 16,1:1;
+      - no mobile, os dois botões têm a mesma largura (736/736 a 768, 358/358 a 390).
+    - **Outras cores:** etiqueta "Desde 2009" `rgb(33,33,33)` sobre #ff7b42: **6,26:1**. Subtítulos `$text-muted` sobre #f8f9fa: **5,89:1**.
+    - **Depoimentos e links:** estrelas com `role="img"` e "5 de 5 estrelas"; o texto do depoimento não começa mais com aspas; WhatsApp com `rel="noopener noreferrer"`.
+    - **Carregamento** (Playwright com `page.clock` congelado, spinner na tela em t0):
+      - Δ da altura da seção entre t0 e t2s = **0** a 1440, 1280, 1100, 768 e 390;
+      - a reserva usa a altura da grade pronta medida em cada layout: 3 por linha a partir de 968px, 2 linhas de 768 a 967, empilhado de 481 a 767 e até 480;
+      - **limitação:** a altura depende da quebra das descrições do mock. Entre 968 e 1099px os cards de 3 por linha ficam mais altos, e sobra um pulo de 26 a 57px. Eliminar isso pediria mudar a store ou o desenho do card, o que está fora do item.
+    - **Limpeza:**
+      - saíram os dois blocos de media query duplicados, a regra morta `.duration i` e o código morto do `LineComponent.vue` (`lineStyle`, refs e as classes de largura e altura que o `:style` sobrescrevia);
+      - **corrigido depois da revisão independente:** ao tirar as duplicatas, eu tinha mantido o `space-evenly`, que perdia na cascata. Agora vale o que valia antes:
+        - `space-around` de 768 a 1024px nas três grades;
+        - `space-evenly` de 1025 a 1200px só em serviços;
+        - as faixas não se sobrepõem;
+        - a 900px o 1º card voltou a x=58;
+      - o `transition` passou a propriedades específicas;
+      - os literais viraram tokens (`$gradient-primary`, `$shadow-md/lg`, raios, `rgba($secondary, …)`).
+    - **Hover:** equipe e depoimentos não sobem mais; estrelas e etiquetas de especialidade perderam o hover.
+
+- [x] **3.3 Serviços** (C4, E1, E5, E10, ST2, A3, AC9, K2, TX1, D3, D5).
+  - **O que muda:**
+    - **Botões:**
+      - "Ver Detalhes" fica numa linha só (`white-space: nowrap` e base flexível);
+      - o CTA passa à classe base da 2.1.
+    - **Animação:** `animation-fill-mode: both` no `fadeInUp`.
+    - **Títulos:** os títulos dos cards viram `h2`, com o mesmo estilo.
+    - **Hover:** o `.info-card` perde o efeito de "levantar".
+    - **Layout:**
+      - **visível, aprovado:** 2 colunas a 768;
+      - o topo compensa o header com o token.
+    - **Preço:** usa `formatPrice()`.
+    - **Cor:** o subtítulo passa a `$text-muted`.
+    - **Limpeza:** os literais viram tokens; sai a regra morta `:499-502`.
+  - **Verificar:**
+    - capturas nas 3 larguras;
+    - `grep -cE '#[0-9a-fA-F]{3,6}' src/views/ServicosView.vue` cai para perto de 0.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.93s`, sem avisos. `npx prettier --check ServicosView.vue _variables.scss` → `All matched files use Prettier code style!`
+    - `grep -cE '#[0-9a-fA-F]{3,6}' src/views/ServicosView.vue` → **0** (antes 36). Também não sobra `white` nem `rgba()` literal.
+    - **Rótulos em uma linha:** "Ver Detalhes" e "Agendar Agora" ocupam uma linha cada a 1440, 1280, 1024, 768 e 390.
+      - A primeira tentativa (só o "Ver Detalhes" com `nowrap` e base `auto`) quebrava o "Agendar Agora" em duas linhas a 1440.
+      - Solução: os dois botões com base `auto` e `nowrap`; o "Agendar Agora" mantém o dobro da sobra (`flex: 2 1 auto`); a linha de botões pode quebrar (`flex-wrap`).
+      - Onde os dois não cabem lado a lado (1280, 768), o "Agendar Agora" desce inteiro para a linha de baixo.
+    - **Colunas:** a 768, 2 cards na 1ª linha, e os cards de informação também em 2 colunas. A 390, 1 coluna.
+    - **Títulos:** cards em `h2` com o mesmo estilo (`H1 H2 H2 H2 H2 …`). O "O que inclui:" e o "Benefícios:" do card aberto passaram de `h4` a `h3`, com o mesmo tamanho (1.1rem, que já vinha da regra), para não pular nível depois do `h2`.
+    - **Animação:** `animation-fill-mode: both`. O 4º card fica com `opacity: 0` durante o atraso, em vez de aparecer e sumir.
+      - **Corrigido depois da revisão independente:** com `both`, o `transform` final da animação ficava preso e anulava o `:hover` do card, que parou de subir.
+      - Passou a `backwards`, que cobre o mesmo caso do A3, que só acontece durante o atraso.
+      - Medido: 4º card com `opacity: 0` no atraso; card em hover com `matrix(1,0,0,1,0,-10)`, a subida de antes.
+    - **Topo e cores:**
+      - `padding-top` 89px a 1440 e 76px a 768 e 390, igual ao header;
+      - subtítulo `rgb(90,98,104)` (5,89:1);
+      - preço "R$ 25,00".
+    - **`.info-card`:** perdeu todo o hover (subida, sombra, barra superior e ícone que crescia), porque não é clicável.
+    - **Tokens novos:** três valores existentes sem token viraram tokens (`$text-body` #495057, `$bg-light-2` #e9ecef, `$secondary-tint` #fff5f2), seguindo a regra da 1.2. Eles também aparecem no Contato, na Sobre e no Agendamento.
+    - **Regra morta `:499-502`:** era o `&:disabled` dos botões dos cards, que nunca ficam desabilitados. Já tinha saído na 2.1, quando o estado foi para o `.btn`.
+
+- [x] **3.4 Sobre** (H1, C9, C11, ST2, AC8, K2, D3). O par de contraste que dependia de decisão ("10+") foi resolvido nas decisões pós-prévia.
+  - **visível, aprovado — véu escuro:** o `.hero-overlay` passa a `position: absolute; inset: 0`, com `background: linear-gradient(to top, rgba($primary, .7), rgba($primary, .35))`, como o Banner da Home.
+  - **Cores:**
+    - os números do topo saem de #e67e22 e vão para `$secondary`;
+    - ~~os cards de números laranja ficam como estão (C11, F1).~~
+    - **C11 (decisão 3), visível, aprovado:** os cards de números (`AboutView.vue:496-525`) passam a texto `$primary` (#212121), e sai o `opacity: .9` do `.stat-label`. Contraste: 6,26:1 no início do gradiente e 4,99:1 no fim.
+  - **Botões:**
+    - o CTA "Agendar Horário" usa `.btn--primary`;
+    - "Nos Visite" usa `.btn--outline`.
+  - **Equipe:** os cards perdem o efeito de "levantar".
+  - **Imagem:** `alt=""` na ilustração.
+  - **Limpeza:** os literais viram tokens.
+  - **Verificar:**
+    - recorte ampliado do topo antes × depois;
+    - recalcular o contraste de título, números e rótulos sobre o pior trecho do véu;
+    - os cards de números aparecem com texto #212121, e o contraste recalculado dá ≥ 4,5:1;
+    - a 390, o título não encosta nas bordas.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.44s`, sem avisos. `npx prettier --check AboutView.vue HomeView.vue` → `All matched files use Prettier code style!`
+    - `grep -cE '#[0-9a-fA-F]{3,6}' src/views/AboutView.vue` → 1 (antes 29). Sobra o `#f0f0f0` do fundo das fotos, que não tem token.
+    - **Véu:** `.hero-overlay` com `position: absolute` e `linear-gradient(to top, rgba(33,33,33,.7), rgba(33,33,33,.35))`. O recorte ampliado do topo, antes × depois, mostra a ilustração escurecida.
+    - **Cores:**
+      - números do topo `rgb(255,123,66)` (antes #e67e22);
+      - cards de números com texto `rgb(33,33,33)` e rótulo com opacidade 1: **6,26:1 / 4,99:1** (C11).
+    - **Título a 390:** o texto fica a 18px de cada borda. `alt=""` na ilustração, e a equipe sem a subida.
+    - **Contraste sobre o pior trecho do véu** (texto escondido, cor do texto contra cada pixel da caixa):
+
+      | Texto | 1440: pior / p5 | 390: pior / p5 | Mínimo |
+      |---|---|---|---|
+      | Título (branco) | 6,10 / 7,62 | 5,83 / 6,10 | 3:1 |
+      | Subtítulo (branco 90%) | 5,72 / 6,93 | 5,40 / 6,66 | 3:1 a 1440, 4,5:1 a 390 |
+      | Números (#ff7b42) | **2,72** / 2,77 ("10+"); 3,53 e 5,41 nos outros | 3,13 / 3,42 a 5,70 | 3:1 |
+      | Rótulos (branco 80%) | 5,87 / 6,64 | 6,53 / 6,64 | 4,5:1 |
+
+  - **⚠ Pendente (decisão):**
+    - O "10+" a 1440 fica sobre a faixa clara "SHOP" da ilustração, onde o véu do plano cobre cerca de 62%, e dá 2,72:1. Isso reprova o 3:1 de texto grande.
+    - Não é C2 nem está no F1–F4. Corrigir exige mudar o valor aprovado do véu, então não alterei.
+    - **Medido sem mudar o código**, injetando o CSS no Playwright: com o véu `rgba($primary, .8)` → `rgba($primary, .45)`, o pior número dá **3,29:1** a 1440 e 3,67:1 a 390; com `.85` → `.5`, 3,61:1 e 3,97:1.
+
+- [x] **3.5 Contato** (E1, ST2, ST4, ST7, AC7, AC12, AC13, D3).
+  - **Header:** o topo compensa o header com o token, sem a faixa de 12px.
+  - **Envio:**
+    - o formulário **não some**: campos e botão ficam `disabled`, com o "Enviando..." que já existe no template;
+    - a espera simulada continua igual.
+  - **Erros:**
+    - cada campo ganha `aria-invalid` e `aria-describedby` ligado à mensagem;
+    - a mensagem ganha `role="alert"`;
+    - o foco vai ao primeiro campo com erro;
+    - a validação não muda (o assunto continua sem validar, B15).
+  - **Links:**
+    - telefone e e-mail clicáveis;
+    - `rel` nos externos.
+  - **FAQ:** perde o efeito de "levantar".
+  - **Limpeza:** os literais viram tokens.
+  - **Verificar:**
+    - a 390 e 768 não há faixa clara entre o header e o topo;
+    - num envio inválido, o foco vai ao primeiro erro e o leitor anuncia a mensagem;
+    - num envio válido, o form continua visível com o botão desabilitado.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.83s`, sem avisos. `npx prettier --check src/views/ContatoView.vue` → `All matched files use Prettier code style!`
+    - **Topo:** `headerBottom`/`heroTop` = 89/89 a 1440 e 76/76 a 768 e 390, sem faixa (antes, 12px).
+    - **Envio inválido pelo teclado** (só o nome preenchido):
+      - o foco vai para `#email`, o primeiro campo com erro;
+      - `email` e `message` ficam com `aria-invalid="true"` e `aria-describedby` apontando para a mensagem; os demais com `aria-invalid="false"`;
+      - as mensagens têm `role="alert"` ("Email é obrigatório", "Mensagem deve ter pelo menos 10 caracteres").
+    - **Envio válido:**
+      - durante o envio, o form continua visível, o botão mostra "Enviando..." e fica `disabled`, e os 5 campos também;
+      - depois de 2s, o form é limpo e reabilitado, como antes;
+      - a espera simulada não mudou.
+    - **Validação:** a função e as regras não mudaram. Ela só passou a rodar antes de ligar o `isLoading`, para o foco não cair num campo desabilitado. O assunto continua sem validar (B15).
+      - Na primeira versão acrescentei `novalidate` ao form, o que desligaria a validação nativa do `type="email"`; tirei antes do build final.
+    - **Links:**
+      - telefone e e-mail com `tel:`/`mailto:`, sublinhados no card claro para se distinguir do texto;
+      - os 4 links externos do Contato com `rel="noopener noreferrer"` (7 no total, com o rodapé).
+    - **FAQ:** sem a subida.
+    - **Hex:** 3 (antes 40), todos de marcas de terceiros (GitHub, LinkedIn, WhatsApp). O `LoadingSpinner` saiu do Contato, porque o form não some mais.
+
+- [x] **3.6 Agendamento** (AC5, C1, C9, ST6, ST7, E1, K4, TX1, D3).
+  - **Seleção:**
+    - os cards de profissional e os horários viram `<button type="button">`, com `aria-pressed`, as mesmas classes e o mesmo visual;
+    - a lógica de seleção não muda (B17 fica).
+  - **Selecionado:** fundo `$secondary` com **texto #212121** (6,26:1).
+  - **Erros:** `aria-*` como no Contato.
+  - **Rótulos:** sem ":".
+  - **Preço:** `formatPrice()`.
+  - **Estado vazio:** sai o toast que repete a mensagem; o botão usa `.btn--primary`.
+  - **Header:** o topo compensa o header com o token.
+  - **Limpeza:** os literais viram tokens, incluindo os verdes da confirmação.
+  - **Fica igual:** a etapa 5 continua inacessível (B1, B2).
+  - **Verificar:**
+    - Playwright só com teclado: Tab até o profissional, Enter, preencher a data, Tab até o horário, Espaço, e a etapa 4 aparece;
+    - `aria-pressed="true"` no item escolhido;
+    - a 1440, o topo do card não fica sob o header.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.72s`, sem avisos. `npx prettier --check BookingView.vue _variables.scss _buttons.scss _forms.scss AboutView.vue` → `All matched files use Prettier code style!`, depois de o Prettier quebrar duas linhas longas.
+    - **Playwright só com teclado:**
+      - Tab até o profissional (`BUTTON.professional-card`, `aria-pressed="false"`, anel `2px rgb(33,33,33)`) e Enter, que deixa `aria-pressed="true"`;
+      - Tab até a data e a data digitada (`2026-10-20`);
+      - Tab até o horário e Espaço em "10:00", que deixa `aria-pressed="true"`;
+      - **a etapa 4 aparece**; a etapa 5 continua com 0 ocorrências (B1, B2).
+    - **Caminho até o agendamento:**
+      - o link "Corte de Cabelo" do rodapé **não abre** o agendamento: o `href="#"` sem `.prevent` leva a URL a `/#` e o roteador volta para `/` (B11);
+      - conferi no commit original `5a36cae`, numa worktree temporária: o comportamento é idêntico, então não é regressão;
+      - o teste seguiu pelo botão "Agendar" do primeiro card da Home, cujo clique sobe até o card e navega (B9).
+    - **Selecionado:** fundo `rgb(255,123,66)` e texto `rgb(33,33,33)`, **6,26:1**, nos cards de profissional e nos horários.
+    - **Estado vazio:** 0 toasts (antes, um toast repetia a mensagem); botão `btn btn--primary`.
+    - **Topo:** o card começa em 89 a 1440 e em 76 a 390, igual ao `bottom` do header (antes, 1px por baixo a 1440).
+    - **Hex:** 0 (antes 38). Para valores sem token, incluindo os verdes da confirmação, foram criados tokens com os mesmos valores (`$success-light/hover/dark/text/bg/bg-2/border`, `$info-light`, `$bg-subtle`, `$bg-placeholder`, `$secondary-tint-2`, `$secondary-border-light`, `$text-strong`, `$text-soft`).
+      - O `#ddd` das bordas de profissional e horário foi para `$border-color` (#dee2e6), como os campos na 2.2.
+    - **Botões e grupos:**
+      - os botões mantêm as classes e o visual; o conteúdo virou `span` (um `<button>` não aceita `p` nem `div`);
+      - o avatar do profissional, que não aparece por causa do B7, ganhou `alt=""` para o nome não ser lido duas vezes;
+      - os grupos têm `role="group"` com `aria-labelledby` (título da etapa e rótulo "Horário disponível", que passou de `<label>` sem campo para `<span>`).
+    - **Erros:** `aria-invalid`, `aria-describedby` e `role="alert"` como no Contato. Na prática nunca aparecem, porque `validateAndConfirm` nunca roda (B2).
+
+- [x] **3.7 404** (C1, C5, D7, T1). Efeito: sutil.
+  - **O que muda:**
+    - o `<style>` passa a `scoped`;
+    - o parágrafo passa a `$text-on-dark-muted` (7,42:1);
+    - os títulos recebem Archivo Black explícita, preservando o visual depois da 1.3;
+    - o botão usa `.btn--primary`, com texto #212121.
+  - **Verificar:** captura nas 3 larguras; recalcular o contraste.
+  - **Resultado:**
+    - `yarn build` → `✓ built in 2.50s`, sem avisos. `npx prettier --check src/views/NotFoundView.vue` → `All matched files use Prettier code style!`
+    - **Escopo:** o CSS da 404 sai com `[data-v-…]` no build (`.not-found[data-v-b8192afb]`); não vaza mais.
+    - **Medição a 1440, 768 e 390:**
+      - `h1` e `h2` em `"Archivo Black"`, como antes da 1.3;
+      - parágrafo `rgb(176,176,176)` sobre #212121: **7,42:1** (antes #6c757d, 3,43:1);
+      - botão com texto `rgb(33,33,33)`: 6,26:1 / 4,99:1.
+    - **Capturas antes × depois:** títulos iguais; o parágrafo passa de Archivo Black a Hanken (T1, aprovado); o botão tem raio de 8px e texto escuro.
+
+- [x] **3.8 Imagens** (D10). Efeito: sutil.
+  - **O que muda:**
+    - Reprocessar os 3 JPGs com o ImageMagick do sistema: `convert in.jpg -resize '1920x1920>' -quality 80 -strip out.jpg`.
+    - Adicionar `width`/`height` e `loading="lazy"` nas imagens abaixo da dobra (todas, menos as dos heros).
+  - **Verificar:**
+    - na saída do `yarn build`, cada JPG cai bem abaixo dos 2–3,6 MB atuais;
+    - a dobra a 1440 sem diferença perceptível lado a lado.
+  - **Resultado:**
+    - `convert in.jpg -resize '1920x1920>' -quality 80 -strip out.jpg` (ImageMagick do sistema), com o mesmo nome e o mesmo formato JPEG:
+      - `barber-banner.jpg`: 7360×4912 → 1920×1281;
+      - `image-1-card.jpg`: 6642×4433 → 1920×1281;
+      - `banner-about-img.jpg`: 6522×3833 → 1920×1128.
+    - **`yarn build`** → `✓ built in 2.70s`, sem avisos:
+
+      | Arquivo | Antes | Depois |
+      |---|---|---|
+      | `barber-banner` | 2.099,92 kB | **196,80 kB** |
+      | `image-1-card` | 2.408,46 kB | **141,32 kB** |
+      | `banner-about-img` | 3.646,45 kB | **297,72 kB** |
+
+    - `npx prettier --check HomeView.vue AboutView.vue BookingView.vue` → `All matched files use Prettier code style!`
+    - **Atributos:**
+      - `width`/`height` com as dimensões novas e `loading="lazy"` na foto da seção "Tradição", nas fotos da equipe (Home e Sobre), nos avatares dos depoimentos e no avatar do profissional (que não aparece, B7);
+      - os dois heros (Banner e topo da Sobre) não mudaram.
+    - **Proporção:** a foto da seção "Tradição" só tinha `width: 100%` no CSS e ganhou `height: auto`, para o atributo `height` não distorcê-la. A proporção medida segue igual à natural (1,499).
+    - **Dobra a 1440, antes × depois da redução:** PSNR de 46,5 dB na Home e 43,0 dB na Sobre; indistinguíveis lado a lado.
+
+### Fase 4 — Verificação ponta a ponta
+
+- [x] **4.1 Build e formatação**
+  - `yarn build` sem erros nem avisos novos.
+  - `npx prettier --check` nos arquivos alterados.
+  - Registrar que o ESLint segue sem rodar (estado inicial; fora desta execução pela decisão 4).
+  - **Resultado:**
+    ```
+    $ yarn build
+    ✓ 69 modules transformed.
+    dist/assets/image-1-card-….jpg      141.32 kB
+    dist/assets/barber-banner-….jpg     196.80 kB
+    dist/assets/banner-about-img-….jpg  297.72 kB
+    …
+    ✓ built in 2.44s            (0 linhas com warn/error/deprecat)
+
+    $ npx prettier --check <26 arquivos .vue/.js/.scss alterados desde 5a36cae, mais vite.config.js>
+    All matched files use Prettier code style!
+
+    $ npx eslint .
+    Error: Cannot find module 'vue-eslint-parser'      (estado inicial; decisão 4)
+    ```
+- [x] **4.2 Capturas "depois"**
+  - Rodar `node /tmp/capturas.cjs docs/ux-audit/screenshots/depois`.
+  - Montar os pares com `convert antes/X.png depois/X.png +append comparacao/X.png` em `docs/ux-audit/screenshots/comparacao/`.
+  - Revisar cada par contra o efeito previsto em cada item.
+  - **Resultado:**
+    - **Capturas:** o script do Apêndice B rodou de novo sem alteração e gerou `ok: 41 PNG` em `depois/`; os 41 pares estão em `comparacao/`.
+      - A pasta `comparacao/` (33 MB) não foi versionada, porque é derivada de `antes/` e `depois/`; o comando acima a regera.
+    - **Revisão par a par:** folhas com as dobras de cada tela nas 3 larguras, mais as páginas inteiras da Home e da Sobre a 1440 e o fluxo a 390.
+    - **Diferença fora do previsto, corrigida:**
+      - telefone e e-mail do Contato com 21px de altura (abaixo dos 24px do 4.3);
+      - passaram a `inline-flex` com `min-height: 24px`, como no rodapé;
+      - as capturas "depois" foram refeitas com a correção.
+    - **Todas as outras diferenças são as previstas:**
+      - Hanken no corpo;
+      - texto #212121 nos botões laranja e no C11;
+      - raio de 8px e sem borda nativa;
+      - 2 colunas a 768;
+      - cards alinhados;
+      - véu na Sobre;
+      - sem faixa no Contato;
+      - toast abaixo do header e ausente no agendamento vazio;
+      - menu mobile em Bungee Hairline com "Home" ativo e sem fresta;
+      - rodapé centralizado a 768;
+      - logo alinhado ao conteúdo;
+      - 404 com parágrafo mais claro.
+    - **Botão do header:** "AGENDAR HORÁRIO" passou a Bungee Hairline em caixa alta, herdada do wrapper como a 1.3 previa. Em hairline sobre laranja, o traço fica fino, mas o contraste calculado é 6,26/4,99:1.
+    - **Tokens de mesmo valor no fim:** a última troca de literais por tokens (4.6) não mudou o pixel. 39 das 41 capturas deram `compare -metric AE` = 0 contra a rodada anterior; as 2 restantes são `agendamento-fluxo-768/390`, com o ruído de transição já descrito na 1.1.
+- [x] **4.3 Métricas** (`metrics.json` "depois"):
+  - **layout:**
+    - `overflowers` vazio em todas as telas;
+    - `headerHeight` igual ao token;
+    - `smallTargets` sem controles principais abaixo de 44px nem links abaixo de 24px;
+  - **página:** `h1` e `main` iguais a 1 em todas;
+  - **menu:** `abertoAposEsc` igual a 0.
+  - **Resultado** (script sobre o `metrics.json` "depois"):
+    - "todas as telas: overflowers vazio, h1=1, main=1, header no token, nenhum botão <44 nem link <24: **true**";
+    - antes, `overflowers` 2 no agendamento vazio a 768 e 390, `h1` 0 na Home e `main` 0 em 6 das 7 telas.
+    - **Menu:** `abertoAposEsc` 0 (antes 1); `toggleAria` `{"label":"Abrir menu","expanded":"false"}` (antes nulo).
+      - O `menuTop` "depois" sai 0 porque o script mede depois do Esc, com o menu já fechado (`display: none`). Com o menu aberto, a 2.5 mediu `menuTop` 76 = `headerBottom` 76.
+    - **`smallTargets` restantes:** só links, todos com ≥ 24px de altura: menu do desktop (39px), ícones sociais (40×40), links do rodapé e do Contato (24px) e logo (43px).
+- [x] **4.4 Teclado ponta a ponta**
+  - Com o foco sempre visível, percorrer: Home → card de serviço do rodapé (abre o agendamento com um serviço) → profissional → data → horário → dados.
+  - Registrar que o fluxo para na etapa 4 por causa de B1 e B2.
+  - **Resultado:**
+    - **Bloqueio no rodapé (B11):** "Corte de Cabelo" recebe foco na 27ª parada, com anel branco, mas Enter **não abre o agendamento**. O `href="#"` sem `.prevent` leva a URL a `/#` e o roteador volta para `/`. É o mesmo comportamento do commit original (testei numa worktree de `5a36cae`). Bug registrado e não corrigido.
+    - **Caminho alternativo:** botão "Agendar" do 1º card da Home (9ª parada); Enter navega para `/booking` com "Corte Masculino", pelo B9.
+    - **Agendamento:**
+      - profissional (1 Tab) e Enter, que deixa `aria-pressed="true"`;
+      - data (3 Tabs) digitada `2026-10-20`;
+      - horário (2 Tabs) e Espaço em "10:00", que deixa `aria-pressed="true"`;
+      - **a etapa 4 aparece**;
+      - nome, telefone, e-mail e observações preenchidos pelo teclado.
+    - **Fim do fluxo:** depois das observações, o Tab vai para o rodapé, porque não há botão de envio (B2), e a etapa 5 continua ausente (B1). **O fluxo para na etapa 4.**
+    - **Foco sempre visível:** percorri todas as paradas de Tab de cada página a 1440 (Home 44, Serviços 43, Sobre 36, Contato 47, Agendamento 35, 404 35). Em todas o anel aparece (`outline` sólido de 2px).
+- [x] **4.5 Contraste**
+  - Recalcular todos os pares alterados.
+  - **Ficam falhando por decisão** (F1–F4): texto laranja sobre claro (C2, T4), verde do WhatsApp (C7), bordas dos inputs (C8) e ícone de aviso (C10). O C11 saiu desta lista pela decisão 3.
+  - **Nenhum outro par pode falhar.**
+  - **Resultado:**
+
+    | Par | Contraste | Mínimo |
+    |---|---|---|
+    | #212121 sobre #ff7b42: botões laranja, selecionados, C11 (início) | 6,26 | 4,5 |
+    | #212121 sobre #e66b32: fim do gradiente e hover | 4,99 | 4,5 |
+    | Branco sobre #212121 (`.btn--on-accent`, link de pular) / sobre #343a40 (hover) | 16,10 / 11,51 | 4,5 |
+    | Branco sobre #1e7e34 (WhatsApp hover) | 5,14 | 4,5 |
+    | Branco sobre #6c757d / #5a6268 (botão neutro do ErrorMessage) | 4,69 / 6,21 | 4,5 |
+    | #5a6268 sobre #f8f9fa / #e9ecef (subtítulos) | 5,89 / 5,24 | 4,5 |
+    | #b0b0b0 sobre #212121 (404, rodapé) / sobre #333 (placeholder da newsletter) | 7,42 / 5,83 | 4,5 |
+    | #6c757d sobre branco (placeholder, "×" do toast) | 4,69 | 4,5 |
+    | #ff7b42 sobre #212121 (menu ativo) | 6,26 | 4,5 |
+    | #495057 sobre #f8f9fa (links do Contato) | 7,76 | 4,5 |
+    | Anel #212121 sobre branco / anel branco sobre #2c2c2c | 16,10 / 13,97 | 3 |
+    | Topo da Sobre sobre o véu (pior pixel): título, subtítulo, rótulos | 5,40 a 6,10 | 3 ou 4,5 |
+
+    - **Falhando por decisão (F1–F4):**
+      - laranja sobre branco: 2,57; sobre #f8f9fa: 2,44 (outline em repouso, preços, cargos e hover do "Ver Detalhes");
+      - WhatsApp em repouso: 3,13; bordas dos campos: 1,30; ícone de aviso: 1,63.
+    - **⚠ Falhando fora da lista:** o "10+" da Sobre a 1440 dá 2,72:1 sobre o pior trecho do véu (ver o "Pendente" da 3.4). Corrigir exige mudar o valor aprovado do véu.
+- [x] **4.6 Contagens**
+  - Rodar de novo o Apêndice A da `AUDIT.md`.
+  - **Esperado:**
+    - reset igual a 1 e `sass:color` sem uso igual a 0;
+    - `:focus-visible` e `prefers-reduced-motion` maiores que 0;
+    - hex, `rgba` e `white` literais em forte queda (sobram só as cores de marca de terceiros: GitHub, LinkedIn, WhatsApp, Instagram);
+    - `transition: all` igual a 0.
+  - **Resultado:**
+
+    | Contagem | Antes | Depois | Por quê |
+    |---|---|---|---|
+    | hex literais | 198 | **11** | Só sobram cores de marca: GitHub `#333`/`#24292e`, LinkedIn `#0077b5`/`#005885`, WhatsApp `#25d366`/`#128c7e` e Instagram `#e4405f`/`#c13584`. Os demais viraram tokens de mesmo valor. Na rodada final, `#2c2c2c`, `#333`, `#888`, `#666`, `#f0f0f0` e `#f3f3f3` também viraram tokens. |
+    | `rgb()`/`rgba()` literais | 57 | **21** | 16 sombras neutras `rgba(0,0,0,…)` com geometrias sem token, 3 sombras das marcas (GitHub, LinkedIn, WhatsApp) e 2 no `CardComponent`, que é órfão (F10). As cores da paleta passaram a `rgba(var.$x, …)`. |
+    | `white` | 39 | **0** | Virou `$accent-light`. |
+    | `border-radius` distintos | 12 | **10** | O script conta textos: 5 são tokens (`$radius-md/lg/xl/2xl/pill`); restam `50%` (círculos), `6px` e `2px` (sem token no plano) e `0.5rem`/`1rem` dos órfãos (F10). |
+    | `box-shadow` distintos | 30 | **25** | `$shadow-sm/md/lg/accent` onde a geometria coincidia; as outras ficaram para não mudar o visual. |
+    | `transition: all` | 40 | **0** | Viraram propriedades específicas, ou saíram onde não havia o que animar. |
+    | media queries distintas | 7 | **10** | Contagem textual. Entram as definições dos mixins `down`/`up`, as faixas de tablet escritas com tokens, a faixa `1025–1200` (que restaura a distribuição original da Home, depois da revisão) e o `prefers-reduced-motion`; saem `481–768`, `769–1200` e `screen and (max-width: 430px)`. No CSS compilado são 10: 480, 767 (celular dos grids), 768, 967 (reserva de altura da Home), 968, 768–1024, 768–1200, 769–1024, 1025–1200 e reduced motion. |
+    | `:focus-visible` | 0 | **1** | A regra global de `_base.scss`. |
+    | `prefers-reduced-motion` | 0 | **5** | 1 regra CSS (`_base.scss`), 2 `matchMedia` (rolagem suave do header e do rodapé) e 2 comentários. |
+    | tamanhos de fonte em rem | 22 | **23** | Entra `0.8125rem`, o 13px do toast em rem. |
+    | tamanhos de fonte em px | 3 (5 declarações) | **0 (0)** | Toasts e spinner passaram a rem. |
+    | rem em `padding`/`margin`/`gap` | 375 | **318** | Saíram os CSS de botão duplicados, os blocos de media query repetidos da Home e as cópias de `.container` (mixin). |
+    | px em `padding`/`margin`/`gap` | 11 | **12** | Saem os 4 deslocamentos fixos do header (88/80px, agora tokens) e o `margin-left: 8px` do "×". Entram as margens negativas do "×" (4 valores, para o alvo de 44×44) e o `9.5px` de padding e margem do hambúrguer (2). |
+    | gradiente laranja repetido | 18 | **0** | `$gradient-primary`. |
+    | `sass:color` sem uso | 11 | **0** | 1.1 e 2.1. |
+    | reset no build | 14 | **1** | 1.1. |
+
+    - **Arquivos alterados na 4.6:** os tokens que faltavam (`$bg-muted`, que antes se chamava `$bg-placeholder`, `$bg-track`, `$surface-dark-3`, `$border-dark` e `$text-on-dark-subtle`) e o uso deles em Rodapé, toasts, spinner, ErrorMessage, Contato, Agendamento e `_forms.scss`.
+    - Os raios de 8, 12 e 16px desses arquivos viraram tokens.
+    - `yarn build` e `npx prettier --check` passaram, e as capturas não mudaram (ver 4.2).
+- [x] **4.7 Fechar a auditoria**
+  - Na coluna "Plano" da `AUDIT.md`, marcar cada ID como ✅ corrigido, ⏸ fora (F#) ou 🐞 bug funcional.
+  - Anexar a saída das verificações 4.1–4.6.
+  - **Resultado:**
+    - Coluna "Plano" marcada nos 93 achados: **76 ✅, 16 ⏸ (F#) e 1 ◐ parcial (E12)**.
+      - O ◐ entrou na legenda: a 1.2 citava o E12, mas a lista de tokens dela não tem escala de espaçamento.
+    - Os 19 bugs (seção 14) ganharam a coluna "Plano" com 🐞 (F12). No B11, ficou registrado que ele também bloqueia o caminho do rodapé no 4.4.
+    - O C11 passou de F1 para ✅ (decisão 3), e o H1 levou a nota da pendência do "10+".
+    - Nova seção "Fechamento da execução" (decisões, legenda, totais e pendências) e o **Apêndice C** com as saídas de 4.1–4.6.
+
+## Pendente depois da execução
+
+- ~~**"10+" sobre o véu da Sobre (H1, 3.4):** 2,72:1 a 1440.~~ Resolvido nas decisões pós-prévia (3,30:1).
+- **E12:** a escala de espaçamento não foi criada, porque não estava na lista de tokens da 1.2.
+- **Caminho do rodapé até o agendamento:** bloqueado pelo B11, que fica fora por decisão (F12).
+
+## Revisão independente (subagente, depois da fase 4)
+
+Comparou o diff `5a36cae..HEAD` com este plano, item por item, e reproduziu as verificações da fase 4.
+
+- **Média, corrigida:** em Serviços, o `animation-fill-mode: both` travava o `transform` e anulava a subida do card no hover. Agora é `backwards` (ver 3.3).
+- **Baixa, corrigida:** na Home, a limpeza das media queries duplicadas mudava a distribuição das grades entre 769 e 1024px (`space-evenly` × `space-around`). Agora vale o que valia antes (ver 3.2).
+- **Baixa, decidida na pós-prévia (P3):** a base `.btn` subia 2px no hover. Isso unifica o hover (K1), mas:
+  - o botão do hero passou de 3px para 2px;
+  - "Ver Detalhes", "Inscrever", o botão da 404 e o "Agendar" do menu mobile ganharam uma subida que não tinham.
+- **Baixa, decidida na pós-prévia (P4):** a borda dos campos e dos cards de seleção do Agendamento foi de `#ddd` para `$border-color` (#dee2e6), com contraste de 1,36 para 1,30:1. Os dois reprovavam; agora usam `$border-input` (3,32:1).
+- **Confirmadas pelo revisor:** as pendências (a) "10+" 2,72:1, (b) E12, (c) B11 no rodapé, (d) pulo de até 57px entre 968 e 1099px e (e) ESLint. Ele também confirmou que `package.json`, `yarn.lock`, `index.html`, as stores e `validation.js` não mudaram, e que os bugs B1–B19 continuam.
+- **Depois das correções:**
+  - `yarn build` → `✓ built in 2.62s`, sem avisos. `npx prettier --check HomeView.vue ServicosView.vue` → `All matched files use Prettier code style!`
+  - Capturas "depois" refeitas, e o 4.3 continua valendo em todas as telas.
+  - Mudou o `home-768`, pela distribuição de tablet.
+  - As de Serviços mudaram só no antialiasing do texto dos cards (PSNR 72 dB), porque o card não fica mais em camada de composição.
+
+## Decisões pós-prévia (2026-10-19)
+
+Você viu a prévia em `/preview` e delegou as decisões que estavam em aberto. Antes de editar, a `develop` (assinatura de autoria, PRs #8 e #9) entrou neste branch sem conflito.
+
+- [x] **P1 Véu da Sobre** (H1)
+  - `.hero-overlay` de `rgba($primary, .7)` → `.35` para `.8` → `.45`.
+  - **Resultado:** o pior trecho do "10+" foi de 2,72:1 para **3,30:1** a 1440 e de 3,05:1 para 3,58:1 a 390 (`contraste-veu.cjs`). Título, subtítulo e rótulos só ganharam contraste.
+- [x] **P2 Botões do topo na fonte do texto** (T2, T3)
+  - Depois do `font: inherit` da 1.3, "Agendar Horário" (desktop e menu mobile) herdava a Bungee Hairline do contêiner, em negrito sintético. Os outros botões já usavam a Hanken Grotesk.
+  - `.btn` passou a declarar `font-family: $font-family-tertiary`. O `font-family` do `.action-button` saiu, porque só servia ao botão.
+  - O "Agende um Horário" do banner declara a própria fonte e continua na Bungee Hairline, por identidade.
+  - **Resultado:** em todas as telas, a 1440 e a 390, os únicos `.btn` fora da Hanken Grotesk são os 2 do banner (`fontes-btn.cjs`).
+- [x] **P3 Hover sem subida** (K1)
+  - Saiu o `translateY(-2px)` do hover da `.btn`, do "Confirmar Agendamento" e dos botões GitHub, LinkedIn e WhatsApp do Contato. O hover segue mudando cor e sombra.
+  - Motivo: com o cursor na borda de baixo, o botão sobe, o cursor sai dele, o hover acaba e o botão desce. O hover pisca. Também some o movimento sem função.
+  - Cards, links do menu, logo e ícones do rodapé não mudaram.
+  - **Resultado:** `transform: none` depois de 400ms de hover em 6 botões de 5 telas.
+- [x] **P4 Borda dos campos com 3:1** (C8, F3)
+  - Tokens novos: `$border-input` (#868e96) e `$border-input-dark` (#888, no lugar de `$border-dark` #444).
+  - Usados em `.form-input`, `.form-select`, `.form-textarea`, nas opções de profissional e horário do agendamento e na newsletter.
+  - `$border-color` continua nas divisórias e nos cards decorativos.
+  - **Resultado:** 3,32:1 sobre o campo branco e 3,15:1 sobre `$accent`; na newsletter, 3,56:1 sobre o campo (#333) e 3,94:1 sobre a faixa (#2c2c2c).
+
+**Verificação:**
+
+```
+$ yarn build
+✓ built in 2.14s                     (sem avisos)
+$ npx prettier --check src/assets/styles/scss/_variables.scss src/assets/styles/scss/_forms.scss \
+    src/assets/styles/scss/_buttons.scss src/views/BookingView.vue src/views/AboutView.vue \
+    src/views/ContatoView.vue src/components/layouts/HeaderFloating.vue
+All matched files use Prettier code style!
+```
+
+- **Capturas "depois" refeitas** (41 PNG e `metrics.json`).
+  - Todas as páginas inteiras ficaram 40px mais altas: é a assinatura abaixo do rodapé.
+  - Acima dela, as diferenças estão só onde deviam: borda dos campos (Contato, agendamento e newsletter), botão do topo a 1440, véu da Sobre e botão do menu mobile.
+  - Os links do menu desktop andaram alguns pixels, porque o botão ao lado mudou de largura.
+- **`metrics.json`:** igual ao anterior, exceto por um alvo novo em `smallTargets`, o link da assinatura (306×40). O componente diz para não editar o CSS dele, por isso ficou como está.
+- **Contagens do Apêndice A:** iguais às da 4.6 sem o `AssinaturaTraco.vue`. Com ele, entram 4 hex, 1 raio, 1 media query, 2 `focus-visible`, 1 `prefers-reduced-motion` e 2 valores px de espaçamento, todos do componente.
+
+---
+
+## Fica de fora
+
+| # | Itens | Por quê | Observação |
+|---|---|---|---|
+| F1 | C2 e T4 (texto laranja sobre fundo claro, 2,30–2,57:1) | Muda o uso da cor da marca fora dos botões; é decisão de identidade. | A parte "texto #212121 nos botões laranja" já foi aprovada e está em 2.1, 3.6 e 3.7. O C11 (texto sobre superfícies laranja) saiu desta linha pela decisão 3 e está em 3.2 e 3.4. Opções para o restante: preços e cargos em `#212121`, com o laranja como acento; ou uma cor nova, mais escura, na paleta. |
+| F2 | C7: verde do WhatsApp e do botão de confirmar, com texto branco | Cor de marca de terceiro e cor de estado. | — |
+| F3 | ~~C8: borda dos inputs (1,30–1,36:1)~~ | Escurecer muda o aspecto dos formulários. | Resolvido na pós-prévia (P4) com `$border-input` (#868e96, 3,32:1), mais leve que `$text-gray` (4,69:1). |
+| F4 | C10: ícone de aviso amarelo | Exigiria um tom novo. | — |
+| F5 | K7: fonte dos títulos de página | É escolha de identidade: Bungee Hairline ou Archivo Black. | — |
+| F6 | T3: negrito sintético | Mexe no desenho do logo e do menu. | — |
+| F7 | H3: header translúcido aparece cinza nas páginas claras | O efeito de vidro faz parte do visual. | — |
+| F8 | E11 (layout 3+1 em Serviços); K8 (três desenhos para CTAs, equipe e números) | Unificar muda o desenho das seções. | — |
+| F9 | TX2, TX3, TX4, TX5, TX7 | São conteúdo e voz: quais números são verdadeiros, se os títulos usam Title Case, a grafia de "E-mail" e "Início", e "Função não implementada" (que depende de B8). | — |
+| F10 | D11 (componentes órfãos), as CDNs de Material Symbols e MDI, `sass-loader`, `vite-plugin-vue-devtools`, `vue-eslint-parser` ausente e a troca do Font Awesome | É remoção, adição ou troca de dependência, ou exclusão de componentes que talvez você queira manter. | — |
+| F11 | Atualizações de versão (seção 15 da `AUDIT.md`) | Troca de dependência. | — |
+| F12 | B1–B19, os bugs funcionais | Fora do escopo de UI, por decisão. Vários exigem definir o comportamento esperado. | — |
+
+---
+
+## Apêndice B — Script de capturas e métricas
+
+- **O que é:** o mesmo fluxo usado na auditoria. Esta versão calcula a data do agendamento no momento da execução e mede também `h1` e `main`.
+- **Como usar:**
+  - Gravar fora do repositório (por exemplo, `/tmp/capturas.cjs`).
+  - Rodar com `node /tmp/capturas.cjs <pasta> [url-base]`.
+  - Usa o Playwright e o Chromium já instalados no ambiente da sessão. Se o módulo estiver em outro caminho, definir `PLAYWRIGHT_MODULE`.
+- **Teste:** só foi verificado com `node --check`; ainda não foi executado. A versão da auditoria, com a mesma lógica e data fixa, rodou nas 3 larguras.
+
+```js
+// Captura as telas do plano em 1440, 768 e 390 e grava metrics.json ao lado.
+// Uso: node capturas.cjs <pasta-de-saida> [url-base]
+// Requer: `yarn dev --port 5173 --strictPort` rodando. Não instala nada.
+const PW = process.env.PLAYWRIGHT_MODULE || '/opt/node22/lib/node_modules/playwright'
+const { chromium } = require(PW)
+const fs = require('fs')
+const path = require('path')
+
+const OUT = process.argv[2]
+const BASE = process.argv[3] || 'http://localhost:5173/maos-de-tesoura'
+if (!OUT) throw new Error('informe a pasta de saída')
+fs.mkdirSync(OUT, { recursive: true })
+
+const WIDTHS = [
+  { w: 1440, h: 900 },
+  { w: 768, h: 1024 },
+  { w: 390, h: 844 },
+]
+const PAGES = [
+  { name: 'home', path: '/' },
+  { name: 'servicos', path: '/servicos' },
+  { name: 'sobre', path: '/about' },
+  { name: 'contato', path: '/contato' },
+  { name: 'agendamento-vazio', path: '/booking' },
+  { name: '404', path: '/rota-inexistente' },
+]
+
+// Próximo dia útil a partir de depois de amanhã, em data local (evita o bug de UTC do próprio app).
+function proximaData() {
+  const d = new Date()
+  d.setDate(d.getDate() + 2)
+  if (d.getDay() === 0) d.setDate(d.getDate() + 1)
+  const p = (n) => String(n).padStart(2, '0')
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`
+}
+
+async function novaPagina(browser, vw) {
+  const ctx = await browser.newContext({
+    viewport: { width: vw.w, height: vw.h },
+    locale: 'pt-BR',
+    timezoneId: 'America/Sao_Paulo',
+  })
+  const page = await ctx.newPage()
+  // Na sessão da auditoria essas CDNs eram bloqueadas pela rede; abortar evita esperar o timeout.
+  // Se a rede liberar os hosts, remova a linha para os ícones aparecerem.
+  await page.route(/cdnjs\.cloudflare\.com|cdn\.materialdesignicons\.com/, (r) => r.abort())
+  return { ctx, page }
+}
+
+async function assentar(page) {
+  await page.waitForLoadState('networkidle').catch(() => {})
+  await page.evaluate(() => document.fonts.ready)
+  await page.waitForTimeout(1600) // services.js simula 1s de fetch
+}
+
+async function metricas(page) {
+  return page.evaluate(() => {
+    const doc = document.documentElement
+    const header = document.querySelector('.header-floating')
+    const vazam = []
+    for (const el of document.querySelectorAll('body *')) {
+      const r = el.getBoundingClientRect()
+      if (r.right > doc.clientWidth + 1 && r.width > 0 && getComputedStyle(el).position !== 'fixed') {
+        vazam.push({ tag: el.tagName, cls: el.className?.toString().slice(0, 60), right: Math.round(r.right) })
+      }
+    }
+    const pequenos = []
+    const alvos = 'a, button, input, select, textarea, [role=button], .professional-card, .time-slot'
+    for (const el of document.querySelectorAll(alvos)) {
+      const r = el.getBoundingClientRect()
+      const cs = getComputedStyle(el)
+      if (r.width === 0 || cs.visibility === 'hidden' || cs.display === 'none') continue
+      if (r.width < 44 || r.height < 44) {
+        const text = (el.innerText || el.getAttribute('aria-label') || '').trim().slice(0, 30)
+        pequenos.push({ tag: el.tagName, text, w: Math.round(r.width), h: Math.round(r.height) })
+      }
+    }
+    return {
+      scrollWidth: doc.scrollWidth,
+      clientWidth: doc.clientWidth,
+      headerHeight: header ? Math.round(header.getBoundingClientRect().height) : null,
+      bodyFont: getComputedStyle(document.body).fontFamily,
+      h1: document.querySelectorAll('h1').length,
+      main: document.querySelectorAll('main').length,
+      overflowers: vazam.slice(0, 15),
+      smallTargets: pequenos.slice(0, 40),
+    }
+  })
+}
+
+;(async () => {
+  const browser = await chromium.launch()
+  const relatorio = {}
+  for (const vw of WIDTHS) {
+    for (const p of PAGES) {
+      const { ctx, page } = await novaPagina(browser, vw)
+      await page.goto(BASE + p.path)
+      await assentar(page)
+      const key = `${p.name}-${vw.w}`
+      await page.screenshot({ path: path.join(OUT, `${key}.png`), fullPage: true })
+      await page.screenshot({ path: path.join(OUT, `${key}-dobra.png`) })
+      relatorio[key] = await metricas(page)
+      await ctx.close()
+    }
+
+    // Fluxo de agendamento: card de serviço da Home → profissional → data → horário → dados (etapa 4).
+    {
+      const { ctx, page } = await novaPagina(browser, vw)
+      await page.goto(BASE + '/')
+      await assentar(page)
+      await page.locator('.service h3').first().click()
+      await page.waitForURL(/booking/)
+      await assentar(page)
+      await page.locator('.professional-card').first().click()
+      await page.locator('#booking-date').fill(proximaData())
+      await page.locator('#booking-date').dispatchEvent('change')
+      await page.waitForTimeout(300)
+      await page.locator('.time-slot').nth(2).click()
+      await page.waitForTimeout(400)
+      await page.locator('#client-name').fill('Ana Souza')
+      await page.locator('#client-phone').pressSequentially('47999998888')
+      await page.locator('#client-email').fill('ana@exemplo.com')
+      await page.waitForTimeout(6000) // espera os toasts sumirem
+      await page.evaluate(() => window.scrollTo(0, 0))
+      const key = `agendamento-fluxo-${vw.w}`
+      await page.screenshot({ path: path.join(OUT, `${key}.png`), fullPage: true })
+      relatorio[key] = await metricas(page)
+      relatorio[key].etapa5 = await page.locator('text=5. Confirmação').count()
+      await ctx.close()
+    }
+
+    // Menu mobile aberto (abaixo de 968px) + teste do Esc.
+    if (vw.w < 968) {
+      const { ctx, page } = await novaPagina(browser, vw)
+      await page.goto(BASE + '/')
+      await assentar(page)
+      await page.locator('.mobile-menu-toggle').click()
+      await page.waitForTimeout(400)
+      await page.screenshot({ path: path.join(OUT, `menu-mobile-${vw.w}.png`) })
+      await page.keyboard.press('Escape')
+      await page.waitForTimeout(300)
+      relatorio[`menu-mobile-${vw.w}`] = {
+        abertoAposEsc: await page.locator('.mobile-menu.active').count(),
+        toggleAria: await page
+          .locator('.mobile-menu-toggle')
+          .evaluate((b) => ({ label: b.getAttribute('aria-label'), expanded: b.getAttribute('aria-expanded') })),
+        menuTop: await page.locator('.mobile-menu').evaluate((m) => Math.round(m.getBoundingClientRect().top)),
+        headerBottom: await page.locator('.header-floating').evaluate((h) => Math.round(h.getBoundingClientRect().bottom)),
+      }
+      await ctx.close()
+    }
+  }
+  fs.writeFileSync(path.join(OUT, 'metrics.json'), JSON.stringify(relatorio, null, 2))
+  await browser.close()
+  console.log('ok:', fs.readdirSync(OUT).filter((f) => f.endsWith('.png')).length, 'PNG')
+})().catch((e) => {
+  console.error(e)
+  process.exit(1)
+})
+```

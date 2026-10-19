@@ -1,0 +1,35 @@
+// ========================
+// Mixins
+// ========================
+
+@use './variables' as *;
+
+// Até o breakpoint, inclusive: down($bp-md) → (max-width: 768px)
+@mixin down($bp) {
+  @media (max-width: $bp) {
+    @content;
+  }
+}
+
+// Acima do breakpoint: up($bp-lg) → (min-width: 969px), complementar a down($bp-lg)
+@mixin up($bp) {
+  @media (min-width: $bp + 1px) {
+    @content;
+  }
+}
+
+// Contêiner centralizado com a largura e o respiro padrão das páginas
+@mixin container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $container-pad;
+
+  @include down($bp-md) {
+    padding: 0 $container-pad-mobile;
+  }
+}
+
+// Superfícies escuras: o anel de foco de _base.scss passa a $accent-light
+@mixin on-dark-surface {
+  --focus-ring-color: #{$accent-light};
+}

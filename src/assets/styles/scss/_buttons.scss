@@ -1,0 +1,95 @@
+// ========================
+// Botões compartilhados
+// ========================
+// Uso: class="btn btn--primary" (+ btn--lg). Padding e tamanho de fonte
+// próprios de cada tela ficam no CSS do componente.
+// A fonte é a do texto (Hanken Grotesk), qualquer que seja o contêiner.
+
+@use './variables' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: $radius-md;
+  font-family: $font-family-tertiary;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color $duration-base $ease,
+    color $duration-base $ease,
+    border-color $duration-base $ease,
+    box-shadow $duration-base $ease;
+
+  // O hover muda cor e sombra, sem mover o botão: subir faz o cursor
+  // na borda de baixo sair e voltar, e o hover pisca.
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Laranja com texto escuro: 6,26:1 no início do gradiente e 4,99:1 no fim.
+// O hover não escurece além de $btn-primary-hover.
+.btn--primary {
+  background: $gradient-primary;
+  color: $btn-primary-text;
+
+  &:hover:not(:disabled) {
+    background: $btn-primary-hover;
+    box-shadow: $shadow-accent;
+  }
+}
+
+.btn--outline {
+  background: transparent;
+  color: $secondary;
+  border: 2px solid $secondary;
+
+  &:hover:not(:disabled) {
+    background: $secondary;
+    color: $btn-primary-text;
+  }
+}
+
+// Sobre fotos escuras (hero da Home)
+.btn--outline-light {
+  background: transparent;
+  color: $accent-light;
+  border: 2px solid $accent-light;
+
+  &:hover:not(:disabled) {
+    background-color: $secondary;
+    border-color: $secondary;
+    color: $primary;
+    box-shadow: 0 4px 15px rgba($secondary, 0.4);
+  }
+}
+
+// Sobre superfícies laranja (CTA final da Home): 16,1:1
+.btn--on-accent {
+  background: $btn-on-accent-bg;
+  color: $accent-light;
+
+  &:hover:not(:disabled) {
+    background: $btn-on-accent-hover;
+  }
+}
+
+.btn--whatsapp {
+  background: $success;
+  color: $accent-light;
+
+  &:hover:not(:disabled) {
+    background: $success-dark; // $success com 10% menos luminosidade
+  }
+}
+
+.btn--lg {
+  padding: 1rem 2rem;
+  font-size: $font-size-md;
+}

@@ -1,0 +1,2916 @@
+{
+  "home-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 0,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 157,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 157,
+        "h": 32
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Agendar Horário",
+        "w": 153,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ]
+  },
+  "servicos-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 157,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 157,
+        "h": 32
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Agendar Horário",
+        "w": 153,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ]
+  },
+  "sobre-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 157,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 157,
+        "h": 32
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Agendar Horário",
+        "w": 153,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ]
+  },
+  "contato-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 157,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 157,
+        "h": 32
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Agendar Horário",
+        "w": 153,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ]
+  },
+  "agendamento-vazio-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 157,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 157,
+        "h": 32
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Agendar Horário",
+        "w": 153,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      },
+      {
+        "tag": "BUTTON",
+        "text": "×",
+        "w": 24,
+        "h": 24
+      }
+    ]
+  },
+  "404-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 157,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 157,
+        "h": 32
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Agendar Horário",
+        "w": 153,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Voltar para Home",
+        "w": 204,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ]
+  },
+  "agendamento-fluxo-1440": {
+    "scrollWidth": 1440,
+    "clientWidth": 1440,
+    "headerHeight": 89,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 157,
+        "h": 24
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 157,
+        "h": 32
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 85,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 127,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Sobre",
+        "w": 94,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 117,
+        "h": 39
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Agendar Horário",
+        "w": 153,
+        "h": 39
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ],
+    "etapa5": 0
+  },
+  "home-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 0,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ]
+  },
+  "servicos-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ]
+  },
+  "sobre-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ]
+  },
+  "contato-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ]
+  },
+  "agendamento-vazio-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [
+      {
+        "tag": "DIV",
+        "cls": "",
+        "right": 778
+      },
+      {
+        "tag": "DIV",
+        "cls": "notification notification--warning",
+        "right": 778
+      }
+    ],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      },
+      {
+        "tag": "BUTTON",
+        "text": "×",
+        "w": 24,
+        "h": 24
+      }
+    ]
+  },
+  "404-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "Voltar para Home",
+        "w": 204,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ]
+  },
+  "agendamento-fluxo-768": {
+    "scrollWidth": 768,
+    "clientWidth": 768,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 96,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 52,
+        "h": 18
+      }
+    ],
+    "etapa5": 0
+  },
+  "menu-mobile-768": {
+    "abertoAposEsc": 1,
+    "toggleAria": {
+      "label": null,
+      "expanded": null
+    },
+    "menuTop": 80,
+    "headerBottom": 76
+  },
+  "home-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 0,
+    "main": 1,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Inscrever",
+        "w": 358,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 18
+      }
+    ]
+  },
+  "servicos-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Inscrever",
+        "w": 358,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 18
+      }
+    ]
+  },
+  "sobre-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Inscrever",
+        "w": 358,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 18
+      }
+    ]
+  },
+  "contato-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Inscrever",
+        "w": 358,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 18
+      }
+    ]
+  },
+  "agendamento-vazio-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [
+      {
+        "tag": "DIV",
+        "cls": "",
+        "right": 400
+      },
+      {
+        "tag": "DIV",
+        "cls": "notification notification--warning",
+        "right": 400
+      }
+    ],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Inscrever",
+        "w": 358,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "BUTTON",
+        "text": "×",
+        "w": 24,
+        "h": 24
+      }
+    ]
+  },
+  "404-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "Voltar para Home",
+        "w": 204,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Inscrever",
+        "w": 358,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 18
+      }
+    ]
+  },
+  "agendamento-fluxo-390": {
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "headerHeight": 76,
+    "bodyFont": "\"Archivo Black\", sans-serif",
+    "h1": 1,
+    "main": 0,
+    "overflowers": [],
+    "smallTargets": [
+      {
+        "tag": "A",
+        "text": "MÃOS DE",
+        "w": 118,
+        "h": 19
+      },
+      {
+        "tag": "A",
+        "text": "TESOURA",
+        "w": 118,
+        "h": 24
+      },
+      {
+        "tag": "BUTTON",
+        "text": "",
+        "w": 25,
+        "h": 25
+      },
+      {
+        "tag": "A",
+        "text": "GitHub",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "LinkedIn",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "WhatsApp",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Instagram",
+        "w": 40,
+        "h": 40
+      },
+      {
+        "tag": "A",
+        "text": "Home",
+        "w": 42,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Serviços",
+        "w": 61,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobre Nós",
+        "w": 74,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Contato",
+        "w": 58,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Agendamento",
+        "w": 99,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Corte de Cabelo",
+        "w": 119,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Barba + Bigode",
+        "w": 109,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Combo Completo",
+        "w": 127,
+        "h": 21
+      },
+      {
+        "tag": "A",
+        "text": "Sobrancelha",
+        "w": 90,
+        "h": 21
+      },
+      {
+        "tag": "BUTTON",
+        "text": "Inscrever",
+        "w": 358,
+        "h": 43
+      },
+      {
+        "tag": "A",
+        "text": "Política de Privacidade",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Termos de Uso",
+        "w": 145,
+        "h": 18
+      },
+      {
+        "tag": "A",
+        "text": "Cookies",
+        "w": 145,
+        "h": 18
+      }
+    ],
+    "etapa5": 0
+  },
+  "menu-mobile-390": {
+    "abertoAposEsc": 1,
+    "toggleAria": {
+      "label": null,
+      "expanded": null
+    },
+    "menuTop": 80,
+    "headerBottom": 76
+  }
+}

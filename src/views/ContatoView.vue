@@ -22,9 +22,7 @@
               <p>Preencha o formulário abaixo e responderemos em breve</p>
             </div>
 
-            <LoadingSpinner v-if="isLoading" message="Enviando mensagem..." />
-
-            <form v-else @submit.prevent="handleSubmit" class="contact-form">
+            <form @submit.prevent="handleSubmit" class="contact-form">
               <div class="form-group">
                 <label for="name" class="form-label">Nome Completo</label>
                 <input
@@ -33,9 +31,12 @@
                   v-model="formData.name"
                   class="form-input"
                   :class="{ error: errors.name }"
+                  :aria-invalid="!!errors.name"
+                  :aria-describedby="errors.name ? 'name-error' : undefined"
+                  :disabled="isLoading"
                   placeholder="Digite seu nome completo"
                 />
-                <div v-if="errors.name" class="error-message">
+                <div v-if="errors.name" id="name-error" class="form-error" role="alert">
                   {{ errors.name }}
                 </div>
               </div>
@@ -48,9 +49,12 @@
                   v-model="formData.email"
                   class="form-input"
                   :class="{ error: errors.email }"
+                  :aria-invalid="!!errors.email"
+                  :aria-describedby="errors.email ? 'email-error' : undefined"
+                  :disabled="isLoading"
                   placeholder="seu.email@exemplo.com"
                 />
-                <div v-if="errors.email" class="error-message">
+                <div v-if="errors.email" id="email-error" class="form-error" role="alert">
                   {{ errors.email }}
                 </div>
               </div>
@@ -65,6 +69,7 @@
                   class="form-input"
                   placeholder="(11) 99999-9999"
                   maxlength="15"
+                  :disabled="isLoading"
                 />
               </div>
 
@@ -75,6 +80,9 @@
                   v-model="formData.subject"
                   class="form-select"
                   :class="{ error: errors.subject }"
+                  :aria-invalid="!!errors.subject"
+                  :aria-describedby="errors.subject ? 'subject-error' : undefined"
+                  :disabled="isLoading"
                 >
                   <option value="">Selecione um assunto</option>
                   <option value="agendamento">Dúvidas sobre Agendamento</option>
@@ -83,7 +91,7 @@
                   <option value="sugestao">Sugestão</option>
                   <option value="outros">Outros</option>
                 </select>
-                <div v-if="errors.subject" class="error-message">
+                <div v-if="errors.subject" id="subject-error" class="form-error" role="alert">
                   {{ errors.subject }}
                 </div>
               </div>
@@ -95,18 +103,21 @@
                   v-model="formData.message"
                   class="form-textarea"
                   :class="{ error: errors.message }"
+                  :aria-invalid="!!errors.message"
+                  :aria-describedby="errors.message ? 'message-error' : undefined"
+                  :disabled="isLoading"
                   rows="5"
                   placeholder="Digite sua mensagem aqui..."
                 ></textarea>
-                <div v-if="errors.message" class="error-message">
+                <div v-if="errors.message" id="message-error" class="form-error" role="alert">
                   {{ errors.message }}
                 </div>
                 <div class="character-count">{{ formData.message.length }}/500 caracteres</div>
               </div>
 
-              <button type="submit" class="submit-btn" :disabled="isLoading">
-                <i v-if="isLoading" class="fas fa-spinner fa-spin"></i>
-                <i v-else class="fas fa-paper-plane"></i>
+              <button type="submit" class="btn btn--primary btn--lg" :disabled="isLoading">
+                <i v-if="isLoading" class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                <i v-else class="fas fa-paper-plane" aria-hidden="true"></i>
                 {{ isLoading ? 'Enviando...' : 'Enviar Mensagem' }}
               </button>
             </form>
@@ -120,7 +131,7 @@
               <div class="info-list">
                 <div class="info-item">
                   <div class="info-icon">
-                    <i class="fas fa-map-marker-alt"></i>
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                   </div>
                   <div class="info-details">
                     <strong>Endereço</strong>
@@ -130,29 +141,33 @@
 
                 <div class="info-item">
                   <div class="info-icon">
-                    <i class="fas fa-phone"></i>
+                    <i class="fas fa-phone" aria-hidden="true"></i>
                   </div>
                   <div class="info-details">
                     <strong>Telefone</strong>
-                    <p>(47) 55555-5555</p>
+                    <p><a href="tel:+5547555555555" class="contact-link">(47) 55555-5555</a></p>
                     <small>Segunda a Sábado, 8h às 19h</small>
                   </div>
                 </div>
 
                 <div class="info-item">
                   <div class="info-icon">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
                   </div>
                   <div class="info-details">
                     <strong>Email</strong>
-                    <p>devluksjs@gmail.com</p>
+                    <p>
+                      <a href="mailto:devluksjs@gmail.com" class="contact-link"
+                        >devluksjs@gmail.com</a
+                      >
+                    </p>
                     <small>Resposta em até 24h</small>
                   </div>
                 </div>
 
                 <div class="info-item">
                   <div class="info-icon">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-clock" aria-hidden="true"></i>
                   </div>
                   <div class="info-details">
                     <strong>Horário de Funcionamento</strong>
@@ -168,20 +183,31 @@
               <div class="social-links">
                 <h4>Nossas Redes Sociais</h4>
                 <div class="social-buttons">
-                  <a href="https://github.com/ldickmann" target="_blank" class="social-btn github">
-                    <i class="fab fa-github"></i>
+                  <a
+                    href="https://github.com/ldickmann"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="social-btn github"
+                  >
+                    <i class="fab fa-github" aria-hidden="true"></i>
                     GitHub
                   </a>
                   <a
                     href="https://linkedin.com/in/lucasdickmann"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="social-btn linkedin"
                   >
-                    <i class="fab fa-linkedin-in"></i>
+                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
                     LinkedIn
                   </a>
-                  <a href="https://wa.me/5547555555555" target="_blank" class="social-btn whatsapp">
-                    <i class="fab fa-whatsapp"></i>
+                  <a
+                    href="https://wa.me/5547555555555"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="social-btn whatsapp"
+                  >
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
                     WhatsApp
                   </a>
                 </div>
@@ -193,7 +219,7 @@
               <h3>Nossa Localização</h3>
               <div class="map-placeholder">
                 <div class="map-content">
-                  <i class="fas fa-map-marker-alt"></i>
+                  <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                   <p>Mapa Interativo</p>
                   <small>Rua da Barbearia, 123 - Centro</small>
                 </div>
@@ -202,13 +228,14 @@
                 <a
                   href="https://www.google.com/maps/dir/?api=1&destination=Rua+da+Barbearia+123+Centro+Navegantes+SC"
                   target="_blank"
-                  class="map-link"
+                  rel="noopener noreferrer"
+                  class="btn btn--outline map-link"
                 >
-                  <i class="fas fa-directions"></i>
+                  <i class="fas fa-directions" aria-hidden="true"></i>
                   Como Chegar
                 </a>
-                <a href="#" class="map-link" @click.prevent="showNotImplemented">
-                  <i class="fas fa-street-view"></i>
+                <a href="#" class="btn btn--outline map-link" @click.prevent="showNotImplemented">
+                  <i class="fas fa-street-view" aria-hidden="true"></i>
                   Street View
                 </a>
               </div>
@@ -234,10 +261,9 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, nextTick } from 'vue'
 import { useNotificationStore } from '@/stores/notification'
 import { validateContact, formatPhone } from '@/utils/validation'
-import LoadingSpinner from '@/components/LoadingSpinner.vue'
 
 const notificationStore = useNotificationStore()
 
@@ -288,23 +314,34 @@ const clearErrors = () => {
   errors.value = {}
 }
 
+// Ordem dos campos no formulário, para levar o foco ao primeiro com erro
+const fieldOrder = ['name', 'email', 'phone', 'subject', 'message']
+
+const focusFirstError = async () => {
+  await nextTick()
+  const first = fieldOrder.find((field) => errors.value[field])
+  if (first) document.getElementById(first)?.focus()
+}
+
 const showNotImplemented = () => {
   notificationStore.showWarning('Função não implementada')
 }
 
 const handleSubmit = async () => {
+  clearErrors()
+
+  // Validar formulário (antes de desabilitar os campos, para o foco poder ir ao primeiro erro)
+  const validation = validateContact(formData)
+
+  if (!validation.isValid) {
+    errors.value = validation.errors
+    notificationStore.showError('Por favor, corrija os erros no formulário')
+    await focusFirstError()
+    return
+  }
+
   try {
     isLoading.value = true
-    clearErrors()
-
-    // Validar formulário
-    const validation = validateContact(formData)
-
-    if (!validation.isValid) {
-      errors.value = validation.errors
-      notificationStore.showError('Por favor, corrija os erros no formulário')
-      return
-    }
 
     // Simular envio
     await new Promise((resolve) => setTimeout(resolve, 2000))
@@ -328,49 +365,47 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
+
+// O topo compensa exatamente a altura do header (sem faixa clara no mobile)
 .contact-page {
-  padding-top: 88px;
-  font-family: 'Hanken Grotesk', sans-serif;
+  padding-top: var.$header-height;
+  font-family: var.$font-family-tertiary;
+
+  @include mx.down(var.$bp-lg) {
+    padding-top: var.$header-height-mobile;
+  }
 }
 
 .container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 2rem;
-
-  @media (max-width: 768px) {
-    padding: 0 1rem;
-  }
+  @include mx.container;
 }
 
 // Hero Section
 .hero-section {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(135deg, var.$bg-light 0%, var.$bg-light-2 100%);
   padding: 4rem 0;
   text-align: center;
 }
 
 .hero-content {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  @include mx.container;
 
   h1 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
     font-size: 3rem;
-    color: #212121;
+    color: var.$primary;
     margin-bottom: 1.5rem;
 
-    @media (max-width: 768px) {
+    @include mx.down(var.$bp-md) {
       font-size: 2.5rem;
     }
   }
 
   p {
     font-size: 1.2rem;
-    color: #6c757d;
+    color: var.$text-gray;
     line-height: 1.6;
     margin: 0;
   }
@@ -379,7 +414,7 @@ const handleSubmit = async () => {
 // Contact Content
 .contact-content {
   padding: 5rem 0;
-  background: white;
+  background: var.$accent-light;
 }
 
 .content-grid {
@@ -387,7 +422,7 @@ const handleSubmit = async () => {
   gap: 4rem;
   flex-wrap: wrap;
 
-  @media (max-width: 968px) {
+  @include mx.down(var.$bp-lg) {
     flex-direction: column;
     gap: 3rem;
   }
@@ -402,14 +437,14 @@ const handleSubmit = async () => {
     margin-bottom: 2rem;
 
     h2 {
-      font-family: 'Archivo Black', sans-serif;
+      font-family: var.$font-family-primary;
       font-size: 2rem;
-      color: #212121;
+      color: var.$primary;
       margin-bottom: 0.5rem;
     }
 
     p {
-      color: #6c757d;
+      color: var.$text-gray;
       margin: 0;
     }
   }
@@ -425,94 +460,15 @@ const handleSubmit = async () => {
   flex-direction: column;
 }
 
-.form-label {
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-}
-
-.form-input,
-.form-select,
 .form-textarea {
-  padding: 0.875rem;
-  border: 2px solid #dee2e6;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: all 0.3s ease;
-
-  &:focus {
-    outline: none;
-    border-color: #ff7b42;
-    box-shadow: 0 0 0 3px rgba(255, 123, 66, 0.1);
-  }
-
-  &.error {
-    border-color: #dc3545;
-
-    &:focus {
-      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
-    }
-  }
-
-  &::placeholder {
-    color: #adb5bd;
-  }
-}
-
-.form-select {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 0.5rem center;
-  background-repeat: no-repeat;
-  background-size: 1.5em 1.5em;
-  padding-right: 2.5rem;
-}
-
-.form-textarea {
-  resize: vertical;
   min-height: 120px;
 }
 
 .character-count {
   font-size: 0.8rem;
-  color: #6c757d;
+  color: var.$text-gray;
   text-align: right;
   margin-top: 0.25rem;
-}
-
-.submit-btn {
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  &:hover:not(:disabled) {
-    background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 123, 66, 0.3);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-}
-
-.error-message {
-  color: #dc3545;
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
-  font-weight: 500;
 }
 
 // Contact Info
@@ -525,15 +481,15 @@ const handleSubmit = async () => {
 }
 
 .info-card {
-  background: #f8f9fa;
-  border-radius: 16px;
+  background: var.$bg-light;
+  border-radius: var.$radius-xl;
   padding: 2rem;
-  border: 1px solid #e9ecef;
+  border: 1px solid var.$bg-light-2;
 
   h3 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
     font-size: 1.5rem;
-    color: #212121;
+    color: var.$primary;
     margin-bottom: 1.5rem;
   }
 }
@@ -554,7 +510,7 @@ const handleSubmit = async () => {
 .info-icon {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
+  background: var.$gradient-primary;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -562,7 +518,7 @@ const handleSubmit = async () => {
   flex-shrink: 0;
 
   i {
-    color: white;
+    color: var.$accent-light;
     font-size: 1rem;
   }
 }
@@ -571,7 +527,7 @@ const handleSubmit = async () => {
   flex: 1;
 
   strong {
-    color: #212121;
+    color: var.$primary;
     font-size: 1rem;
     font-weight: 600;
     display: block;
@@ -579,23 +535,37 @@ const handleSubmit = async () => {
   }
 
   p {
-    color: #495057;
+    color: var.$text-body;
     margin: 0 0 0.25rem 0;
     line-height: 1.5;
   }
 
   small {
-    color: #6c757d;
+    color: var.$text-gray;
     font-size: 0.85rem;
+  }
+
+  // Telefone e e-mail: sublinhados para se distinguir do texto em volta, com 24px de altura
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      text-decoration-thickness: 2px;
+    }
   }
 }
 
 .social-links {
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid var.$border-color;
   padding-top: 1.5rem;
 
   h4 {
-    color: #212121;
+    color: var.$primary;
     margin-bottom: 1rem;
     font-weight: 600;
   }
@@ -612,37 +582,34 @@ const handleSubmit = async () => {
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  border-radius: 8px;
+  border-radius: var.$radius-md;
   text-decoration: none;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: box-shadow var.$duration-base var.$ease;
 
   &.github {
     background: linear-gradient(135deg, #333 0%, #24292e 100%);
-    color: white;
+    color: var.$accent-light;
 
     &:hover {
-      transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(51, 51, 51, 0.3);
     }
   }
 
   &.linkedin {
     background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
-    color: white;
+    color: var.$accent-light;
 
     &:hover {
-      transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
     }
   }
 
   &.whatsapp {
     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-    color: white;
+    color: var.$accent-light;
 
     &:hover {
-      transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
     }
   }
@@ -651,37 +618,39 @@ const handleSubmit = async () => {
 // Map Section
 .map-container {
   h3 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
     font-size: 1.3rem;
-    color: #212121;
+    color: var.$primary;
     margin-bottom: 1rem;
   }
 }
 
 .map-placeholder {
-  background: #f8f9fa;
-  border: 2px dashed #dee2e6;
-  border-radius: 12px;
+  background: var.$bg-light;
+  border: 2px dashed var.$border-color;
+  border-radius: var.$radius-lg;
   height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-  transition: all 0.3s ease;
+  transition:
+    border-color var.$duration-base var.$ease,
+    background-color var.$duration-base var.$ease;
 
   &:hover {
-    border-color: #ff7b42;
-    background: #fff5f2;
+    border-color: var.$secondary;
+    background: var.$secondary-tint;
   }
 }
 
 .map-content {
   text-align: center;
-  color: #6c757d;
+  color: var.$text-gray;
 
   i {
     font-size: 2rem;
-    color: #ff7b42;
+    color: var.$secondary;
     margin-bottom: 0.5rem;
   }
 
@@ -699,46 +668,29 @@ const handleSubmit = async () => {
   display: flex;
   gap: 1rem;
 
-  @media (max-width: 480px) {
+  @include mx.down(var.$bp-sm) {
     flex-direction: column;
   }
 }
 
 .map-link {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
   padding: 0.75rem 1rem;
-  background: white;
-  color: #ff7b42;
-  text-decoration: none;
-  border: 2px solid #ff7b42;
-  border-radius: 8px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: #ff7b42;
-    color: white;
-    transform: translateY(-2px);
-  }
 }
 
 // FAQ Section
 .faq-section {
   padding: 4rem 0;
-  background: #f8f9fa;
+  background: var.$bg-light;
 
   h2 {
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
     font-size: 2.2rem;
-    color: #212121;
+    color: var.$primary;
     text-align: center;
     margin-bottom: 3rem;
 
-    @media (max-width: 768px) {
+    @include mx.down(var.$bp-md) {
       font-size: 1.8rem;
     }
   }
@@ -751,18 +703,13 @@ const handleSubmit = async () => {
 }
 
 .faq-item {
-  background: white;
+  background: var.$accent-light;
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-4px);
-  }
+  border-radius: var.$radius-lg;
+  box-shadow: var.$shadow-sm;
 
   h3 {
-    color: #212121;
+    color: var.$primary;
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 1rem;
@@ -770,21 +717,13 @@ const handleSubmit = async () => {
   }
 
   p {
-    color: #6c757d;
+    color: var.$text-gray;
     line-height: 1.6;
     margin: 0;
   }
 }
 
-@media (max-width: 768px) {
-  .hero-content {
-    padding: 0 1rem;
-  }
-
-  .container {
-    padding: 0 1rem;
-  }
-
+@include mx.down(var.$bp-md) {
   .contact-content {
     padding: 3rem 0;
   }

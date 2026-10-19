@@ -5,8 +5,6 @@
       <div class="logo">
         <a href="#" @click="navigateToSection('home')" class="nav-link-logo">
           <span class="logo-line">Mãos de</span>
-        </a>
-        <a href="#" @click="navigateToSection('home')" class="nav-link-logo">
           <span class="logo-line highlight">Tesoura</span>
         </a>
       </div>
@@ -27,21 +25,36 @@
           </router-link>
         </template>
       </div>
-      <div class="mobile-menu" :class="{ active: mobileMenuOpen }">
+      <div id="menu-mobile" class="mobile-menu" :class="{ active: mobileMenuOpen }">
         <template v-for="(item, index) in menuItems" :key="`mobile-${index}`">
-          <a v-if="item.action" href="#" @click="item.action" class="mobile-nav-link">
+          <a
+            v-if="item.action"
+            href="#"
+            @click="item.action"
+            class="mobile-nav-link"
+            :class="{ 'router-link-active': $route.path === '/' }"
+          >
             {{ item.label }}
           </a>
           <router-link v-else :to="item.to" class="mobile-nav-link" @click="closeMobileMenu">
             {{ item.label }}
           </router-link>
         </template>
-        <button @click="handleBooking" class="mobile-btn-accent">Agendar Horário</button>
+        <button @click="handleBooking" class="btn btn--primary mobile-btn-accent">
+          Agendar Horário
+        </button>
       </div>
       <div class="action-button">
-        <button @click="handleBooking" class="btn-accent">Agendar Horário</button>
+        <button @click="handleBooking" class="btn btn--primary btn-accent">Agendar Horário</button>
       </div>
-      <button class="mobile-menu-toggle" @click="toggleMobileMenu">
+      <button
+        ref="menuToggle"
+        class="mobile-menu-toggle"
+        :aria-label="mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'"
+        :aria-expanded="mobileMenuOpen"
+        aria-controls="menu-mobile"
+        @click="toggleMobileMenu"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -51,15 +64,17 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useNotificationStore } from '@/stores/notification'
 
 const router = useRouter()
+const route = useRoute()
 
 const notificationStore = useNotificationStore()
 const scrollY = ref(0)
 const mobileMenuOpen = ref(false)
+const menuToggle = ref(null)
 const scrolled = computed(() => scrollY.value > 0)
 
 const updateScroll = () => {
@@ -74,10 +89,25 @@ const closeMobileMenu = () => {
   mobileMenuOpen.value = false
 }
 
+// Esc fecha o menu e devolve o foco ao botão que o abriu
+const onKeydown = (event) => {
+  if (event.key === 'Escape' && mobileMenuOpen.value) {
+    closeMobileMenu()
+    menuToggle.value?.focus()
+  }
+}
+
+// Fecha o menu quando a rota muda (inclusive pelo botão voltar)
+watch(() => route.fullPath, closeMobileMenu)
+
 const handleBooking = () => {
   router.push('/booking')
   closeMobileMenu()
 }
+
+// Rolagem suave, exceto com prefers-reduced-motion
+const scrollBehavior = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
 
 // Navegação suave para seções da home
 const navigateToSection = (sectionId) => {
@@ -85,13 +115,13 @@ const navigateToSection = (sectionId) => {
 
   const doScroll = () => {
     if (sectionId === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: scrollBehavior() })
     } else {
       const element = document.getElementById(sectionId)
       if (element) {
         const headerHeight = 100
         const elementPosition = element.offsetTop - headerHeight
-        window.scrollTo({ top: elementPosition, behavior: 'smooth' })
+        window.scrollTo({ top: elementPosition, behavior: scrollBehavior() })
       }
     }
   }
@@ -107,10 +137,12 @@ const navigateToSection = (sectionId) => {
 
 onMounted(() => {
   window.addEventListener('scroll', updateScroll)
+  document.addEventListener('keydown', onKeydown)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', updateScroll)
+  document.removeEventListener('keydown', onKeydown)
 })
 
 const menuItems = [
@@ -122,19 +154,24 @@ const menuItems = [
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
 
 .header-floating {
+  @include mx.on-dark-surface;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
+  min-height: var.$header-height;
   padding: 1rem 0;
   background: rgba(var.$primary, 0.85);
   backdrop-filter: blur(15px);
-  z-index: 1000;
-  transition: all 0.3s ease-in-out;
+  z-index: var.$z-header;
+  transition:
+    background-color var.$duration-base ease-in-out,
+    border-color var.$duration-base ease-in-out,
+    box-shadow var.$duration-base ease-in-out;
   border-bottom: 1px solid rgba(var.$accent-light, 0.1);
 
   &.scrolled {
@@ -146,12 +183,10 @@ const menuItems = [
 }
 
 .toolbar {
-  max-width: 1400px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  @include mx.container;
 }
 
 .logo {
@@ -162,11 +197,15 @@ const menuItems = [
   line-height: 1;
 
   .nav-link-logo {
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     text-transform: uppercase;
     color: var.$text-secondary;
     font-size: 1.5rem;
-    transition: all 0.3s ease;
+    transition:
+      color var.$duration-base var.$ease,
+      transform var.$duration-base var.$ease;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
     &:hover {
@@ -194,8 +233,11 @@ const menuItems = [
     color: var.$text-secondary;
     font-size: 1.1rem;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    border-radius: var.$radius-md;
+    transition:
+      color var.$duration-base var.$ease,
+      background-color var.$duration-base var.$ease,
+      transform var.$duration-base var.$ease;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     position: relative;
 
@@ -214,52 +256,40 @@ const menuItems = [
 
 .action-button {
   display: flex;
-  font-family: var.$font-family-secondary;
 
   .btn-accent {
-    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
-    color: var.$accent-light;
-    text-decoration: none;
     padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(var.$secondary, 0.3);
-    border: none;
+    box-shadow: var.$shadow-accent;
 
     &:hover {
-      background: linear-gradient(
-        135deg,
-        var.$btn-primary-hover 0%,
-        color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
-      );
-      transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(var.$secondary, 0.4);
     }
   }
 }
 
 // Mobile Menu
+// Alvo de 44×44; o desenho continua com 25px e a margem negativa o mantém no mesmo lugar
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
   justify-content: space-around;
-  width: 25px;
-  height: 25px;
+  width: 44px;
+  height: 44px;
+  padding: 9.5px;
+  margin: -9.5px;
   background: transparent;
   border: none;
+  border-radius: var.$radius-md;
   cursor: pointer;
-  padding: 0;
 
   span {
     width: 100%;
     height: 3px;
     background: var.$accent-light;
     border-radius: 2px;
-    transition: all 0.3s ease;
   }
 
-  @media (max-width: 968px) {
+  @include mx.down(var.$bp-lg) {
     display: flex;
   }
 }
@@ -267,23 +297,25 @@ const menuItems = [
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 80px;
+  top: var.$header-height-mobile;
   left: 0;
   right: 0;
   background: var.$primary;
   backdrop-filter: blur(20px);
   flex-direction: column;
   padding: 2rem;
-  z-index: 999;
-  transform: translateY(-100%);
-  transition: all 0.3s ease;
+  z-index: var.$z-menu;
+  font-family: var.$font-family-secondary;
 
+  // Só existe abaixo de 968px: alargar a janela com o menu aberto o esconde
   &.active {
-    display: flex;
-    transform: translateY(0);
+    @include mx.down(var.$bp-lg) {
+      display: flex;
+    }
   }
 
   .mobile-nav-link {
+    font-weight: bold; // como o menu do desktop
     color: var.$accent-light;
     text-decoration: none;
     padding: 1rem 0;
@@ -302,36 +334,20 @@ const menuItems = [
   }
 
   .mobile-btn-accent {
-    background: linear-gradient(135deg, var.$btn-primary-bg 0%, var.$btn-primary-hover 100%);
-    color: var.$accent-light;
-    text-decoration: none;
     padding: 1rem 2rem;
-    border-radius: 8px;
-    text-align: center;
     margin-top: 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-
-    &:hover {
-      background: linear-gradient(
-        135deg,
-        var.$btn-primary-hover 0%,
-        color.adjust(var.$btn-primary-hover, $lightness: -5%) 100%
-      );
-    }
   }
 }
 
 // Responsividade
-@media (max-width: 968px) {
+@include mx.down(var.$bp-lg) {
+  .header-floating {
+    min-height: var.$header-height-mobile;
+  }
+
   .menu,
   .action-button {
     display: none;
-  }
-
-  .toolbar {
-    padding: 0 1rem;
   }
 
   .logo .nav-link-logo {

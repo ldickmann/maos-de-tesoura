@@ -10,13 +10,13 @@
         <div class="card-content">
           <div class="card-header">
             <div class="service-info">
-              <h3 class="card-title">{{ service.name }}</h3>
+              <h2 class="card-title">{{ service.name }}</h2>
               <div class="service-meta">
                 <span class="duration">
-                  <i class="fas fa-clock"></i>
+                  <i class="fas fa-clock" aria-hidden="true"></i>
                   {{ service.duration }} min
                 </span>
-                <span class="card-price">R$ {{ service.price.toFixed(2) }}</span>
+                <span class="card-price">{{ formatPrice(service.price) }}</span>
               </div>
             </div>
           </div>
@@ -25,16 +25,16 @@
 
           <div v-if="service.expanded" class="card-details">
             <div class="details-content">
-              <h4>O que inclui:</h4>
+              <h3>O que inclui:</h3>
               <ul class="service-includes">
                 <li v-for="item in service.includes" :key="item">
-                  <i class="fas fa-check"></i>
+                  <i class="fas fa-check" aria-hidden="true"></i>
                   {{ item }}
                 </li>
               </ul>
 
               <div v-if="service.benefits" class="benefits">
-                <h4>Benefícios:</h4>
+                <h3>Benefícios:</h3>
                 <p>{{ service.benefits }}</p>
               </div>
             </div>
@@ -42,15 +42,18 @@
 
           <div class="card-actions">
             <button
-              class="details-button"
+              class="btn details-button"
               @click="toggleDetails(service)"
               :aria-expanded="service.expanded"
             >
-              <i :class="service.expanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
+              <i
+                :class="service.expanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"
+                aria-hidden="true"
+              ></i>
               {{ service.expanded ? 'Ver Menos' : 'Ver Detalhes' }}
             </button>
-            <button class="book-button" @click="handleBookingAlert">
-              <i class="fas fa-calendar-plus"></i>
+            <button class="btn btn--primary book-button" @click="handleBookingAlert">
+              <i class="fas fa-calendar-plus" aria-hidden="true"></i>
               Agendar Agora
             </button>
           </div>
@@ -63,7 +66,7 @@
       <div class="info-grid">
         <div class="info-card">
           <div class="info-icon">
-            <i class="fas fa-shield-alt"></i>
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
           </div>
           <h3>Garantia de Qualidade</h3>
           <p>Profissionais experientes e produtos premium para o melhor resultado.</p>
@@ -71,7 +74,7 @@
 
         <div class="info-card">
           <div class="info-icon">
-            <i class="fas fa-clock"></i>
+            <i class="fas fa-clock" aria-hidden="true"></i>
           </div>
           <h3>Pontualidade</h3>
           <p>Respeitamos seu tempo. Atendimento sempre no horário agendado.</p>
@@ -79,7 +82,7 @@
 
         <div class="info-card">
           <div class="info-icon">
-            <i class="fas fa-heart"></i>
+            <i class="fas fa-heart" aria-hidden="true"></i>
           </div>
           <h3>Satisfação Garantida</h3>
           <p>Não ficou satisfeito? Refazemos o serviço sem custo adicional.</p>
@@ -89,8 +92,8 @@
       <div class="cta-section">
         <h2>Pronto para transformar seu visual?</h2>
         <p>Agende agora mesmo e experimente nossos serviços premium.</p>
-        <button @click="handleBookingAlert" class="cta-button">
-          <i class="fas fa-calendar-check"></i>
+        <button @click="handleBookingAlert" class="btn btn--primary btn--lg cta-button">
+          <i class="fas fa-calendar-check" aria-hidden="true"></i>
           Ver Horários Disponíveis
         </button>
       </div>
@@ -106,6 +109,7 @@ import { useBookingStore } from '@/stores/booking'
 import { useNotificationStore } from '@/stores/notification'
 import { useServicesStore } from '@/stores/services'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import { formatPrice } from '@/utils/format'
 
 const router = useRouter()
 const bookingStore = useBookingStore()
@@ -233,13 +237,17 @@ const bookService = async (service) => {
 </script>
 
 <style scoped lang="scss">
-@use 'sass:color';
 @use '@/assets/styles/scss/_variables.scss' as var;
+@use '@/assets/styles/scss/_mixins.scss' as mx;
 .services-page {
-  padding: 88px 0 2rem;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: var.$header-height 0 2rem;
+  background: linear-gradient(135deg, var.$bg-light 0%, var.$bg-light-2 100%);
   min-height: 100vh;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: var.$font-family-tertiary;
+
+  @include mx.down(var.$bp-lg) {
+    padding-top: var.$header-height-mobile;
+  }
 }
 
 .page-header {
@@ -250,18 +258,18 @@ const bookService = async (service) => {
 
   h1 {
     font-size: 3rem;
-    font-family: 'Archivo Black', sans-serif;
-    color: #212121;
+    font-family: var.$font-family-primary;
+    color: var.$primary;
     margin-bottom: 1rem;
 
-    @media (max-width: 768px) {
+    @include mx.down(var.$bp-md) {
       font-size: 2.5rem;
     }
   }
 
   p {
     font-size: 1.2rem;
-    color: #6c757d;
+    color: var.$text-muted; // 5,89:1 sobre $bg-light
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
@@ -277,30 +285,37 @@ const bookService = async (service) => {
   gap: 2rem;
   padding: 0 2rem;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md) {
+    padding: 0 1rem;
+  }
+
+  // Celular só abaixo de 768: no tablet ficam 2 colunas
+  @include mx.down(var.$bp-md - 1px) {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    padding: 0 1rem;
     max-width: 100%;
   }
 
-  @media (max-width: 480px) {
+  @include mx.down(var.$bp-sm) {
     padding: 0 0.5rem;
   }
 
-  @media (min-width: 769px) and (max-width: 1200px) {
+  @media (min-width: var.$bp-md) and (max-width: 1200px) {
     justify-content: space-evenly;
   }
 }
 
 .service-card {
-  background: white;
-  border-radius: 20px;
+  background: var.$accent-light;
+  border-radius: var.$radius-2xl;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease;
-  border: 1px solid rgba(255, 123, 66, 0.1);
+  box-shadow: var.$shadow-md;
+  transition:
+    transform 0.4s var.$ease,
+    box-shadow 0.4s var.$ease,
+    border-color 0.4s var.$ease;
+  border: 1px solid rgba(var.$secondary, 0.1);
   flex: 1;
   min-width: 350px;
   max-width: 450px;
@@ -316,28 +331,28 @@ const bookService = async (service) => {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
+    background: var.$gradient-primary;
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: transform var.$duration-base var.$ease;
   }
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-    border-color: rgba(255, 123, 66, 0.3);
+    box-shadow: var.$shadow-lg;
+    border-color: rgba(var.$secondary, 0.3);
 
     &::before {
       transform: scaleX(1);
     }
   }
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md - 1px) {
     width: 100%;
     max-width: 500px;
     min-width: 300px;
   }
 
-  @media (max-width: 480px) {
+  @include mx.down(var.$bp-sm) {
     min-width: 280px;
   }
 }
@@ -361,8 +376,8 @@ const bookService = async (service) => {
 
 .card-title {
   font-size: 1.5rem;
-  font-family: 'Archivo Black', sans-serif;
-  color: #212121;
+  font-family: var.$font-family-primary;
+  color: var.$primary;
   margin: 0;
   line-height: 1.2;
 }
@@ -372,11 +387,11 @@ const bookService = async (service) => {
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem;
-  background: #f8f9fa;
-  border-radius: 12px;
-  border-left: 4px solid #ff7b42;
+  background: var.$bg-light;
+  border-radius: var.$radius-lg;
+  border-left: 4px solid var.$secondary;
 
-  @media (max-width: 480px) {
+  @include mx.down(var.$bp-sm) {
     flex-direction: column;
     gap: 0.5rem;
     text-align: center;
@@ -386,25 +401,25 @@ const bookService = async (service) => {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #6c757d;
+    color: var.$text-gray;
     font-size: 0.9rem;
     font-weight: 600;
 
     i {
-      color: #ff7b42;
+      color: var.$secondary;
     }
   }
 
   .card-price {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #ff7b42;
-    font-family: 'Archivo Black', sans-serif;
+    color: var.$secondary;
+    font-family: var.$font-family-primary;
   }
 }
 
 .card-description {
-  color: #495057;
+  color: var.$text-body;
   line-height: 1.6;
   margin-bottom: 1.5rem;
   font-size: 1rem;
@@ -413,14 +428,14 @@ const bookService = async (service) => {
 .card-details {
   margin: 1.5rem 0;
   padding: 1.5rem;
-  background: #f8f9fa;
-  border-radius: 12px;
-  border-left: 4px solid #ff7b42;
+  background: var.$bg-light;
+  border-radius: var.$radius-lg;
+  border-left: 4px solid var.$secondary;
 }
 
 .details-content {
-  h4 {
-    color: #212121;
+  h3 {
+    color: var.$primary;
     margin-bottom: 1rem;
     font-weight: 600;
     font-size: 1.1rem;
@@ -437,10 +452,10 @@ const bookService = async (service) => {
     align-items: center;
     gap: 0.75rem;
     padding: 0.5rem 0;
-    color: #495057;
+    color: var.$text-body;
 
     i {
-      color: #28a745;
+      color: var.$success;
       font-size: 0.9rem;
       flex-shrink: 0;
     }
@@ -448,94 +463,66 @@ const bookService = async (service) => {
 }
 
 .benefits {
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid var.$border-color;
   padding-top: 1rem;
 
-  h4 {
-    color: #212121;
+  h3 {
+    color: var.$primary;
     margin-bottom: 0.75rem;
   }
 
   p {
-    color: #495057;
+    color: var.$text-body;
     margin: 0;
     line-height: 1.5;
     font-style: italic;
   }
 }
 
+// Quando os dois botões não cabem lado a lado, "Agendar Agora" desce inteiro para a linha de baixo
 .card-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: auto; // Empurra os botões para o final do card
   padding-top: 1rem;
 
-  @media (max-width: 480px) {
+  @include mx.down(var.$bp-sm) {
     flex-direction: column;
     gap: 0.75rem;
   }
-
-  @media (min-width: 481px) and (max-width: 768px) {
-    flex-wrap: wrap;
-  }
 }
 
+// Base flexível (a largura do rótulo) e sem quebra: os rótulos ficam em uma linha
 .details-button,
 .book-button {
   padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
   font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: 'Hanken Grotesk', sans-serif;
-  text-decoration: none;
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
+  white-space: nowrap;
 }
 
 .details-button {
-  flex: 1;
+  flex: 1 1 auto;
   background: transparent;
-  color: #6c757d;
-  border: 2px solid #dee2e6;
+  color: var.$text-gray;
+  border: 2px solid var.$border-color;
 
   &:hover:not(:disabled) {
-    background: #f8f9fa;
-    border-color: #ff7b42;
-    color: #ff7b42;
+    background: var.$bg-light;
+    border-color: var.$secondary;
+    color: var.$secondary;
   }
 
   &[aria-expanded='true'] {
-    background: #fff5f2;
-    border-color: #ff7b42;
-    color: #ff7b42;
+    background: var.$secondary-tint;
+    border-color: var.$secondary;
+    color: var.$secondary;
   }
 }
 
 .book-button {
-  flex: 2;
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-  color: white;
-  border: 2px solid transparent;
-
-  &:hover:not(:disabled) {
-    background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 123, 66, 0.3);
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
+  flex: 2 1 auto;
+  border: 2px solid transparent; // mesma altura do botão de detalhes, que tem borda
 }
 
 // Seção de informações adicionais
@@ -552,76 +539,47 @@ const bookService = async (service) => {
   gap: 2rem;
   margin-bottom: 4rem;
 
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md - 1px) {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
+  @media (min-width: var.$bp-md) and (max-width: 1024px) {
     justify-content: space-evenly;
   }
 }
 
+// Sem efeito de hover: o card não é clicável
 .info-card {
   text-align: center;
   padding: 2.5rem 2rem;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease;
+  background: var.$accent-light;
+  border-radius: var.$radius-2xl;
+  box-shadow: var.$shadow-md;
   flex: 1;
   min-width: 280px;
   max-width: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid rgba(255, 123, 66, 0.1);
-  position: relative;
+  border: 1px solid rgba(var.$secondary, 0.1);
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-    border-radius: 20px 20px 0 0;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-    border-color: rgba(255, 123, 66, 0.3);
-
-    &::before {
-      transform: scaleX(1);
-    }
-
-    .info-icon {
-      transform: scale(1.1);
-      box-shadow: 0 8px 25px rgba(255, 123, 66, 0.3);
-    }
-  }
-
-  @media (max-width: 768px) {
+  @include mx.down(var.$bp-md - 1px) {
     width: 100%;
     max-width: 400px;
   }
 
   h3 {
-    color: #212121;
+    color: var.$primary;
     margin-bottom: 1rem;
     font-weight: 700;
     font-size: 1.3rem;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
   }
 
   p {
-    color: #6c757d;
+    color: var.$text-gray;
     line-height: 1.7;
     margin: 0;
     flex-grow: 1;
@@ -633,34 +591,34 @@ const bookService = async (service) => {
   width: 80px;
   height: 80px;
   margin: 0 auto 2rem;
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
+  background: var.$gradient-primary;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 123, 66, 0.2);
+  box-shadow: 0 4px 15px rgba(var.$secondary, 0.2);
   flex-shrink: 0;
 
   i {
     font-size: 2rem;
-    color: white;
+    color: var.$accent-light;
   }
 }
 
 .cta-section {
+  @include mx.on-dark-surface;
   text-align: center;
   padding: 3rem 2rem;
-  background: linear-gradient(135deg, #212121 0%, #495057 100%);
-  border-radius: 20px;
-  color: white;
+  background: linear-gradient(135deg, var.$primary 0%, var.$text-body 100%);
+  border-radius: var.$radius-2xl;
+  color: var.$accent-light;
 
   h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: var.$font-family-primary;
 
-    @media (max-width: 768px) {
+    @include mx.down(var.$bp-md) {
       font-size: 1.5rem;
     }
   }
@@ -676,23 +634,7 @@ const bookService = async (service) => {
 }
 
 .cta-button {
-  display: inline-flex;
-  align-items: center;
   gap: 0.75rem;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #ff7b42 0%, #e66b32 100%);
-  color: white;
-  text-decoration: none;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: linear-gradient(135deg, #e66b32 0%, #d55a22 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 123, 66, 0.4);
-  }
 
   i {
     font-size: 1.2rem;
@@ -711,8 +653,10 @@ const bookService = async (service) => {
   }
 }
 
+// fill-mode backwards: durante o atraso o card já fica no estado inicial da animação.
+// Não usar both/forwards: o transform final ficaria preso e anularia o hover do card.
 .service-card {
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp 0.6s ease-out backwards;
 }
 
 .service-card:nth-child(1) {
@@ -729,6 +673,6 @@ const bookService = async (service) => {
 }
 
 .card-details {
-  animation: fadeInUp 0.4s ease-out;
+  animation: fadeInUp 0.4s ease-out backwards;
 }
 </style>
