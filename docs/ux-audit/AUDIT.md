@@ -35,10 +35,17 @@ A coluna **Plano** de cada tabela diz onde o achado é tratado:
   - ⏸ fora (F#);
   - 🐞 bug funcional;
   - ◐ parcial, quando o item do plano não cobria o achado inteiro.
-- **Totais:** 76 ✅, 16 ⏸, 1 ◐ (E12) e 19 🐞.
-- **Pendências:**
-  - o "10+" do topo da Sobre (H1) dá 2,72:1 sobre o pior trecho do véu aprovado;
-  - a escala de espaçamento (E12) não foi criada.
+- **Totais:** 77 ✅, 15 ⏸, 1 ◐ (E12) e 19 🐞. O C8 saiu do F3 nas decisões pós-prévia.
+- **Pendência:** a escala de espaçamento (E12) não foi criada.
+
+## Decisões pós-prévia (2026-10-19)
+
+Depois de ver a prévia publicada, você delegou as decisões que estavam em aberto. Detalhes e verificação em `PLAN.md`.
+
+- **Véu da Sobre** de `.7`/`.35` para `.8`/`.45`: o "10+" passa de 2,72:1 para 3,30:1 (H1).
+- **Botões do topo** ("Agendar Horário" no desktop e no menu mobile) na Hanken Grotesk, como os outros botões, em vez da Bungee Hairline em negrito sintético (T2, T3).
+- **Hover sem subida:** os botões mudam cor e sombra, mas não se movem (K1). Cards, links do menu e ícones do rodapé continuam como estavam.
+- **Borda dos campos** com pelo menos 3:1 (C8): `$border-input` (#868e96) nos campos e nas opções do agendamento, e `$border-input-dark` (#888) na newsletter.
 - **Saída das verificações 4.1–4.6:** [Apêndice C](#apêndice-c--saída-das-verificações-da-execução-41-46).
 - **Capturas:** `screenshots/antes/` e `screenshots/depois/` (41 PNG e `metrics.json` cada). Para regerar os pares lado a lado: `convert antes/X.png depois/X.png +append comparacao/X.png`.
 
@@ -105,7 +112,7 @@ O AA pede 4,5:1 para texto normal, 3:1 para texto grande e 3:1 para bordas de co
 | C5 | 404 | `NotFoundView.vue:42-44` sobre `NotFoundView.vue:23` | #6c757d sobre #212121 dá **3,43:1**. | cálculo; `404-1440` | médio | ✅ corrigido — 3.7 |
 | C6 | Placeholders | `ContatoView.vue:459-461` (#adb5bd sobre branco, **2,07:1**); `FooterComponent.vue:525-527` (#888 sobre #333, **3,56:1**) | Ficam abaixo de 4,5:1. | cálculo | médio | ✅ corrigido — 2.2 |
 | C7 | Verde com texto branco | `HomeView.vue:950-952` (WhatsApp, 3,13:1); `BookingView.vue:663-664` (confirmar: #28a745→#20c997, 3,13→2,13:1); `FooterComponent.vue:370-371` + `:380` (ícone branco sobre #25d366, 1,98:1); `ContatoView.vue:640-642` | Falha AA. | cálculo | médio | ⏸ fora (F2) |
-| C8 | Bordas de inputs | `ContatoView.vue:439` (#dee2e6, 1,30:1); `BookingView.vue:538` e `:598` (#ddd, 1,36:1) | A borda que identifica o campo fica abaixo de 3:1 (WCAG 1.4.11). | cálculo | médio | ⏸ fora (F3) |
+| C8 | Bordas de inputs | `ContatoView.vue:439` (#dee2e6, 1,30:1); `BookingView.vue:538` e `:598` (#ddd, 1,36:1) | A borda que identifica o campo fica abaixo de 3:1 (WCAG 1.4.11). | cálculo | médio | ✅ corrigido — pós-prévia (`$border-input` #868e96: 3,32:1 sobre branco; newsletter #888: 3,56:1) |
 | C9 | Cores fora da paleta | `AboutView.vue:369` (#e67e22, outro laranja). Hover escuro em dois tons: #d55a22 (`ServicosView.vue:531`, `ContatoView.vue:500`, `AboutView.vue:784`) e `color.adjust($btn-primary-hover, $lightness:-5%)` (`HeaderFloating.vue:234`, `HomeView.vue:439`, `HomeView.vue:902`, `FooterComponent.vue:553`). Verdes próprios em `BookingView.vue:618-677` | Variações não intencionais da paleta. | `sobre-1440` (números do hero) | baixo | ✅ corrigido — 2.1, 3.4, 3.6 |
 | C10 | Ícone de aviso | `NotificationSystem.vue:86-91` | #ffc107 sobre branco dá 1,63:1, abaixo de 3:1. O ícone só complementa o texto. | cálculo | baixo | ⏸ fora (F4) |
 | C11 | Texto branco sobre superfícies laranja que não são botão | `HomeView.vue:845-866` (título e parágrafo da seção CTA; o parágrafo tem `opacity: .9`); `AboutView.vue:496-525` (cards de números); `HomeView.vue:473-482` (etiqueta "Desde 2009") | Branco sobre #ff7b42 dá 2,57:1, e o parágrafo com opacidade .9 dá 2,35:1. Falha AA, inclusive no título grande, que pede 3:1. | cálculo; `home-1440`, `sobre-1440` | alto | ✅ corrigido — 3.2, 3.4 (decisão 3 da execução: texto `#212121`, sem opacidade; 6,26:1 / 4,99:1) |
@@ -198,7 +205,7 @@ O AA pede 4,5:1 para texto normal, 3:1 para texto grande e 3:1 para bordas de co
 
 | ID | Tela/componente | arquivo:linha | O que está errado | Evidência | Impacto | Plano |
 |---|---|---|---|---|---|---|
-| H1 | Hero da página Sobre | `AboutView.vue:292-297` (`.hero-overlay` sem fundo e sem posição, por isso sem efeito); `AboutView.vue:288` | O título e os números ficam direto sobre uma ilustração carregada, metade vermelha e metade preta, com o letreiro "BARBER SHOP". | recorte ampliado de `sobre-1440-dobra`; `sobre-390` | médio | ✅ corrigido — 3.4 ✅ aprovado (véu escuro). ⚠ Pendente: o "10+" a 1440 dá 2,72:1 sobre o pior trecho do véu (ver PLAN 3.4) |
+| H1 | Hero da página Sobre | `AboutView.vue:292-297` (`.hero-overlay` sem fundo e sem posição, por isso sem efeito); `AboutView.vue:288` | O título e os números ficam direto sobre uma ilustração carregada, metade vermelha e metade preta, com o letreiro "BARBER SHOP". | recorte ampliado de `sobre-1440-dobra`; `sobre-390` | médio | ✅ corrigido — 3.4 ✅ aprovado (véu escuro). O "10+" foi de 2,72:1 para 3,30:1 com o véu `.8`/`.45` (pós-prévia) |
 | H2 | CTA final da Home | ver C3 | O CTA principal fica menos visível que o secundário (WhatsApp). | `home-1440` | alto | ✅ corrigido — 3.2 ✅ aprovado |
 | H3 | Header em páginas claras | `HeaderFloating.vue:134` (`rgba($primary, .85)`) | Sobre fundo claro o header fica cinza (~#414141, calculado); sobre o hero da Home, quase preto. | `servicos-1440` × `home-1440` | baixo | ⏸ fora (F7) |
 
@@ -378,8 +385,9 @@ anel de foco visível em todas as paradas: Home 44, Serviços 43, Sobre 36, Cont
 branco/#1e7e34 5,14 · branco/#6c757d 4,69 · #5a6268/#f8f9fa 5,89 · #5a6268/#e9ecef 5,24
 #b0b0b0/#212121 7,42 · #b0b0b0/#333 5,83 · #6c757d/branco 4,69 · #495057/#f8f9fa 7,76
 falham por decisão: laranja/branco 2,57 e /#f8f9fa 2,44 (F1) · branco/#28a745 3,13 (F2)
-                    borda #dee2e6 1,30 (F3) · #ffc107 1,63 (F4)
-fora da lista: "10+" da Sobre sobre o véu, 2,72 a 1440 (pendente)
+                    #ffc107 1,63 (F4)
+pós-prévia: borda #868e96/branco 3,32 e /#f8f9fa 3,15 · #888/#333 3,56 e /#2c2c2c 3,94
+            "10+" da Sobre sobre o véu .8/.45: pior trecho 3,30 a 1440 e 3,58 a 390
 ```
 
 **4.6 Contagens** (script do Apêndice A, depois de `yarn build`)

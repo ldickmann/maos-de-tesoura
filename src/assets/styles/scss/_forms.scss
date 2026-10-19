@@ -1,7 +1,7 @@
 // ========================
 // Campos de formulário compartilhados
 // ========================
-// A cor da borda continua a atual ($border-color); escurecer está fora do escopo (F3).
+// A borda tem pelo menos 3:1 contra o campo e o fundo (WCAG 1.4.11, C8).
 
 @use './variables' as *;
 
@@ -18,7 +18,7 @@
 .form-textarea {
   width: 100%;
   padding: 0.875rem;
-  border: 2px solid $border-color;
+  border: 2px solid $border-input;
   border-radius: $radius-md;
   background-color: $accent-light;
   font-size: 1rem;
@@ -62,7 +62,7 @@
 // Variante para fundos escuros (newsletter do rodapé)
 .form-input--dark {
   padding: 0.875rem 1rem;
-  border: 1px solid $border-dark;
+  border: 1px solid $border-input-dark;
   background-color: $surface-dark-3;
   color: $accent-light;
 

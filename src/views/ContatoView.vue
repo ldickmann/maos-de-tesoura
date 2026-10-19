@@ -585,16 +585,13 @@ const handleSubmit = async () => {
   border-radius: var.$radius-md;
   text-decoration: none;
   font-weight: 500;
-  transition:
-    transform var.$duration-base var.$ease,
-    box-shadow var.$duration-base var.$ease;
+  transition: box-shadow var.$duration-base var.$ease;
 
   &.github {
     background: linear-gradient(135deg, #333 0%, #24292e 100%);
     color: var.$accent-light;
 
     &:hover {
-      transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(51, 51, 51, 0.3);
     }
   }
@@ -604,7 +601,6 @@ const handleSubmit = async () => {
     color: var.$accent-light;
 
     &:hover {
-      transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
     }
   }
@@ -614,7 +610,6 @@ const handleSubmit = async () => {
     color: var.$accent-light;
 
     &:hover {
-      transform: translateY(-2px);
       box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
     }
   }

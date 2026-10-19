@@ -504,7 +504,7 @@ h1 {
 .professional-card {
   width: 100%;
   padding: 1.5rem;
-  border: 2px solid var.$border-color;
+  border: 2px solid var.$border-input;
   border-radius: var.$radius-md;
   text-align: center;
   cursor: pointer;
@@ -574,7 +574,7 @@ h1 {
 
 .time-slot {
   padding: 0.8rem;
-  border: 2px solid var.$border-color;
+  border: 2px solid var.$border-input;
   border-radius: 6px;
   background: transparent;
   color: inherit;
@@ -664,9 +664,7 @@ h1 {
   border: none;
   border-radius: var.$radius-md;
   cursor: pointer;
-  transition:
-    transform var.$duration-base var.$ease,
-    box-shadow var.$duration-base var.$ease;
+  transition: box-shadow var.$duration-base var.$ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -674,7 +672,6 @@ h1 {
 
   &:hover:not(:disabled) {
     background: linear-gradient(135deg, var.$success-hover 0%, var.$success-dark 100%);
-    transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(var.$success, 0.3);
   }
 

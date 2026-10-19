@@ -466,7 +466,7 @@ Fecham o que a sessão anterior deixou em aberto:
     - **Tokens novos:** três valores existentes sem token viraram tokens (`$text-body` #495057, `$bg-light-2` #e9ecef, `$secondary-tint` #fff5f2), seguindo a regra da 1.2. Eles também aparecem no Contato, na Sobre e no Agendamento.
     - **Regra morta `:499-502`:** era o `&:disabled` dos botões dos cards, que nunca ficam desabilitados. Já tinha saído na 2.1, quando o estado foi para o `.btn`.
 
-- [x] **3.4 Sobre** (H1, C9, C11, ST2, AC8, K2, D3). ⚠ Um par de contraste depende de decisão (ver "Pendente" abaixo).
+- [x] **3.4 Sobre** (H1, C9, C11, ST2, AC8, K2, D3). O par de contraste que dependia de decisão ("10+") foi resolvido nas decisões pós-prévia.
   - **visível, aprovado — véu escuro:** o `.hero-overlay` passa a `position: absolute; inset: 0`, com `background: linear-gradient(to top, rgba($primary, .7), rgba($primary, .35))`, como o Banner da Home.
   - **Cores:**
     - os números do topo saem de #e67e22 e vão para `$secondary`;
@@ -768,7 +768,7 @@ Fecham o que a sessão anterior deixou em aberto:
 
 ## Pendente depois da execução
 
-- **"10+" sobre o véu da Sobre (H1, 3.4):** 2,72:1 a 1440. Exige escolher outro valor de véu, por exemplo `rgba($primary, .8)` → `.45`, que dá 3,29:1, ou aceitar a falha.
+- ~~**"10+" sobre o véu da Sobre (H1, 3.4):** 2,72:1 a 1440.~~ Resolvido nas decisões pós-prévia (3,30:1).
 - **E12:** a escala de espaçamento não foi criada, porque não estava na lista de tokens da 1.2.
 - **Caminho do rodapé até o agendamento:** bloqueado pelo B11, que fica fora por decisão (F12).
 
@@ -778,16 +778,57 @@ Comparou o diff `5a36cae..HEAD` com este plano, item por item, e reproduziu as v
 
 - **Média, corrigida:** em Serviços, o `animation-fill-mode: both` travava o `transform` e anulava a subida do card no hover. Agora é `backwards` (ver 3.3).
 - **Baixa, corrigida:** na Home, a limpeza das media queries duplicadas mudava a distribuição das grades entre 769 e 1024px (`space-evenly` × `space-around`). Agora vale o que valia antes (ver 3.2).
-- **Baixa, mantida e documentada (decisão sua):** a base `.btn` sobe 2px no hover. Isso unifica o hover (K1), mas:
+- **Baixa, decidida na pós-prévia (P3):** a base `.btn` subia 2px no hover. Isso unifica o hover (K1), mas:
   - o botão do hero passou de 3px para 2px;
   - "Ver Detalhes", "Inscrever", o botão da 404 e o "Agendar" do menu mobile ganharam uma subida que não tinham.
-- **Baixa, mantida e documentada (decisão sua):** a borda dos campos e dos cards de seleção do Agendamento foi de `#ddd` para `$border-color` (#dee2e6), com contraste de 1,36 para 1,30:1. Os dois reprovam; o F3 continua.
+- **Baixa, decidida na pós-prévia (P4):** a borda dos campos e dos cards de seleção do Agendamento foi de `#ddd` para `$border-color` (#dee2e6), com contraste de 1,36 para 1,30:1. Os dois reprovavam; agora usam `$border-input` (3,32:1).
 - **Confirmadas pelo revisor:** as pendências (a) "10+" 2,72:1, (b) E12, (c) B11 no rodapé, (d) pulo de até 57px entre 968 e 1099px e (e) ESLint. Ele também confirmou que `package.json`, `yarn.lock`, `index.html`, as stores e `validation.js` não mudaram, e que os bugs B1–B19 continuam.
 - **Depois das correções:**
   - `yarn build` → `✓ built in 2.62s`, sem avisos. `npx prettier --check HomeView.vue ServicosView.vue` → `All matched files use Prettier code style!`
   - Capturas "depois" refeitas, e o 4.3 continua valendo em todas as telas.
   - Mudou o `home-768`, pela distribuição de tablet.
   - As de Serviços mudaram só no antialiasing do texto dos cards (PSNR 72 dB), porque o card não fica mais em camada de composição.
+
+## Decisões pós-prévia (2026-10-19)
+
+Você viu a prévia em `/preview` e delegou as decisões que estavam em aberto. Antes de editar, a `develop` (assinatura de autoria, PRs #8 e #9) entrou neste branch sem conflito.
+
+- [x] **P1 Véu da Sobre** (H1)
+  - `.hero-overlay` de `rgba($primary, .7)` → `.35` para `.8` → `.45`.
+  - **Resultado:** o pior trecho do "10+" foi de 2,72:1 para **3,30:1** a 1440 e de 3,05:1 para 3,58:1 a 390 (`contraste-veu.cjs`). Título, subtítulo e rótulos só ganharam contraste.
+- [x] **P2 Botões do topo na fonte do texto** (T2, T3)
+  - Depois do `font: inherit` da 1.3, "Agendar Horário" (desktop e menu mobile) herdava a Bungee Hairline do contêiner, em negrito sintético. Os outros botões já usavam a Hanken Grotesk.
+  - `.btn` passou a declarar `font-family: $font-family-tertiary`. O `font-family` do `.action-button` saiu, porque só servia ao botão.
+  - O "Agende um Horário" do banner declara a própria fonte e continua na Bungee Hairline, por identidade.
+  - **Resultado:** em todas as telas, a 1440 e a 390, os únicos `.btn` fora da Hanken Grotesk são os 2 do banner (`fontes-btn.cjs`).
+- [x] **P3 Hover sem subida** (K1)
+  - Saiu o `translateY(-2px)` do hover da `.btn`, do "Confirmar Agendamento" e dos botões GitHub, LinkedIn e WhatsApp do Contato. O hover segue mudando cor e sombra.
+  - Motivo: com o cursor na borda de baixo, o botão sobe, o cursor sai dele, o hover acaba e o botão desce. O hover pisca. Também some o movimento sem função.
+  - Cards, links do menu, logo e ícones do rodapé não mudaram.
+  - **Resultado:** `transform: none` depois de 400ms de hover em 6 botões de 5 telas.
+- [x] **P4 Borda dos campos com 3:1** (C8, F3)
+  - Tokens novos: `$border-input` (#868e96) e `$border-input-dark` (#888, no lugar de `$border-dark` #444).
+  - Usados em `.form-input`, `.form-select`, `.form-textarea`, nas opções de profissional e horário do agendamento e na newsletter.
+  - `$border-color` continua nas divisórias e nos cards decorativos.
+  - **Resultado:** 3,32:1 sobre o campo branco e 3,15:1 sobre `$accent`; na newsletter, 3,56:1 sobre o campo (#333) e 3,94:1 sobre a faixa (#2c2c2c).
+
+**Verificação:**
+
+```
+$ yarn build
+✓ built in 2.14s                     (sem avisos)
+$ npx prettier --check src/assets/styles/scss/_variables.scss src/assets/styles/scss/_forms.scss \
+    src/assets/styles/scss/_buttons.scss src/views/BookingView.vue src/views/AboutView.vue \
+    src/views/ContatoView.vue src/components/layouts/HeaderFloating.vue
+All matched files use Prettier code style!
+```
+
+- **Capturas "depois" refeitas** (41 PNG e `metrics.json`).
+  - Todas as páginas inteiras ficaram 40px mais altas: é a assinatura abaixo do rodapé.
+  - Acima dela, as diferenças estão só onde deviam: borda dos campos (Contato, agendamento e newsletter), botão do topo a 1440, véu da Sobre e botão do menu mobile.
+  - Os links do menu desktop andaram alguns pixels, porque o botão ao lado mudou de largura.
+- **`metrics.json`:** igual ao anterior, exceto por um alvo novo em `smallTargets`, o link da assinatura (306×40). O componente diz para não editar o CSS dele, por isso ficou como está.
+- **Contagens do Apêndice A:** iguais às da 4.6 sem o `AssinaturaTraco.vue`. Com ele, entram 4 hex, 1 raio, 1 media query, 2 `focus-visible`, 1 `prefers-reduced-motion` e 2 valores px de espaçamento, todos do componente.
 
 ---
 
@@ -797,7 +838,7 @@ Comparou o diff `5a36cae..HEAD` com este plano, item por item, e reproduziu as v
 |---|---|---|---|
 | F1 | C2 e T4 (texto laranja sobre fundo claro, 2,30–2,57:1) | Muda o uso da cor da marca fora dos botões; é decisão de identidade. | A parte "texto #212121 nos botões laranja" já foi aprovada e está em 2.1, 3.6 e 3.7. O C11 (texto sobre superfícies laranja) saiu desta linha pela decisão 3 e está em 3.2 e 3.4. Opções para o restante: preços e cargos em `#212121`, com o laranja como acento; ou uma cor nova, mais escura, na paleta. |
 | F2 | C7: verde do WhatsApp e do botão de confirmar, com texto branco | Cor de marca de terceiro e cor de estado. | — |
-| F3 | C8: borda dos inputs (1,30–1,36:1) | Escurecer muda o aspecto dos formulários. | Opção: `$text-gray`, que dá 4,69:1. |
+| F3 | ~~C8: borda dos inputs (1,30–1,36:1)~~ | Escurecer muda o aspecto dos formulários. | Resolvido na pós-prévia (P4) com `$border-input` (#868e96, 3,32:1), mais leve que `$text-gray` (4,69:1). |
 | F4 | C10: ícone de aviso amarelo | Exigiria um tom novo. | — |
 | F5 | K7: fonte dos títulos de página | É escolha de identidade: Bungee Hairline ou Archivo Black. | — |
 | F6 | T3: negrito sintético | Mexe no desenho do logo e do menu. | — |

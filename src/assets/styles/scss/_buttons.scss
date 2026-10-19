@@ -3,6 +3,7 @@
 // ========================
 // Uso: class="btn btn--primary" (+ btn--lg). Padding e tamanho de fonte
 // próprios de cada tela ficam no CSS do componente.
+// A fonte é a do texto (Hanken Grotesk), qualquer que seja o contêiner.
 
 @use './variables' as *;
 
@@ -14,6 +15,7 @@
   padding: 0.875rem 1.5rem;
   border: none;
   border-radius: $radius-md;
+  font-family: $font-family-tertiary;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
@@ -21,17 +23,10 @@
     background-color $duration-base $ease,
     color $duration-base $ease,
     border-color $duration-base $ease,
-    box-shadow $duration-base $ease,
-    transform $duration-base $ease;
+    box-shadow $duration-base $ease;
 
-  &:hover:not(:disabled) {
-    transform: translateY(-2px);
-  }
-
-  &:active:not(:disabled) {
-    transform: translateY(0);
-  }
-
+  // O hover muda cor e sombra, sem mover o botão: subir faz o cursor
+  // na borda de baixo sair e voltar, e o hover pisca.
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;

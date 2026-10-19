@@ -294,7 +294,7 @@ const teamMembers = ref([
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(to top, rgba(var.$primary, 0.7), rgba(var.$primary, 0.35));
+  background: linear-gradient(to top, rgba(var.$primary, 0.8), rgba(var.$primary, 0.45));
 }
 
 .hero-content {

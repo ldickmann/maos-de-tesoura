@@ -256,7 +256,6 @@ const menuItems = [
 
 .action-button {
   display: flex;
-  font-family: var.$font-family-secondary;
 
   .btn-accent {
     padding: 0.75rem 1.5rem;
